@@ -13,7 +13,7 @@
 html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
 *{box-sizing:border-box}
 body{margin:0;background:radial-gradient(circle at top,color-mix(in srgb,var(--accent) 12%,var(--bg)),var(--bg) 68%);min-height:100vh;min-height:100dvh;color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);overflow-x:hidden}
-main{width:100%;max-width:640px;margin:0 auto;padding:12px 14px 64px}
+main{width:100%;max-width:640px;margin:0 auto;padding:12px 14px 48px}
 h1{font:600 clamp(23px,6vw,28px)/1.15 "Newsreader",Georgia,serif;margin:4px 0 0}
 h2{font:600 clamp(20px,5vw,22px)/1.25 "Newsreader",Georgia,serif;margin:0 0 6px}
 .brand-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent);border:1px solid color-mix(in srgb,var(--accent) 28%,transparent);padding:3px 10px;border-radius:999px;margin-bottom:4px}
@@ -30,8 +30,9 @@ h2{font:600 clamp(20px,5vw,22px)/1.25 "Newsreader",Georgia,serif;margin:0 0 6px}
 textarea,input[type=text],input[type=email],input[type=password],input[type=date],input[type=time],input[type=search]{width:100%;max-width:100%;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;font-size:16px}
 textarea{min-height:112px;resize:vertical;font-family:"Newsreader",Georgia,serif;font-size:16.5px;line-height:1.45}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-label.chk{display:flex;gap:10px;align-items:center;margin:10px 0 6px;font-size:14.5px;min-height:34px}
-label.chk input[type=checkbox]{width:18px;height:18px;flex:none}
+.chk-row{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:10px 0 4px}
+label.chk{display:inline-flex;gap:8px;align-items:center;margin:0;font-size:14px;min-height:32px;cursor:pointer}
+label.chk input[type=checkbox]{width:18px;height:18px;flex:none;margin:0}
 .fld{margin-top:10px;font-size:14px;color:var(--mute);position:relative}
 .fld input{margin-top:4px}
 .pw-wrap{display:flex;gap:8px;align-items:stretch;margin-top:4px}
@@ -42,7 +43,7 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
 button:disabled{opacity:.55;cursor:not-allowed}
 .stats{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;color:var(--mute);margin:0 0 6px}
 .stats b{color:var(--ink);font-size:20px;font-family:"Newsreader",Georgia,serif}
-.note{font-size:13px;color:var(--mute);margin:6px 0 0}
+.note{font-size:13px;color:var(--mute);margin:6px 0 0;line-height:1.42}
 .entry h3{margin:0 0 6px;font:600 13.5px/1.35 system-ui,sans-serif;color:var(--mute)}
 .entry p{margin:0 0 8px;font:400 17px/1.5 "Newsreader",Georgia,serif;white-space:pre-wrap;overflow-wrap:anywhere}
 .tag{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:99px;padding:2px 9px;margin:0 6px 6px 0;color:var(--mute)}
@@ -51,15 +52,16 @@ button:disabled{opacity:.55;cursor:not-allowed}
 .astral-insight{margin:10px 0 6px;padding:10px 12px;border-radius:10px;background:color-mix(in srgb,var(--accent) 7%,var(--bg));border-left:3px solid var(--accent);font-size:13.5px;color:var(--ink);line-height:1.45}
 .astral-insight strong{color:var(--accent);display:block;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
 .res{font-size:14px;margin:6px 0;color:var(--ok)}
-.empty{color:var(--mute);text-align:center;padding:24px 8px}
+.empty{color:var(--mute);text-align:center;padding:20px 12px;font-size:14px}
 #warn,.auth-err{background:var(--surface);border:1px solid var(--rec);border-radius:10px;padding:10px 12px;font-size:14px;margin-top:10px;color:var(--rec)}
 #warn{display:none;margin-bottom:14px}
 
 /* Barra superior centrada y compacta */ .header-bar{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;margin-bottom:8px} .header-brand{width:100%;display:flex;flex-direction:column;align-items:center} .user-info{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;width:100%;padding-top:6px;border-top:1px solid var(--line)} #user-display{margin:0;width:100%;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;text-align:center} .user-actions{display:flex;gap:8px;justify-content:center;width:100%;max-width:340px} .user-actions button.b{flex:1;padding:7px 12px;min-height:36px;font-size:13.5px}
 /* Explorador: Calendario y Búsqueda */ .explorer-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px} .explorer-head h3{margin:0;font:600 16px/1.2 "Newsreader",Georgia,serif;color:var(--ink)} .cal-toggle{padding:5px 10px;font-size:12.5px;min-height:32px} .search-bar{display:flex;gap:8px;align-items:center;margin-bottom:10px} .search-bar input{flex:1;min-width:0;padding:9px 12px} .filter-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px} .chip{border:1px solid var(--line);background:var(--bg);color:var(--mute);border-radius:999px;padding:5px 11px;font-size:12.5px;cursor:pointer;touch-action:manipulation;transition:all .15s} .chip.active{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600} .cal-box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px;margin-top:6px} .cal-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px} .cal-nav button{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;width:34px;height:32px;cursor:pointer;font-weight:600} .cal-title{font-weight:600;font-size:14px;text-transform:capitalize} .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center} .cal-dow{font-size:11px;color:var(--mute);font-weight:600;padding-bottom:4px} .cal-day{position:relative;aspect-ratio:1/1;min-height:36px;border:1px solid transparent;background:transparent;color:var(--ink);border-radius:9px;font:inherit;font-size:13px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0;touch-action:manipulation} .cal-day:hover{background:color-mix(in srgb,var(--accent) 10%,transparent)} .cal-day.empty{pointer-events:none} .cal-day.today{border-color:color-mix(in srgb,var(--accent) 45%,transparent)} .cal-day.has-dream{font-weight:700;background:color-mix(in srgb,var(--accent) 13%,var(--surface))} .cal-day.has-dream::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);margin-top:2px} .cal-day.selected{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)} .cal-day.selected::after{background:var(--accent-ink)} .active-filter-bar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:10px;padding:8px 10px;border-radius:9px;background:color-mix(in srgb,var(--accent) 10%,var(--bg));font-size:12.5px;color:var(--ink)} .active-filter-bar button{border:0;background:transparent;color:var(--accent);font-weight:600;cursor:pointer;font-size:12.5px;padding:2px 6px}
+/* Pie de página */ .app-footer{margin-top:28px;padding-top:16px;border-top:1px solid var(--line);text-align:center;font-size:12.5px;color:var(--mute);line-height:1.5} .app-footer strong{color:var(--ink);font-weight:600} .app-footer a{color:var(--accent);text-decoration:none;font-weight:500} .app-footer a:hover{text-decoration:underline}
 /* Sidebar responsivo */ .sidebar{position:fixed;top:0;right:0;width:400px;max-width:100vw;height:100%;height:100dvh;background:var(--surface);border-left:1px solid var(--line);box-shadow:-5px 0 20px rgba(0,0,0,0.22);transform:translateX(100%);transition:transform 0.3s ease;z-index:1000;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(24px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column} .sidebar.open{transform:translateX(0)} .sidebar-header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px} .sidebar-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:28px} .overlay{position:fixed;inset:0;background:rgba(12,6,26,0.58);display:none;z-index:999} .overlay.open{display:block} .astrology-box{margin-top:20px;padding:14px;background:var(--bg);border-radius:12px;border:1px solid var(--line)} .astro-summary p{margin:6px 0;font-size:14px} .astro-reading{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:13px;color:var(--mute);line-height:1.45} .chart-wrap{margin-top:12px;display:flex;flex-direction:column;align-items:center} .chart-wrap svg{width:100%;max-width:270px;height:auto;display:block} .chart-legend{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;font-size:12px;color:var(--mute);margin-top:6px}
 /* Autocomplete & Validation UI */ .city-suggestions{position:absolute;left:0;right:0;top:100%;margin-top:4px;background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.18);max-height:210px;overflow-y:auto;z-index:1100;display:none} .city-suggestions.open{display:block} .city-item{width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--line);padding:10px 12px;color:var(--ink);font:inherit;font-size:14px;cursor:pointer;display:block} .city-item:last-child{border-bottom:0} .city-item:hover,.city-item:focus{background:var(--bg)} .city-item small{display:block;color:var(--mute);font-size:12px} .status-pill{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;margin-top:6px;padding:5px 9px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--mute);max-width:100%;word-break:break-word} .status-pill.valid{color:var(--ok);border-color:var(--ok)} .status-pill.invalid{color:var(--rec);border-color:var(--rec)} .field-err{font-size:12.5px;color:var(--rec);margin-top:4px;display:none}
-/* Ajustes específicos para pantallas verticales pequeñas (< 520px) */ @media (max-width: 520px){ main{padding:10px 12px 56px} .card{padding:12px;border-radius:14px;margin-bottom:12px} .row button.b{flex:1 1 auto;text-align:center} .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center} .stats span{background:var(--bg);padding:8px 4px;border-radius:10px;border:1px solid var(--line);font-size:12px} .stats b{display:block;font-size:19px;line-height:1.15;margin-bottom:2px} .sidebar{width:100vw;border-left:0} } </style>
+/* Ajustes específicos para pantallas verticales pequeñas (< 520px) */ @media (max-width: 520px){ main{padding:10px 12px 44px} .card{padding:12px;border-radius:14px;margin-bottom:12px} .row button.b{flex:1 1 auto;text-align:center} .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center} .stats span{background:var(--bg);padding:8px 4px;border-radius:10px;border:1px solid var(--line);font-size:12px} .stats b{display:block;font-size:19px;line-height:1.15;margin-bottom:2px} .sidebar{width:100vw;border-left:0} } </style>
 </head>
 <body>
 <main>
@@ -114,9 +116,11 @@ button:disabled{opacity:.55;cursor:not-allowed}
     <div id="status">Toca para hablar. Toca otra vez para detener.</div>
   </div>
   <textarea id="txt" placeholder="Tu sueño aparecerá aquí mientras hablas. También puedes escribir o corregir." aria-label="Texto del sueño"></textarea>
-  <label class="chk"><input type="checkbox" id="par"> Hubo parálisis del sueño</label>
-  <label class="chk"><input type="checkbox" id="luc"> Fue un sueño lúcido</label>
-  <div class="fld">Se lo conté a (opcional)<input type="text" id="sh" placeholder="Nombre de la persona"></div>
+  <div class="chk-row">
+    <label class="chk"><input type="checkbox" id="par"> Hubo parálisis del sueño</label>
+    <label class="chk"><input type="checkbox" id="luc"> Fue un sueño lúcido</label>
+  </div>
+  <div class="fld">Le conté el sueño a alguien (opcional)<input type="text" id="sh" placeholder="Nombre de la persona"></div>
   <div class="row">
     <button class="b p" id="save" type="button">Guardar sueño</button>
     <button class="b" id="clr" type="button">Limpiar</button>
@@ -130,7 +134,7 @@ button:disabled{opacity:.55;cursor:not-allowed}
     <span><b id="m">0</b> coincidencias</span>
     <span><b id="k">0</b> sin coincidir</span>
   </div>
-  <p class="note">Marca como “sin coincidencia” los sueños que pasaron más de un par de semanas sin que ocurriera algo parecido. Contar también esos es lo que permite saber si la tasa de aciertos supera al azar.</p>
+  <p class="note">Si pasan más de dos semanas sin que ocurra algo parecido a tu sueño, márcalo como “sin coincidencia”. Llevar ese control te permite distinguir si hubo un patrón real o fue solo casualidad.</p>
 </section>
 
 <!-- Explorador: Calendario y Búsqueda -->
@@ -169,6 +173,11 @@ button:disabled{opacity:.55;cursor:not-allowed}
   <button class="b" id="copy" type="button">Copiar todo como texto</button>
 </div>
   </div>
+
+  <footer class="app-footer">
+    <div><strong>✦ DreamSaver</strong> · Tu diario personal de sueños y exploración astral</div>
+    <div>Contacto y soporte: <a href="mailto:redlantechc@gmail.com">redlantechc@gmail.com</a></div>
+  </footer>
 </main>
 
 <!-- Panel Lateral de Perfil -->
@@ -470,7 +479,8 @@ $("save").addEventListener("click",function(){
   entries.unshift(newEntry);
   persistLocal();
   txt.value=""; $("par").checked=false; $("luc").checked=false; $("sh").value=""; startedAt=null;
-  $("saved").textContent="Sueño guardado con fecha, hora y lectura astral.";
+  $("saved").textContent="Sueño guardado. Selecciónalo en el calendario para revisarlo.";
+  selectedDateKey = dateKey(nowTs);
   calCursor = new Date(nowTs);
   calCursor.setDate(1);
   render();
@@ -497,6 +507,25 @@ function render(){
   $("tools").style.display=entries.length?"flex":"none";
 
 
+  var hasActiveFilter = Boolean(selectedDateKey || searchQuery || activeTagFilter !== "all");
+  var bar = $("active-filter-bar");
+
+
+  if(!entries.length){
+    bar.style.display = "none";
+    list.innerHTML='<div class="empty">Aún no hay sueños registrados.</div>';
+    return;
+  }
+
+
+  /* No mostrar la lista completa por defecto: exigir selección de fecha en calendario, búsqueda o filtro rápido */
+  if(!hasActiveFilter){
+    bar.style.display = "none";
+    list.innerHTML='<div class="empty">Selecciona un día marcado en el calendario o usa el buscador para ver tus registros.</div>';
+    return;
+  }
+
+
   var filtered = entries.filter(function(e){
     if(selectedDateKey && dateKey(e.at) !== selectedDateKey) return false;
     if(activeTagFilter === "luc" && !e.luc) return false;
@@ -517,28 +546,21 @@ function render(){
   });
 
 
-  var hasActiveFilter = Boolean(selectedDateKey || searchQuery || activeTagFilter !== "all");
-  var bar = $("active-filter-bar");
-  if(hasActiveFilter){
-    var parts = [];
-    if(selectedDateKey){
-      var sp = selectedDateKey.split("-");
-      parts.push("Fecha: " + sp[2] + "/" + sp[1] + "/" + sp[0]);
-    }
-    if(activeTagFilter !== "all"){
-      var labels = { luc: "Lúcidos", par: "Parálisis", hit: "Coincidieron", pending: "Pendientes" };
-      parts.push("Filtro: " + (labels[activeTagFilter] || activeTagFilter));
-    }
-    if(searchQuery) parts.push("«" + searchQuery + "»");
-    $("active-filter-text").textContent = "Mostrando " + filtered.length + " de " + entries.length + " · " + parts.join(" · ");
-    bar.style.display = "flex";
-  } else {
-    bar.style.display = "none";
+  var parts = [];
+  if(selectedDateKey){
+    var sp = selectedDateKey.split("-");
+    parts.push("Fecha: " + sp[2] + "/" + sp[1] + "/" + sp[0]);
   }
+  if(activeTagFilter !== "all"){
+    var labels = { luc: "Lúcidos", par: "Parálisis", hit: "Coincidieron", pending: "Pendientes" };
+    parts.push("Filtro: " + (labels[activeTagFilter] || activeTagFilter));
+  }
+  if(searchQuery) parts.push("«" + searchQuery + "»");
+  $("active-filter-text").textContent = "Mostrando " + filtered.length + " de " + entries.length + " · " + parts.join(" · ");
+  bar.style.display = "flex";
 
 
-  if(!entries.length){ list.innerHTML='<div class="empty">Aún no hay sueños registrados.</div>'; return; }
-  if(!filtered.length){ list.innerHTML='<div class="empty">No hay sueños que coincidan con los filtros seleccionados.</div>'; return; }
+  if(!filtered.length){ list.innerHTML='<div class="empty">No hay sueños registrados para esa fecha o filtro.</div>'; return; }
 
 
   filtered.forEach(function(e){
