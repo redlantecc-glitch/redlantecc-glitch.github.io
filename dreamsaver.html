@@ -4,19 +4,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Diario de sueños</title>
+<title>DreamSaver · Diario de sueños</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap">
 <style>
-:root{--bg:#f3f1ec;--surface:#fff;--ink:#1c2430;--mute:#5d6877;--line:#d8d6cf;--accent:#1f6f78;--accent-ink:#fff;--rec:#b3402f;--ok:#2d6a3e}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1622;--surface:#16212f;--ink:#e6eaf0;--mute:#97a3b4;--line:#27364a;--accent:#6cc4ca;--accent-ink:#06222a;--rec:#e2694f;--ok:#7fcf93}}
-:root[data-theme="dark"]{--bg:#0e1622;--surface:#16212f;--ink:#e6eaf0;--mute:#97a3b4;--line:#27364a;--accent:#6cc4ca;--accent-ink:#06222a;--rec:#e2694f;--ok:#7fcf93}
+:root{--bg:#f4effb;--surface:#ffffff;--ink:#1f1733;--mute:#62557d;--line:#dfd5f0;--accent:#6b3fa0;--accent-ink:#ffffff;--rec:#b8336a;--ok:#2d7a5e}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#120b21;--surface:#1d1333;--ink:#f1ecfa;--mute:#a899c7;--line:#352559;--accent:#a77bfa;--accent-ink:#140929;--rec:#eb5e93;--ok:#6ed4a5}}
+:root[data-theme="dark"]{--bg:#120b21;--surface:#1d1333;--ink:#f1ecfa;--mute:#a899c7;--line:#352559;--accent:#a77bfa;--accent-ink:#140929;--rec:#eb5e93;--ok:#6ed4a5}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;background:radial-gradient(circle at top,color-mix(in srgb,var(--accent) 12%,var(--bg)),var(--bg) 68%);min-height:100vh;color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 main{max-width:640px;margin:0 auto;padding:20px 16px 60px}
 h1{font:600 28px/1.2 "Newsreader",Georgia,serif;margin:8px 0 4px}
+h2{font:600 22px/1.25 "Newsreader",Georgia,serif;margin:0 0 6px}
+.brand-badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent);border:1px solid color-mix(in srgb,var(--accent) 28%,transparent);padding:4px 10px;border-radius:999px;margin-bottom:10px}
+.privacy-note{margin-top:14px;padding:11px 13px;border-radius:10px;background:color-mix(in srgb,var(--accent) 7%,var(--bg));border:1px solid var(--line);font-size:13px;color:var(--mute);line-height:1.45}
 .sub{color:var(--mute);margin:0 0 20px;font-size:15px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:16px;box-shadow:0 8px 24px rgba(24,12,48,.05)}
 .rec-wrap{display:flex;align-items:center;gap:14px;margin-bottom:12px}
 #rec{width:72px;height:72px;border-radius:50%;border:0;background:var(--accent);color:var(--accent-ink);font-size:13px;font-weight:600;cursor:pointer;flex:none;transition:background .2s,transform .1s}
 #rec:active{transform:scale(.96)}
@@ -50,11 +53,11 @@ button:disabled{opacity:.55;cursor:not-allowed}
 .header-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 .user-info{display:flex;align-items:center;gap:10px}
 /* Sidebar styles */
-.sidebar{position:fixed;top:0;right:-400px;width:400px;max-width:95vw;height:100%;background:var(--surface);border-left:1px solid var(--line);box-shadow:-5px 0 15px rgba(0,0,0,0.12);transition:right 0.3s ease;z-index:1000;padding:20px;display:flex;flex-direction:column}
+.sidebar{position:fixed;top:0;right:-400px;width:400px;max-width:95vw;height:100%;background:var(--surface);border-left:1px solid var(--line);box-shadow:-5px 0 15px rgba(0,0,0,0.18);transition:right 0.3s ease;z-index:1000;padding:20px;display:flex;flex-direction:column}
 .sidebar.open{right:0}
 .sidebar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
 .sidebar-content{flex:1;overflow-y:auto;padding-bottom:28px}
-.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;z-index:999}
+.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(12,6,26,0.58);display:none;z-index:999}
 .overlay.open{display:block}
 .astrology-box{margin-top:20px;padding:15px;background:var(--bg);border-radius:10px;border:1px solid var(--line)}
 .astro-summary p{margin:6px 0;font-size:14px}
@@ -63,7 +66,7 @@ button:disabled{opacity:.55;cursor:not-allowed}
 .chart-wrap svg{width:100%;max-width:290px;height:auto;display:block}
 .chart-legend{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;font-size:12px;color:var(--mute);margin-top:6px}
 /* Autocomplete & Validation UI */
-.city-suggestions{position:absolute;left:0;right:0;top:100%;margin-top:4px;background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.15);max-height:210px;overflow-y:auto;z-index:1100;display:none}
+.city-suggestions{position:absolute;left:0;right:0;top:100%;margin-top:4px;background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.18);max-height:210px;overflow-y:auto;z-index:1100;display:none}
 .city-suggestions.open{display:block}
 .city-item{width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--line);padding:9px 12px;color:var(--ink);font:inherit;font-size:13.5px;cursor:pointer;display:block}
 .city-item:last-child{border-bottom:0}
@@ -79,7 +82,9 @@ button:disabled{opacity:.55;cursor:not-allowed}
 <main>
   <!-- Sección Autenticación -->
   <section class="card" id="auth-card">
+    <div class="brand-badge">✦ DreamSaver</div>
     <h2>Iniciar sesión / Crear cuenta</h2>
+    <p class="note">Tu refugio personal para registrar sueños y explorar tu mapa astral.</p>
     <div class="fld">
       Correo electrónico
       <input type="email" id="auth-email" placeholder="tu@email.com" autocomplete="email">
@@ -96,6 +101,9 @@ button:disabled{opacity:.55;cursor:not-allowed}
       <button class="b" id="btn-register" type="button">Crear cuenta</button>
     </div>
     <div id="auth-error" class="auth-err" style="display:none;"></div>
+    <p class="privacy-note">
+      <strong>Privacidad y propiedad:</strong> En DreamSaver no guardamos tus datos para terceros ni los compartimos: tu diario y tu perfil son completamente personales y privados.
+    </p>
   </section>
 
   <!-- Contenido Aplicación (Oculto por defecto hasta autenticar) -->
@@ -103,6 +111,7 @@ button:disabled{opacity:.55;cursor:not-allowed}
   <div id="app-content" style="display:none;">
     <div class="header-bar">
       <div>
+        <div class="brand-badge">✦ DreamSaver</div>
         <h1>Diario de sueños</h1>
       </div>
       <div class="user-info">
@@ -434,7 +443,7 @@ render();
       const isHighlight = i === sunIdx || i === moonIdx || i === ascIdx;
 
 
-      sectors += `<path d="M ${p0Out.x.toFixed(1)} ${p0Out.y.toFixed(1)} A ${rOuter} ${rOuter} 0 0 1 ${p1Out.x.toFixed(1)} ${p1Out.y.toFixed(1)} L ${p1In.x.toFixed(1)} ${p1In.y.toFixed(1)} A ${rMid} ${rMid} 0 0 0 ${p0In.x.toFixed(1)} ${p0In.y.toFixed(1)} Z" fill="${isHighlight ? "rgba(31,111,120,0.16)" : "transparent"}" stroke="currentColor" stroke-opacity="0.22" stroke-width="1"/>`;
+      sectors += `<path d="M ${p0Out.x.toFixed(1)} ${p0Out.y.toFixed(1)} A ${rOuter} ${rOuter} 0 0 1 ${p1Out.x.toFixed(1)} ${p1Out.y.toFixed(1)} L ${p1In.x.toFixed(1)} ${p1In.y.toFixed(1)} A ${rMid} ${rMid} 0 0 0 ${p0In.x.toFixed(1)} ${p0In.y.toFixed(1)} Z" fill="${isHighlight ? "rgba(167,123,250,0.18)" : "transparent"}" stroke="currentColor" stroke-opacity="0.22" stroke-width="1"/>`;
 
 
       const pLine = polar(rOuter, a0);
@@ -449,8 +458,8 @@ render();
 
     const markers = [
       { idx: sunIdx, label: "☉", color: "#d9822b", offset: -8 },
-      { idx: moonIdx, label: "☽", color: "#2d6a3e", offset: 0 },
-      { idx: ascIdx, label: "AC", color: "#b3402f", offset: 8 }
+      { idx: moonIdx, label: "☽", color: "#2d7a5e", offset: 0 },
+      { idx: ascIdx, label: "AC", color: "#b8336a", offset: 8 }
     ].filter(m => m.idx >= 0);
 
 
