@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Diario de sueños</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+:root{--bg:#f3f1ec;--surface:#fff;--ink:#1c2430;--mute:#5d6877;--line:#d8d6cf;--accent:#1f6f78;--accent-ink:#fff;--rec:#b3402f;--ok:#2d6a3e;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1622;--surface:#16212f;--ink:#e6eaf0;--mute:#97a3b4;--line:#27364a;--accent:#6cc4ca;--accent-ink:#06222a;--rec:#e2694f;--ok:#7fcf93}}
+:root[data-theme="dark"]{--bg:#0e1622;--surface:#16212f;--ink:#e6eaf0;--mute:#97a3b4;--line:#27364a;--accent:#6cc4ca;--accent-ink:#06222a;--rec:#e2694f;--ok:#7fcf93}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:640px;margin:0 auto;padding:20px 16px 60px}
+h1{font:600 28px/1.2 "Newsreader",Georgia,serif;margin:8px 0 4px}
+.sub{color:var(--mute);margin:0 0 20px;font-size:15px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:16px}
+.rec-wrap{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+#rec{width:72px;height:72px;border-radius:50%;border:0;background:var(--accent);color:var(--accent-ink);font-size:13px;font-weight:600;cursor:pointer;flex:none;transition:background .2s,transform .1s}
+#rec:active{transform:scale(.96)}
+#rec.on{background:var(--rec);color:#fff;animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 10px color-mix(in srgb,var(--rec) 25%,transparent)}}
+@media (prefers-reduced-motion:reduce){#rec.on{animation:none}}
+#status{color:var(--mute);font-size:14px}
+textarea,input[type=text]{width:100%;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit}
+textarea{min-height:150px;resize:vertical;font-family:"Newsreader",Georgia,serif;font-size:18px;line-height:1.5}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+label.chk{display:flex;gap:8px;align-items:center;margin:12px 0 8px;font-size:15px}
+.fld{margin-top:10px;font-size:14px;color:var(--mute)}
+.fld input{margin-top:4px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+button.b{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:10px;padding:9px 14px;font:inherit;font-size:14px;cursor:pointer}
+button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
+.stats{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;color:var(--mute);margin:0 0 6px}
+.stats b{color:var(--ink);font-size:20px;font-family:"Newsreader",Georgia,serif}
+.note{font-size:13.5px;color:var(--mute);margin:8px 0 0}
+.entry h3{margin:0 0 6px;font:600 14px/1.3 system-ui,sans-serif;color:var(--mute)}
+.entry p{margin:0 0 8px;font:400 17px/1.5 "Newsreader",Georgia,serif;white-space:pre-wrap}
+.tag{display:inline-block;font-size:12.5px;border:1px solid var(--line);border-radius:99px;padding:1px 9px;margin:0 6px 6px 0;color:var(--mute)}
+.tag.ok{color:var(--ok);border-color:var(--ok)}
+.res{font-size:14px;margin:6px 0;color:var(--ok)}
+.empty{color:var(--mute);text-align:center;padding:24px 8px}
+#warn{display:none;background:var(--surface);border:1px solid var(--rec);border-radius:10px;padding:10px 12px;font-size:14px;margin-bottom:14px}
+</style>
+</head>
+<body>
+<main>
+<h1>Diario de sueños</h1>
+<p class="sub">Habla al despertar y el texto se escribe solo. Cada registro guarda la fecha y la hora, para poder contrastarlo después.</p>
+<div id="warn"></div>
+
+<section class="card" aria-label="Nuevo registro">
+  <div class="rec-wrap">
+    <button id="rec" type="button" aria-pressed="false">Grabar</button>
+    <div id="status">Toca para hablar. Toca otra vez para detener.</div>
+  </div>
+  <textarea id="txt" placeholder="Tu sueño aparecerá aquí mientras hablas. También puedes escribir o corregir." aria-label="Texto del sueño"></textarea>
+  <label class="chk"><input type="checkbox" id="par"> Hubo parálisis del sueño</label>
+  <label class="chk"><input type="checkbox" id="luc"> Fue un sueño lúcido</label>
+  <div class="fld">Se lo conté a (opcional)<input type="text" id="sh" placeholder="Nombre de la persona"></div>
+  <div class="row">
+    <button class="b p" id="save" type="button">Guardar sueño</button>
+    <button class="b" id="clr" type="button">Limpiar</button>
+  </div>
+  <p class="note" id="saved" aria-live="polite"></p>
+</section>
+
+<section class="card" aria-label="Resumen">
+  <div class="stats">
+    <span><b id="n">0</b> registrados</span>
+    <span><b id="m">0</b> con coincidencia</span>
+    <span><b id="k">0</b> sin coincidencia</span>
+  </div>
+  <p class="note">Marca como “sin coincidencia” los sueños que pasaron más de un par de semanas sin que ocurriera algo parecido. Contar también esos es lo que permite saber si la tasa de aciertos supera al azar.</p>
+</section>
+
+<div id="list"></div>
+
+<div class="row" id="tools" style="display:none">
+  <button class="b" id="copy" type="button">Copiar todo como texto</button>
+</div>
+</main>
+
+<script>
+(function(){
+var KEY="suenos:v1", entries=[], storageOk=true;
+try{ entries=JSON.parse(localStorage.getItem(KEY)||"[]"); }catch(e){ storageOk=false; entries=[]; }
+function persist(){ try{ localStorage.setItem(KEY,JSON.stringify(entries)); }catch(e){ storageOk=false; showWarn(); } }
+var $=function(id){return document.getElementById(id)};
+var txt=$("txt"), rec=$("rec"), status=$("status"), warn=$("warn");
+function showWarn(){ if(!storageOk){ warn.style.display="block"; warn.textContent="Este navegador no permite guardar datos aquí. Usa “Copiar todo como texto” para no perder tus registros."; } }
+showWarn();
+
+var SR=window.SpeechRecognition||window.webkitSpeechRecognition, r=null, listening=false, base="", startedAt=null;
+function touch(){ if(!startedAt) startedAt=Date.now(); }
+txt.addEventListener("input",touch);
+function setUI(){ rec.classList.toggle("on",listening); rec.setAttribute("aria-pressed",listening); rec.textContent=listening?"Detener":"Grabar"; status.textContent=listening?"Escuchando… habla con calma.":"Toca para hablar. Toca otra vez para detener."; }
+function startRec(){
+  if(!SR){ status.textContent="Este navegador no tiene dictado por voz. En el celular, toca el cuadro de texto y usa el micrófono del teclado."; return; }
+  touch();
+  r=new SR(); r.lang="es-CL"; r.continuous=true; r.interimResults=true;
+  base=txt.value.trim(); if(base) base+=" ";
+  r.onresult=function(e){ var f="",i2=""; for(var i=0;i<e.results.length;i++){ var x=e.results[i]; if(x.isFinal) f+=x[0].transcript; else i2+=x[0].transcript; } txt.value=base+f+i2; };
+  r.onerror=function(e){ if(e.error==="not-allowed"||e.error==="service-not-allowed"){ listening=false; status.textContent="Sin permiso de micrófono. Actívalo en el navegador y vuelve a intentar."; setUI(); status.textContent="Sin permiso de micrófono. Actívalo en el navegador y vuelve a intentar."; } };
+  r.onend=function(){ if(listening){ base=txt.value.trim(); if(base) base+=" "; try{ r.start(); }catch(e){ listening=false; setUI(); } } else setUI(); };
+  listening=true; setUI();
+  try{ r.start(); }catch(e){ listening=false; setUI(); }
+}
+function stopRec(){ listening=false; try{ r.stop(); }catch(e){} setUI(); }
+rec.addEventListener("click",function(){ listening?stopRec():startRec(); });
+
+function fmt(t){ try{ return new Date(t).toLocaleString("es-CL",{weekday:"long",day:"numeric",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit"}); }catch(e){ return new Date(t).toString(); } }
+function esc(s){ var d=document.createElement("div"); d.textContent=s; return d.innerHTML; }
+
+$("save").addEventListener("click",function(){
+  if(listening) stopRec();
+  var t=txt.value.trim();
+  if(!t){ $("saved").textContent="Escribe o dicta algo antes de guardar."; return; }
+  entries.unshift({id:Date.now(),at:startedAt||Date.now(),savedAt:Date.now(),text:t,par:$("par").checked,luc:$("luc").checked,shared:$("sh").value.trim(),out:null});
+  persist(); txt.value=""; $("par").checked=false; $("luc").checked=false; $("sh").value=""; startedAt=null;
+  $("saved").textContent="Sueño guardado con fecha y hora."; render();
+});
+$("clr").addEventListener("click",function(){ if(listening) stopRec(); txt.value=""; startedAt=null; $("saved").textContent=""; });
+
+var openId=null, delId=null;
+function render(){
+  var list=$("list"), html="", m=0, k=0;
+  entries.forEach(function(e){ if(e.out){ if(e.out.hit) m++; else k++; } });
+  $("n").textContent=entries.length; $("m").textContent=m; $("k").textContent=k;
+  $("tools").style.display=entries.length?"flex":"none";
+  if(!entries.length){ list.innerHTML='<div class="empty">Aún no hay sueños registrados.</div>'; return; }
+  entries.forEach(function(e){
+    html+='<article class="card entry"><h3>'+esc(fmt(e.at))+'</h3><p>'+esc(e.text)+'</p><div>';
+    if(e.par) html+='<span class="tag">parálisis del sueño</span>';
+    if(e.luc) html+='<span class="tag">sueño lúcido</span>';
+    if(e.shared) html+='<span class="tag">contado a '+esc(e.shared)+'</span>';
+    if(e.out) html+='<span class="tag '+(e.out.hit?'ok':'')+'">'+(e.out.hit?'coincidió':'sin coincidencia')+'</span>';
+    html+='</div>';
+    if(e.out&&e.out.note) html+='<div class="res">'+esc(e.out.date)+': '+esc(e.out.note)+'</div>';
+    if(openId===e.id){
+      html+='<div class="fld">¿Qué pasó? (qué ocurrió y cuándo)<input type="text" id="note-'+e.id+'" placeholder="Describe el hecho, o escribe: no ocurrió nada parecido"></div><div class="row"><button class="b p" data-a="hit" data-id="'+e.id+'">Coincidió</button><button class="b" data-a="miss" data-id="'+e.id+'">Sin coincidencia</button><button class="b" data-a="cancel" data-id="'+e.id+'">Cancelar</button></div>';
+    } else {
+      html+='<div class="row"><button class="b" data-a="open" data-id="'+e.id+'">'+(e.out?'Cambiar resultado':'Revisar resultado')+'</button><button class="b" data-a="del" data-id="'+e.id+'">'+(delId===e.id?'¿Seguro? Eliminar':'Eliminar')+'</button></div>';
+    }
+    html+='</article>';
+  });
+  list.innerHTML=html;
+}
+$("list").addEventListener("click",function(ev){
+  var b=ev.target.closest("button"); if(!b) return;
+  var id=Number(b.dataset.id), a=b.dataset.a, e=entries.find(function(x){return x.id===id});
+  if(!e) return;
+  if(a==="open"){ openId=id; delId=null; }
+  else if(a==="cancel"){ openId=null; }
+  else if(a==="del"){ if(delId===id){ entries=entries.filter(function(x){return x.id!==id}); delId=null; persist(); } else delId=id; }
+  else if(a==="hit"||a==="miss"){ var n=$("note-"+id); e.out={hit:a==="hit",note:n?n.value.trim():"",date:new Date().toLocaleDateString("es-CL")}; openId=null; persist(); }
+  render();
+});
+
+$("copy").addEventListener("click",function(){
+  var out=entries.map(function(e){ return fmt(e.at)+(e.par?" [parálisis del sueño]":"")+(e.luc?" [sueño lúcido]":"")+(e.shared?" [contado a "+e.shared+"]":"")+"\n"+e.text+(e.out?"\nResultado ("+e.out.date+"): "+(e.out.hit?"coincidió":"sin coincidencia")+(e.out.note?" - "+e.out.note:""):""); }).join("\n\n---\n\n");
+  function done(ok){ $("copy").textContent=ok?"Copiado":"No se pudo copiar"; setTimeout(function(){ $("copy").textContent="Copiar todo como texto"; },2000); }
+  try{ navigator.clipboard.writeText(out).then(function(){done(true)},function(){fallback()}); }catch(e){ fallback(); }
+  function fallback(){ var t=document.createElement("textarea"); t.value=out; document.body.appendChild(t); t.select(); var ok=false; try{ ok=document.execCommand("copy"); }catch(e){} document.body.removeChild(t); done(ok); }
+});
+render();
+})();
+</script>
+</body>
+</html>
