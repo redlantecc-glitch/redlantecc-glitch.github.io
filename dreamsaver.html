@@ -39,7 +39,7 @@ label.chk input[type=checkbox]{width:18px;height:18px;flex:none;margin:0}
 .pw-wrap{display:flex;gap:8px;align-items:stretch;margin-top:4px}
 .pw-wrap input{margin-top:0;flex:1;min-width:0}
 .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-button.b{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:10px;padding:8px 14px;font:inherit;font-size:14px;cursor:pointer;min-height:38px;touch-action:manipulation;transition:background .15s,border-color .15s}
+button.b{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:10px;padding:8px 14px;font:inherit;font-size:14px;cursor:pointer;min-height:38px;touch-action:manipulation;transition:background .15s,border-color .15s,color .15s}
 button.b:hover{background:color-mix(in srgb,var(--accent) 7%,transparent)}
 button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
 button.p:hover{background:color-mix(in srgb,var(--accent) 90%,#000)}
@@ -50,27 +50,19 @@ button:disabled{opacity:.55;cursor:not-allowed}
 .lock-notice{margin-top:12px;padding:10px 12px;border-radius:10px;background:color-mix(in srgb,var(--accent) 8%,var(--bg));border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line));font-size:12.5px;color:var(--mute);line-height:1.45}
 .lock-notice a{color:var(--accent);text-decoration:none;font-weight:500}
 .lock-notice a:hover{text-decoration:underline}
-.entry h3{margin:0 0 6px;font:600 13.5px/1.35 system-ui,sans-serif;color:var(--mute)}
-.entry p{margin:0 0 8px;font:400 17px/1.5 "Newsreader",Georgia,serif;white-space:pre-wrap;overflow-wrap:anywhere}
-.tag{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:99px;padding:2px 9px;margin:0 6px 6px 0;color:var(--mute)}
-.tag.ok{color:var(--ok);border-color:var(--ok)}
-.tag.astro{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent);background:color-mix(in srgb,var(--accent) 8%,transparent)}
-.astral-insight{margin:10px 0 6px;padding:10px 12px;border-radius:10px;background:color-mix(in srgb,var(--accent) 7%,var(--bg));border-left:3px solid var(--accent);font-size:13.5px;color:var(--ink);line-height:1.45}
-.astral-insight strong{color:var(--accent);display:block;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
-.res{font-size:14px;margin:6px 0;color:var(--ok)}
-.empty{color:var(--mute);text-align:center;padding:20px 12px;font-size:14px;background:var(--surface);border:1px dashed var(--line);border-radius:16px}
-#warn,.auth-err{background:var(--surface);border:1px solid var(--rec);border-radius:10px;padding:10px 12px;font-size:14px;margin-top:10px;color:var(--rec)}
-#warn{display:none;margin-bottom:14px}
 
+/* Tarjeta de sueño */ .entry h3{margin:0 0 8px;font:600 13.5px/1.35 system-ui,sans-serif;color:var(--mute)} .entry p{margin:0 0 12px;font:400 17.5px/1.58 "Newsreader",Georgia,serif;white-space:pre-wrap;overflow-wrap:anywhere} .tags-row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:6px} .tag{display:inline-flex;align-items:center;font-size:12px;border:1px solid var(--line);border-radius:99px;padding:3px 10px;color:var(--mute);background:var(--bg)} .tag.ok{color:var(--ok);border-color:var(--ok);background:color-mix(in srgb,var(--ok) 8%,transparent)} button.tag.hashtag{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent);background:color-mix(in srgb,var(--accent) 10%,transparent);font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s,transform .1s} button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transparent)} .astral-insight{margin:10px 0 6px;padding:12px 14px;border-radius:11px;background:color-mix(in srgb,var(--accent) 7%,var(--bg));border-left:3px solid var(--accent);font-size:14px;color:var(--ink);line-height:1.5} .astral-insight strong{color:var(--accent);display:block;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px} .res{font-size:14px;margin:8px 0;padding:8px 11px;border-radius:9px;background:color-mix(in srgb,var(--ok) 8%,var(--bg));border:1px solid color-mix(in srgb,var(--ok) 30%,transparent);color:var(--ink)} .res strong{color:var(--ok)}
+/* Barra de acciones de tarjeta: botones a la izquierda, eliminar aislado a la derecha */ .entry-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)} .entry-actions-left{display:flex;flex-wrap:wrap;gap:8px;align-items:center} .btn-astral-toggle{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));color:var(--accent);font-weight:500} .btn-astral-toggle[aria-expanded="true"]{background:color-mix(in srgb,var(--accent) 12%,transparent)} .btn-del-icon{width:38px;height:38px;min-width:38px;padding:0;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);background:transparent;color:var(--mute);border-radius:10px;cursor:pointer;flex:none;touch-action:manipulation;transition:background .15s,border-color .15s,color .15s} .btn-del-icon:hover{color:var(--rec);border-color:color-mix(in srgb,var(--rec) 50%,var(--line));background:color-mix(in srgb,var(--rec) 8%,transparent)} .btn-del-icon.confirm{width:auto;padding:0 11px;gap:5px;color:#fff;background:var(--rec);border-color:var(--rec);font-size:12.5px;font-weight:600} .btn-del-icon svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.empty{color:var(--mute);text-align:center;padding:22px 14px;font-size:14px;background:var(--surface);border:1px dashed var(--line);border-radius:16px} #warn,.auth-err{background:var(--surface);border:1px solid var(--rec);border-radius:10px;padding:10px 12px;font-size:14px;margin-top:10px;color:var(--rec)} #warn{display:none;margin-bottom:14px}
 /* Barra superior centrada en móvil */ .header-bar{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;margin-bottom:8px} .header-brand{width:100%;display:flex;flex-direction:column;align-items:center} .user-info{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;width:100%;padding-top:6px;border-top:1px solid var(--line)} #user-display{margin:0;width:100%;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;text-align:center} .user-actions{display:flex;gap:8px;justify-content:center;width:100%;max-width:340px} .user-actions button.b{flex:1;padding:7px 12px;min-height:36px;font-size:13.5px}
 /* Contenedor principal de layout */ .workspace-grid{display:block} .recorder-card,.explorer-card,.stats-card,.list-area{min-width:0}
 /* Explorador: Calendario y Búsqueda */ .explorer-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px} .explorer-head h3{margin:0;font:600 16px/1.2 "Newsreader",Georgia,serif;color:var(--ink)} .cal-toggle{padding:5px 10px;font-size:12.5px;min-height:32px} .search-bar{display:flex;gap:8px;align-items:center;margin-bottom:10px} .search-bar input{flex:1;min-width:0;padding:9px 12px} .filter-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px} .chip{border:1px solid var(--line);background:var(--bg);color:var(--mute);border-radius:999px;padding:5px 11px;font-size:12.5px;cursor:pointer;touch-action:manipulation;transition:all .15s} .chip.active{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600} .cal-box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px;margin-top:6px} .cal-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px} .cal-nav button{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;width:34px;height:32px;cursor:pointer;font-weight:600} .cal-title{font-weight:600;font-size:14px;text-transform:capitalize} .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center} .cal-dow{font-size:11px;color:var(--mute);font-weight:600;padding-bottom:4px} .cal-day{position:relative;aspect-ratio:1/1;min-height:36px;border:1px solid transparent;background:transparent;color:var(--ink);border-radius:9px;font:inherit;font-size:13px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0;touch-action:manipulation} .cal-day:hover{background:color-mix(in srgb,var(--accent) 10%,transparent)} .cal-day.empty{pointer-events:none} .cal-day.today{border-color:color-mix(in srgb,var(--accent) 45%,transparent)} .cal-day.has-dream{font-weight:700;background:color-mix(in srgb,var(--accent) 13%,var(--surface))} .cal-day.has-dream::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);margin-top:2px} .cal-day.selected{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)} .cal-day.selected::after{background:var(--accent-ink)} .active-filter-bar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:10px;padding:8px 10px;border-radius:9px;background:color-mix(in srgb,var(--accent) 10%,var(--bg));font-size:12.5px;color:var(--ink)} .active-filter-bar button{border:0;background:transparent;color:var(--accent);font-weight:600;cursor:pointer;font-size:12.5px;padding:2px 6px}
 /* Pie de página */ .app-footer{margin-top:28px;padding-top:16px;border-top:1px solid var(--line);text-align:center;font-size:12.5px;color:var(--mute);line-height:1.5} .app-footer strong{color:var(--ink);font-weight:600} .app-footer a{color:var(--accent);text-decoration:none;font-weight:500} .app-footer a:hover{text-decoration:underline}
 /* Sidebar responsivo */ .sidebar{position:fixed;top:0;right:0;width:400px;max-width:100vw;height:100%;height:100dvh;background:var(--surface);border-left:1px solid var(--line);box-shadow:-5px 0 20px rgba(0,0,0,0.22);transform:translateX(100%);transition:transform 0.3s ease;z-index:1000;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(24px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column} .sidebar.open{transform:translateX(0)} .sidebar-header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px} .sidebar-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:28px} .overlay{position:fixed;inset:0;background:rgba(12,6,26,0.58);display:none;z-index:999} .overlay.open{display:block} .astrology-box{margin-top:20px;padding:14px;background:var(--bg);border-radius:12px;border:1px solid var(--line)} .astro-summary p{margin:6px 0;font-size:14px} .astro-reading{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:13px;color:var(--mute);line-height:1.45} .chart-wrap{margin-top:12px;display:flex;flex-direction:column;align-items:center} .chart-wrap svg{width:100%;max-width:270px;height:auto;display:block} .chart-legend{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;font-size:12px;color:var(--mute);margin-top:6px}
 /* Autocomplete & Validation UI */ .city-suggestions{position:absolute;left:0;right:0;top:100%;margin-top:4px;background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.18);max-height:210px;overflow-y:auto;z-index:1100;display:none} .city-suggestions.open{display:block} .city-item{width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--line);padding:10px 12px;color:var(--ink);font:inherit;font-size:14px;cursor:pointer;display:block} .city-item:last-child{border-bottom:0} .city-item:hover,.city-item:focus{background:var(--bg)} .city-item small{display:block;color:var(--mute);font-size:12px} .status-pill{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;margin-top:6px;padding:5px 9px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--mute);max-width:100%;word-break:break-word} .status-pill.valid{color:var(--ok);border-color:var(--ok)} .status-pill.invalid{color:var(--rec);border-color:var(--rec)} .field-err{font-size:12.5px;color:var(--rec);margin-top:4px;display:none}
-/* Ajustes para escritorio / PC (>= 960px): Grabador y Calendario alineados arriba */ @media (min-width: 960px){ main{max-width:1100px;padding:24px 28px 56px} #auth-card{max-width:460px;margin:32px auto 0;padding:22px} .header-bar{flex-direction:row;justify-content:space-between;align-items:center;text-align:left;padding-bottom:14px;margin-bottom:10px;border-bottom:1px solid var(--line)} .header-brand{width:auto;align-items:flex-start} .user-info{width:auto;padding-top:0;border-top:0;justify-content:flex-end;gap:14px;flex-wrap:nowrap} #user-display{width:auto;max-width:240px;text-align:right;font-size:13px} .user-actions{width:auto;max-width:none} .user-actions button.b{flex:none;padding:7px 14px} .sub{text-align:left;margin-bottom:18px;font-size:14px}
-.workspace-grid{ display:grid; grid-template-columns:minmax(0,1.15fr) minmax(340px,0.85fr); grid-template-areas: "recorder explorer" "list stats"; gap:18px 20px; align-items:stretch; } .recorder-card{grid-area:recorder;margin-bottom:0;display:flex;flex-direction:column} .explorer-card{grid-area:explorer;margin-bottom:0;display:flex;flex-direction:column} .list-area{grid-area:list;align-self:start} .stats-card{grid-area:stats;margin-bottom:0;align-self:start}
-.card{padding:18px;box-shadow:0 10px 28px rgba(24,12,48,.06)} textarea{min-height:175px;flex:1} .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;margin-bottom:10px} .stats span{background:var(--bg);padding:10px 6px;border-radius:12px;border:1px solid var(--line);font-size:12.5px} .stats b{display:block;font-size:21px;line-height:1.15;margin-bottom:2px} .cal-day{min-height:36px} }
+/* Ajustes para escritorio / PC (>= 960px): Grabador y Calendario arriba, Estadísticas a todo ancho y Registros a todo ancho para lectura cómoda */ @media (min-width: 960px){ main{max-width:1100px;padding:24px 28px 56px} #auth-card{max-width:460px;margin:32px auto 0;padding:22px} .header-bar{flex-direction:row;justify-content:space-between;align-items:center;text-align:left;padding-bottom:14px;margin-bottom:10px;border-bottom:1px solid var(--line)} .header-brand{width:auto;align-items:flex-start} .user-info{width:auto;padding-top:0;border-top:0;justify-content:flex-end;gap:14px;flex-wrap:nowrap} #user-display{width:auto;max-width:240px;text-align:right;font-size:13px} .user-actions{width:auto;max-width:none} .user-actions button.b{flex:none;padding:7px 14px} .sub{text-align:left;margin-bottom:18px;font-size:14px}
+.workspace-grid{ display:grid; grid-template-columns:minmax(0,1.15fr) minmax(340px,0.85fr); grid-template-areas: "recorder explorer" "stats stats" "list list"; gap:18px 20px; align-items:stretch; } .recorder-card{grid-area:recorder;margin-bottom:0;display:flex;flex-direction:column} .explorer-card{grid-area:explorer;margin-bottom:0;display:flex;flex-direction:column} .stats-card{grid-area:stats;margin-bottom:0;display:flex;align-items:center;justify-content:space-between;gap:20px} .stats-card .stats{margin:0;flex:none;display:flex;gap:12px} .stats-card .stats span{background:var(--bg);padding:8px 16px;border-radius:12px;border:1px solid var(--line);font-size:13px;white-space:nowrap} .stats-card .stats b{font-size:20px;margin-right:4px} .stats-card .note{margin:0;flex:1} .list-area{grid-area:list;width:100%}
+.card{padding:18px;box-shadow:0 10px 28px rgba(24,12,48,.06)} .entry{padding:20px 24px} .entry p{font-size:18px;line-height:1.65;max-width:82ch} textarea{min-height:175px;flex:1} .cal-day{min-height:36px} }
 /* Ajustes específicos para pantallas verticales pequeñas (< 520px) */ @media (max-width: 520px){ main{padding:10px 12px 44px} .card{padding:12px;border-radius:14px;margin-bottom:12px} .row button.b{flex:1 1 auto;text-align:center} .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center} .stats span{background:var(--bg);padding:8px 4px;border-radius:10px;border:1px solid var(--line);font-size:12px} .stats b{display:block;font-size:19px;line-height:1.15;margin-bottom:2px} .sidebar{width:100vw;border-left:0} } </style>
 </head>
 <body>
@@ -139,15 +131,6 @@ button:disabled{opacity:.55;cursor:not-allowed}
     <p class="note" id="saved" aria-live="polite"></p>
   </section>
 
-  <section class="card stats-card" aria-label="Resumen">
-    <div class="stats">
-      <span><b id="n">0</b> registrados</span>
-      <span><b id="m">0</b> coincidencias</span>
-      <span><b id="k">0</b> sin coincidir</span>
-    </div>
-    <p class="note">Si pasan más de dos semanas sin que ocurra algo parecido a tu sueño, márcalo como “sin coincidencia”. Llevar ese control te permite distinguir si hubo un patrón real o fue solo casualidad.</p>
-  </section>
-
   <!-- Explorador: Calendario y Búsqueda -->
   <section class="card explorer-card" aria-label="Buscar y explorar sueños">
     <div class="explorer-head">
@@ -155,7 +138,7 @@ button:disabled{opacity:.55;cursor:not-allowed}
       <button class="b cal-toggle" id="toggle-cal" type="button" aria-expanded="true">Ocultar calendario</button>
     </div>
     <div class="search-bar">
-      <input type="search" id="search-q" placeholder="Buscar por palabra, tema astral o persona…" aria-label="Buscar sueños">
+      <input type="search" id="search-q" placeholder="Buscar por palabra, #hashtag o persona…" aria-label="Buscar sueños">
     </div>
     <div class="filter-chips" id="filter-chips" role="group" aria-label="Filtros rápidos">
       <button type="button" class="chip active" data-filter="all">Todos</button>
@@ -176,6 +159,15 @@ button:disabled{opacity:.55;cursor:not-allowed}
       <span id="active-filter-text"></span>
       <button type="button" id="reset-filters">Limpiar filtros</button>
     </div>
+  </section>
+
+  <section class="card stats-card" aria-label="Resumen">
+    <div class="stats">
+      <span><b id="n">0</b> registrados</span>
+      <span><b id="m">0</b> coincidencias</span>
+      <span><b id="k">0</b> sin coincidir</span>
+    </div>
+    <p class="note">Si pasan más de dos semanas sin que ocurra algo parecido a tu sueño, márcalo como “sin coincidencia”. Llevar ese control te permite distinguir si hubo un patrón real o fue solo casualidad.</p>
   </section>
 
   <div id="list" class="list-area"></div>
@@ -250,13 +242,13 @@ window.DreamSaverProfile = window.DreamSaverProfile || null;
 
 
 var DREAM_SYMBOLS = [
-  { rx: /\b(agua|mar|r[ií]o|lluvia|oc[eé]ano|nadar|ola|lago|inundaci[oó]n)\b/i, theme: "Agua y memoria emocional", note: "Suele reflejar movimientos afectivos profundos, nostalgia o necesidad de contención." },
-  { rx: /\b(volar|caer|ca[ií]da|aire|cielo|nube|altura|abismo)\b/i, theme: "Movimiento y perspectiva", note: "Apunta a cambios de rumbo, búsqueda de libertad o sensación de pérdida de control." },
-  { rx: /\b(casa|hogar|habitaci[oó]n|puerta|ventana|escalera|techo|pasillo)\b/i, theme: "Espacios interiores", note: "Representa tu estructura interna y aspectos de tu historia personal que estás revisando." },
-  { rx: /\b(perseguir|correr|huir|escapar|sombra|monstruo|miedo)\b/i, theme: "Tensión o evitación", note: "Suele aparecer cuando postergas una decisión o evitas confrontar una preocupación." },
-  { rx: /\b(hablar|voz|carta|mensaje|tel[eé]fono|gritar|silencio|escribir)\b/i, theme: "Expresión y vínculo", note: "Señala algo que busca ser comunicado o aclarado en tus relaciones cercanas." },
-  { rx: /\b(fuego|sol|luz|llama|incendio|calor|quemar)\b/i, theme: "Energía vital y transformación", note: "Habla de impulso creativo, deseo de renovación o emociones intensas." },
-  { rx: /\b(perro|gato|serpiente|ave|p[aá]jaro|caballo|lobo|animal)\b/i, theme: "Instinto y naturaleza", note: "Conecta con respuestas intuitivas y señales espontáneas de tu inconsciente." }
+  { rx: /\b(agua|mar|r[ií]o|lluvia|oc[eé]ano|nadar|ola|lago|inundaci[oó]n)\b/i, hashtag: "#AguaYEmoción", theme: "Agua y memoria emocional", note: "Suele reflejar movimientos afectivos profundos, nostalgia o necesidad de contención." },
+  { rx: /\b(volar|caer|ca[ií]da|aire|cielo|nube|altura|abismo)\b/i, hashtag: "#VueloYPerspectiva", theme: "Movimiento y perspectiva", note: "Apunta a cambios de rumbo, búsqueda de libertad o sensación de pérdida de control." },
+  { rx: /\b(casa|hogar|habitaci[oó]n|puerta|ventana|escalera|techo|pasillo)\b/i, hashtag: "#EspaciosInteriores", theme: "Espacios interiores", note: "Representa tu estructura interna y aspectos de tu historia personal que estás revisando." },
+  { rx: /\b(perseguir|correr|huir|escapar|sombra|monstruo|miedo)\b/i, hashtag: "#TensiónYEvitación", theme: "Tensión o evitación", note: "Suele aparecer cuando postergas una decisión o evitas confrontar una preocupación." },
+  { rx: /\b(hablar|voz|carta|mensaje|tel[eé]fono|gritar|silencio|escribir)\b/i, hashtag: "#ExpresiónYVínculo", theme: "Expresión y vínculo", note: "Señala algo que busca ser comunicado o aclarado en tus relaciones cercanas." },
+  { rx: /\b(fuego|sol|luz|llama|incendio|calor|quemar)\b/i, hashtag: "#FuegoYTransformación", theme: "Energía vital y transformación", note: "Habla de impulso creativo, deseo de renovación o emociones intensas." },
+  { rx: /\b(perro|gato|serpiente|ave|p[aá]jaro|caballo|lobo|animal)\b/i, hashtag: "#InstintoYNaturaleza", theme: "Instinto y naturaleza", note: "Conecta con respuestas intuitivas y señales espontáneas de tu inconsciente." }
 ];
 
 
@@ -276,12 +268,23 @@ var SIGN_DREAM_TONES = {
 };
 
 
+function makeHashtagFromTheme(theme) {
+  if (!theme) return "#SimbolismoLibre";
+  var clean = String(theme).replace(/^#+/, "").trim();
+  if (clean.indexOf(" ") === -1) return "#" + clean;
+  return "#" + clean.split(/\s+/).map(function(w){
+    return w.charAt(0).toUpperCase() + w.slice(1);
+  }).join("");
+}
+
+
 function interpretDreamWithChart(text, chart) {
   var found = [];
   for (var i = 0; i < DREAM_SYMBOLS.length; i++) {
     if (DREAM_SYMBOLS[i].rx.test(text)) found.push(DREAM_SYMBOLS[i]);
   }
   var primary = found[0] || {
+    hashtag: "#SimbolismoLibre",
     theme: "Simbolismo libre",
     note: "Observa qué emoción predominó al despertar para contrastarla con los hechos de los próximos días."
   };
@@ -289,6 +292,7 @@ function interpretDreamWithChart(text, chart) {
 
   if (!chart || (!chart.sun && !chart.moon && !chart.asc)) {
     return {
+      hashtag: primary.hashtag,
       theme: primary.theme,
       summary: primary.note + " (Configura tu Perfil Astral para cruzar este símbolo con tu Sol, Luna y Ascendente)."
     };
@@ -310,6 +314,7 @@ function interpretDreamWithChart(text, chart) {
 
 
   return {
+    hashtag: primary.hashtag,
     theme: primary.theme,
     summary: parts.join(" "),
     chartSnapshot: {
@@ -509,7 +514,7 @@ $("save").addEventListener("click",function(){
 $("clr").addEventListener("click",function(){ if(listening) stopRec(); txt.value=""; startedAt=null; $("saved").textContent=""; });
 
 
-var openId=null, delId=null;
+var openId=null, delId=null, astroOpenMap={};
 function render(){
   renderCalendar();
   var list=$("list"), html="", m=0, k=0;
@@ -528,7 +533,6 @@ function render(){
   }
 
 
-  /* No mostrar la lista completa por defecto: exigir selección de fecha en calendario, búsqueda o filtro rápido */
   if(!hasActiveFilter){
     bar.style.display = "none";
     list.innerHTML='<div class="empty">Selecciona un día marcado en el calendario o usa el buscador para ver tus registros.</div>';
@@ -537,6 +541,7 @@ function render(){
 
 
   var filtered = entries.filter(function(e){
+    var tagHash = (e.astro && (e.astro.hashtag || makeHashtagFromTheme(e.astro.theme))) || "";
     if(selectedDateKey && dateKey(e.at) !== selectedDateKey) return false;
     if(activeTagFilter === "luc" && !e.luc) return false;
     if(activeTagFilter === "par" && !e.par) return false;
@@ -546,6 +551,7 @@ function render(){
       var hay = [
         e.text || "",
         e.shared || "",
+        tagHash,
         (e.astro && e.astro.theme) || "",
         (e.astro && e.astro.summary) || "",
         (e.out && e.out.note) || ""
@@ -574,21 +580,44 @@ function render(){
 
 
   filtered.forEach(function(e){
-    html+='<article class="card entry"><h3>'+esc(fmt(e.at))+'</h3><p>'+esc(e.text)+'</p><div>';
+    var hashtag = (e.astro && (e.astro.hashtag || makeHashtagFromTheme(e.astro.theme))) || "#SimbolismoLibre";
+    var hasAstroSummary = Boolean(e.astro && e.astro.summary);
+    var isAstroOpen = Boolean(astroOpenMap[e.id]);
+
+
+    html+='<article class="card entry"><h3>'+esc(fmt(e.at))+'</h3><p>'+esc(e.text)+'</p><div class="tags-row">';
+    html+='<button type="button" class="tag hashtag" data-a="hashtag" data-tag="'+esc(hashtag)+'" title="Buscar patrones con '+esc(hashtag)+'">'+esc(hashtag)+'</button>';
     if(e.par) html+='<span class="tag">parálisis del sueño</span>';
     if(e.luc) html+='<span class="tag">sueño lúcido</span>';
     if(e.shared) html+='<span class="tag">contado a '+esc(e.shared)+'</span>';
-    if(e.astro&&e.astro.theme) html+='<span class="tag astro">✦ '+esc(e.astro.theme)+'</span>';
-    if(e.out) html+='<span class="tag '+(e.out.hit?'ok':'')+'">'+(e.out.hit?'coincidió':'sin coincidencia')+'</span>';
+    if(e.out) html+='<span class="tag '+(e.out.hit?'ok':'')+'">'+(e.out.hit?'coincidió en la vida real':'sin coincidencia')+'</span>';
     html+='</div>';
-    if(e.astro&&e.astro.summary){
-      html+='<div class="astral-insight"><strong>Lectura simbólica · '+esc(e.astro.theme)+'</strong>'+esc(e.astro.summary)+'</div>';
+
+
+    if(hasAstroSummary && isAstroOpen){
+      html+='<div class="astral-insight"><strong>Lectura simbólica · '+esc(e.astro.theme || hashtag)+'</strong>'+esc(e.astro.summary)+'</div>';
     }
-    if(e.out&&e.out.note) html+='<div class="res">'+esc(e.out.date)+': '+esc(e.out.note)+'</div>';
+
+
+    if(e.out && e.out.note){
+      html+='<div class="res"><strong>Contrastado el '+esc(e.out.date)+':</strong> '+esc(e.out.note)+'</div>';
+    }
+
+
     if(openId===e.id){
-      html+='<div class="fld">¿Qué pasó? (qué ocurrió y cuándo)<input type="text" id="note-'+e.id+'" placeholder="Describe el hecho, o escribe: no ocurrió nada parecido"></div><div class="row"><button class="b p" data-a="hit" data-id="'+e.id+'">Coincidió</button><button class="b" data-a="miss" data-id="'+e.id+'">Sin coincidencia</button><button class="b" data-a="cancel" data-id="'+e.id+'">Cancelar</button></div>';
+      var prevNote = (e.out && e.out.note) ? e.out.note : "";
+      html+='<div class="fld">¿Ocurrió algo parecido en la vida real? Añade tu comentario o explicación<input type="text" id="note-'+e.id+'" value="'+esc(prevNote)+'" placeholder="Describe qué pasó y cuándo, o deja una nota sobre lo que significó"></div>';
+      html+='<div class="entry-actions"><div class="entry-actions-left"><button class="b p" data-a="hit" data-id="'+e.id+'">Sí, ocurrió</button><button class="b" data-a="miss" data-id="'+e.id+'">Sin coincidencia</button><button class="b" data-a="cancel" data-id="'+e.id+'">Cancelar</button></div>';
+      html+='<button type="button" class="btn-del-icon'+(delId===e.id?' confirm':'')+'" data-a="del" data-id="'+e.id+'" title="'+(delId===e.id?'Confirmar eliminación':'Eliminar registro')+'" aria-label="'+(delId===e.id?'Confirmar eliminación':'Eliminar registro')+'">'+(delId===e.id?'¿Borrar?':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>')+'</button></div>';
     } else {
-      html+='<div class="row"><button class="b" data-a="open" data-id="'+e.id+'">'+(e.out?'Cambiar resultado':'Revisar resultado')+'</button><button class="b" data-a="del" data-id="'+e.id+'">'+(delId===e.id?'¿Seguro? Eliminar':'Eliminar')+'</button></div>';
+      html+='<div class="entry-actions"><div class="entry-actions-left">';
+      if(hasAstroSummary){
+        html+='<button type="button" class="b btn-astral-toggle" data-a="astro" data-id="'+e.id+'" aria-expanded="'+isAstroOpen+'">'+(isAstroOpen?'Ocultar lectura simbólica':'✦ Lectura simbólica')+'</button>';
+      }
+      html+='<button type="button" class="b" data-a="open" data-id="'+e.id+'">'+(e.out?'Editar contraste':'Contrastarlo con la realidad')+'</button>';
+      html+='</div>';
+      html+='<button type="button" class="btn-del-icon'+(delId===e.id?' confirm':'')+'" data-a="del" data-id="'+e.id+'" title="'+(delId===e.id?'Confirmar eliminación':'Eliminar registro')+'" aria-label="'+(delId===e.id?'Confirmar eliminación':'Eliminar registro')+'">'+(delId===e.id?'¿Borrar?':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>')+'</button>';
+      html+='</div>';
     }
     html+='</article>';
   });
@@ -596,13 +625,26 @@ function render(){
 }
 $("list").addEventListener("click",function(ev){
   var b=ev.target.closest("button"); if(!b) return;
-  var id=Number(b.dataset.id), a=b.dataset.a, e=entries.find(function(x){return x.id===id});
+  var a=b.dataset.a;
+  if(a==="hashtag"){
+    var tag = b.dataset.tag || "";
+    searchQuery = tag.toLowerCase();
+    $("search-q").value = tag;
+    selectedDateKey = null;
+    render();
+    return;
+  }
+  var id=Number(b.dataset.id), e=entries.find(function(x){return x.id===id});
   if(!e) return;
-  if(a==="open"){ openId=id; delId=null; }
+  if(a==="astro"){
+    astroOpenMap[id] = !astroOpenMap[id];
+  }
+  else if(a==="open"){ openId=id; delId=null; }
   else if(a==="cancel"){ openId=null; }
   else if(a==="del"){
     if(delId===id){
       entries=entries.filter(function(x){return x.id!==id});
+      delete astroOpenMap[id];
       delId=null;
       persistLocal();
       if(typeof window.DreamSaverSync.onDeleteEntry === "function"){
