@@ -218,7 +218,8 @@ button:disabled{opacity:.55;cursor:not-allowed}
 (function(){
 var KEY="suenos:v1", entries=[], storageOk=true;
 try{ entries=JSON.parse(localStorage.getItem(KEY)||"[]"); }catch(e){ storageOk=false; entries=[]; }
-function persist(){ try{ localStorage.setItem(KEY,JSON.stringify(entries)); }catch(e){ storageOk=false; showWarn(); } }
+if(!Array.isArray(entries)) entries=[];
+function persistLocal(){ try{ localStorage.setItem(KEY,JSON.stringify(entries)); }catch(e){ storageOk=false; showWarn(); } }
 var $=function(id){return document.getElementById(id)};
 var txt=$("txt"), rec=$("rec"), status=$("status"), warn=$("warn");
 function showWarn(){ if(!storageOk){ warn.style.display="block"; warn.textContent="Este navegador no permite guardar datos aquí. Usa “Copiar todo como texto” para no perder tus registros."; } }
@@ -324,6 +325,28 @@ function esc(s){ var d=document.createElement("div"); d.textContent=s; return d.
 function dateKey(ts){ var d=new Date(ts); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
 
 
+/* Puente de sincronización con Firestore */
+window.DreamSaverSync = window.DreamSaverSync || {
+  onSaveEntry: null,
+  onUpdateEntry: null,
+  onDeleteEntry: null,
+  onSyncLocalEntries: null
+};
+
+
+window.DreamSaverSetEntries = function(nextEntries){
+  entries = Array.isArray(nextEntries) ? nextEntries.slice() : [];
+  entries.sort(function(a,b){ return (Number(b.at)||0) - (Number(a.at)||0); });
+  persistLocal();
+  render();
+};
+
+
+window.DreamSaverGetEntries = function(){
+  return entries.slice();
+};
+
+
 /* Estado de búsqueda, filtros y calendario */
 var searchQuery = "";
 var activeTagFilter = "all";
@@ -404,7 +427,7 @@ function renderCalendar(){
 
 
   var todayDk = dateKey(Date.now());
-  var firstDow = (new Date(y, m, 1).getDay() + 6) % 7; // Lunes = 0
+  var firstDow = (new Date(y, m, 1).getDay() + 6) % 7;
   var daysInMonth = new Date(y, m + 1, 0).getDate();
   var dows = ["Lu","Ma","Mi","Ju","Vi","Sá","Do"];
   var html = dows.map(function(d){ return '<div class="cal-dow">'+d+'</div>'; }).join("");
@@ -433,7 +456,7 @@ $("save").addEventListener("click",function(){
   if(!t){ $("saved").textContent="Escribe o dicta algo antes de guardar."; return; }
   var astroReading = interpretDreamWithChart(t, window.DreamSaverProfile);
   var nowTs = startedAt||Date.now();
-  entries.unshift({
+  var newEntry = {
     id:Date.now(),
     at:nowTs,
     savedAt:Date.now(),
@@ -443,12 +466,24 @@ $("save").addEventListener("click",function(){
     shared:$("sh").value.trim(),
     astro:astroReading,
     out:null
-  });
-  persist(); txt.value=""; $("par").checked=false; $("luc").checked=false; $("sh").value=""; startedAt=null;
+  };
+  entries.unshift(newEntry);
+  persistLocal();
+  txt.value=""; $("par").checked=false; $("luc").checked=false; $("sh").value=""; startedAt=null;
   $("saved").textContent="Sueño guardado con fecha, hora y lectura astral.";
   calCursor = new Date(nowTs);
   calCursor.setDate(1);
   render();
+
+
+  if(typeof window.DreamSaverSync.onSaveEntry === "function"){
+    window.DreamSaverSync.onSaveEntry(newEntry).then(function(){
+      $("saved").textContent="Sueño guardado y sincronizado en la nube.";
+    }).catch(function(err){
+      console.error("Error sincronizando sueño con Firestore:", err);
+      $("saved").textContent="Sueño guardado en este dispositivo (pendiente de sincronizar con la nube).";
+    });
+  }
 });
 $("clr").addEventListener("click",function(){ if(listening) stopRec(); txt.value=""; startedAt=null; $("saved").textContent=""; });
 
@@ -533,8 +568,25 @@ $("list").addEventListener("click",function(ev){
   if(!e) return;
   if(a==="open"){ openId=id; delId=null; }
   else if(a==="cancel"){ openId=null; }
-  else if(a==="del"){ if(delId===id){ entries=entries.filter(function(x){return x.id!==id}); delId=null; persist(); } else delId=id; }
-  else if(a==="hit"||a==="miss"){ var n=$("note-"+id); e.out={hit:a==="hit",note:n?n.value.trim():"",date:new Date().toLocaleDateString("es-CL")}; openId=null; persist(); }
+  else if(a==="del"){
+    if(delId===id){
+      entries=entries.filter(function(x){return x.id!==id});
+      delId=null;
+      persistLocal();
+      if(typeof window.DreamSaverSync.onDeleteEntry === "function"){
+        window.DreamSaverSync.onDeleteEntry(id).catch(function(err){ console.error(err); });
+      }
+    } else delId=id;
+  }
+  else if(a==="hit"||a==="miss"){
+    var n=$("note-"+id);
+    e.out={hit:a==="hit",note:n?n.value.trim():"",date:new Date().toLocaleDateString("es-CL")};
+    openId=null;
+    persistLocal();
+    if(typeof window.DreamSaverSync.onUpdateEntry === "function"){
+      window.DreamSaverSync.onUpdateEntry(e).catch(function(err){ console.error(err); });
+    }
+  }
   render();
 });
 
@@ -561,9 +613,12 @@ render();
   } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
   import { 
     getFirestore, 
-    doc, 
+    doc,
+    collection,
     getDoc, 
-    setDoc 
+    setDoc,
+    deleteDoc,
+    onSnapshot
   } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
 
 
@@ -614,6 +669,10 @@ render();
   const errDob = document.getElementById("err-dob");
   const errTob = document.getElementById("err-tob");
   const errCity = document.getElementById("err-city");
+
+
+  let unsubscribeDreams = null;
+  let hasLoadedRemoteOnce = false;
 
 
   const ZODIAC_SIGNS = [
@@ -767,6 +826,115 @@ render();
     `;
     renderNatalChartSvg(sun, moon, asc);
     return { sun, moon, asc };
+  }
+
+
+  function dreamsColRef(uid) {
+    return collection(db, "users", uid, "dreams");
+  }
+
+
+  function dreamDocRef(uid, dreamId) {
+    return doc(db, "users", uid, "dreams", String(dreamId));
+  }
+
+
+  async function saveDreamToCloud(uid, entry) {
+    await setDoc(dreamDocRef(uid, entry.id), {
+      id: Number(entry.id),
+      at: Number(entry.at) || Date.now(),
+      savedAt: Number(entry.savedAt) || Date.now(),
+      text: entry.text || "",
+      par: Boolean(entry.par),
+      luc: Boolean(entry.luc),
+      shared: entry.shared || "",
+      astro: entry.astro || null,
+      out: entry.out || null,
+      updatedAt: new Date().toISOString()
+    }, { merge: true });
+  }
+
+
+  async function deleteDreamFromCloud(uid, dreamId) {
+    await deleteDoc(dreamDocRef(uid, dreamId));
+  }
+
+
+  function subscribeUserDreams(user) {
+    if (unsubscribeDreams) {
+      unsubscribeDreams();
+      unsubscribeDreams = null;
+    }
+    hasLoadedRemoteOnce = false;
+
+
+    const col = dreamsColRef(user.uid);
+    unsubscribeDreams = onSnapshot(col, async (snap) => {
+      const remoteEntries = [];
+      const remoteIds = new Set();
+      snap.forEach((d) => {
+        const data = d.data() || {};
+        const parsedId = Number(data.id || d.id);
+        if (!Number.isNaN(parsedId)) {
+          remoteIds.add(parsedId);
+          remoteEntries.push({
+            id: parsedId,
+            at: Number(data.at) || parsedId,
+            savedAt: Number(data.savedAt) || Number(data.at) || parsedId,
+            text: data.text || "",
+            par: Boolean(data.par),
+            luc: Boolean(data.luc),
+            shared: data.shared || "",
+            astro: data.astro || null,
+            out: data.out || null
+          });
+        }
+      });
+
+
+      if (!hasLoadedRemoteOnce) {
+        hasLoadedRemoteOnce = true;
+        const localEntries = typeof window.DreamSaverGetEntries === "function"
+          ? window.DreamSaverGetEntries()
+          : [];
+        const missingLocal = localEntries.filter((le) => !remoteIds.has(Number(le.id)));
+        if (missingLocal.length > 0) {
+          for (const item of missingLocal) {
+            try {
+              await saveDreamToCloud(user.uid, item);
+              remoteEntries.push(item);
+            } catch (err) {
+              console.error("Error subiendo sueño local a Firestore:", err);
+            }
+          }
+        }
+      }
+
+
+      if (typeof window.DreamSaverSetEntries === "function") {
+        window.DreamSaverSetEntries(remoteEntries);
+      }
+    }, (err) => {
+      console.error("Error escuchando sueños en Firestore:", err);
+    });
+
+
+    window.DreamSaverSync.onSaveEntry = async (entry) => {
+      if (!auth.currentUser) return;
+      await saveDreamToCloud(auth.currentUser.uid, entry);
+    };
+
+
+    window.DreamSaverSync.onUpdateEntry = async (entry) => {
+      if (!auth.currentUser) return;
+      await saveDreamToCloud(auth.currentUser.uid, entry);
+    };
+
+
+    window.DreamSaverSync.onDeleteEntry = async (dreamId) => {
+      if (!auth.currentUser) return;
+      await deleteDreamFromCloud(auth.currentUser.uid, dreamId);
+    };
   }
 
 
@@ -1046,7 +1214,7 @@ render();
     if (typeof bodyData.ascendant === "string") return bodyData.ascendant;
     if (bodyData.ascendant?.sign) return bodyData.ascendant.sign;
     if (bodyData.angles?.ascendant?.sign) return bodyData.angles.ascendant.sign;
-    if (bodyData.angles?.asc?.sign) return bodyData.angles.asc.sign;
+    if (bodyData.angles?.asc?.sign) return bodyData.angles.asc?.sign;
     if (Array.isArray(bodyData.houses) && bodyData.houses.length > 0 && bodyData.houses[0]?.sign) {
       return bodyData.houses[0].sign;
     }
@@ -1224,7 +1392,12 @@ render();
       appContent.style.display = "block";
       userDisplay.textContent = user.email;
       loadUserProfile(user);
+      subscribeUserDreams(user);
     } else {
+      if (unsubscribeDreams) {
+        unsubscribeDreams();
+        unsubscribeDreams = null;
+      }
       authCard.style.display = "block";
       appContent.style.display = "none";
       userDisplay.textContent = "";
