@@ -4,284 +4,988 @@
 <meta charset="utf-8">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>DreamSaver · Biodescodificación</title>
+<title>DreamSaver · Diario de sueños</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap">
 <style>
 :root{--bg:#f4effb;--surface:#ffffff;--ink:#1f1733;--mute:#62557d;--line:#dfd5f0;--accent:#6b3fa0;--accent-ink:#ffffff;--rec:#b8336a;--ok:#2d7a5e}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#120b21;--surface:#1d1333;--ink:#f1ecfa;--mute:#a899c7;--line:#352559;--accent:#a77bfa;--accent-ink:#140929;--rec:#eb5e93;--ok:#6ed4a5}}
+:root[data-theme="dark"]{--bg:#120b21;--surface:#1d1333;--ink:#f1ecfa;--mute:#a899c7;--line:#352559;--accent:#a77bfa;--accent-ink:#140929;--rec:#eb5e93;--ok:#6ed4a5}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at top,color-mix(in srgb,var(--accent) 12%,var(--bg)),var(--bg) 68%);min-height:100vh;min-height:100dvh;color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;padding:14px 14px 48px}
-main{width:100%;max-width:720px;margin:0 auto}
+body{margin:0;background:radial-gradient(circle at top,color-mix(in srgb,var(--accent) 12%,var(--bg)),var(--bg) 68%);min-height:100vh;min-height:100dvh;color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);overflow-x:hidden}
+main{width:100%;max-width:640px;margin:0 auto;padding:12px 14px 48px}
 h1{font:600 clamp(23px,6vw,28px)/1.15 "Newsreader",Georgia,serif;margin:4px 0 0}
-h2{font:600 clamp(20px,5vw,22px)/1.25 "Newsreader",Georgia,serif;margin:0 0 8px}
+h2{font:600 clamp(20px,5vw,22px)/1.25 "Newsreader",Georgia,serif;margin:0 0 6px}
 .brand-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent);border:1px solid color-mix(in srgb,var(--accent) 28%,transparent);padding:3px 10px;border-radius:999px;margin-bottom:4px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:0 8px 24px rgba(24,12,48,.05)}
-.top-bar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.privacy-note{margin-top:14px;padding:11px 13px;border-radius:10px;background:color-mix(in srgb,var(--accent) 7%,var(--bg));border:1px solid var(--line);font-size:13px;color:var(--mute);line-height:1.45}
+.sub{color:var(--mute);margin:0 0 12px;font-size:13.5px;line-height:1.4;text-align:center}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:14px;box-shadow:0 8px 24px rgba(24,12,48,.05)}
+.rec-wrap{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+#rec{width:68px;height:68px;border-radius:50%;border:0;background:var(--accent);color:var(--accent-ink);font-size:13px;font-weight:600;cursor:pointer;flex:none;transition:background .2s,transform .1s;touch-action:manipulation;box-shadow:0 4px 14px color-mix(in srgb,var(--accent) 35%,transparent)}
+#rec:active{transform:scale(.96)}
+#rec.on{background:var(--rec);color:#fff;animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 10px color-mix(in srgb,var(--rec) 25%,transparent)}}
+@media (prefers-reduced-motion:reduce){#rec.on{animation:none}}
+#status{color:var(--mute);font-size:14px;flex:1;min-width:0}
+textarea,input[type=text],input[type=email],input[type=password],input[type=date],input[type=time],input[type=search]{width:100%;max-width:100%;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;font-size:16px}
+input:disabled{opacity:.72;cursor:not-allowed;background:color-mix(in srgb,var(--line) 25%,var(--bg))}
+textarea{min-height:112px;resize:vertical;font-family:"Newsreader",Georgia,serif;font-size:16.5px;line-height:1.45}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.chk-row{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:10px 0 4px}
+label.chk{display:inline-flex;gap:8px;align-items:center;margin:0;font-size:14px;min-height:32px;cursor:pointer}
+label.chk input[type=checkbox]{width:18px;height:18px;flex:none;margin:0}
+.fld{margin-top:10px;font-size:14px;color:var(--mute);position:relative}
+.fld input{margin-top:4px}
+.pw-wrap{display:flex;gap:8px;align-items:stretch;margin-top:4px}
+.pw-wrap input{margin-top:0;flex:1;min-width:0}
 .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.fld{margin-top:10px;font-size:14px;color:var(--mute)}
-.fld input,.fld textarea,.fld select{width:100%;margin-top:4px;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;font-size:15px}
-textarea{min-height:92px;resize:vertical;font-family:"Newsreader",Georgia,serif;font-size:16.5px}
-button.b{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:10px;padding:8px 14px;font:inherit;font-size:14px;cursor:pointer;min-height:38px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+button.b{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:10px;padding:8px 14px;font:inherit;font-size:14px;cursor:pointer;min-height:38px;touch-action:manipulation;transition:background .15s,border-color .15s,color .15s}
 button.b:hover{background:color-mix(in srgb,var(--accent) 7%,transparent)}
 button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
-.note{font-size:13px;color:var(--mute);margin:8px 0 0;line-height:1.45}
-.chips{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
-.chip{border:1px solid var(--line);background:var(--bg);color:var(--mute);border-radius:999px;padding:5px 11px;font-size:12.5px;cursor:pointer}
+button.p:hover{background:color-mix(in srgb,var(--accent) 90%,#000)}
+button:disabled{opacity:.55;cursor:not-allowed}
+.stats{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;color:var(--mute);margin:0 0 6px}
+.stats b{color:var(--ink);font-size:20px;font-family:"Newsreader",Georgia,serif}
+.note{font-size:13px;color:var(--mute);margin:6px 0 0;line-height:1.42}
+.lock-notice{margin-top:12px;padding:10px 12px;border-radius:10px;background:color-mix(in srgb,var(--accent) 8%,var(--bg));border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line));font-size:12.5px;color:var(--mute);line-height:1.45}
+.lock-notice a{color:var(--accent);text-decoration:none;font-weight:500}
+.lock-notice a:hover{text-decoration:underline}
+
+/* Pulso Lunar y Astrológico Diario */
+.lunar-pulse-card{background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 11%,var(--surface)),var(--surface));border:1px solid color-mix(in srgb,var(--accent) 28%,var(--line));border-radius:16px;padding:14px 16px;margin-bottom:14px;box-shadow:0 8px 24px rgba(24,12,48,.05)}
+.lunar-pulse-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.lunar-badge-group{display:flex;align-items:center;gap:12px}
+.lunar-glyph{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;background:color-mix(in srgb,var(--accent) 14%,var(--bg));border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));flex:none}
+.lunar-title{font:600 16px/1.25 "Newsreader",Georgia,serif;color:var(--ink);margin:0}
+.lunar-meta{font-size:12.5px;color:var(--mute);margin-top:2px}
+.lunar-pills{display:flex;gap:6px;flex-wrap:wrap}
+.lunar-pill{font-size:12px;padding:4px 10px;border-radius:999px;background:var(--bg);border:1px solid var(--line);color:var(--ink);font-weight:500}
+.lunar-reading{margin-top:10px;padding-top:10px;border-top:1px solid color-mix(in srgb,var(--line) 80%,transparent);font-size:13.5px;color:var(--ink);line-height:1.5}
+.lunar-day-detail{margin-top:10px;padding:10px 12px;border-radius:11px;background:var(--bg);border:1px solid var(--line);font-size:13px;color:var(--ink);line-height:1.45}
+
+/* Tarjeta de sueño */
+.entry h3{margin:0 0 8px;font:600 13.5px/1.35 system-ui,sans-serif;color:var(--mute)}
+.entry p{margin:0 0 12px;font:400 17.5px/1.58 "Newsreader",Georgia,serif;white-space:pre-wrap;overflow-wrap:anywhere}
+.tags-row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:6px}
+.tag{display:inline-flex;align-items:center;font-size:12px;border:1px solid var(--line);border-radius:99px;padding:3px 10px;color:var(--mute);background:var(--bg)}
+.tag.ok{color:var(--ok);border-color:var(--ok);background:color-mix(in srgb,var(--ok) 8%,transparent)}
+.tag.lunar{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 30%,var(--line));background:color-mix(in srgb,var(--accent) 6%,transparent)}
+button.tag.hashtag{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent);background:color-mix(in srgb,var(--accent) 10%,transparent);font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s,transform .1s}
+button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transparent)}
+.astral-insight{margin:10px 0 6px;padding:12px 14px;border-radius:11px;background:color-mix(in srgb,var(--accent) 7%,var(--bg));border-left:3px solid var(--accent);font-size:14px;color:var(--ink);line-height:1.5}
+.astral-insight strong{color:var(--accent);display:block;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.res{font-size:14px;margin:8px 0;padding:8px 11px;border-radius:9px;background:color-mix(in srgb,var(--ok) 8%,var(--bg));border:1px solid color-mix(in srgb,var(--ok) 30%,transparent);color:var(--ink)}
+.res strong{color:var(--ok)}
+
+/* Barra de acciones de tarjeta: botones a la izquierda, eliminar aislado a la derecha */
+.entry-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+.entry-actions-left{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn-astral-toggle{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));color:var(--accent);font-weight:500}
+.btn-astral-toggle[aria-expanded="true"]{background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.btn-del-icon{width:38px;height:38px;min-width:38px;padding:0;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);background:transparent;color:var(--mute);border-radius:10px;cursor:pointer;flex:none;touch-action:manipulation;transition:background .15s,border-color .15s,color .15s}
+.btn-del-icon:hover{color:var(--rec);border-color:color-mix(in srgb,var(--rec) 50%,var(--line));background:color-mix(in srgb,var(--rec) 8%,transparent)}
+.btn-del-icon.confirm{width:auto;padding:0 11px;gap:5px;color:#fff;background:var(--rec);border-color:var(--rec);font-size:12.5px;font-weight:600}
+.btn-del-icon svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+
+.empty{color:var(--mute);text-align:center;padding:22px 14px;font-size:14px;background:var(--surface);border:1px dashed var(--line);border-radius:16px}
+#warn,.auth-err{background:var(--surface);border:1px solid var(--rec);border-radius:10px;padding:10px 12px;font-size:14px;margin-top:10px;color:var(--rec)}
+#warn{display:none;margin-bottom:14px}
+
+/* Barra superior centrada en móvil */
+.header-bar{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;margin-bottom:8px}
+.header-brand{width:100%;display:flex;flex-direction:column;align-items:center}
+.user-info{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;width:100%;padding-top:6px;border-top:1px solid var(--line)}
+#user-display{margin:0;width:100%;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;text-align:center}
+.user-actions{display:flex;gap:8px;justify-content:center;width:100%;max-width:340px}
+.user-actions button.b{flex:1;padding:7px 12px;min-height:36px;font-size:13.5px}
+
+/* Contenedor principal de layout */
+.workspace-grid{display:block}
+.recorder-card,.explorer-card,.stats-card,.list-area,.lunar-pulse-card{min-width:0}
+
+/* Explorador: Calendario y Búsqueda */
+.explorer-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.explorer-head h3{margin:0;font:600 16px/1.2 "Newsreader",Georgia,serif;color:var(--ink)}
+.cal-toggle{padding:5px 10px;font-size:12.5px;min-height:32px}
+.search-bar{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+.search-bar input{flex:1;min-width:0;padding:9px 12px}
+.filter-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.chip{border:1px solid var(--line);background:var(--bg);color:var(--mute);border-radius:999px;padding:5px 11px;font-size:12.5px;cursor:pointer;touch-action:manipulation;transition:all .15s}
 .chip.active{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
-.detail-box{margin-top:12px;padding:14px;border-radius:12px;background:var(--bg);border:1px solid var(--line)}
-.emotion-pill{display:inline-block;font-size:12px;font-weight:600;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent);padding:3px 10px;border-radius:999px;margin:4px 0 8px}
-.history-item{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);margin-top:8px;font-size:13.5px}
-.auth-err{background:var(--surface);border:1px solid var(--rec);color:var(--rec);border-radius:10px;padding:10px 12px;margin-top:10px;font-size:14px}
-.disclaimer{margin-top:14px;padding:11px 13px;border-radius:10px;background:color-mix(in srgb,var(--mute) 8%,var(--bg));border:1px solid var(--line);font-size:12.5px;color:var(--mute)}
+.cal-box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px;margin-top:6px}
+.cal-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.cal-nav button{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;width:34px;height:32px;cursor:pointer;font-weight:600}
+.cal-title{font-weight:600;font-size:14px;text-transform:capitalize}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.cal-dow{font-size:11px;color:var(--mute);font-weight:600;padding-bottom:4px}
+.cal-day{position:relative;min-height:46px;border:1px solid transparent;background:transparent;color:var(--ink);border-radius:9px;font:inherit;font-size:12.5px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:2px 0;touch-action:manipulation}
+.cal-day:hover{background:color-mix(in srgb,var(--accent) 10%,transparent)}
+.cal-day.empty{pointer-events:none}
+.cal-day.today{border-color:color-mix(in srgb,var(--accent) 55%,transparent)}
+.cal-day.has-dream{font-weight:700;background:color-mix(in srgb,var(--accent) 13%,var(--surface))}
+.cal-day.has-dream::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);margin-top:1px}
+.cal-day.selected{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.cal-day.selected::after{background:var(--accent-ink)}
+.cal-phase-icon{font-size:12px;line-height:1;opacity:.9}
+.active-filter-bar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:10px;padding:8px 10px;border-radius:9px;background:color-mix(in srgb,var(--accent) 10%,var(--bg));font-size:12.5px;color:var(--ink)}
+.active-filter-bar button{border:0;background:transparent;color:var(--accent);font-weight:600;cursor:pointer;font-size:12.5px;padding:2px 6px}
+
+/* Pie de página */
+.app-footer{margin-top:28px;padding-top:16px;border-top:1px solid var(--line);text-align:center;font-size:12.5px;color:var(--mute);line-height:1.5}
+.app-footer strong{color:var(--ink);font-weight:600}
+.app-footer a{color:var(--accent);text-decoration:none;font-weight:500}
+.app-footer a:hover{text-decoration:underline}
+
+/* Sidebar responsivo */
+.sidebar{position:fixed;top:0;right:0;width:400px;max-width:100vw;height:100%;height:100dvh;background:var(--surface);border-left:1px solid var(--line);box-shadow:-5px 0 20px rgba(0,0,0,0.22);transform:translateX(100%);transition:transform 0.3s ease;z-index:1000;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(24px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column}
+.sidebar.open{transform:translateX(0)}
+.sidebar-header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
+.sidebar-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:28px}
+.overlay{position:fixed;inset:0;background:rgba(12,6,26,0.58);display:none;z-index:999}
+.overlay.open{display:block}
+.astrology-box{margin-top:0;margin-bottom:16px;padding:14px;background:var(--bg);border-radius:12px;border:1px solid var(--line)}
+.astrology-box h3,.birth-section-box h3{margin:0 0 8px;font:600 17px/1.25 "Newsreader",Georgia,serif;color:var(--ink)}
+.birth-section-box{margin-bottom:14px;padding:14px;background:var(--bg);border-radius:12px;border:1px solid var(--line)}
+.astral-disclaimer{margin-top:14px;padding:11px 13px;border-radius:10px;background:color-mix(in srgb,var(--mute) 8%,var(--bg));border:1px solid var(--line);font-size:12.5px;color:var(--mute);line-height:1.45}
+.astro-summary p{margin:6px 0;font-size:14px}
+.astro-reading{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:13px;color:var(--mute);line-height:1.45}
+.chart-wrap{margin-top:12px;display:flex;flex-direction:column;align-items:center}
+.chart-wrap svg{width:100%;max-width:270px;height:auto;display:block}
+.chart-legend{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;font-size:12px;color:var(--mute);margin-top:6px}
+
+/* Autocomplete & Validation UI */
+.city-suggestions{position:absolute;left:0;right:0;top:100%;margin-top:4px;background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.18);max-height:210px;overflow-y:auto;z-index:1100;display:none}
+.city-suggestions.open{display:block}
+.city-item{width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--line);padding:10px 12px;color:var(--ink);font:inherit;font-size:14px;cursor:pointer;display:block}
+.city-item:last-child{border-bottom:0}
+.city-item:hover,.city-item:focus{background:var(--bg)}
+.city-item small{display:block;color:var(--mute);font-size:12px}
+.status-pill{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;margin-top:6px;padding:5px 9px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--mute);max-width:100%;word-break:break-word}
+.status-pill.valid{color:var(--ok);border-color:var(--ok)}
+.status-pill.invalid{color:var(--rec);border-color:var(--rec)}
+.field-err{font-size:12.5px;color:var(--rec);margin-top:4px;display:none}
+
+/* Ajustes para escritorio / PC (>= 960px) */
+@media (min-width: 960px){
+  main{max-width:1100px;padding:24px 28px 56px}
+  #auth-card{max-width:460px;margin:32px auto 0;padding:22px}
+  .header-bar{flex-direction:row;justify-content:space-between;align-items:center;text-align:left;padding-bottom:14px;margin-bottom:10px;border-bottom:1px solid var(--line)}
+  .header-brand{width:auto;align-items:flex-start}
+  .user-info{width:auto;padding-top:0;border-top:0;justify-content:flex-end;gap:14px;flex-wrap:nowrap}
+  #user-display{width:auto;max-width:240px;text-align:right;font-size:13px}
+  .user-actions{width:auto;max-width:none}
+  .user-actions button.b{flex:none;padding:7px 14px}
+  .sub{text-align:left;margin-bottom:16px;font-size:14px}
+
+  .workspace-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1.15fr) minmax(340px,0.85fr);
+    grid-template-areas:
+      "lunar lunar"
+      "recorder explorer"
+      "stats stats"
+      "list list";
+    gap:18px 20px;
+    align-items:stretch;
+  }
+  .lunar-pulse-card{grid-area:lunar;margin-bottom:0}
+  .recorder-card{grid-area:recorder;margin-bottom:0;display:flex;flex-direction:column}
+  .explorer-card{grid-area:explorer;margin-bottom:0;display:flex;flex-direction:column}
+  .stats-card{grid-area:stats;margin-bottom:0;display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .stats-card .stats{margin:0;flex:none;display:flex;gap:12px}
+  .stats-card .stats span{background:var(--bg);padding:8px 16px;border-radius:12px;border:1px solid var(--line);font-size:13px;white-space:nowrap}
+  .stats-card .stats b{font-size:20px;margin-right:4px}
+  .stats-card .note{margin:0;flex:1}
+  .list-area{grid-area:list;width:100%}
+
+  .card{padding:18px;box-shadow:0 10px 28px rgba(24,12,48,.06)}
+  .entry{padding:20px 24px}
+  .entry p{font-size:18px;line-height:1.65;max-width:82ch}
+  textarea{min-height:175px;flex:1}
+  .cal-day{min-height:46px}
+}
+
+/* Ajustes específicos para pantallas verticales pequeñas (< 520px) */
+@media (max-width: 520px){
+  main{padding:10px 12px 44px}
+  .card,.lunar-pulse-card{padding:12px;border-radius:14px;margin-bottom:12px}
+  .row button.b{flex:1 1 auto;text-align:center}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+  .stats span{background:var(--bg);padding:8px 4px;border-radius:10px;border:1px solid var(--line);font-size:12px}
+  .stats b{display:block;font-size:19px;line-height:1.15;margin-bottom:2px}
+  .sidebar{width:100vw;border-left:0}
+}
 </style>
 </head>
 <body>
 <main>
+  <!-- Sección Autenticación -->
   <section class="card" id="auth-card">
-    <div class="brand-badge">✦ DreamSaver · Biodescodificación</div>
-    <h2>Iniciar sesión</h2>
-    <p class="note">Usa la misma cuenta de DreamSaver para consultar y guardar tus reflexiones en la nube.</p>
-    <div class="fld">Correo electrónico<input type="email" id="auth-email" placeholder="tu@email.com" autocomplete="email"></div>
-    <div class="fld">Contraseña<input type="password" id="auth-password" placeholder="••••••••" autocomplete="current-password"></div>
+    <div class="brand-badge">✦ DreamSaver</div>
+    <h2>Iniciar sesión / Crear cuenta</h2>
+    <p class="note">Tu refugio personal para registrar sueños y explorar tu mapa astral.</p>
+    <div class="fld">
+      Correo electrónico
+      <input type="email" id="auth-email" placeholder="tu@email.com" autocomplete="email">
+    </div>
+    <div class="fld">
+      Contraseña
+      <div class="pw-wrap">
+        <input type="password" id="auth-password" placeholder="••••••••" autocomplete="current-password">
+        <button class="b" id="toggle-password" type="button" aria-pressed="false" aria-label="Mostrar u ocultar contraseña">Mostrar</button>
+      </div>
+    </div>
     <div class="row">
       <button class="b p" id="btn-login" type="button">Entrar</button>
-      <a class="b" href="./index.html">Volver al diario</a>
+      <button class="b" id="btn-register" type="button">Crear cuenta</button>
+      <button class="b" id="btn-reset" type="button">Olvidé mi contraseña</button>
     </div>
     <div id="auth-error" class="auth-err" style="display:none;"></div>
+    <p class="privacy-note">
+      <strong>Privacidad y propiedad:</strong> Tus sueños se guardan en tu cuenta y no se comparten. Para calcular tu carta astral, tu fecha, hora y lugar de nacimiento se envían a un servicio de astrología (FreeAstroAPI) a través de nuestro servidor, y la búsqueda de ciudades usa Open-Meteo.
+    </p>
   </section>
 
+  <!-- Contenido Aplicación -->
   <div id="app-content" style="display:none;">
-    <div class="top-bar">
-      <div>
-        <div class="brand-badge">✦ DreamSaver · Módulo independiente</div>
-        <h1>Biodescodificación</h1>
+    <div class="header-bar">
+      <div class="header-brand">
+        <div class="brand-badge">✦ DreamSaver</div>
+        <h1>Diario de sueños</h1>
       </div>
-      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-        <span class="note" id="user-display" style="margin:0;"></span>
-        <a class="b" href="./index.html">← Diario de sueños</a>
-        <button class="b" id="btn-logout" type="button">Cerrar sesión</button>
+      <div class="user-info">
+        <span id="user-display" class="note"></span>
+        <div class="user-actions">
+          <button class="b" id="btn-profile" type="button">Perfil</button>
+          <button class="b" id="btn-logout" type="button">Cerrar sesión</button>
+        </div>
       </div>
     </div>
+    <p class="sub">Habla al despertar y el texto se escribe solo. Cada registro guarda fecha, hora y fase lunar para contrastarlo después.</p>
+    <div id="warn"></div>
 
-    <section class="card">
-      <h2>Consulta por sistema y síntoma</h2>
-      <p class="note" id="source-status">Cargando catálogo externo...</p>
+    <div class="workspace-grid">
+      <!-- Reporte Diario Lunar y Astrológico Personalizado -->
+      <section class="lunar-pulse-card" id="lunar-pulse" aria-label="Pulso lunar y astrológico del día"></section>
 
-      <div class="fld">
-        Sistema biológico
-        <select id="system-select" aria-label="Sistema biológico">
-          <option value="all">Todos los sistemas</option>
-        </select>
-      </div>
+      <section class="card recorder-card" aria-label="Nuevo registro">
+        <div class="rec-wrap">
+          <button id="rec" type="button" aria-pressed="false">Grabar</button>
+          <div id="status">Toca para hablar. Toca otra vez para detener.</div>
+        </div>
+        <textarea id="txt" placeholder="Tu sueño aparecerá aquí mientras hablas. También puedes escribir o corregir." aria-label="Texto del sueño"></textarea>
+        <div class="chk-row">
+          <label class="chk"><input type="checkbox" id="par"> Hubo parálisis del sueño</label>
+          <label class="chk"><input type="checkbox" id="luc"> Fue un sueño lúcido</label>
+        </div>
+        <div class="fld">Le conté el sueño a alguien (opcional)<input type="text" id="sh" placeholder="Nombre de la persona"></div>
+        <div class="row">
+          <button class="b p" id="save" type="button">Guardar sueño</button>
+          <button class="b" id="clr" type="button">Limpiar</button>
+        </div>
+        <p class="note" id="saved" aria-live="polite"></p>
+      </section>
 
-      <div class="fld">
-        Buscar síntoma, zona o emoción
-        <input type="search" id="bio-search" placeholder="Ej. estómago, acidez, músculo, cuello...">
-      </div>
+      <!-- Explorador: Calendario Lunar y Búsqueda -->
+      <section class="card explorer-card" aria-label="Buscar y explorar sueños">
+        <div class="explorer-head">
+          <h3>Calendario lunar y registros</h3>
+          <button class="b cal-toggle" id="toggle-cal" type="button" aria-expanded="true">Ocultar calendario</button>
+        </div>
+        <div class="search-bar">
+          <input type="search" id="search-q" placeholder="Buscar por palabra, #hashtag o persona…" aria-label="Buscar sueños">
+        </div>
+        <div class="filter-chips" id="filter-chips" role="group" aria-label="Filtros rápidos">
+          <button type="button" class="chip active" data-filter="all">Todos</button>
+          <button type="button" class="chip" data-filter="luc">Lúcidos</button>
+          <button type="button" class="chip" data-filter="par">Parálisis</button>
+          <button type="button" class="chip" data-filter="hit">Coincidieron</button>
+          <button type="button" class="chip" data-filter="pending">Pendientes</button>
+        </div>
+        <div class="cal-box" id="cal-box">
+          <div class="cal-nav">
+            <button type="button" id="cal-prev" aria-label="Mes anterior">‹</button>
+            <span class="cal-title" id="cal-title"></span>
+            <button type="button" id="cal-next" aria-label="Mes siguiente">›</button>
+          </div>
+          <div class="cal-grid" id="cal-grid"></div>
+          <div class="lunar-day-detail" id="lunar-day-detail" style="display:none;"></div>
+        </div>
+        <div class="active-filter-bar" id="active-filter-bar" style="display:none;">
+          <span id="active-filter-text"></span>
+          <button type="button" id="reset-filters">Limpiar filtros</button>
+        </div>
+      </section>
 
-      <div class="chips" id="symptom-chips"></div>
-      <div class="detail-box" id="symptom-detail"></div>
+      <section class="card stats-card" aria-label="Resumen">
+        <div class="stats">
+          <span><b id="n">0</b> registrados</span>
+          <span><b id="m">0</b> coincidencias</span>
+          <span><b id="k">0</b> sin coincidir</span>
+        </div>
+        <p class="note">Si pasan más de dos semanas sin que ocurra algo parecido a tu sueño, márcalo como “sin coincidencia”. Llevar ese control te permite distinguir si hubo un patrón real o fue solo casualidad.</p>
+      </section>
 
-      <div class="fld">
-        Tu reflexión o seguimiento personal
-        <textarea id="bio-reflection" placeholder="Anota qué situación o emoción reconoces y qué quieres observar estos días..."></textarea>
-      </div>
-      <div class="row">
-        <button class="b p" id="btn-save-log" type="button">Guardar consulta en mi perfil</button>
-      </div>
-      <p class="note" id="save-status" aria-live="polite"></p>
-    </section>
-
-    <section class="card">
-      <h2>Historial de consultas guardadas</h2>
-      <div id="logs-list"><p class="note">Sin consultas guardadas aún.</p></div>
-    </section>
-
-    <div class="disclaimer">
-      <strong>Aviso:</strong> Herramienta de reflexión y autoconocimiento; no reemplaza evaluación médica ni psicológica profesional.
+      <div id="list" class="list-area"></div>
     </div>
   </div>
+
+  <footer class="app-footer">
+    <div><strong>✦ DreamSaver</strong> · Tu diario personal de sueños y exploración astral</div>
+    <div>Contacto y soporte: <a href="mailto:redlantecc@gmail.com">redlantecc@gmail.com</a></div>
+  </footer>
 </main>
+
+<!-- Panel Lateral de Perfil -->
+<div class="overlay" id="sidebar-overlay"></div>
+<div class="sidebar" id="profile-sidebar">
+  <div class="sidebar-header">
+    <h2>Tu Perfil Astral</h2>
+    <button class="b" id="close-profile" type="button">Cerrar</button>
+  </div>
+  <div class="sidebar-content">
+    <!-- 1. Contenedor Carta Natal al principio -->
+    <div class="astrology-box" id="astrology-container">
+      <h3>Tu Carta Astral</h3>
+      <div id="astrology-results">Configura tus datos de nacimiento más abajo para calcular tu carta astral.</div>
+      <div id="astrology-chart" class="chart-wrap"></div>
+    </div>
+
+    <!-- 2. Datos de nacimiento -->
+    <div class="birth-section-box">
+      <h3>Datos de nacimiento</h3>
+      <p class="note" id="profile-intro">Completa tus datos de nacimiento. Escribe tu ciudad y selecciónala de la lista para validar sus coordenadas automáticamente.</p>
+      <form id="profile-form" novalidate>
+        <div class="fld">
+          Fecha de nacimiento
+          <input type="date" id="profile-dob" min="1900-01-01" required>
+          <div class="field-err" id="err-dob"></div>
+        </div>
+        <div class="fld">
+          Hora de nacimiento
+          <input type="time" id="profile-tob" required>
+          <div class="field-err" id="err-tob"></div>
+        </div>
+        <div class="fld">
+          Lugar de nacimiento (Ciudad, País)
+          <input type="text" id="profile-city" placeholder="Escribe ej. Castro, Chile" autocomplete="off" required>
+          <div class="city-suggestions" id="city-suggestions" role="listbox" aria-label="Sugerencias de ciudades"></div>
+          <div class="field-err" id="err-city"></div>
+          <div class="status-pill" id="coords-display">Ubicación sin verificar</div>
+        </div>
+        <div class="row">
+          <button class="b p" id="save-profile" type="submit">Guardar Perfil</button>
+        </div>
+      </form>
+      <p class="note" id="profile-saved" aria-live="polite"></p>
+      <div class="lock-notice" id="birth-lock-notice">
+        <strong>Datos de nacimiento protegidos:</strong> Una vez guardados, tu fecha, hora y lugar de nacimiento quedan bloqueados para evitar cambios repetidos o consultas de terceros. Si necesitas corregir un dato o solicitar un cambio justificado, escribe a <a href="mailto:redlantecc@gmail.com">redlantecc@gmail.com</a> desde el correo de tu cuenta.
+      </div>
+    </div>
+
+    <!-- 3. Disclaimer al final -->
+    <div class="astral-disclaimer" id="astral-disclaimer">
+      <strong>Aviso importante:</strong> La carta astral y las lecturas simbólicas en DreamSaver tienen fines de reflexión personal y entretenimiento; no sustituyen orientación médica, psicológica ni profesional. Cada usuario debe gestionar su propio perfil individual.
+    </div>
+  </div>
+</div>
 
 <script>
 (function(){
-  /* Catálogo base mínimo por si aún no creas /data/biodesc.json en GitHub */
-  var FALLBACK_CATALOG = [
-    {
-      id: "estomago-nudo",
-      system: "Sistema digestivo",
-      symptom: "Nudo o pesadez estomacal",
-      keywords: "estomago nudo pesadez digerir tragar cambio",
-      emotion: "Dificultad para asimilar o 'tragar' una situación",
-      summary: "Suele asociarse con hechos, conversaciones o cambios recientes que cuesta digerir en lo cotidiano.",
-      questions: [
-        "¿Qué situación o comentario reciente me cuesta 'digerir'?",
-        "¿Qué estoy reteniendo o callando para evitar conflicto?"
-      ]
-    },
-    {
-      id: "acidez-reflujo",
-      system: "Sistema digestivo",
-      symptom: "Acidez o reflujo",
-      keywords: "acidez reflujo ardor molestia rechazo",
-      emotion: "Rechazo o fricción ante algo que no encaja",
-      summary: "A menudo se vincula con momentos en que algo genera malestar o rechazo al procesarlo.",
-      questions: [
-        "¿Qué circunstancia o demanda actual me resulta indigesta?",
-        "¿Dónde necesito poner un límite claro y oportuno?"
-      ]
-    },
-    {
-      id: "tension-muscular",
-      system: "Sistema muscular",
-      symptom: "Rigidez o tensión muscular",
-      keywords: "musculo rigidez tension carga esfuerzo postura",
-      emotion: "Sostener esfuerzo o resistencia de forma continua",
-      summary: "Suele reflejar el esfuerzo sostenido por mantener el control, avanzar o no ceder.",
-      questions: [
-        "¿En qué área siento que estoy empujando o sosteniendo de más?",
-        "¿Qué pasaría si hoy aflojo un poco el ritmo o pido apoyo?"
-      ]
+/* Caché local POR USUARIO (suenos:v2:<uid>). Sin sesión no se lee ni se guarda nada. */
+var KEY=null, entries=[], storageOk=true;
+function loadLocal(){
+  entries=[];
+  if(!KEY) return;
+  try{ entries=JSON.parse(localStorage.getItem(KEY)||"[]"); }catch(e){ storageOk=false; entries=[]; }
+  if(!Array.isArray(entries)) entries=[];
+}
+function persistLocal(){ if(!KEY) return; try{ localStorage.setItem(KEY,JSON.stringify(entries)); }catch(e){ storageOk=false; showWarn(); } }
+var $=function(id){return document.getElementById(id)};
+var txt=$("txt"), rec=$("rec"), status=$("status"), warn=$("warn");
+function showWarn(){ if(!storageOk){ warn.style.display="block"; warn.textContent="Este navegador no permite guardar datos localmente, pero tus sueños se sincronizarán en la nube al iniciar sesión."; } }
+showWarn();
+
+window.DreamSaverProfile = window.DreamSaverProfile || null;
+
+/* Motor Lunar y Tránsitos en tiempo real (sincronizado con época astronómica J2000) */
+var SYNODIC_MONTH = 29.530588853;
+var LUNAR_SIGNS = [
+  "Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo",
+  "Libra", "Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis"
+];
+
+var PHASE_GUIDANCE = {
+  "Luna Nueva": "Semilla e introspección silenciosa: ideal para notar impulsos sutiles antes de actuar.",
+  "Creciente": "Apertura y tanteo: los sueños suelen mostrar ensayos o curiosidades por explorar.",
+  "Cuarto Creciente": "Decisión y fricción constructiva: aparecen dilemas prácticos o conversaciones pendientes.",
+  "Gibosa Creciente": "Ajuste y afinación: el inconsciente ordena matices antes de culminar una etapa.",
+  "Luna Llena": "Claridad emocional y contrastes intensos: los vínculos y emociones ganan relieve.",
+  "Gibosa Menguante": "Depuración y asimilación: buen momento para soltar tensiones y revisar patrones.",
+  "Cuarto Menguante": "Cierre y pausa: invita a decantar lo vivido y liberar cargas mentales.",
+  "Menguante": "Umbral y descanso profundo: favorece el recogimiento antes de un nuevo ciclo."
+};
+
+function getLunarSnapshot(ts){
+  var d = new Date(ts || Date.now());
+  var utcMs = d.getTime();
+  // Referencia de luna nueva: 6 de enero de 2000 a las 18:14 UTC
+  var refNewMoon = Date.UTC(2000, 0, 6, 18, 14, 0);
+  var daysSince = (utcMs - refNewMoon) / 86400000;
+  var cyclePos = ((daysSince % SYNODIC_MONTH) + SYNODIC_MONTH) % SYNODIC_MONTH;
+  var phaseFraction = cyclePos / SYNODIC_MONTH; // 0..1
+  var illumination = Math.round(((1 - Math.cos(phaseFraction * 2 * Math.PI)) / 2) * 100);
+
+  // Avance lunar medio ~13.176° por día desde posición de referencia
+  var moonDeg = ((12.2 + daysSince * 13.176396) % 360 + 360) % 360;
+  var signIndex = Math.floor(moonDeg / 30) % 12;
+  var moonSign = LUNAR_SIGNS[signIndex];
+
+  var phaseName, icon;
+  if (cyclePos < 1.84566) { phaseName = "Luna Nueva"; icon = "🌑"; }
+  else if (cyclePos < 5.53699) { phaseName = "Creciente"; icon = "🌒"; }
+  else if (cyclePos < 9.22831) { phaseName = "Cuarto Creciente"; icon = "🌓"; }
+  else if (cyclePos < 12.91963) { phaseName = "Gibosa Creciente"; icon = "🌔"; }
+  else if (cyclePos < 16.61096) { phaseName = "Luna Llena"; icon = "🌕"; }
+  else if (cyclePos < 20.30228) { phaseName = "Gibosa Menguante"; icon = "🌖"; }
+  else if (cyclePos < 23.99361) { phaseName = "Cuarto Menguante"; icon = "🌗"; }
+  else if (cyclePos < 27.68493) { phaseName = "Menguante"; icon = "🌘"; }
+  else { phaseName = "Luna Nueva"; icon = "🌑"; }
+
+  return {
+    phaseName: phaseName,
+    icon: icon,
+    illumination: illumination,
+    moonSign: moonSign,
+    cycleDay: cyclePos.toFixed(1),
+    guidance: PHASE_GUIDANCE[phaseName] || ""
+  };
+}
+
+function buildPersonalizedDailyReading(lunarSnap, profile){
+  var base = lunarSnap.guidance;
+  if (!profile || (!profile.moon && !profile.sun && !profile.asc)) {
+    return base + " Abre tu Perfil Astral para cruzar esta fase y tránsito lunar con tu Sol, Luna y Ascendente.";
+  }
+  var extras = [];
+  if (profile.moon && profile.moon !== "N/D") {
+    if (profile.moon === lunarSnap.moonSign) {
+      extras.push("Retorno lunar en tu signo (" + profile.moon + "): sensibilidad onírica muy receptiva a lo afectivo y relacional.");
+    } else {
+      extras.push("Tránsito lunar en " + lunarSnap.moonSign + " dialogando con tu Luna natal en " + profile.moon + " y el matiz de " + lunarSnap.phaseName + ".");
     }
-  ];
+  }
+  if (profile.sun && profile.sun !== "N/D") {
+    extras.push("Eje solar en " + profile.sun + " como referencia al despertar.");
+  }
+  if (profile.asc && profile.asc !== "N/D") {
+    extras.push("Ascendente en " + profile.asc + " al aterrizar tus impresiones en el día.");
+  }
+  return base + (extras.length ? " " + extras.join(" ") : "");
+}
 
-  var catalog = FALLBACK_CATALOG.slice();
-  var selectedSystem = "all";
-  var searchQuery = "";
-  var selectedId = catalog[0].id;
-  var userLogs = [];
+function renderLunarPulse(){
+  var box = $("lunar-pulse");
+  if (!box) return;
+  var snap = getLunarSnapshot(Date.now());
+  var profile = window.DreamSaverProfile;
+  var reading = buildPersonalizedDailyReading(snap, profile);
+  var profileTag = (profile && (profile.sun || profile.moon || profile.asc))
+    ? ("Perfil: ☉ " + (profile.sun || "—") + " · ☽ " + (profile.moon || "—") + " · AC " + (profile.asc || "—"))
+    : "Perfil astral sin configurar";
 
-  function $(id){ return document.getElementById(id); }
-  function esc(v){
-    return String(v == null ? "" : v)
-      .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
-      .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+  box.innerHTML =
+    '<div class="lunar-pulse-top">' +
+      '<div class="lunar-badge-group">' +
+        '<div class="lunar-glyph" aria-hidden="true">' + esc(snap.icon) + '</div>' +
+        '<div>' +
+          '<p class="lunar-title">Hoy: ' + esc(snap.phaseName) + ' · Luna en ' + esc(snap.moonSign) + '</p>' +
+          '<div class="lunar-meta">Iluminación estimada ' + esc(snap.illumination) + '% · Día ' + esc(snap.cycleDay) + ' del ciclo sinódico</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="lunar-pills">' +
+        '<span class="lunar-pill">☽ en ' + esc(snap.moonSign) + '</span>' +
+        '<span class="lunar-pill">' + esc(profileTag) + '</span>' +
+      '</div>' +
+    '</div>' +
+    '<div class="lunar-reading">' + esc(reading) + '</div>';
+}
+
+var DREAM_SYMBOLS = [
+  { rx: /\b(agua|mar|r[ií]o|lluvia|oc[eé]ano|nadar|ola|lago|inundaci[oó]n)\b/i, hashtag: "#AguaYEmoción", theme: "Agua y memoria emocional", note: "Suele reflejar movimientos afectivos profundos, nostalgia o necesidad de contención." },
+  { rx: /\b(volar|caer|ca[ií]da|aire|cielo|nube|altura|abismo)\b/i, hashtag: "#VueloYPerspectiva", theme: "Movimiento y perspectiva", note: "Apunta a cambios de rumbo, búsqueda de libertad o sensación de pérdida de control." },
+  { rx: /\b(casa|hogar|habitaci[oó]n|puerta|ventana|escalera|techo|pasillo)\b/i, hashtag: "#EspaciosInteriores", theme: "Espacios interiores", note: "Representa tu estructura interna y aspectos de tu historia personal que estás revisando." },
+  { rx: /\b(perseguir|correr|huir|escapar|sombra|monstruo|miedo)\b/i, hashtag: "#TensiónYEvitación", theme: "Tensión o evitación", note: "Suele aparecer cuando postergas una decisión o evitas confrontar una preocupación." },
+  { rx: /\b(hablar|voz|carta|mensaje|tel[eé]fono|gritar|silencio|escribir)\b/i, hashtag: "#ExpresiónYVínculo", theme: "Expresión y vínculo", note: "Señala algo que busca ser comunicado o aclarado en tus relaciones cercanas." },
+  { rx: /\b(fuego|sol|luz|llama|incendio|calor|quemar)\b/i, hashtag: "#FuegoYTransformación", theme: "Energía vital y transformación", note: "Habla de impulso creativo, deseo de renovación o emociones intensas." },
+  { rx: /\b(perro|gato|serpiente|ave|p[aá]jaro|caballo|lobo|animal)\b/i, hashtag: "#InstintoYNaturaleza", theme: "Instinto y naturaleza", note: "Conecta con respuestas intuitivas y señales espontáneas de tu inconsciente." }
+];
+
+var SIGN_DREAM_TONES = {
+  "Aries": "impulso directo y resolución rápida",
+  "Tauro": "búsqueda de estabilidad, cuerpo y seguridad",
+  "Géminis": "asociaciones rápidas, diálogos y curiosidad",
+  "Cáncer": "memoria afectiva, hogar y protección emocional",
+  "Leo": "expresión personal, autenticidad y reconocimiento",
+  "Virgo": "orden interno, detalle y discernimiento práctico",
+  "Libra": "equilibrio relacional, empatía y armonía",
+  "Escorpio": "transformación profunda, intensidad y verdad oculta",
+  "Sagitario": "búsqueda de sentido, expansión y horizonte",
+  "Capricornio": "responsabilidad, estructura y metas a largo plazo",
+  "Acuario": "visión original, desapego y cambio de paradigma",
+  "Piscis": "permeabilidad simbólica, intuición y ensueño"
+};
+
+function makeHashtagFromTheme(theme) {
+  if (!theme) return "#SimbolismoLibre";
+  var clean = String(theme).replace(/^#+/, "").trim();
+  if (clean.indexOf(" ") === -1) return "#" + clean;
+  return "#" + clean.split(/\s+/).map(function(w){
+    return w.charAt(0).toUpperCase() + w.slice(1);
+  }).join("");
+}
+
+function interpretDreamWithChart(text, chart, ts) {
+  var found = [];
+  for (var i = 0; i < DREAM_SYMBOLS.length; i++) {
+    if (DREAM_SYMBOLS[i].rx.test(text)) found.push(DREAM_SYMBOLS[i]);
+  }
+  var primary = found[0] || {
+    hashtag: "#SimbolismoLibre",
+    theme: "Simbolismo libre",
+    note: "Observa qué emoción predominó al despertar para contrastarla con los hechos de los próximos días."
+  };
+  var lunarSnap = getLunarSnapshot(ts || Date.now());
+
+  if (!chart || (!chart.sun && !chart.moon && !chart.asc)) {
+    return {
+      hashtag: primary.hashtag,
+      theme: primary.theme,
+      lunar: { phaseName: lunarSnap.phaseName, moonSign: lunarSnap.moonSign, illumination: lunarSnap.illumination },
+      summary: primary.note + " Registrado en fase " + lunarSnap.phaseName + " (" + lunarSnap.illumination + "%) con Luna en " + lunarSnap.moonSign + ". (Configura tu Perfil Astral para cruzarlo con tu Sol, Luna y Ascendente)."
+    };
   }
 
-  function populateSystems(){
-    var sel = $("system-select");
-    var systems = [];
-    catalog.forEach(function(item){
-      if (item.system && systems.indexOf(item.system) === -1) systems.push(item.system);
-    });
-    sel.innerHTML = '<option value="all">Todos los sistemas</option>' +
-      systems.map(function(s){ return '<option value="' + esc(s) + '">' + esc(s) + '</option>'; }).join("");
-    sel.value = selectedSystem;
+  var parts = [primary.note];
+  parts.push("Fase " + lunarSnap.phaseName + " (" + lunarSnap.illumination + "%) con tránsito lunar en " + lunarSnap.moonSign + ".");
+  if (chart.moon && chart.moon !== "N/D") {
+    var moonTone = SIGN_DREAM_TONES[chart.moon] || "sensibilidad receptiva";
+    parts.push("Tu Luna en " + chart.moon + " filtra esta escena desde " + moonTone + ".");
+  }
+  if (chart.sun && chart.sun !== "N/D") {
+    var sunTone = SIGN_DREAM_TONES[chart.sun] || "identidad consciente";
+    parts.push("Tu Sol en " + chart.sun + " invita a integrarlo con " + sunTone + ".");
+  }
+  if (chart.asc && chart.asc !== "N/D") {
+    parts.push("Ascendente en " + chart.asc + " como lente de acción al despertar.");
   }
 
-  function getFilteredItems(){
-    return catalog.filter(function(item){
-      if (selectedSystem !== "all" && item.system !== selectedSystem) return false;
-      if (!searchQuery) return true;
-      var hay = (item.system + " " + item.symptom + " " + item.keywords + " " + item.emotion + " " + item.summary).toLowerCase();
-      return hay.indexOf(searchQuery) !== -1;
-    });
-  }
-
-  function renderCatalog(){
-    var filtered = getFilteredItems();
-    var chips = $("symptom-chips");
-    var detail = $("symptom-detail");
-
-    if (!filtered.length){
-      chips.innerHTML = "";
-      detail.innerHTML = "<p class='note' style='margin:0;'>No hay síntomas que coincidan con el filtro actual.</p>";
-      return;
-    }
-
-    if (!filtered.some(function(x){ return x.id === selectedId; })){
-      selectedId = filtered[0].id;
-    }
-
-    chips.innerHTML = filtered.map(function(item){
-      var active = item.id === selectedId ? " active" : "";
-      return '<button type="button" class="chip' + active + '" data-id="' + esc(item.id) + '">' + esc(item.symptom) + '</button>';
-    }).join("");
-
-    var current = filtered.find(function(x){ return x.id === selectedId; }) || filtered[0];
-    detail.innerHTML =
-      '<div class="note" style="margin:0;">' + esc(current.system) + '</div>' +
-      '<h3 style="margin:2px 0 6px;font:600 18px/1.25 Newsreader,Georgia,serif;">' + esc(current.symptom) + '</h3>' +
-      '<div class="emotion-pill">Emoción asociada: ' + esc(current.emotion) + '</div>' +
-      '<p style="margin:0 0 8px;font-size:14px;">' + esc(current.summary) + '</p>' +
-      '<strong style="font-size:12.5px;color:var(--mute);">Preguntas guía:</strong>' +
-      '<ul style="margin:6px 0 0;padding-left:18px;font-size:13.5px;">' +
-        (current.questions || []).map(function(q){ return '<li>' + esc(q) + '</li>'; }).join("") +
-      '</ul>';
-  }
-
-  function renderLogs(){
-    var box = $("logs-list");
-    if (!userLogs.length){
-      box.innerHTML = "<p class='note'>Aún no guardas consultas o reflexiones en tu cuenta.</p>";
-      return;
-    }
-    box.innerHTML = userLogs.map(function(log){
-      var dt = log.createdAt ? new Date(log.createdAt).toLocaleString("es-CL") : "";
-      return '<div class="history-item">' +
-        '<strong>' + esc(log.symptom || "Consulta") + '</strong>' +
-        (log.system ? ' <span class="note">(' + esc(log.system) + ')</span>' : '') +
-        (dt ? '<div class="note" style="margin:2px 0 6px;">' + esc(dt) + '</div>' : '') +
-        '<div>' + esc(log.reflection || "") + '</div>' +
-      '</div>';
-    }).join("");
-  }
-
-  async function loadExternalCatalog(){
-    try {
-      const res = await fetch("./data/biodesc.json", { cache: "no-store" });
-      if (!res.ok) throw new Error("HTTP " + res.status);
-      const data = await res.json();
-      if (Array.isArray(data) && data.length){
-        catalog = data;
-        selectedId = catalog[0].id;
-        $("source-status").textContent = "Catálogo cargado desde ./data/biodesc.json (" + catalog.length + " síntomas).";
-      } else {
-        $("source-status").textContent = "Usando catálogo inicial integrado (puedes ampliar ./data/biodesc.json cuando quieras).";
-      }
-    } catch (e) {
-      $("source-status").textContent = "Usando catálogo inicial integrado (crea ./data/biodesc.json en tu repo para cargar más síntomas externamente).";
-    }
-    populateSystems();
-    renderCatalog();
-  }
-
-  $("system-select").addEventListener("change", function(){
-    selectedSystem = this.value;
-    renderCatalog();
-  });
-
-  $("bio-search").addEventListener("input", function(){
-    searchQuery = this.value.trim().toLowerCase();
-    renderCatalog();
-  });
-
-  $("symptom-chips").addEventListener("click", function(ev){
-    var btn = ev.target.closest(".chip[data-id]");
-    if (!btn) return;
-    selectedId = btn.dataset.id;
-    renderCatalog();
-  });
-
-  window.BiodescApp = {
-    setLogs: function(items){
-      userLogs = Array.isArray(items) ? items.slice() : [];
-      userLogs.sort(function(a,b){ return (Number(b.createdAt)||0) - (Number(a.createdAt)||0); });
-      renderLogs();
-    },
-    getSelectedItem: function(){
-      return catalog.find(function(x){ return x.id === selectedId; }) || catalog[0] || null;
+  return {
+    hashtag: primary.hashtag,
+    theme: primary.theme,
+    lunar: { phaseName: lunarSnap.phaseName, moonSign: lunarSnap.moonSign, illumination: lunarSnap.illumination },
+    summary: parts.join(" "),
+    chartSnapshot: {
+      sun: chart.sun || "N/D",
+      moon: chart.moon || "N/D",
+      asc: chart.asc || "N/D"
     }
   };
+}
 
-  loadExternalCatalog();
+var SR=window.SpeechRecognition||window.webkitSpeechRecognition, r=null, listening=false, base="", startedAt=null;
+function touch(){ if(!startedAt) startedAt=Date.now(); }
+txt.addEventListener("input",touch);
+function setUI(){ rec.classList.toggle("on",listening); rec.setAttribute("aria-pressed",listening); rec.textContent=listening?"Detener":"Grabar"; status.textContent=listening?"Escuchando… habla con calma.":"Toca para hablar. Toca otra vez para detener."; }
+function startRec(){
+  if(!SR){ status.textContent="Este navegador no tiene dictado por voz. En el celular, toca el cuadro de texto y usa el micrófono del teclado."; return; }
+  touch();
+  r=new SR(); r.lang="es-CL"; r.continuous=true; r.interimResults=true;
+  base=txt.value.trim(); if(base) base+=" ";
+  r.onresult=function(e){ var f="",i2=""; for(var i=0;i<e.results.length;i++){ var x=e.results[i]; if(x.isFinal) f+=x[0].transcript; else i2+=x[0].transcript; } txt.value=base+f+i2; };
+  r.onerror=function(e){ if(e.error==="not-allowed"||e.error==="service-not-allowed"){ listening=false; status.textContent="Sin permiso de micrófono. Actívalo en el navegador y vuelve a intentar."; setUI(); } };
+  r.onend=function(){ if(listening){ base=txt.value.trim(); if(base) base+=" "; try{ r.start(); }catch(e){ listening=false; setUI(); } } else setUI(); };
+  listening=true; setUI();
+  try{ r.start(); }catch(e){ listening=false; setUI(); }
+}
+function stopRec(){ listening=false; try{ r.stop(); }catch(e){} setUI(); }
+rec.addEventListener("click",function(){ listening?stopRec():startRec(); });
+
+function fmt(t){ try{ return new Date(t).toLocaleString("es-CL",{weekday:"long",day:"numeric",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit"}); }catch(e){ return new Date(t).toString(); } }
+function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;"); }
+function dateKey(ts){ var d=new Date(ts); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+
+/* Puente de sincronización con Firestore */
+window.DreamSaverSync = window.DreamSaverSync || {
+  onSaveEntry: null,
+  onUpdateEntry: null,
+  onDeleteEntry: null,
+  onSyncLocalEntries: null
+};
+
+window.DreamSaverSetEntries = function(nextEntries){
+  entries = Array.isArray(nextEntries) ? nextEntries.slice() : [];
+  entries.sort(function(a,b){ return (Number(b.at)||0) - (Number(a.at)||0); });
+  persistLocal();
+  render();
+};
+
+window.DreamSaverGetEntries = function(){
+  return entries.slice();
+};
+
+window.DreamSaverRefreshAstro = function(){
+  renderLunarPulse();
+  render();
+};
+
+window.DreamSaverSetUser = function(uid){
+  KEY = uid ? "suenos:v2:" + uid : null;
+  try{
+    if(KEY && !localStorage.getItem(KEY)){
+      var legacy = localStorage.getItem("suenos:v1");
+      if(legacy) localStorage.setItem(KEY, legacy);
+    }
+    localStorage.removeItem("suenos:v1");
+  }catch(e){}
+  loadLocal();
+  render();
+};
+
+window.DreamSaverClearLocal = function(){
+  try{
+    var del=[];
+    for(var i=0;i<localStorage.length;i++){ var n=localStorage.key(i); if(n && n.indexOf("suenos:")===0) del.push(n); }
+    del.forEach(function(n){ localStorage.removeItem(n); });
+  }catch(e){}
+  entries=[]; KEY=null; openId=null; delId=null;
+  render();
+};
+
+/* Estado de búsqueda, filtros y calendario lunar */
+var searchQuery = "";
+var activeTagFilter = "all";
+var selectedDateKey = null;
+var calCursor = new Date();
+calCursor.setDate(1);
+var calVisible = true;
+
+$("toggle-cal").addEventListener("click", function(){
+  calVisible = !calVisible;
+  $("cal-box").style.display = calVisible ? "block" : "none";
+  $("toggle-cal").textContent = calVisible ? "Ocultar calendario" : "Ver calendario";
+  $("toggle-cal").setAttribute("aria-expanded", String(calVisible));
+});
+
+$("search-q").addEventListener("input", function(){
+  searchQuery = this.value.trim().toLowerCase();
+  render();
+});
+
+$("filter-chips").addEventListener("click", function(ev){
+  var btn = ev.target.closest(".chip");
+  if(!btn) return;
+  activeTagFilter = btn.dataset.filter;
+  var all = $("filter-chips").querySelectorAll(".chip");
+  for(var i=0;i<all.length;i++) all[i].classList.toggle("active", all[i] === btn);
+  render();
+});
+
+$("cal-prev").addEventListener("click", function(){
+  calCursor.setMonth(calCursor.getMonth() - 1);
+  renderCalendar();
+});
+
+$("cal-next").addEventListener("click", function(){
+  calCursor.setMonth(calCursor.getMonth() + 1);
+  renderCalendar();
+});
+
+$("cal-grid").addEventListener("click", function(ev){
+  var dayBtn = ev.target.closest(".cal-day[data-date]");
+  if(!dayBtn) return;
+  var dk = dayBtn.dataset.date;
+  selectedDateKey = (selectedDateKey === dk) ? null : dk;
+  render();
+});
+
+$("reset-filters").addEventListener("click", function(){
+  searchQuery = "";
+  $("search-q").value = "";
+  activeTagFilter = "all";
+  selectedDateKey = null;
+  var all = $("filter-chips").querySelectorAll(".chip");
+  for(var i=0;i<all.length;i++) all[i].classList.toggle("active", all[i].dataset.filter === "all");
+  render();
+});
+
+function renderLunarDayDetail(){
+  var box = $("lunar-day-detail");
+  if (!box) return;
+  if (!selectedDateKey) {
+    box.style.display = "none";
+    box.innerHTML = "";
+    return;
+  }
+  var parts = selectedDateKey.split("-").map(Number);
+  var dayDate = new Date(parts[0], parts[1] - 1, parts[2], 12, 0, 0);
+  var snap = getLunarSnapshot(dayDate.getTime());
+  var reading = buildPersonalizedDailyReading(snap, window.DreamSaverProfile);
+  var labelDate = dayDate.toLocaleDateString("es-CL", { day: "numeric", month: "long", year: "numeric" });
+
+  box.style.display = "block";
+  box.innerHTML =
+    '<strong>' + esc(snap.icon) + ' ' + esc(labelDate) + ' · ' + esc(snap.phaseName) + '</strong> ' +
+    '<span style="color:var(--mute);">(' + esc(snap.illumination) + '% iluminación · Luna en ' + esc(snap.moonSign) + ')</span>' +
+    '<div style="margin-top:4px;">' + esc(reading) + '</div>';
+}
+
+function renderCalendar(){
+  var y = calCursor.getFullYear();
+  var m = calCursor.getMonth();
+  var monthName = new Date(y, m, 1).toLocaleDateString("es-CL", { month: "long", year: "numeric" });
+  $("cal-title").textContent = monthName;
+
+  var dreamCounts = {};
+  entries.forEach(function(e){
+    var dk = dateKey(e.at);
+    dreamCounts[dk] = (dreamCounts[dk] || 0) + 1;
+  });
+
+  var todayDk = dateKey(Date.now());
+  var firstDow = (new Date(y, m, 1).getDay() + 6) % 7;
+  var daysInMonth = new Date(y, m + 1, 0).getDate();
+  var dows = ["Lu","Ma","Mi","Ju","Vi","Sá","Do"];
+  var html = dows.map(function(d){ return '<div class="cal-dow">'+d+'</div>'; }).join("");
+
+  for(var i=0;i<firstDow;i++){
+    html += '<div class="cal-day empty"></div>';
+  }
+  for(var day=1;day<=daysInMonth;day++){
+    var dk = y + "-" + String(m+1).padStart(2,"0") + "-" + String(day).padStart(2,"0");
+    var noonMs = new Date(y, m, day, 12, 0, 0).getTime();
+    var snap = getLunarSnapshot(noonMs);
+    var count = dreamCounts[dk] || 0;
+    var cls = "cal-day";
+    if(dk === todayDk) cls += " today";
+    if(count > 0) cls += " has-dream";
+    if(dk === selectedDateKey) cls += " selected";
+    var titleAttr = snap.phaseName + " (" + snap.illumination + "%, Luna en " + snap.moonSign + ")" + (count ? " · " + count + (count === 1 ? " sueño" : " sueños") : "");
+    html += '<button type="button" class="'+cls+'" data-date="'+dk+'" title="'+esc(titleAttr)+'">' +
+      '<span>'+day+'</span>' +
+      '<span class="cal-phase-icon" aria-hidden="true">'+snap.icon+'</span>' +
+      '</button>';
+  }
+  $("cal-grid").innerHTML = html;
+  renderLunarDayDetail();
+}
+
+$("save").addEventListener("click",function(){
+  if(listening) stopRec();
+  var t=txt.value.trim();
+  if(!t){ $("saved").textContent="Escribe o dicta algo antes de guardar."; return; }
+  var nowTs = startedAt||Date.now();
+  var astroReading = interpretDreamWithChart(t, window.DreamSaverProfile, nowTs);
+  var newEntry = {
+    id:Date.now(),
+    at:nowTs,
+    savedAt:Date.now(),
+    text:t,
+    par:$("par").checked,
+    luc:$("luc").checked,
+    shared:$("sh").value.trim(),
+    astro:astroReading,
+    out:null
+  };
+  entries.unshift(newEntry);
+  persistLocal();
+  txt.value=""; $("par").checked=false; $("luc").checked=false; $("sh").value=""; startedAt=null;
+  $("saved").textContent="Sueño guardado. Selecciónalo en el calendario para revisarlo.";
+  selectedDateKey = dateKey(nowTs);
+  calCursor = new Date(nowTs);
+  calCursor.setDate(1);
+  render();
+
+  if(typeof window.DreamSaverSync.onSaveEntry === "function"){
+    window.DreamSaverSync.onSaveEntry(newEntry).then(function(){
+      $("saved").textContent="Sueño guardado y sincronizado en la nube.";
+    }).catch(function(err){
+      console.error("Error sincronizando sueño con Firestore:", err);
+      $("saved").textContent="Sueño guardado en este dispositivo (pendiente de sincronizar con la nube).";
+    });
+  }
+});
+$("clr").addEventListener("click",function(){ if(listening) stopRec(); txt.value=""; startedAt=null; $("saved").textContent=""; });
+
+var openId=null, delId=null, astroOpenMap={};
+function render(){
+  renderLunarPulse();
+  renderCalendar();
+  var list=$("list"), html="", m=0, k=0;
+  entries.forEach(function(e){ if(e.out){ if(e.out.hit) m++; else k++; } });
+  $("n").textContent=entries.length; $("m").textContent=m; $("k").textContent=k;
+
+  var hasActiveFilter = Boolean(selectedDateKey || searchQuery || activeTagFilter !== "all");
+  var bar = $("active-filter-bar");
+
+  if(!entries.length){
+    bar.style.display = "none";
+    list.innerHTML='<div class="empty">Aún no hay sueños registrados.</div>';
+    return;
+  }
+
+  if(!hasActiveFilter){
+    bar.style.display = "none";
+    list.innerHTML='<div class="empty">Selecciona un día marcado en el calendario o usa el buscador para ver tus registros.</div>';
+    return;
+  }
+
+  var filtered = entries.filter(function(e){
+    var tagHash = (e.astro && (e.astro.hashtag || makeHashtagFromTheme(e.astro.theme))) || "";
+    var lunarInfo = (e.astro && e.astro.lunar) ? (e.astro.lunar.phaseName + " " + e.astro.lunar.moonSign) : "";
+    if(selectedDateKey && dateKey(e.at) !== selectedDateKey) return false;
+    if(activeTagFilter === "luc" && !e.luc) return false;
+    if(activeTagFilter === "par" && !e.par) return false;
+    if(activeTagFilter === "hit" && !(e.out && e.out.hit)) return false;
+    if(activeTagFilter === "pending" && e.out) return false;
+    if(searchQuery){
+      var hay = [
+        e.text || "",
+        e.shared || "",
+        tagHash,
+        lunarInfo,
+        (e.astro && e.astro.theme) || "",
+        (e.astro && e.astro.summary) || "",
+        (e.out && e.out.note) || ""
+      ].join(" ").toLowerCase();
+      if(hay.indexOf(searchQuery) === -1) return false;
+    }
+    return true;
+  });
+
+  var parts = [];
+  if(selectedDateKey){
+    var sp = selectedDateKey.split("-");
+    parts.push("Fecha: " + sp[2] + "/" + sp[1] + "/" + sp[0]);
+  }
+  if(activeTagFilter !== "all"){
+    var labels = { luc: "Lúcidos", par: "Parálisis", hit: "Coincidieron", pending: "Pendientes" };
+    parts.push("Filtro: " + (labels[activeTagFilter] || activeTagFilter));
+  }
+  if(searchQuery) parts.push("«" + searchQuery + "»");
+  $("active-filter-text").textContent = "Mostrando " + filtered.length + " de " + entries.length + " · " + parts.join(" · ");
+  bar.style.display = "flex";
+
+  if(!filtered.length){ list.innerHTML='<div class="empty">No hay sueños registrados para esa fecha o filtro.</div>'; return; }
+
+  filtered.forEach(function(e){
+    var hashtag = (e.astro && (e.astro.hashtag || makeHashtagFromTheme(e.astro.theme))) || "#SimbolismoLibre";
+    var hasAstroSummary = Boolean(e.astro && e.astro.summary);
+    var isAstroOpen = Boolean(astroOpenMap[e.id]);
+    var lunarSnap = (e.astro && e.astro.lunar && e.astro.lunar.phaseName)
+      ? e.astro.lunar
+      : getLunarSnapshot(e.at);
+
+    html+='<article class="card entry"><h3>'+esc(fmt(e.at))+'</h3><p>'+esc(e.text)+'</p><div class="tags-row">';
+    html+='<button type="button" class="tag hashtag" data-a="hashtag" data-tag="'+esc(hashtag)+'" title="Buscar patrones con '+esc(hashtag)+'">'+esc(hashtag)+'</button>';
+    html+='<span class="tag lunar">'+esc(lunarSnap.phaseName)+' · ☽ '+esc(lunarSnap.moonSign)+'</span>';
+    if(e.par) html+='<span class="tag">parálisis del sueño</span>';
+    if(e.luc) html+='<span class="tag">sueño lúcido</span>';
+    if(e.shared) html+='<span class="tag">contado a '+esc(e.shared)+'</span>';
+    if(e.out) html+='<span class="tag '+(e.out.hit?'ok':'')+'">'+(e.out.hit?'coincidió en la vida real':'sin coincidencia')+'</span>';
+    html+='</div>';
+
+    if(hasAstroSummary && isAstroOpen){
+      html+='<div class="astral-insight"><strong>Lectura simbólica · '+esc(e.astro.theme || hashtag)+'</strong>'+esc(e.astro.summary)+'</div>';
+    }
+
+    if(e.out && e.out.note){
+      html+='<div class="res"><strong>Contrastado el '+esc(e.out.date)+':</strong> '+esc(e.out.note)+'</div>';
+    }
+
+    if(openId===e.id){
+      var prevNote = (e.out && e.out.note) ? e.out.note : "";
+      html+='<div class="fld">¿Ocurrió algo parecido en la vida real? Añade tu comentario o explicación<input type="text" id="note-'+e.id+'" value="'+esc(prevNote)+'" placeholder="Describe qué pasó y cuándo, o deja una nota sobre lo que significó"></div>';
+      html+='<div class="entry-actions"><div class="entry-actions-left"><button class="b p" data-a="hit" data-id="'+e.id+'">Sí, ocurrió</button><button class="b" data-a="miss" data-id="'+e.id+'">Sin coincidencia</button><button class="b" data-a="cancel" data-id="'+e.id+'">Cancelar</button></div>';
+      html+='<button type="button" class="btn-del-icon'+(delId===e.id?' confirm':'')+'" data-a="del" data-id="'+e.id+'" title="'+(delId===e.id?'Confirmar eliminación':'Eliminar registro')+'" aria-label="'+(delId===e.id?'Confirmar eliminación':'Eliminar registro')+'">'+(delId===e.id?'¿Borrar?':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>')+'</button></div>';
+    } else {
+      html+='<div class="entry-actions"><div class="entry-actions-left">';
+      if(hasAstroSummary){
+        html+='<button type="button" class="b btn-astral-toggle" data-a="astro" data-id="'+e.id+'" aria-expanded="'+isAstroOpen+'">'+(isAstroOpen?'Ocultar lectura simbólica':'✦ Lectura simbólica')+'</button>';
+      }
+      html+='<button type="button" class="b" data-a="open" data-id="'+e.id+'">'+(e.out?'Editar contraste':'Contrastarlo con la realidad')+'</button>';
+      html+='</div>';
+      html+='<button type="button" class="btn-del-icon'+(delId===e.id?' confirm':'')+'" data-a="del" data-id="'+e.id+'" title="'+(delId===e.id?'Confirmar eliminación':'Eliminar registro')+'" aria-label="'+(delId===e.id?'Confirmar eliminación':'Eliminar registro')+'">'+(delId===e.id?'¿Borrar?':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>')+'</button>';
+      html+='</div>';
+    }
+    html+='</article>';
+  });
+  list.innerHTML=html;
+}
+$("list").addEventListener("click",function(ev){
+  var b=ev.target.closest("button"); if(!b) return;
+  var a=b.dataset.a;
+  if(a==="hashtag"){
+    var tag = b.dataset.tag || "";
+    searchQuery = tag.toLowerCase();
+    $("search-q").value = tag;
+    selectedDateKey = null;
+    render();
+    return;
+  }
+  var id=Number(b.dataset.id), e=entries.find(function(x){return x.id===id});
+  if(!e) return;
+  if(a==="astro"){
+    astroOpenMap[id] = !astroOpenMap[id];
+  }
+  else if(a==="open"){ openId=id; delId=null; }
+  else if(a==="cancel"){ openId=null; }
+  else if(a==="del"){
+    if(delId===id){
+      entries=entries.filter(function(x){return x.id!==id});
+      delete astroOpenMap[id];
+      delId=null;
+      persistLocal();
+      if(typeof window.DreamSaverSync.onDeleteEntry === "function"){
+        window.DreamSaverSync.onDeleteEntry(id).catch(function(err){ console.error(err); });
+      }
+    } else delId=id;
+  }
+  else if(a==="hit"||a==="miss"){
+    var n=$("note-"+id);
+    e.out={hit:a==="hit",note:n?n.value.trim():"",date:new Date().toLocaleDateString("es-CL")};
+    openId=null;
+    persistLocal();
+    if(typeof window.DreamSaverSync.onUpdateEntry === "function"){
+      window.DreamSaverSync.onUpdateEntry(e).catch(function(err){ console.error(err); });
+    }
+  }
+  render();
+});
+
+render();
 })();
 </script>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
-  import { getFirestore, collection, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+  import {
+    getAuth,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged,
+    sendPasswordResetEmail
+  } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+  import {
+    getFirestore,
+    doc,
+    collection,
+    getDoc,
+    setDoc,
+    deleteDoc,
+    onSnapshot
+  } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyBvTWS64ZbMKm3px6DF_ip1oKtaSvpVihY",
@@ -293,73 +997,814 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
     measurementId: "G-MDVV8HV4EQ"
   };
 
+  const ASTRO_PROXY_URL = "https://us-central1-dreamsaver-e880f.cloudfunctions.net/astroNatal";
+
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const db = getFirestore(app);
+
+  function escapeHtml(v) {
+    return String(v == null ? "" : v)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+
+  function authMsg(err) {
+    const c = (err && err.code) || "";
+    if (c === "auth/invalid-credential" || c === "auth/wrong-password" || c === "auth/user-not-found" || c === "auth/invalid-email") return "Correo o contraseña incorrectos.";
+    if (c === "auth/email-already-in-use") return "No se pudo crear la cuenta con esos datos.";
+    if (c === "auth/weak-password") return "La contraseña es muy débil. Usa al menos 8 caracteres.";
+    if (c === "auth/too-many-requests") return "Demasiados intentos. Espera unos minutos e inténtalo de nuevo.";
+    if (c === "auth/network-request-failed") return "Sin conexión. Revisa tu internet.";
+    return "No se pudo completar la operación. Inténtalo de nuevo.";
+  }
 
   const authCard = document.getElementById("auth-card");
   const appContent = document.getElementById("app-content");
   const authError = document.getElementById("auth-error");
   const userDisplay = document.getElementById("user-display");
-  let unsubLogs = null;
+  const passwordInput = document.getElementById("auth-password");
+  const togglePasswordBtn = document.getElementById("toggle-password");
+
+  const sidebar = document.getElementById("profile-sidebar");
+  const overlay = document.getElementById("sidebar-overlay");
+  const btnProfile = document.getElementById("btn-profile");
+  const closeProfile = document.getElementById("close-profile");
+  const profileForm = document.getElementById("profile-form");
+  const btnSaveProfile = document.getElementById("save-profile");
+  const profileSaved = document.getElementById("profile-saved");
+  const profileIntro = document.getElementById("profile-intro");
+  const dobInput = document.getElementById("profile-dob");
+  const tobInput = document.getElementById("profile-tob");
+  const cityInput = document.getElementById("profile-city");
+  const suggestionsBox = document.getElementById("city-suggestions");
+  const coordsDisplay = document.getElementById("coords-display");
+  const astroResults = document.getElementById("astrology-results");
+  const astroChart = document.getElementById("astrology-chart");
+
+  const errDob = document.getElementById("err-dob");
+  const errTob = document.getElementById("err-tob");
+  const errCity = document.getElementById("err-city");
+
+  let unsubscribeDreams = null;
+  let hasLoadedRemoteOnce = false;
+  let birthDataLocked = false;
+
+  const ZODIAC_SIGNS = [
+    { key: "aries", name: "Aries", symbol: "♈" },
+    { key: "taurus", name: "Tauro", symbol: "♉" },
+    { key: "gemini", name: "Géminis", symbol: "♊" },
+    { key: "cancer", name: "Cáncer", symbol: "♋" },
+    { key: "leo", name: "Leo", symbol: "♌" },
+    { key: "virgo", name: "Virgo", symbol: "♍" },
+    { key: "libra", name: "Libra", symbol: "♎" },
+    { key: "scorpio", name: "Escorpio", symbol: "♏" },
+    { key: "sagittarius", name: "Sagitario", symbol: "♐" },
+    { key: "capricorn", name: "Capricornio", symbol: "♑" },
+    { key: "aquarius", name: "Acuario", symbol: "♒" },
+    { key: "pisces", name: "Piscis", symbol: "♓" }
+  ];
+
+  const SIGN_ALIASES = {
+    ari: "Aries", aries: "Aries",
+    tau: "Tauro", taurus: "Tauro", tauro: "Tauro",
+    gem: "Géminis", gemini: "Géminis", geminis: "Géminis", géminis: "Géminis",
+    can: "Cáncer", cancer: "Cáncer", cánc: "Cáncer", cáncer: "Cáncer",
+    leo: "Leo",
+    vir: "Virgo", virgo: "Virgo",
+    lib: "Libra", libra: "Libra",
+    sco: "Escorpio", scorpio: "Escorpio", escorpio: "Escorpio",
+    sag: "Sagitario", sagittarius: "Sagitario", sagitario: "Sagitario",
+    cap: "Capricornio", capricorn: "Capricornio", capricornio: "Capricornio",
+    aqu: "Acuario", aquarius: "Acuario", acuario: "Acuario",
+    pis: "Piscis", pisces: "Piscis", piscis: "Piscis"
+  };
+
+  function normalizeSign(rawSign) {
+    if (!rawSign || typeof rawSign !== "string") return "N/D";
+    const cleaned = rawSign.trim().toLowerCase().replace(/[^a-zñáéíóú]/g, "");
+    if (SIGN_ALIASES[cleaned]) return SIGN_ALIASES[cleaned];
+    const prefix3 = cleaned.slice(0, 3);
+    if (SIGN_ALIASES[prefix3]) return SIGN_ALIASES[prefix3];
+    return "N/D";
+  }
+
+  function applyBirthLockState(locked) {
+    birthDataLocked = Boolean(locked);
+    dobInput.disabled = birthDataLocked;
+    tobInput.disabled = birthDataLocked;
+    cityInput.disabled = birthDataLocked;
+    btnSaveProfile.disabled = birthDataLocked;
+    btnSaveProfile.style.display = birthDataLocked ? "none" : "inline-block";
+    if (birthDataLocked) {
+      suggestionsBox.classList.remove("open");
+      profileIntro.textContent = "Tus datos de nacimiento están guardados y bloqueados en tu perfil.";
+    } else {
+      profileIntro.textContent = "Completa tus datos de nacimiento. Escribe tu ciudad y selecciónala de la lista para validar sus coordenadas automáticamente.";
+    }
+  }
+
+  function buildDreamReading(sun, moon, asc) {
+    const parts = [];
+    if (moon && moon !== "N/D") {
+      parts.push(`Con la **Luna en ${moon}**, tu mundo emocional y onírico suele procesar los vínculos, el tono afectivo y los matices del día a través de escenas simbólicas o relacionales.`);
+    }
+    if (sun && sun !== "N/D") {
+      parts.push(`El **Sol en ${sun}** marca el eje de identidad y propósito con el que contrastas lo que sueñas al despertar.`);
+    }
+    if (asc && asc !== "N/D") {
+      parts.push(`El **Ascendente en ${asc}** influye en cómo aterrizas y expresas esas impresiones al comenzar la jornada.`);
+    }
+    if (!parts.length) {
+      return "Registra tus sueños al despertar y contrasta si aparecen temas recurrentes o coincidencias en los días siguientes.";
+    }
+    return parts.join(" ").replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+  }
+
+  function renderNatalChartSvg(sun, moon, asc) {
+    const sunIdx = ZODIAC_SIGNS.findIndex(s => s.name === sun);
+    const moonIdx = ZODIAC_SIGNS.findIndex(s => s.name === moon);
+    const ascIdx = ZODIAC_SIGNS.findIndex(s => s.name === asc);
+
+    const cx = 145, cy = 145, rOuter = 128, rMid = 96, rInner = 62, rMarker = 79;
+    const toRad = deg => (deg - 90) * (Math.PI / 180);
+    const polar = (r, deg) => ({
+      x: cx + r * Math.cos(toRad(deg)),
+      y: cy + r * Math.sin(toRad(deg))
+    });
+
+    let sectors = "";
+    ZODIAC_SIGNS.forEach((sign, i) => {
+      const a0 = i * 30;
+      const a1 = (i + 1) * 30;
+      const p0Out = polar(rOuter, a0);
+      const p1Out = polar(rOuter, a1);
+      const p1In = polar(rMid, a1);
+      const p0In = polar(rMid, a0);
+      const isHighlight = i === sunIdx || i === moonIdx || i === ascIdx;
+
+      sectors += `<path d="M ${p0Out.x.toFixed(1)} ${p0Out.y.toFixed(1)} A ${rOuter} ${rOuter} 0 0 1 ${p1Out.x.toFixed(1)} ${p1Out.y.toFixed(1)} L ${p1In.x.toFixed(1)} ${p1In.y.toFixed(1)} A ${rMid} ${rMid} 0 0 0 ${p0In.x.toFixed(1)} ${p0In.y.toFixed(1)} Z" fill="${isHighlight ? "rgba(167,123,250,0.18)" : "transparent"}" stroke="currentColor" stroke-opacity="0.22" stroke-width="1"/>`;
+
+      const pLine = polar(rOuter, a0);
+      const pCenter = polar(rInner, a0);
+      sectors += `<line x1="${pCenter.x.toFixed(1)}" y1="${pCenter.y.toFixed(1)}" x2="${pLine.x.toFixed(1)}" y2="${pLine.y.toFixed(1)}" stroke="currentColor" stroke-opacity="0.16" stroke-width="1"/>`;
+
+      const midPos = polar((rOuter + rMid) / 2, a0 + 15);
+      sectors += `<text x="${midPos.x.toFixed(1)}" y="${midPos.y.toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="13" fill="currentColor">${sign.symbol}</text>`;
+    });
+
+    const markers = [
+      { idx: sunIdx, label: "☉", color: "#d9822b", offset: -8 },
+      { idx: moonIdx, label: "☽", color: "#2d7a5e", offset: 0 },
+      { idx: ascIdx, label: "AC", color: "#b8336a", offset: 8 }
+    ].filter(m => m.idx >= 0);
+
+    let markerSvg = "";
+    markers.forEach(m => {
+      const angle = m.idx * 30 + 15 + m.offset;
+      const pt = polar(rMarker, angle);
+      markerSvg += `<g transform="translate(${pt.x.toFixed(1)},${pt.y.toFixed(1)})"><circle r="10.5" fill="${m.color}"/><text text-anchor="middle" dominant-baseline="central" font-size="9.5" font-weight="700" fill="#fff">${m.label}</text></g>`;
+    });
+
+    astroChart.innerHTML = `
+      <svg viewBox="0 0 290 290" role="img" aria-label="Gráfico circular de carta astral">
+        <circle cx="${cx}" cy="${cy}" r="${rOuter}" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-width="1.5"/>
+        <circle cx="${cx}" cy="${cy}" r="${rMid}" fill="none" stroke="currentColor" stroke-opacity="0.3" stroke-width="1.2"/>
+        <circle cx="${cx}" cy="${cy}" r="${rInner}" fill="none" stroke="currentColor" stroke-opacity="0.25" stroke-width="1.2"/>
+        ${sectors}
+        ${markerSvg}
+        <text x="${cx}" y="${cy - 6}" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.75">Carta Natal</text>
+        <text x="${cx}" y="${cy + 10}" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.6">${sun !== "N/D" ? sun : ""}</text>
+      </svg>
+      <div class="chart-legend">
+        <span>☉ Sol (${sun})</span>
+        <span>☽ Luna (${moon})</span>
+        <span>AC Ascendente (${asc})</span>
+      </div>
+    `;
+  }
+
+  function renderAstrologyCard(sunRaw, moonRaw, ascRaw) {
+    const sun = normalizeSign(sunRaw);
+    const moon = normalizeSign(moonRaw);
+    const asc = normalizeSign(ascRaw);
+
+    window.DreamSaverProfile = { sun, moon, asc };
+
+    astroResults.innerHTML = `
+      <div class="astro-summary">
+        <p><strong>Sol:</strong> ${sun}</p>
+        <p><strong>Luna:</strong> ${moon}</p>
+        <p><strong>Ascendente:</strong> ${asc}</p>
+      </div>
+      <div class="astro-reading">${buildDreamReading(sun, moon, asc)}</div>
+    `;
+    renderNatalChartSvg(sun, moon, asc);
+    if (typeof window.DreamSaverRefreshAstro === "function") {
+      window.DreamSaverRefreshAstro();
+    }
+    return { sun, moon, asc };
+  }
+
+  function dreamsColRef(uid) {
+    return collection(db, "users", uid, "dreams");
+  }
+
+  function dreamDocRef(uid, dreamId) {
+    return doc(db, "users", uid, "dreams", String(dreamId));
+  }
+
+  async function saveDreamToCloud(uid, entry) {
+    await setDoc(dreamDocRef(uid, entry.id), {
+      id: Number(entry.id),
+      at: Number(entry.at) || Date.now(),
+      savedAt: Number(entry.savedAt) || Date.now(),
+      text: entry.text || "",
+      par: Boolean(entry.par),
+      luc: Boolean(entry.luc),
+      shared: entry.shared || "",
+      astro: entry.astro || null,
+      out: entry.out || null,
+      updatedAt: new Date().toISOString()
+    }, { merge: true });
+  }
+
+  async function deleteDreamFromCloud(uid, dreamId) {
+    await deleteDoc(dreamDocRef(uid, dreamId));
+  }
+
+  function subscribeUserDreams(user) {
+    if (unsubscribeDreams) {
+      unsubscribeDreams();
+      unsubscribeDreams = null;
+    }
+    hasLoadedRemoteOnce = false;
+
+    const col = dreamsColRef(user.uid);
+    unsubscribeDreams = onSnapshot(col, async (snap) => {
+      const remoteEntries = [];
+      const remoteIds = new Set();
+      snap.forEach((d) => {
+        const data = d.data() || {};
+        const parsedId = Number(data.id || d.id);
+        if (!Number.isNaN(parsedId)) {
+          remoteIds.add(parsedId);
+          remoteEntries.push({
+            id: parsedId,
+            at: Number(data.at) || parsedId,
+            savedAt: Number(data.savedAt) || Number(data.at) || parsedId,
+            text: data.text || "",
+            par: Boolean(data.par),
+            luc: Boolean(data.luc),
+            shared: data.shared || "",
+            astro: data.astro || null,
+            out: data.out || null
+          });
+        }
+      });
+
+      if (!hasLoadedRemoteOnce) {
+        hasLoadedRemoteOnce = true;
+        const localEntries = typeof window.DreamSaverGetEntries === "function"
+          ? window.DreamSaverGetEntries()
+          : [];
+        const missingLocal = localEntries.filter((le) => !remoteIds.has(Number(le.id)));
+        if (missingLocal.length > 0) {
+          for (const item of missingLocal) {
+            try {
+              await saveDreamToCloud(user.uid, item);
+              remoteEntries.push(item);
+            } catch (err) {
+              console.error("Error subiendo sueño local a Firestore:", err);
+            }
+          }
+        }
+      }
+
+      if (typeof window.DreamSaverSetEntries === "function") {
+        window.DreamSaverSetEntries(remoteEntries);
+      }
+    }, (err) => {
+      console.error("Error escuchando sueños en Firestore:", err);
+    });
+
+    window.DreamSaverSync.onSaveEntry = async (entry) => {
+      if (!auth.currentUser) return;
+      await saveDreamToCloud(auth.currentUser.uid, entry);
+    };
+
+    window.DreamSaverSync.onUpdateEntry = async (entry) => {
+      if (!auth.currentUser) return;
+      await saveDreamToCloud(auth.currentUser.uid, entry);
+    };
+
+    window.DreamSaverSync.onDeleteEntry = async (dreamId) => {
+      if (!auth.currentUser) return;
+      await deleteDreamFromCloud(auth.currentUser.uid, dreamId);
+    };
+  }
+
+  let verifiedLocation = null;
+  let searchTimer = null;
+
+  const nowDate = new Date();
+  const pad2 = n => String(n).padStart(2, "0");
+  const todayStr = `${nowDate.getFullYear()}-${pad2(nowDate.getMonth() + 1)}-${pad2(nowDate.getDate())}`;
+  dobInput.max = todayStr;
+
+  function showError(msg) {
+    authError.textContent = msg;
+    authError.style.display = "block";
+  }
+
+  function clearError() {
+    authError.textContent = "";
+    authError.style.display = "none";
+  }
+
+  function setFieldError(el, msg) {
+    if (msg) {
+      el.textContent = msg;
+      el.style.display = "block";
+    } else {
+      el.textContent = "";
+      el.style.display = "none";
+    }
+  }
+
+  function setLocationState(loc, stateText, statusClass) {
+    verifiedLocation = loc;
+    coordsDisplay.className = "status-pill" + (statusClass ? " " + statusClass : "");
+    coordsDisplay.textContent = stateText;
+  }
+
+  togglePasswordBtn.addEventListener("click", () => {
+    const isHidden = passwordInput.type === "password";
+    passwordInput.type = isHidden ? "text" : "password";
+    togglePasswordBtn.textContent = isHidden ? "Ocultar" : "Mostrar";
+    togglePasswordBtn.setAttribute("aria-pressed", String(isHidden));
+  });
+
+  function toggleSidebar(open) {
+    sidebar.classList.toggle("open", open);
+    overlay.classList.toggle("open", open);
+    document.body.style.overflow = open ? "hidden" : "";
+    if (!open) suggestionsBox.classList.remove("open");
+  }
+
+  btnProfile.addEventListener("click", () => toggleSidebar(true));
+  closeProfile.addEventListener("click", () => toggleSidebar(false));
+  overlay.addEventListener("click", () => toggleSidebar(false));
+
+  async function searchOpenMeteoCities(queryText) {
+    if (birthDataLocked) return [];
+    const parts = queryText.split(",").map(s => s.trim()).filter(Boolean);
+    const cityName = parts[0] || "";
+    const countryFilter = parts.slice(1).join(" ").toLowerCase();
+
+    if (cityName.length < 2) return [];
+
+    const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(cityName)}&count=10&language=es&format=json`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status} al consultar servicio de ciudades.`);
+
+    const data = await res.json();
+    let results = Array.isArray(data.results) ? data.results : [];
+
+    if (countryFilter) {
+      const filtered = results.filter(item => {
+        const c = (item.country || "").toLowerCase();
+        const code = (item.country_code || "").toLowerCase();
+        const admin = (item.admin1 || "").toLowerCase();
+        return c.includes(countryFilter) || countryFilter.includes(c) || code === countryFilter || admin.includes(countryFilter);
+      });
+      if (filtered.length > 0) results = filtered;
+    }
+
+    return results.map(item => {
+      const region = item.admin1 && item.admin1 !== item.name ? `, ${item.admin1}` : "";
+      const country = item.country ? `, ${item.country}` : "";
+      return {
+        label: `${item.name}${country}`,
+        fullLabel: `${item.name}${region}${country}`,
+        lat: Number(item.latitude),
+        lon: Number(item.longitude),
+        timezone: item.timezone || "UTC"
+      };
+    });
+  }
+
+  function renderSuggestions(items) {
+    if (birthDataLocked || !items.length) {
+      suggestionsBox.innerHTML = "";
+      suggestionsBox.classList.remove("open");
+      return;
+    }
+
+    suggestionsBox.innerHTML = items.map((item, idx) => `
+      <button type="button" class="city-item" data-idx="${idx}" role="option">
+        <strong>${escapeHtml(item.fullLabel)}</strong>
+        <small>Lat: ${item.lat.toFixed(4)}, Lon: ${item.lon.toFixed(4)} · ${escapeHtml(item.timezone)}</small>
+      </button>
+    `).join("");
+
+    suggestionsBox._items = items;
+    suggestionsBox.classList.add("open");
+  }
+
+  suggestionsBox.addEventListener("click", (ev) => {
+    if (birthDataLocked) return;
+    const btn = ev.target.closest(".city-item");
+    if (!btn || !suggestionsBox._items) return;
+    const chosen = suggestionsBox._items[Number(btn.dataset.idx)];
+    if (!chosen) return;
+
+    cityInput.value = chosen.label;
+    setFieldError(errCity, "");
+    setLocationState(
+      chosen,
+      `✓ Verificada: ${chosen.lat.toFixed(4)}, ${chosen.lon.toFixed(4)} (${chosen.timezone})`,
+      "valid"
+    );
+    suggestionsBox.classList.remove("open");
+  });
+
+  document.addEventListener("click", (ev) => {
+    if (!ev.target.closest(".fld")) {
+      suggestionsBox.classList.remove("open");
+    }
+  });
+
+  cityInput.addEventListener("input", () => {
+    if (birthDataLocked) return;
+    setFieldError(errCity, "");
+    verifiedLocation = null;
+    const val = cityInput.value.trim();
+
+    if (val.length < 3) {
+      suggestionsBox.classList.remove("open");
+      setLocationState(null, "Escribe al menos 3 letras para buscar", "");
+      return;
+    }
+
+    setLocationState(null, "Buscando coincidencias...", "");
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(async () => {
+      try {
+        const matches = await searchOpenMeteoCities(val);
+        if (!matches.length) {
+          setLocationState(null, "Sin resultados. Prueba con 'Ciudad, País'", "invalid");
+          renderSuggestions([]);
+        } else {
+          setLocationState(null, `${matches.length} coincidencia(s): selecciona una de la lista`, "");
+          renderSuggestions(matches);
+        }
+      } catch (err) {
+        console.error(err);
+        setLocationState(null, "No se pudo verificar la ubicación ahora", "invalid");
+      }
+    }, 350);
+  });
+
+  async function validateProfileForm() {
+    let isValid = true;
+    setFieldError(errDob, "");
+    setFieldError(errTob, "");
+    setFieldError(errCity, "");
+
+    const dob = dobInput.value.trim();
+    const tob = tobInput.value.trim();
+    const rawCity = cityInput.value.trim();
+
+    if (!dob || !/^\d{4}-\d{2}-\d{2}$/.test(dob)) {
+      setFieldError(errDob, "Selecciona una fecha de nacimiento válida.");
+      isValid = false;
+    } else {
+      const [y, m, d] = dob.split("-").map(Number);
+      const checkDate = new Date(Date.UTC(y, m - 1, d));
+      const validCalendarDate =
+        checkDate.getUTCFullYear() === y &&
+        checkDate.getUTCMonth() === m - 1 &&
+        checkDate.getUTCDate() === d;
+      if (!validCalendarDate || y < 1900 || dob > todayStr) {
+        setFieldError(errDob, `La fecha debe estar entre 1900-01-01 y ${todayStr}.`);
+        isValid = false;
+      }
+    }
+
+    if (!tob || !/^\d{2}:\d{2}(:\d{2})?$/.test(tob)) {
+      setFieldError(errTob, "Ingresa una hora válida (HH:MM).");
+      isValid = false;
+    }
+
+    if (!rawCity) {
+      setFieldError(errCity, "Ingresa tu ciudad y país (ej. Castro, Chile).");
+      isValid = false;
+    } else if (!verifiedLocation) {
+      if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1\s.'-]{2,}(?:,\s*[a-zA-ZÀ-ÿ\u00f1\u00d1\s.'-]{2,})?$/.test(rawCity)) {
+        setFieldError(errCity, "Escribe una ciudad válida (ej. Castro, Chile) o elige una de la lista.");
+        isValid = false;
+      } else {
+        try {
+          const matches = await searchOpenMeteoCities(rawCity);
+          if (matches.length === 1) {
+            verifiedLocation = matches[0];
+            cityInput.value = verifiedLocation.label;
+            setLocationState(
+              verifiedLocation,
+              `✓ Verificada: ${verifiedLocation.lat.toFixed(4)}, ${verifiedLocation.lon.toFixed(4)} (${verifiedLocation.timezone})`,
+              "valid"
+            );
+          } else if (matches.length > 1) {
+            renderSuggestions(matches);
+            setFieldError(errCity, "Hay varias coincidencias. Selecciona la correcta de la lista.");
+            isValid = false;
+          } else {
+            setFieldError(errCity, `No se encontró "${rawCity}". Revisa la ortografía.`);
+            setLocationState(null, "Ubicación no encontrada", "invalid");
+            isValid = false;
+          }
+        } catch (err) {
+          console.error(err);
+          setFieldError(errCity, "Error de red al validar la ubicación.");
+          isValid = false;
+        }
+      }
+    }
+
+    if (verifiedLocation) {
+      const { lat, lon } = verifiedLocation;
+      if (typeof lat !== "number" || typeof lon !== "number" || lat < -90 || lat > 90 || lon < -180 || lon > 180) {
+        setFieldError(errCity, "Las coordenadas obtenidas son inválidas. Vuelve a seleccionar la ciudad.");
+        isValid = false;
+      }
+    }
+
+    return isValid ? { dob, tob, location: verifiedLocation } : null;
+  }
+
+  function extractAscendant(bodyData, planets) {
+    const fromPlanets = planets.find(p => {
+      const n = (p.name || p.planet || p.id || "").toLowerCase();
+      return n === "ascendant" || n === "asc" || n.includes("ascend");
+    });
+    if (fromPlanets?.sign) return fromPlanets.sign;
+    if (typeof bodyData.ascendant === "string") return bodyData.ascendant;
+    if (bodyData.ascendant?.sign) return bodyData.ascendant.sign;
+    if (bodyData.angles?.ascendant?.sign) return bodyData.angles.ascendant.sign;
+    if (bodyData.angles?.asc?.sign) return bodyData.angles.asc?.sign;
+    if (Array.isArray(bodyData.houses) && bodyData.houses.length > 0 && bodyData.houses[0]?.sign) {
+      return bodyData.houses[0].sign;
+    }
+    return null;
+  }
+
+  async function fetchNatalChart(dob, tob, coords) {
+    if (!dob || !tob || !coords) return null;
+    astroResults.innerHTML = "Calculando carta astral...";
+    astroChart.innerHTML = "";
+    try {
+      const [year, month, day] = dob.split("-").map(Number);
+      const timeParts = tob.split(":").map(Number);
+      const hour = timeParts[0] || 0;
+      const minute = timeParts[1] || 0;
+
+      const payload = {
+        year,
+        month,
+        day,
+        hour,
+        minute,
+        latitude: coords.lat,
+        longitude: coords.lon,
+        lat: coords.lat,
+        lon: coords.lon,
+        timezone: coords.timezone || "UTC"
+      };
+
+      if (!auth.currentUser) {
+        astroResults.textContent = "Inicia sesión para calcular tu carta astral.";
+        return null;
+      }
+      const idToken = await auth.currentUser.getIdToken();
+      const response = await fetch(ASTRO_PROXY_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + idToken
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const rawText = await response.text();
+      let data = {};
+      try {
+        data = rawText ? JSON.parse(rawText) : {};
+      } catch (_) {
+        data = { message: rawText || `HTTP ${response.status}` };
+      }
+
+      if (!response.ok || data.status === "error") {
+        const msg = data.message || data.error || `HTTP ${response.status}`;
+        astroResults.textContent = "Error al calcular la carta: " + msg;
+        return null;
+      }
+
+      const bodyData = data.data || data;
+
+      const planets = Array.isArray(bodyData.planets) ? bodyData.planets : [];
+      const sunRaw = planets.find(p => (p.name || p.planet || "").toLowerCase() === "sun")?.sign || bodyData.sun?.sign || null;
+      const moonRaw = planets.find(p => (p.name || p.planet || "").toLowerCase() === "moon")?.sign || bodyData.moon?.sign || null;
+      const ascRaw = extractAscendant(bodyData, planets);
+
+      return renderAstrologyCard(sunRaw, moonRaw, ascRaw);
+    } catch (err) {
+      console.error(err);
+      astroResults.textContent = "No se pudo conectar con el servicio de astrología.";
+      return null;
+    }
+  }
+
+  async function loadUserProfile(user) {
+    applyBirthLockState(false);
+    try {
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        dobInput.value = data.dob || "";
+        tobInput.value = data.tob || "";
+        cityInput.value = data.city || "";
+
+        if (typeof data.lat === "number" && typeof data.lon === "number") {
+          const savedLoc = {
+            label: data.city || "",
+            lat: data.lat,
+            lon: data.lon,
+            timezone: data.timezone || "UTC"
+          };
+          setLocationState(
+            savedLoc,
+            `✓ Verificada: ${savedLoc.lat.toFixed(4)}, ${savedLoc.lon.toFixed(4)} (${savedLoc.timezone})`,
+            "valid"
+          );
+        } else {
+          setLocationState(null, "Ubicación sin verificar", "");
+        }
+
+        if (data.dob && data.tob && data.city && typeof data.lat === "number" && typeof data.lon === "number") {
+          applyBirthLockState(true);
+        }
+
+        if (data.sun || data.moon || data.asc) {
+          renderAstrologyCard(data.sun, data.moon, data.asc);
+        } else if (data.dob && data.tob && verifiedLocation) {
+          fetchNatalChart(data.dob, data.tob, verifiedLocation);
+        }
+      }
+    } catch (err) {
+      console.error("Error al cargar perfil", err);
+    }
+  }
+
+  profileForm.addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    if (birthDataLocked) {
+      profileSaved.textContent = "Los datos de nacimiento están bloqueados. Contacta a redlantecc@gmail.com si necesitas cambios.";
+      return;
+    }
+    const user = auth.currentUser;
+    if (!user) return;
+
+    btnSaveProfile.disabled = true;
+    profileSaved.textContent = "Validando datos...";
+
+    const validated = await validateProfileForm();
+    if (!validated) {
+      profileSaved.textContent = "Corrige los campos marcados antes de guardar.";
+      btnSaveProfile.disabled = false;
+      return;
+    }
+
+    const { dob, tob, location } = validated;
+    profileSaved.textContent = "Calculando carta astral y guardando...";
+
+    const astroData = await fetchNatalChart(dob, tob, location);
+
+    try {
+      const payload = {
+        email: user.email,
+        dob,
+        tob,
+        city: location.label,
+        lat: location.lat,
+        lon: location.lon,
+        timezone: location.timezone,
+        birthDataLocked: true,
+        updatedAt: new Date().toISOString()
+      };
+      if (astroData) {
+        payload.sun = astroData.sun;
+        payload.moon = astroData.moon;
+        payload.asc = astroData.asc;
+      }
+      await setDoc(doc(db, "users", user.uid), payload, { merge: true });
+      applyBirthLockState(true);
+      profileSaved.textContent = astroData
+        ? "Perfil y carta astral guardados. Datos natales bloqueados."
+        : "Perfil y ubicación verificada guardados. Datos natales bloqueados.";
+    } catch (err) {
+      profileSaved.textContent = "Error al guardar el perfil.";
+      console.error(err);
+    } finally {
+      if (!birthDataLocked) btnSaveProfile.disabled = false;
+    }
+  });
 
   onAuthStateChanged(auth, (user) => {
-    if (unsubLogs) { unsubLogs(); unsubLogs = null; }
     if (user) {
       authCard.style.display = "none";
       appContent.style.display = "block";
-      userDisplay.textContent = user.email || "";
-      const colRef = collection(db, "users", user.uid, "biodesc_logs");
-      unsubLogs = onSnapshot(colRef, (snap) => {
-        const list = [];
-        snap.forEach((d) => list.push(d.data()));
-        window.BiodescApp.setLogs(list);
-      });
+      userDisplay.textContent = user.email;
+      if (typeof window.DreamSaverSetUser === "function") window.DreamSaverSetUser(user.uid);
+      loadUserProfile(user);
+      subscribeUserDreams(user);
     } else {
+      if (unsubscribeDreams) {
+        unsubscribeDreams();
+        unsubscribeDreams = null;
+      }
+      applyBirthLockState(false);
       authCard.style.display = "block";
       appContent.style.display = "none";
       userDisplay.textContent = "";
-      window.BiodescApp.setLogs([]);
+      window.DreamSaverProfile = null;
+      if (typeof window.DreamSaverClearLocal === "function") window.DreamSaverClearLocal();
+      toggleSidebar(false);
     }
   });
 
   document.getElementById("btn-login").addEventListener("click", async () => {
-    authError.style.display = "none";
+    clearError();
     const email = document.getElementById("auth-email").value.trim();
-    const pass = document.getElementById("auth-password").value;
-    try {
-      await signInWithEmailAndPassword(auth, email, pass);
-    } catch (e) {
-      authError.textContent = "No se pudo iniciar sesión. Revisa correo y contraseña.";
-      authError.style.display = "block";
+    const password = passwordInput.value;
+
+    if (!email || !password) {
+      showError("Ingresa tu correo y contraseña.");
+      return;
     }
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (err) {
+      console.error(err.code);
+      showError(authMsg(err));
+    }
+  });
+
+  document.getElementById("btn-register").addEventListener("click", async () => {
+    clearError();
+    const email = document.getElementById("auth-email").value.trim();
+    const password = passwordInput.value;
+
+    if (!email || !password) {
+      showError("Ingresa un correo y contraseña válida.");
+      return;
+    }
+    if (password.length < 8) {
+      showError("La contraseña debe tener al menos 8 caracteres.");
+      return;
+    }
+
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (err) {
+      console.error(err.code);
+      showError(authMsg(err));
+    }
+  });
+
+  document.getElementById("btn-reset").addEventListener("click", async () => {
+    clearError();
+    const email = document.getElementById("auth-email").value.trim();
+    if (!email) {
+      showError("Escribe tu correo y vuelve a tocar el botón para enviarte el enlace.");
+      return;
+    }
+    try {
+      await sendPasswordResetEmail(auth, email);
+    } catch (err) {
+      console.error(err.code);
+    }
+    showError("Si el correo está registrado, te enviamos un enlace para restablecer la contraseña.");
   });
 
   document.getElementById("btn-logout").addEventListener("click", async () => {
-    await signOut(auth);
-  });
-
-  document.getElementById("btn-save-log").addEventListener("click", async () => {
-    const statusEl = document.getElementById("save-status");
-    const txtEl = document.getElementById("bio-reflection");
-    if (!auth.currentUser) return;
-    const reflection = txtEl.value.trim();
-    const item = window.BiodescApp.getSelectedItem();
-    if (!reflection) {
-      statusEl.textContent = "Escribe una breve reflexión antes de guardar.";
-      return;
+    try {
+      await signOut(auth);
+    } catch (err) {
+      console.error("Error al cerrar sesión", err);
     }
-    const id = String(Date.now());
-    await setDoc(doc(db, "users", auth.currentUser.uid, "biodesc_logs", id), {
-      id,
-      symptomId: item ? item.id : "",
-      symptom: item ? item.symptom : "",
-      system: item ? item.system : "",
-      reflection,
-      createdAt: Date.now()
-    });
-    txtEl.value = "";
-    statusEl.textContent = "Consulta y reflexión guardadas en tu perfil.";
   });
 </script>
 </body>
