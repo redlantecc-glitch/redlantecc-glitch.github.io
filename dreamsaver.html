@@ -24,7 +24,7 @@ h1{font:600 28px/1.2 "Newsreader",Georgia,serif;margin:8px 0 4px}
 @keyframes pulse{50%{box-shadow:0 0 0 10px color-mix(in srgb,var(--rec) 25%,transparent)}}
 @media (prefers-reduced-motion:reduce){#rec.on{animation:none}}
 #status{color:var(--mute);font-size:14px}
-textarea,input[type=text],input[type=email],input[type=password]{width:100%;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit}
+textarea,input[type=text],input[type=email],input[type=password],input[type=date],input[type=time]{width:100%;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit}
 textarea{min-height:150px;resize:vertical;font-family:"Newsreader",Georgia,serif;font-size:18px;line-height:1.5}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 label.chk{display:flex;gap:8px;align-items:center;margin:12px 0 8px;font-size:15px}
@@ -47,6 +47,14 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
 #warn,.auth-err{background:var(--surface);border:1px solid var(--rec);border-radius:10px;padding:10px 12px;font-size:14px;margin-top:10px;color:var(--rec)}
 #warn{display:none;margin-bottom:14px}
 .header-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.user-info{display:flex;align-items:center;gap:10px}
+/* Sidebar styles */
+.sidebar{position:fixed;top:0;right:-350px;width:350px;height:100%;background:var(--surface);border-left:1px solid var(--line);box-shadow:-5px 0 15px rgba(0,0,0,0.1);transition:right 0.3s ease;z-index:1000;padding:20px;display:flex;flex-direction:column}
+.sidebar.open{right:0}
+.sidebar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.sidebar-content{flex:1;overflow-y:auto}
+.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;z-index:999}
+.overlay.open{display:block}
 </style>
 </head>
 <body>
@@ -77,9 +85,12 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
     <div class="header-bar">
       <div>
         <h1>Diario de sueños</h1>
-        <span id="user-display" class="note"></span>
       </div>
-      <button class="b" id="btn-logout" type="button">Cerrar sesión</button>
+      <div class="user-info">
+        <span id="user-display" class="note"></span>
+        <button class="b" id="btn-profile" type="button">Perfil</button>
+        <button class="b" id="btn-logout" type="button">Cerrar sesión</button>
+      </div>
     </div>
     <p class="sub">Habla al despertar y el texto se escribe solo. Cada registro guarda la fecha y la hora, para poder contrastarlo después.</p>
     <div id="warn"></div>
@@ -116,6 +127,34 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
     </div>
   </div>
 </main>
+
+<!-- Panel Lateral de Perfil -->
+<div class="overlay" id="sidebar-overlay"></div>
+<div class="sidebar" id="profile-sidebar">
+  <div class="sidebar-header">
+    <h2>Tu Perfil Astral</h2>
+    <button class="b" id="close-profile" type="button">Cerrar</button>
+  </div>
+  <div class="sidebar-content">
+    <p class="note">Completa tus datos de nacimiento para conectar tu información con los movimientos estelares.</p>
+    <div class="fld">
+      Fecha de nacimiento
+      <input type="date" id="profile-dob">
+    </div>
+    <div class="fld">
+      Hora de nacimiento
+      <input type="time" id="profile-tob">
+    </div>
+    <div class="fld">
+      Lugar de nacimiento (Ciudad, País)
+      <input type="text" id="profile-city" placeholder="Ej. Castro, Chile">
+    </div>
+    <div class="row">
+      <button class="b p" id="save-profile" type="button">Guardar Perfil</button>
+    </div>
+    <p class="note" id="profile-saved" aria-live="polite"></p>
+  </div>
+</div>
 
 <script>
 (function(){
@@ -213,6 +252,12 @@ render();
     signOut, 
     onAuthStateChanged 
   } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+  import { 
+    getFirestore, 
+    doc, 
+    getDoc, 
+    setDoc 
+  } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyBvTWS64ZbMKm3px6DF_ip1oKtaSvpVihY",
@@ -227,6 +272,7 @@ render();
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
   const auth = getAuth(app);
+  const db = getFirestore(app);
 
   const authCard = document.getElementById("auth-card");
   const appContent = document.getElementById("app-content");
@@ -234,6 +280,14 @@ render();
   const userDisplay = document.getElementById("user-display");
   const passwordInput = document.getElementById("auth-password");
   const togglePasswordBtn = document.getElementById("toggle-password");
+
+  // Elementos Sidebar
+  const sidebar = document.getElementById("profile-sidebar");
+  const overlay = document.getElementById("sidebar-overlay");
+  const btnProfile = document.getElementById("btn-profile");
+  const closeProfile = document.getElementById("close-profile");
+  const btnSaveProfile = document.getElementById("save-profile");
+  const profileSaved = document.getElementById("profile-saved");
 
   function showError(msg) {
     authError.textContent = msg;
@@ -253,16 +307,69 @@ render();
     togglePasswordBtn.setAttribute("aria-pressed", String(isHidden));
   });
 
+  // Lógica Sidebar
+  function toggleSidebar(open) {
+    sidebar.classList.toggle("open", open);
+    overlay.classList.toggle("open", open);
+  }
+
+  btnProfile.addEventListener("click", () => toggleSidebar(true));
+  closeProfile.addEventListener("click", () => toggleSidebar(false));
+  overlay.addEventListener("click", () => toggleSidebar(false));
+
+  // Cargar perfil desde Firestore
+  async function loadUserProfile(user) {
+    try {
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        document.getElementById("profile-dob").value = data.dob || "";
+        document.getElementById("profile-tob").value = data.tob || "";
+        document.getElementById("profile-city").value = data.city || "";
+      }
+    } catch (err) {
+      console.error("Error al cargar perfil", err);
+    }
+  }
+
+  // Guardar perfil en Firestore
+  btnSaveProfile.addEventListener("click", async () => {
+    const user = auth.currentUser;
+    if (!user) return;
+
+    profileSaved.textContent = "Guardando...";
+    const dob = document.getElementById("profile-dob").value;
+    const tob = document.getElementById("profile-tob").value;
+    const city = document.getElementById("profile-city").value;
+
+    try {
+      await setDoc(doc(db, "users", user.uid), {
+        email: user.email,
+        dob: dob,
+        tob: tob,
+        city: city,
+        updatedAt: new Date().toISOString()
+      }, { merge: true });
+      profileSaved.textContent = "Datos de nacimiento guardados con éxito.";
+    } catch (err) {
+      profileSaved.textContent = "Error al guardar el perfil.";
+      console.error(err);
+    }
+  });
+
   // Escuchar cambios de estado en la autenticación
   onAuthStateChanged(auth, (user) => {
     if (user) {
       authCard.style.display = "none";
       appContent.style.display = "block";
       userDisplay.textContent = user.email;
+      loadUserProfile(user);
     } else {
       authCard.style.display = "block";
       appContent.style.display = "none";
       userDisplay.textContent = "";
+      toggleSidebar(false);
     }
   });
 
