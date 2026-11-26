@@ -30,6 +30,8 @@ textarea{min-height:150px;resize:vertical;font-family:"Newsreader",Georgia,serif
 label.chk{display:flex;gap:8px;align-items:center;margin:12px 0 8px;font-size:15px}
 .fld{margin-top:10px;font-size:14px;color:var(--mute)}
 .fld input{margin-top:4px}
+.pw-wrap{display:flex;gap:8px;align-items:center;margin-top:4px}
+.pw-wrap input{margin-top:0;flex:1}
 .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 button.b{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:10px;padding:9px 14px;font:inherit;font-size:14px;cursor:pointer}
 button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
@@ -42,7 +44,7 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
 .tag.ok{color:var(--ok);border-color:var(--ok)}
 .res{font-size:14px;margin:6px 0;color:var(--ok)}
 .empty{color:var(--mute);text-align:center;padding:24px 8px}
-#warn, .auth-err{background:var(--surface);border:1px solid var(--rec);border-radius:10px;padding:10px 12px;font-size:14px;margin-top:10px;color:var(--rec)}
+#warn,.auth-err{background:var(--surface);border:1px solid var(--rec);border-radius:10px;padding:10px 12px;font-size:14px;margin-top:10px;color:var(--rec)}
 #warn{display:none;margin-bottom:14px}
 .header-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 </style>
@@ -58,7 +60,10 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
     </div>
     <div class="fld">
       Contraseña
-      <input type="password" id="auth-password" placeholder="••••••••" autocomplete="current-password">
+      <div class="pw-wrap">
+        <input type="password" id="auth-password" placeholder="••••••••" autocomplete="current-password">
+        <button class="b" id="toggle-password" type="button" aria-pressed="false" aria-label="Mostrar u ocultar contraseña">Mostrar</button>
+      </div>
     </div>
     <div class="row">
       <button class="b p" id="btn-login" type="button">Entrar</button>
@@ -227,6 +232,8 @@ render();
   const appContent = document.getElementById("app-content");
   const authError = document.getElementById("auth-error");
   const userDisplay = document.getElementById("user-display");
+  const passwordInput = document.getElementById("auth-password");
+  const togglePasswordBtn = document.getElementById("toggle-password");
 
   function showError(msg) {
     authError.textContent = msg;
@@ -237,6 +244,14 @@ render();
     authError.textContent = "";
     authError.style.display = "none";
   }
+
+  // Mostrar / ocultar contraseña
+  togglePasswordBtn.addEventListener("click", () => {
+    const isHidden = passwordInput.type === "password";
+    passwordInput.type = isHidden ? "text" : "password";
+    togglePasswordBtn.textContent = isHidden ? "Ocultar" : "Mostrar";
+    togglePasswordBtn.setAttribute("aria-pressed", String(isHidden));
+  });
 
   // Escuchar cambios de estado en la autenticación
   onAuthStateChanged(auth, (user) => {
@@ -255,7 +270,7 @@ render();
   document.getElementById("btn-login").addEventListener("click", async () => {
     clearError();
     const email = document.getElementById("auth-email").value.trim();
-    const password = document.getElementById("auth-password").value.trim();
+    const password = passwordInput.value;
 
     if (!email || !password) {
       showError("Ingresa tu correo y contraseña.");
@@ -273,7 +288,7 @@ render();
   document.getElementById("btn-register").addEventListener("click", async () => {
     clearError();
     const email = document.getElementById("auth-email").value.trim();
-    const password = document.getElementById("auth-password").value.trim();
+    const password = passwordInput.value;
 
     if (!email || !password) {
       showError("Ingresa un correo y contraseña válida.");
