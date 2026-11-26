@@ -6,13 +6,12 @@
 <title>Diario de sueños</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap">
 <style>
-:root{--bg:#f3f1ec;--surface:#fff;--ink:#1c2430;--mute:#5d6877;--line:#d8d6cf;--accent:#1f6f78;--accent-ink:#fff;--rec:#b3402f;--ok:#2d6a3e;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--bg:#f3f1ec;--surface:#fff;--ink:#1c2430;--mute:#5d6877;--line:#d8d6cf;--accent:#1f6f78;--accent-ink:#fff;--rec:#b3402f;--ok:#2d6a3e}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1622;--surface:#16212f;--ink:#e6eaf0;--mute:#97a3b4;--line:#27364a;--accent:#6cc4ca;--accent-ink:#06222a;--rec:#e2694f;--ok:#7fcf93}}
 :root[data-theme="dark"]{--bg:#0e1622;--surface:#16212f;--ink:#e6eaf0;--mute:#97a3b4;--line:#27364a;--accent:#6cc4ca;--accent-ink:#06222a;--rec:#e2694f;--ok:#7fcf93}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 main{max-width:640px;margin:0 auto;padding:20px 16px 60px}
 h1{font:600 28px/1.2 "Newsreader",Georgia,serif;margin:8px 0 4px}
 .sub{color:var(--mute);margin:0 0 20px;font-size:15px}
@@ -329,12 +328,13 @@ render();
   const errTob = document.getElementById("err-tob");
   const errCity = document.getElementById("err-city");
 
-  // Estado interno verificado de ubicación
   let verifiedLocation = null;
   let searchTimer = null;
 
-  // Limitar fecha máxima a hoy
-  dobInput.max = new Date().toISOString().split("T")[0];
+  const nowDate = new Date();
+  const pad2 = n => String(n).padStart(2, "0");
+  const todayStr = `${nowDate.getFullYear()}-${pad2(nowDate.getMonth() + 1)}-${pad2(nowDate.getDate())}`;
+  dobInput.max = todayStr;
 
   function showError(msg) {
     authError.textContent = msg;
@@ -379,7 +379,6 @@ render();
   closeProfile.addEventListener("click", () => toggleSidebar(false));
   overlay.addEventListener("click", () => toggleSidebar(false));
 
-  // Consulta a Open-Meteo Geocoding API (gratuita, sin registro)
   async function searchOpenMeteoCities(queryText) {
     const parts = queryText.split(",").map(s => s.trim()).filter(Boolean);
     const cityName = parts[0] || "";
@@ -389,7 +388,7 @@ render();
 
     const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(cityName)}&count=10&language=es&format=json`;
     const res = await fetch(url);
-    if (!res.ok) throw new Error("Error al consultar servicio de ciudades.");
+    if (!res.ok) throw new Error(`HTTP ${res.status} al consultar servicio de ciudades.`);
 
     const data = await res.json();
     let results = Array.isArray(data.results) ? data.results : [];
@@ -457,7 +456,6 @@ render();
     }
   });
 
-  // Autocompletado con debounce al escribir en el campo de ciudad
   cityInput.addEventListener("input", () => {
     setFieldError(errCity, "");
     verifiedLocation = null;
@@ -482,12 +480,12 @@ render();
           renderSuggestions(matches);
         }
       } catch (err) {
+        console.error(err);
         setLocationState(null, "No se pudo verificar la ubicación ahora", "invalid");
       }
     }, 350);
   });
 
-  // Validación integral antes de enviar a FreeAstroAPI
   async function validateProfileForm() {
     let isValid = true;
     setFieldError(errDob, "");
@@ -498,33 +496,33 @@ render();
     const tob = tobInput.value.trim();
     const rawCity = cityInput.value.trim();
 
-    // 1. Validar fecha de nacimiento
     if (!dob || !/^\d{4}-\d{2}-\d{2}$/.test(dob)) {
       setFieldError(errDob, "Selecciona una fecha de nacimiento válida.");
       isValid = false;
     } else {
-      const birthDate = new Date(dob + "T00:00:00");
-      const today = new Date();
-      if (Number.isNaN(birthDate.getTime()) || birthDate > today || birthDate.getFullYear() < 1900) {
-        setFieldError(errDob, "La fecha debe estar entre 1900 y hoy.");
+      const [y, m, d] = dob.split("-").map(Number);
+      const checkDate = new Date(Date.UTC(y, m - 1, d));
+      const validCalendarDate =
+        checkDate.getUTCFullYear() === y &&
+        checkDate.getUTCMonth() === m - 1 &&
+        checkDate.getUTCDate() === d;
+      if (!validCalendarDate || y < 1900 || dob > todayStr) {
+        setFieldError(errDob, `La fecha debe estar entre 1900-01-01 y ${todayStr}.`);
         isValid = false;
       }
     }
 
-    // 2. Validar hora de nacimiento
-    if (!tob || !/^\d{2}:\d{2}$/.test(tob)) {
+    if (!tob || !/^\d{2}:\d{2}(:\d{2})?$/.test(tob)) {
       setFieldError(errTob, "Ingresa una hora válida (HH:MM).");
       isValid = false;
     }
 
-    // 3. Validar ubicación y asegurar coordenadas reales
     if (!rawCity) {
       setFieldError(errCity, "Ingresa tu ciudad y país (ej. Castro, Chile).");
       isValid = false;
     } else if (!verifiedLocation) {
-      // Intentar resolución automática si el usuario no hizo clic en el desplegable
-      if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1\s.'-]{2,},\s*[a-zA-ZÀ-ÿ\u00f1\u00d1\s.'-]{2,}$/.test(rawCity)) {
-        setFieldError(errCity, "Usa el formato 'Ciudad, País' o elige una opción de la lista.");
+      if (!/^[a-zA-ZÀ-ÿ\u00f1\u00d1\s.'-]{2,}(?:,\s*[a-zA-ZÀ-ÿ\u00f1\u00d1\s.'-]{2,})?$/.test(rawCity)) {
+        setFieldError(errCity, "Escribe una ciudad válida (ej. Castro, Chile) o elige una de la lista.");
         isValid = false;
       } else {
         try {
@@ -539,7 +537,7 @@ render();
             );
           } else if (matches.length > 1) {
             renderSuggestions(matches);
-            setFieldError(errCity, "Hay varias ciudades con ese nombre. Selecciona la correcta de la lista.");
+            setFieldError(errCity, "Hay varias coincidencias. Selecciona la correcta de la lista.");
             isValid = false;
           } else {
             setFieldError(errCity, `No se encontró "${rawCity}". Revisa la ortografía.`);
@@ -547,13 +545,13 @@ render();
             isValid = false;
           }
         } catch (err) {
+          console.error(err);
           setFieldError(errCity, "Error de red al validar la ubicación.");
           isValid = false;
         }
       }
     }
 
-    // 4. Validar rangos numéricos de latitud/longitud antes de la API
     if (verifiedLocation) {
       const { lat, lon } = verifiedLocation;
       if (typeof lat !== "number" || typeof lon !== "number" || lat < -90 || lat > 90 || lon < -180 || lon > 180) {
@@ -575,7 +573,9 @@ render();
     astroResults.innerHTML = "Calculando carta astral...";
     try {
       const [year, month, day] = dob.split("-").map(Number);
-      const [hour, minute] = tob.split(":").map(Number);
+      const timeParts = tob.split(":").map(Number);
+      const hour = timeParts[0] || 0;
+      const minute = timeParts[1] || 0;
 
       const payload = {
         year,
@@ -599,9 +599,17 @@ render();
         body: JSON.stringify(payload)
       });
 
-      const data = await response.json();
+      const rawText = await response.text();
+      let data = {};
+      try {
+        data = rawText ? JSON.parse(rawText) : {};
+      } catch (_) {
+        data = { message: rawText || `HTTP ${response.status}` };
+      }
+
       if (!response.ok || data.status === "error") {
-        astroResults.textContent = "Error al calcular la carta: " + (data.message || `HTTP ${response.status}`);
+        const msg = data.message || data.error || `HTTP ${response.status}`;
+        astroResults.textContent = "Error al calcular la carta: " + msg;
         return null;
       }
 
@@ -639,4 +647,135 @@ render();
             label: data.city || "",
             lat: data.lat,
             lon: data.lon,
-            timezone: data
+            timezone: data.timezone || "UTC"
+          };
+          setLocationState(
+            savedLoc,
+            `✓ Verificada: ${savedLoc.lat.toFixed(4)}, ${savedLoc.lon.toFixed(4)} (${savedLoc.timezone})`,
+            "valid"
+          );
+        } else {
+          setLocationState(null, "Ubicación sin verificar", "");
+        }
+
+        if (data.sun) {
+          astroResults.innerHTML = `
+            <p><strong>Sol:</strong> ${data.sun}</p>
+            <p><strong>Luna:</strong> ${data.moon}</p>
+            <p><strong>Ascendente:</strong> ${data.asc}</p>
+          `;
+        } else if (data.dob && data.tob && verifiedLocation) {
+          fetchNatalChart(data.dob, data.tob, verifiedLocation);
+        }
+      }
+    } catch (err) {
+      console.error("Error al cargar perfil", err);
+    }
+  }
+
+  profileForm.addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    const user = auth.currentUser;
+    if (!user) return;
+
+    btnSaveProfile.disabled = true;
+    profileSaved.textContent = "Validando datos...";
+
+    const validated = await validateProfileForm();
+    if (!validated) {
+      profileSaved.textContent = "Corrige los campos marcados antes de guardar.";
+      btnSaveProfile.disabled = false;
+      return;
+    }
+
+    const { dob, tob, location } = validated;
+    profileSaved.textContent = "Calculando carta astral y guardando...";
+
+    const astroData = await fetchNatalChart(dob, tob, location);
+
+    try {
+      const payload = {
+        email: user.email,
+        dob,
+        tob,
+        city: location.label,
+        lat: location.lat,
+        lon: location.lon,
+        timezone: location.timezone,
+        updatedAt: new Date().toISOString()
+      };
+      if (astroData) {
+        payload.sun = astroData.sun;
+        payload.moon = astroData.moon;
+        payload.asc = astroData.asc;
+      }
+      await setDoc(doc(db, "users", user.uid), payload, { merge: true });
+      profileSaved.textContent = astroData
+        ? "Perfil y carta astral guardados con éxito."
+        : "Perfil y ubicación verificada guardados.";
+    } catch (err) {
+      profileSaved.textContent = "Error al guardar el perfil.";
+      console.error(err);
+    } finally {
+      btnSaveProfile.disabled = false;
+    }
+  });
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      authCard.style.display = "none";
+      appContent.style.display = "block";
+      userDisplay.textContent = user.email;
+      loadUserProfile(user);
+    } else {
+      authCard.style.display = "block";
+      appContent.style.display = "none";
+      userDisplay.textContent = "";
+      toggleSidebar(false);
+    }
+  });
+
+  document.getElementById("btn-login").addEventListener("click", async () => {
+    clearError();
+    const email = document.getElementById("auth-email").value.trim();
+    const password = passwordInput.value;
+
+    if (!email || !password) {
+      showError("Ingresa tu correo y contraseña.");
+      return;
+    }
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (err) {
+      showError("Error al iniciar sesión: " + err.message);
+    }
+  });
+
+  document.getElementById("btn-register").addEventListener("click", async () => {
+    clearError();
+    const email = document.getElementById("auth-email").value.trim();
+    const password = passwordInput.value;
+
+    if (!email || !password) {
+      showError("Ingresa un correo y contraseña válida.");
+      return;
+    }
+
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (err) {
+      showError("Error al crear cuenta: " + err.message);
+    }
+  });
+
+  document.getElementById("btn-logout").addEventListener("click", async () => {
+    try {
+      await signOut(auth);
+    } catch (err) {
+      console.error("Error al cerrar sesión", err);
+    }
+  });
+</script>
+</body>
+</html>
