@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>DreamSaver · Diario de sueños</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap">
@@ -50,20 +50,153 @@ button:disabled{opacity:.55;cursor:not-allowed}
 .lock-notice{margin-top:12px;padding:10px 12px;border-radius:10px;background:color-mix(in srgb,var(--accent) 8%,var(--bg));border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line));font-size:12.5px;color:var(--mute);line-height:1.45}
 .lock-notice a{color:var(--accent);text-decoration:none;font-weight:500}
 .lock-notice a:hover{text-decoration:underline}
-
-/* Tarjeta de sueño */ .entry h3{margin:0 0 8px;font:600 13.5px/1.35 system-ui,sans-serif;color:var(--mute)} .entry p{margin:0 0 12px;font:400 17.5px/1.58 "Newsreader",Georgia,serif;white-space:pre-wrap;overflow-wrap:anywhere} .tags-row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:6px} .tag{display:inline-flex;align-items:center;font-size:12px;border:1px solid var(--line);border-radius:99px;padding:3px 10px;color:var(--mute);background:var(--bg)} .tag.ok{color:var(--ok);border-color:var(--ok);background:color-mix(in srgb,var(--ok) 8%,transparent)} button.tag.hashtag{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent);background:color-mix(in srgb,var(--accent) 10%,transparent);font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s,transform .1s} button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transparent)} .astral-insight{margin:10px 0 6px;padding:12px 14px;border-radius:11px;background:color-mix(in srgb,var(--accent) 7%,var(--bg));border-left:3px solid var(--accent);font-size:14px;color:var(--ink);line-height:1.5} .astral-insight strong{color:var(--accent);display:block;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px} .res{font-size:14px;margin:8px 0;padding:8px 11px;border-radius:9px;background:color-mix(in srgb,var(--ok) 8%,var(--bg));border:1px solid color-mix(in srgb,var(--ok) 30%,transparent);color:var(--ink)} .res strong{color:var(--ok)}
-/* Barra de acciones de tarjeta: botones a la izquierda, eliminar aislado a la derecha */ .entry-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)} .entry-actions-left{display:flex;flex-wrap:wrap;gap:8px;align-items:center} .btn-astral-toggle{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));color:var(--accent);font-weight:500} .btn-astral-toggle[aria-expanded="true"]{background:color-mix(in srgb,var(--accent) 12%,transparent)} .btn-del-icon{width:38px;height:38px;min-width:38px;padding:0;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);background:transparent;color:var(--mute);border-radius:10px;cursor:pointer;flex:none;touch-action:manipulation;transition:background .15s,border-color .15s,color .15s} .btn-del-icon:hover{color:var(--rec);border-color:color-mix(in srgb,var(--rec) 50%,var(--line));background:color-mix(in srgb,var(--rec) 8%,transparent)} .btn-del-icon.confirm{width:auto;padding:0 11px;gap:5px;color:#fff;background:var(--rec);border-color:var(--rec);font-size:12.5px;font-weight:600} .btn-del-icon svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-.empty{color:var(--mute);text-align:center;padding:22px 14px;font-size:14px;background:var(--surface);border:1px dashed var(--line);border-radius:16px} #warn,.auth-err{background:var(--surface);border:1px solid var(--rec);border-radius:10px;padding:10px 12px;font-size:14px;margin-top:10px;color:var(--rec)} #warn{display:none;margin-bottom:14px}
-/* Barra superior centrada en móvil */ .header-bar{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;margin-bottom:8px} .header-brand{width:100%;display:flex;flex-direction:column;align-items:center} .user-info{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;width:100%;padding-top:6px;border-top:1px solid var(--line)} #user-display{margin:0;width:100%;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;text-align:center} .user-actions{display:flex;gap:8px;justify-content:center;width:100%;max-width:340px} .user-actions button.b{flex:1;padding:7px 12px;min-height:36px;font-size:13.5px}
-/* Contenedor principal de layout */ .workspace-grid{display:block} .recorder-card,.explorer-card,.stats-card,.list-area{min-width:0}
-/* Explorador: Calendario y Búsqueda */ .explorer-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px} .explorer-head h3{margin:0;font:600 16px/1.2 "Newsreader",Georgia,serif;color:var(--ink)} .cal-toggle{padding:5px 10px;font-size:12.5px;min-height:32px} .search-bar{display:flex;gap:8px;align-items:center;margin-bottom:10px} .search-bar input{flex:1;min-width:0;padding:9px 12px} .filter-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px} .chip{border:1px solid var(--line);background:var(--bg);color:var(--mute);border-radius:999px;padding:5px 11px;font-size:12.5px;cursor:pointer;touch-action:manipulation;transition:all .15s} .chip.active{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600} .cal-box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px;margin-top:6px} .cal-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px} .cal-nav button{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;width:34px;height:32px;cursor:pointer;font-weight:600} .cal-title{font-weight:600;font-size:14px;text-transform:capitalize} .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center} .cal-dow{font-size:11px;color:var(--mute);font-weight:600;padding-bottom:4px} .cal-day{position:relative;aspect-ratio:1/1;min-height:36px;border:1px solid transparent;background:transparent;color:var(--ink);border-radius:9px;font:inherit;font-size:13px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0;touch-action:manipulation} .cal-day:hover{background:color-mix(in srgb,var(--accent) 10%,transparent)} .cal-day.empty{pointer-events:none} .cal-day.today{border-color:color-mix(in srgb,var(--accent) 45%,transparent)} .cal-day.has-dream{font-weight:700;background:color-mix(in srgb,var(--accent) 13%,var(--surface))} .cal-day.has-dream::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);margin-top:2px} .cal-day.selected{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)} .cal-day.selected::after{background:var(--accent-ink)} .active-filter-bar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:10px;padding:8px 10px;border-radius:9px;background:color-mix(in srgb,var(--accent) 10%,var(--bg));font-size:12.5px;color:var(--ink)} .active-filter-bar button{border:0;background:transparent;color:var(--accent);font-weight:600;cursor:pointer;font-size:12.5px;padding:2px 6px}
-/* Pie de página */ .app-footer{margin-top:28px;padding-top:16px;border-top:1px solid var(--line);text-align:center;font-size:12.5px;color:var(--mute);line-height:1.5} .app-footer strong{color:var(--ink);font-weight:600} .app-footer a{color:var(--accent);text-decoration:none;font-weight:500} .app-footer a:hover{text-decoration:underline}
-/* Sidebar responsivo */ .sidebar{position:fixed;top:0;right:0;width:400px;max-width:100vw;height:100%;height:100dvh;background:var(--surface);border-left:1px solid var(--line);box-shadow:-5px 0 20px rgba(0,0,0,0.22);transform:translateX(100%);transition:transform 0.3s ease;z-index:1000;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(24px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column} .sidebar.open{transform:translateX(0)} .sidebar-header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px} .sidebar-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:28px} .overlay{position:fixed;inset:0;background:rgba(12,6,26,0.58);display:none;z-index:999} .overlay.open{display:block} .astrology-box{margin-top:20px;padding:14px;background:var(--bg);border-radius:12px;border:1px solid var(--line)} .astro-summary p{margin:6px 0;font-size:14px} .astro-reading{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:13px;color:var(--mute);line-height:1.45} .chart-wrap{margin-top:12px;display:flex;flex-direction:column;align-items:center} .chart-wrap svg{width:100%;max-width:270px;height:auto;display:block} .chart-legend{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;font-size:12px;color:var(--mute);margin-top:6px}
-/* Autocomplete & Validation UI */ .city-suggestions{position:absolute;left:0;right:0;top:100%;margin-top:4px;background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.18);max-height:210px;overflow-y:auto;z-index:1100;display:none} .city-suggestions.open{display:block} .city-item{width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--line);padding:10px 12px;color:var(--ink);font:inherit;font-size:14px;cursor:pointer;display:block} .city-item:last-child{border-bottom:0} .city-item:hover,.city-item:focus{background:var(--bg)} .city-item small{display:block;color:var(--mute);font-size:12px} .status-pill{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;margin-top:6px;padding:5px 9px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--mute);max-width:100%;word-break:break-word} .status-pill.valid{color:var(--ok);border-color:var(--ok)} .status-pill.invalid{color:var(--rec);border-color:var(--rec)} .field-err{font-size:12.5px;color:var(--rec);margin-top:4px;display:none}
-/* Ajustes para escritorio / PC (>= 960px): Grabador y Calendario arriba, Estadísticas a todo ancho y Registros a todo ancho para lectura cómoda */ @media (min-width: 960px){ main{max-width:1100px;padding:24px 28px 56px} #auth-card{max-width:460px;margin:32px auto 0;padding:22px} .header-bar{flex-direction:row;justify-content:space-between;align-items:center;text-align:left;padding-bottom:14px;margin-bottom:10px;border-bottom:1px solid var(--line)} .header-brand{width:auto;align-items:flex-start} .user-info{width:auto;padding-top:0;border-top:0;justify-content:flex-end;gap:14px;flex-wrap:nowrap} #user-display{width:auto;max-width:240px;text-align:right;font-size:13px} .user-actions{width:auto;max-width:none} .user-actions button.b{flex:none;padding:7px 14px} .sub{text-align:left;margin-bottom:18px;font-size:14px}
-.workspace-grid{ display:grid; grid-template-columns:minmax(0,1.15fr) minmax(340px,0.85fr); grid-template-areas: "recorder explorer" "stats stats" "list list"; gap:18px 20px; align-items:stretch; } .recorder-card{grid-area:recorder;margin-bottom:0;display:flex;flex-direction:column} .explorer-card{grid-area:explorer;margin-bottom:0;display:flex;flex-direction:column} .stats-card{grid-area:stats;margin-bottom:0;display:flex;align-items:center;justify-content:space-between;gap:20px} .stats-card .stats{margin:0;flex:none;display:flex;gap:12px} .stats-card .stats span{background:var(--bg);padding:8px 16px;border-radius:12px;border:1px solid var(--line);font-size:13px;white-space:nowrap} .stats-card .stats b{font-size:20px;margin-right:4px} .stats-card .note{margin:0;flex:1} .list-area{grid-area:list;width:100%}
-.card{padding:18px;box-shadow:0 10px 28px rgba(24,12,48,.06)} .entry{padding:20px 24px} .entry p{font-size:18px;line-height:1.65;max-width:82ch} textarea{min-height:175px;flex:1} .cal-day{min-height:36px} }
-/* Ajustes específicos para pantallas verticales pequeñas (< 520px) */ @media (max-width: 520px){ main{padding:10px 12px 44px} .card{padding:12px;border-radius:14px;margin-bottom:12px} .row button.b{flex:1 1 auto;text-align:center} .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center} .stats span{background:var(--bg);padding:8px 4px;border-radius:10px;border:1px solid var(--line);font-size:12px} .stats b{display:block;font-size:19px;line-height:1.15;margin-bottom:2px} .sidebar{width:100vw;border-left:0} } </style>
+ 
+/* Tarjeta de sueño */
+.entry h3{margin:0 0 8px;font:600 13.5px/1.35 system-ui,sans-serif;color:var(--mute)}
+.entry p{margin:0 0 12px;font:400 17.5px/1.58 "Newsreader",Georgia,serif;white-space:pre-wrap;overflow-wrap:anywhere}
+.tags-row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:6px}
+.tag{display:inline-flex;align-items:center;font-size:12px;border:1px solid var(--line);border-radius:99px;padding:3px 10px;color:var(--mute);background:var(--bg)}
+.tag.ok{color:var(--ok);border-color:var(--ok);background:color-mix(in srgb,var(--ok) 8%,transparent)}
+button.tag.hashtag{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent);background:color-mix(in srgb,var(--accent) 10%,transparent);font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s,transform .1s}
+button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transparent)}
+.astral-insight{margin:10px 0 6px;padding:12px 14px;border-radius:11px;background:color-mix(in srgb,var(--accent) 7%,var(--bg));border-left:3px solid var(--accent);font-size:14px;color:var(--ink);line-height:1.5}
+.astral-insight strong{color:var(--accent);display:block;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.res{font-size:14px;margin:8px 0;padding:8px 11px;border-radius:9px;background:color-mix(in srgb,var(--ok) 8%,var(--bg));border:1px solid color-mix(in srgb,var(--ok) 30%,transparent);color:var(--ink)}
+.res strong{color:var(--ok)}
+ 
+/* Barra de acciones de tarjeta: botones a la izquierda, eliminar aislado a la derecha */
+.entry-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+.entry-actions-left{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn-astral-toggle{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));color:var(--accent);font-weight:500}
+.btn-astral-toggle[aria-expanded="true"]{background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.btn-del-icon{width:38px;height:38px;min-width:38px;padding:0;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);background:transparent;color:var(--mute);border-radius:10px;cursor:pointer;flex:none;touch-action:manipulation;transition:background .15s,border-color .15s,color .15s}
+.btn-del-icon:hover{color:var(--rec);border-color:color-mix(in srgb,var(--rec) 50%,var(--line));background:color-mix(in srgb,var(--rec) 8%,transparent)}
+.btn-del-icon.confirm{width:auto;padding:0 11px;gap:5px;color:#fff;background:var(--rec);border-color:var(--rec);font-size:12.5px;font-weight:600}
+.btn-del-icon svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+ 
+.empty{color:var(--mute);text-align:center;padding:22px 14px;font-size:14px;background:var(--surface);border:1px dashed var(--line);border-radius:16px}
+#warn,.auth-err{background:var(--surface);border:1px solid var(--rec);border-radius:10px;padding:10px 12px;font-size:14px;margin-top:10px;color:var(--rec)}
+#warn{display:none;margin-bottom:14px}
+ 
+/* Barra superior centrada en móvil */
+.header-bar{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;margin-bottom:8px}
+.header-brand{width:100%;display:flex;flex-direction:column;align-items:center}
+.user-info{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;width:100%;padding-top:6px;border-top:1px solid var(--line)}
+#user-display{margin:0;width:100%;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;text-align:center}
+.user-actions{display:flex;gap:8px;justify-content:center;width:100%;max-width:340px}
+.user-actions button.b{flex:1;padding:7px 12px;min-height:36px;font-size:13.5px}
+ 
+/* Contenedor principal de layout */
+.workspace-grid{display:block}
+.recorder-card,.explorer-card,.stats-card,.list-area{min-width:0}
+ 
+/* Explorador: Calendario y Búsqueda */
+.explorer-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.explorer-head h3{margin:0;font:600 16px/1.2 "Newsreader",Georgia,serif;color:var(--ink)}
+.cal-toggle{padding:5px 10px;font-size:12.5px;min-height:32px}
+.search-bar{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+.search-bar input{flex:1;min-width:0;padding:9px 12px}
+.filter-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.chip{border:1px solid var(--line);background:var(--bg);color:var(--mute);border-radius:999px;padding:5px 11px;font-size:12.5px;cursor:pointer;touch-action:manipulation;transition:all .15s}
+.chip.active{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
+.cal-box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px;margin-top:6px}
+.cal-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.cal-nav button{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;width:34px;height:32px;cursor:pointer;font-weight:600}
+.cal-title{font-weight:600;font-size:14px;text-transform:capitalize}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.cal-dow{font-size:11px;color:var(--mute);font-weight:600;padding-bottom:4px}
+.cal-day{position:relative;aspect-ratio:1/1;min-height:36px;border:1px solid transparent;background:transparent;color:var(--ink);border-radius:9px;font:inherit;font-size:13px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0;touch-action:manipulation}
+.cal-day:hover{background:color-mix(in srgb,var(--accent) 10%,transparent)}
+.cal-day.empty{pointer-events:none}
+.cal-day.today{border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+.cal-day.has-dream{font-weight:700;background:color-mix(in srgb,var(--accent) 13%,var(--surface))}
+.cal-day.has-dream::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);margin-top:2px}
+.cal-day.selected{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.cal-day.selected::after{background:var(--accent-ink)}
+.active-filter-bar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:10px;padding:8px 10px;border-radius:9px;background:color-mix(in srgb,var(--accent) 10%,var(--bg));font-size:12.5px;color:var(--ink)}
+.active-filter-bar button{border:0;background:transparent;color:var(--accent);font-weight:600;cursor:pointer;font-size:12.5px;padding:2px 6px}
+ 
+/* Pie de página */
+.app-footer{margin-top:28px;padding-top:16px;border-top:1px solid var(--line);text-align:center;font-size:12.5px;color:var(--mute);line-height:1.5}
+.app-footer strong{color:var(--ink);font-weight:600}
+.app-footer a{color:var(--accent);text-decoration:none;font-weight:500}
+.app-footer a:hover{text-decoration:underline}
+ 
+/* Sidebar responsivo */
+.sidebar{position:fixed;top:0;right:0;width:400px;max-width:100vw;height:100%;height:100dvh;background:var(--surface);border-left:1px solid var(--line);box-shadow:-5px 0 20px rgba(0,0,0,0.22);transform:translateX(100%);transition:transform 0.3s ease;z-index:1000;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(24px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column}
+.sidebar.open{transform:translateX(0)}
+.sidebar-header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
+.sidebar-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:28px}
+.overlay{position:fixed;inset:0;background:rgba(12,6,26,0.58);display:none;z-index:999}
+.overlay.open{display:block}
+.astrology-box{margin-top:20px;padding:14px;background:var(--bg);border-radius:12px;border:1px solid var(--line)}
+.astro-summary p{margin:6px 0;font-size:14px}
+.astro-reading{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:13px;color:var(--mute);line-height:1.45}
+.chart-wrap{margin-top:12px;display:flex;flex-direction:column;align-items:center}
+.chart-wrap svg{width:100%;max-width:270px;height:auto;display:block}
+.chart-legend{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;font-size:12px;color:var(--mute);margin-top:6px}
+ 
+/* Autocomplete & Validation UI */
+.city-suggestions{position:absolute;left:0;right:0;top:100%;margin-top:4px;background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.18);max-height:210px;overflow-y:auto;z-index:1100;display:none}
+.city-suggestions.open{display:block}
+.city-item{width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--line);padding:10px 12px;color:var(--ink);font:inherit;font-size:14px;cursor:pointer;display:block}
+.city-item:last-child{border-bottom:0}
+.city-item:hover,.city-item:focus{background:var(--bg)}
+.city-item small{display:block;color:var(--mute);font-size:12px}
+.status-pill{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;margin-top:6px;padding:5px 9px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--mute);max-width:100%;word-break:break-word}
+.status-pill.valid{color:var(--ok);border-color:var(--ok)}
+.status-pill.invalid{color:var(--rec);border-color:var(--rec)}
+.field-err{font-size:12.5px;color:var(--rec);margin-top:4px;display:none}
+ 
+/* Ajustes para escritorio / PC (>= 960px): Grabador y Calendario arriba, Estadísticas a todo ancho y Registros a todo ancho para lectura cómoda */
+@media (min-width: 960px){
+  main{max-width:1100px;padding:24px 28px 56px}
+  #auth-card{max-width:460px;margin:32px auto 0;padding:22px}
+  .header-bar{flex-direction:row;justify-content:space-between;align-items:center;text-align:left;padding-bottom:14px;margin-bottom:10px;border-bottom:1px solid var(--line)}
+  .header-brand{width:auto;align-items:flex-start}
+  .user-info{width:auto;padding-top:0;border-top:0;justify-content:flex-end;gap:14px;flex-wrap:nowrap}
+  #user-display{width:auto;max-width:240px;text-align:right;font-size:13px}
+  .user-actions{width:auto;max-width:none}
+  .user-actions button.b{flex:none;padding:7px 14px}
+  .sub{text-align:left;margin-bottom:18px;font-size:14px}
+ 
+  .workspace-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1.15fr) minmax(340px,0.85fr);
+    grid-template-areas:
+      "recorder explorer"
+      "stats stats"
+      "list list";
+    gap:18px 20px;
+    align-items:stretch;
+  }
+  .recorder-card{grid-area:recorder;margin-bottom:0;display:flex;flex-direction:column}
+  .explorer-card{grid-area:explorer;margin-bottom:0;display:flex;flex-direction:column}
+  .stats-card{grid-area:stats;margin-bottom:0;display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .stats-card .stats{margin:0;flex:none;display:flex;gap:12px}
+  .stats-card .stats span{background:var(--bg);padding:8px 16px;border-radius:12px;border:1px solid var(--line);font-size:13px;white-space:nowrap}
+  .stats-card .stats b{font-size:20px;margin-right:4px}
+  .stats-card .note{margin:0;flex:1}
+  .list-area{grid-area:list;width:100%}
+ 
+  .card{padding:18px;box-shadow:0 10px 28px rgba(24,12,48,.06)}
+  .entry{padding:20px 24px}
+  .entry p{font-size:18px;line-height:1.65;max-width:82ch}
+  textarea{min-height:175px;flex:1}
+  .cal-day{min-height:36px}
+}
+ 
+/* Ajustes específicos para pantallas verticales pequeñas (< 520px) */
+@media (max-width: 520px){
+  main{padding:10px 12px 44px}
+  .card{padding:12px;border-radius:14px;margin-bottom:12px}
+  .row button.b{flex:1 1 auto;text-align:center}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+  .stats span{background:var(--bg);padding:8px 4px;border-radius:10px;border:1px solid var(--line);font-size:12px}
+  .stats b{display:block;font-size:19px;line-height:1.15;margin-bottom:2px}
+  .sidebar{width:100vw;border-left:0}
+}
+</style>
 </head>
 <body>
 <main>
@@ -86,15 +219,15 @@ button:disabled{opacity:.55;cursor:not-allowed}
     <div class="row">
       <button class="b p" id="btn-login" type="button">Entrar</button>
       <button class="b" id="btn-register" type="button">Crear cuenta</button>
+      <button class="b" id="btn-reset" type="button">Olvidé mi contraseña</button>
     </div>
     <div id="auth-error" class="auth-err" style="display:none;"></div>
     <p class="privacy-note">
-      <strong>Privacidad y propiedad:</strong> En DreamSaver no guardamos tus datos para terceros ni los compartimos: tu diario y tu perfil son completamente personales y privados.
+      <strong>Privacidad y propiedad:</strong> Tus sueños se guardan en tu cuenta y no se comparten. Para calcular tu carta astral, tu fecha, hora y lugar de nacimiento se envían a un servicio de astrología (FreeAstroAPI) a través de nuestro servidor, y la búsqueda de ciudades usa Open-Meteo.
     </p>
   </section>
-
+ 
   <!-- Contenido Aplicación -->
-
   <div id="app-content" style="display:none;">
     <div class="header-bar">
       <div class="header-brand">
@@ -111,77 +244,76 @@ button:disabled{opacity:.55;cursor:not-allowed}
     </div>
     <p class="sub">Habla al despertar y el texto se escribe solo. Cada registro guarda fecha y hora para contrastarlo después.</p>
     <div id="warn"></div>
-
-<div class="workspace-grid">
-  <section class="card recorder-card" aria-label="Nuevo registro">
-    <div class="rec-wrap">
-      <button id="rec" type="button" aria-pressed="false">Grabar</button>
-      <div id="status">Toca para hablar. Toca otra vez para detener.</div>
+ 
+    <div class="workspace-grid">
+      <section class="card recorder-card" aria-label="Nuevo registro">
+        <div class="rec-wrap">
+          <button id="rec" type="button" aria-pressed="false">Grabar</button>
+          <div id="status">Toca para hablar. Toca otra vez para detener.</div>
+        </div>
+        <textarea id="txt" placeholder="Tu sueño aparecerá aquí mientras hablas. También puedes escribir o corregir." aria-label="Texto del sueño"></textarea>
+        <div class="chk-row">
+          <label class="chk"><input type="checkbox" id="par"> Hubo parálisis del sueño</label>
+          <label class="chk"><input type="checkbox" id="luc"> Fue un sueño lúcido</label>
+        </div>
+        <div class="fld">Le conté el sueño a alguien (opcional)<input type="text" id="sh" placeholder="Nombre de la persona"></div>
+        <div class="row">
+          <button class="b p" id="save" type="button">Guardar sueño</button>
+          <button class="b" id="clr" type="button">Limpiar</button>
+        </div>
+        <p class="note" id="saved" aria-live="polite"></p>
+      </section>
+ 
+      <!-- Explorador: Calendario y Búsqueda -->
+      <section class="card explorer-card" aria-label="Buscar y explorar sueños">
+        <div class="explorer-head">
+          <h3>Explorar registros</h3>
+          <button class="b cal-toggle" id="toggle-cal" type="button" aria-expanded="true">Ocultar calendario</button>
+        </div>
+        <div class="search-bar">
+          <input type="search" id="search-q" placeholder="Buscar por palabra, #hashtag o persona…" aria-label="Buscar sueños">
+        </div>
+        <div class="filter-chips" id="filter-chips" role="group" aria-label="Filtros rápidos">
+          <button type="button" class="chip active" data-filter="all">Todos</button>
+          <button type="button" class="chip" data-filter="luc">Lúcidos</button>
+          <button type="button" class="chip" data-filter="par">Parálisis</button>
+          <button type="button" class="chip" data-filter="hit">Coincidieron</button>
+          <button type="button" class="chip" data-filter="pending">Pendientes</button>
+        </div>
+        <div class="cal-box" id="cal-box">
+          <div class="cal-nav">
+            <button type="button" id="cal-prev" aria-label="Mes anterior">‹</button>
+            <span class="cal-title" id="cal-title"></span>
+            <button type="button" id="cal-next" aria-label="Mes siguiente">›</button>
+          </div>
+          <div class="cal-grid" id="cal-grid"></div>
+        </div>
+        <div class="active-filter-bar" id="active-filter-bar" style="display:none;">
+          <span id="active-filter-text"></span>
+          <button type="button" id="reset-filters">Limpiar filtros</button>
+        </div>
+      </section>
+ 
+      <section class="card stats-card" aria-label="Resumen">
+        <div class="stats">
+          <span><b id="n">0</b> registrados</span>
+          <span><b id="m">0</b> coincidencias</span>
+          <span><b id="k">0</b> sin coincidir</span>
+        </div>
+        <p class="note">Si pasan más de dos semanas sin que ocurra algo parecido a tu sueño, márcalo como “sin coincidencia”. Llevar ese control te permite distinguir si hubo un patrón real o fue solo casualidad.</p>
+      </section>
+ 
+      <div id="list" class="list-area"></div>
     </div>
-    <textarea id="txt" placeholder="Tu sueño aparecerá aquí mientras hablas. También puedes escribir o corregir." aria-label="Texto del sueño"></textarea>
-    <div class="chk-row">
-      <label class="chk"><input type="checkbox" id="par"> Hubo parálisis del sueño</label>
-      <label class="chk"><input type="checkbox" id="luc"> Fue un sueño lúcido</label>
-    </div>
-    <div class="fld">Le conté el sueño a alguien (opcional)<input type="text" id="sh" placeholder="Nombre de la persona"></div>
-    <div class="row">
-      <button class="b p" id="save" type="button">Guardar sueño</button>
-      <button class="b" id="clr" type="button">Limpiar</button>
-    </div>
-    <p class="note" id="saved" aria-live="polite"></p>
-  </section>
-
-  <!-- Explorador: Calendario y Búsqueda -->
-  <section class="card explorer-card" aria-label="Buscar y explorar sueños">
-    <div class="explorer-head">
-      <h3>Explorar registros</h3>
-      <button class="b cal-toggle" id="toggle-cal" type="button" aria-expanded="true">Ocultar calendario</button>
-    </div>
-    <div class="search-bar">
-      <input type="search" id="search-q" placeholder="Buscar por palabra, #hashtag o persona…" aria-label="Buscar sueños">
-    </div>
-    <div class="filter-chips" id="filter-chips" role="group" aria-label="Filtros rápidos">
-      <button type="button" class="chip active" data-filter="all">Todos</button>
-      <button type="button" class="chip" data-filter="luc">Lúcidos</button>
-      <button type="button" class="chip" data-filter="par">Parálisis</button>
-      <button type="button" class="chip" data-filter="hit">Coincidieron</button>
-      <button type="button" class="chip" data-filter="pending">Pendientes</button>
-    </div>
-    <div class="cal-box" id="cal-box">
-      <div class="cal-nav">
-        <button type="button" id="cal-prev" aria-label="Mes anterior">‹</button>
-        <span class="cal-title" id="cal-title"></span>
-        <button type="button" id="cal-next" aria-label="Mes siguiente">›</button>
-      </div>
-      <div class="cal-grid" id="cal-grid"></div>
-    </div>
-    <div class="active-filter-bar" id="active-filter-bar" style="display:none;">
-      <span id="active-filter-text"></span>
-      <button type="button" id="reset-filters">Limpiar filtros</button>
-    </div>
-  </section>
-
-  <section class="card stats-card" aria-label="Resumen">
-    <div class="stats">
-      <span><b id="n">0</b> registrados</span>
-      <span><b id="m">0</b> coincidencias</span>
-      <span><b id="k">0</b> sin coincidir</span>
-    </div>
-    <p class="note">Si pasan más de dos semanas sin que ocurra algo parecido a tu sueño, márcalo como “sin coincidencia”. Llevar ese control te permite distinguir si hubo un patrón real o fue solo casualidad.</p>
-  </section>
-
-  <div id="list" class="list-area"></div>
-</div>
   </div>
-
+ 
   <footer class="app-footer">
     <div><strong>✦ DreamSaver</strong> · Tu diario personal de sueños y exploración astral</div>
     <div>Contacto y soporte: <a href="mailto:redlantecc@gmail.com">redlantecc@gmail.com</a></div>
   </footer>
 </main>
-
+ 
 <!-- Panel Lateral de Perfil -->
-
 <div class="overlay" id="sidebar-overlay"></div>
 <div class="sidebar" id="profile-sidebar">
   <div class="sidebar-header">
@@ -216,31 +348,34 @@ button:disabled{opacity:.55;cursor:not-allowed}
     <div class="lock-notice" id="birth-lock-notice">
       <strong>Datos de nacimiento protegidos:</strong> Una vez guardados, tu fecha, hora y lugar de nacimiento quedan bloqueados para evitar cambios repetidos o consultas de terceros. Si necesitas corregir un dato o solicitar un cambio justificado, escribe a <a href="mailto:redlantecc@gmail.com">redlantecc@gmail.com</a> desde el correo de tu cuenta.
     </div>
-
-<!-- Contenedor Carta Natal -->
-<div class="astrology-box" id="astrology-container">
-  <h3>Tu Carta Astral</h3>
-  <div id="astrology-results">Configura tus datos para calcular tu carta.</div>
-  <div id="astrology-chart" class="chart-wrap"></div>
-</div>
+ 
+    <!-- Contenedor Carta Natal -->
+    <div class="astrology-box" id="astrology-container">
+      <h3>Tu Carta Astral</h3>
+      <div id="astrology-results">Configura tus datos para calcular tu carta.</div>
+      <div id="astrology-chart" class="chart-wrap"></div>
+    </div>
   </div>
 </div>
-
+ 
 <script>
 (function(){
-var KEY="suenos:v1", entries=[], storageOk=true;
-try{ entries=JSON.parse(localStorage.getItem(KEY)||"[]"); }catch(e){ storageOk=false; entries=[]; }
-if(!Array.isArray(entries)) entries=[];
-function persistLocal(){ try{ localStorage.setItem(KEY,JSON.stringify(entries)); }catch(e){ storageOk=false; showWarn(); } }
+/* Caché local POR USUARIO (suenos:v2:<uid>). Sin sesión no se lee ni se guarda nada. */
+var KEY=null, entries=[], storageOk=true;
+function loadLocal(){
+  entries=[];
+  if(!KEY) return;
+  try{ entries=JSON.parse(localStorage.getItem(KEY)||"[]"); }catch(e){ storageOk=false; entries=[]; }
+  if(!Array.isArray(entries)) entries=[];
+}
+function persistLocal(){ if(!KEY) return; try{ localStorage.setItem(KEY,JSON.stringify(entries)); }catch(e){ storageOk=false; showWarn(); } }
 var $=function(id){return document.getElementById(id)};
 var txt=$("txt"), rec=$("rec"), status=$("status"), warn=$("warn");
 function showWarn(){ if(!storageOk){ warn.style.display="block"; warn.textContent="Este navegador no permite guardar datos localmente, pero tus sueños se sincronizarán en la nube al iniciar sesión."; } }
 showWarn();
-
-
+ 
 window.DreamSaverProfile = window.DreamSaverProfile || null;
-
-
+ 
 var DREAM_SYMBOLS = [
   { rx: /\b(agua|mar|r[ií]o|lluvia|oc[eé]ano|nadar|ola|lago|inundaci[oó]n)\b/i, hashtag: "#AguaYEmoción", theme: "Agua y memoria emocional", note: "Suele reflejar movimientos afectivos profundos, nostalgia o necesidad de contención." },
   { rx: /\b(volar|caer|ca[ií]da|aire|cielo|nube|altura|abismo)\b/i, hashtag: "#VueloYPerspectiva", theme: "Movimiento y perspectiva", note: "Apunta a cambios de rumbo, búsqueda de libertad o sensación de pérdida de control." },
@@ -250,8 +385,7 @@ var DREAM_SYMBOLS = [
   { rx: /\b(fuego|sol|luz|llama|incendio|calor|quemar)\b/i, hashtag: "#FuegoYTransformación", theme: "Energía vital y transformación", note: "Habla de impulso creativo, deseo de renovación o emociones intensas." },
   { rx: /\b(perro|gato|serpiente|ave|p[aá]jaro|caballo|lobo|animal)\b/i, hashtag: "#InstintoYNaturaleza", theme: "Instinto y naturaleza", note: "Conecta con respuestas intuitivas y señales espontáneas de tu inconsciente." }
 ];
-
-
+ 
 var SIGN_DREAM_TONES = {
   "Aries": "impulso directo y resolución rápida",
   "Tauro": "búsqueda de estabilidad, cuerpo y seguridad",
@@ -266,8 +400,7 @@ var SIGN_DREAM_TONES = {
   "Acuario": "visión original, desapego y cambio de paradigma",
   "Piscis": "permeabilidad simbólica, intuición y ensueño"
 };
-
-
+ 
 function makeHashtagFromTheme(theme) {
   if (!theme) return "#SimbolismoLibre";
   var clean = String(theme).replace(/^#+/, "").trim();
@@ -276,8 +409,7 @@ function makeHashtagFromTheme(theme) {
     return w.charAt(0).toUpperCase() + w.slice(1);
   }).join("");
 }
-
-
+ 
 function interpretDreamWithChart(text, chart) {
   var found = [];
   for (var i = 0; i < DREAM_SYMBOLS.length; i++) {
@@ -288,8 +420,7 @@ function interpretDreamWithChart(text, chart) {
     theme: "Simbolismo libre",
     note: "Observa qué emoción predominó al despertar para contrastarla con los hechos de los próximos días."
   };
-
-
+ 
   if (!chart || (!chart.sun && !chart.moon && !chart.asc)) {
     return {
       hashtag: primary.hashtag,
@@ -297,8 +428,7 @@ function interpretDreamWithChart(text, chart) {
       summary: primary.note + " (Configura tu Perfil Astral para cruzar este símbolo con tu Sol, Luna y Ascendente)."
     };
   }
-
-
+ 
   var parts = [primary.note];
   if (chart.moon && chart.moon !== "N/D") {
     var moonTone = SIGN_DREAM_TONES[chart.moon] || "sensibilidad receptiva";
@@ -311,8 +441,7 @@ function interpretDreamWithChart(text, chart) {
   if (chart.asc && chart.asc !== "N/D") {
     parts.push("Ascendente en " + chart.asc + " como lente de acción al despertar.");
   }
-
-
+ 
   return {
     hashtag: primary.hashtag,
     theme: primary.theme,
@@ -324,8 +453,7 @@ function interpretDreamWithChart(text, chart) {
     }
   };
 }
-
-
+ 
 var SR=window.SpeechRecognition||window.webkitSpeechRecognition, r=null, listening=false, base="", startedAt=null;
 function touch(){ if(!startedAt) startedAt=Date.now(); }
 txt.addEventListener("input",touch);
@@ -343,13 +471,11 @@ function startRec(){
 }
 function stopRec(){ listening=false; try{ r.stop(); }catch(e){} setUI(); }
 rec.addEventListener("click",function(){ listening?stopRec():startRec(); });
-
-
+ 
 function fmt(t){ try{ return new Date(t).toLocaleString("es-CL",{weekday:"long",day:"numeric",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit"}); }catch(e){ return new Date(t).toString(); } }
-function esc(s){ var d=document.createElement("div"); d.textContent=s; return d.innerHTML; }
+function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;"); }
 function dateKey(ts){ var d=new Date(ts); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
-
-
+ 
 /* Puente de sincronización con Firestore */
 window.DreamSaverSync = window.DreamSaverSync || {
   onSaveEntry: null,
@@ -357,21 +483,44 @@ window.DreamSaverSync = window.DreamSaverSync || {
   onDeleteEntry: null,
   onSyncLocalEntries: null
 };
-
-
+ 
 window.DreamSaverSetEntries = function(nextEntries){
   entries = Array.isArray(nextEntries) ? nextEntries.slice() : [];
   entries.sort(function(a,b){ return (Number(b.at)||0) - (Number(a.at)||0); });
   persistLocal();
   render();
 };
-
-
+ 
 window.DreamSaverGetEntries = function(){
   return entries.slice();
 };
-
-
+ 
+/* Se llama al iniciar sesión: carga SOLO la caché de ese uid.
+   La caché antigua (suenos:v1) se adopta una única vez y luego se elimina. */
+window.DreamSaverSetUser = function(uid){
+  KEY = uid ? "suenos:v2:" + uid : null;
+  try{
+    if(KEY && !localStorage.getItem(KEY)){
+      var legacy = localStorage.getItem("suenos:v1");
+      if(legacy) localStorage.setItem(KEY, legacy);
+    }
+    localStorage.removeItem("suenos:v1");
+  }catch(e){}
+  loadLocal();
+  render();
+};
+ 
+/* Se llama al cerrar sesión: borra toda caché de sueños del dispositivo. */
+window.DreamSaverClearLocal = function(){
+  try{
+    var del=[];
+    for(var i=0;i<localStorage.length;i++){ var n=localStorage.key(i); if(n && n.indexOf("suenos:")===0) del.push(n); }
+    del.forEach(function(n){ localStorage.removeItem(n); });
+  }catch(e){}
+  entries=[]; KEY=null; openId=null; delId=null;
+  render();
+};
+ 
 /* Estado de búsqueda, filtros y calendario */
 var searchQuery = "";
 var activeTagFilter = "all";
@@ -379,22 +528,19 @@ var selectedDateKey = null;
 var calCursor = new Date();
 calCursor.setDate(1);
 var calVisible = true;
-
-
+ 
 $("toggle-cal").addEventListener("click", function(){
   calVisible = !calVisible;
   $("cal-box").style.display = calVisible ? "block" : "none";
   $("toggle-cal").textContent = calVisible ? "Ocultar calendario" : "Ver calendario";
   $("toggle-cal").setAttribute("aria-expanded", String(calVisible));
 });
-
-
+ 
 $("search-q").addEventListener("input", function(){
   searchQuery = this.value.trim().toLowerCase();
   render();
 });
-
-
+ 
 $("filter-chips").addEventListener("click", function(ev){
   var btn = ev.target.closest(".chip");
   if(!btn) return;
@@ -403,20 +549,17 @@ $("filter-chips").addEventListener("click", function(ev){
   for(var i=0;i<all.length;i++) all[i].classList.toggle("active", all[i] === btn);
   render();
 });
-
-
+ 
 $("cal-prev").addEventListener("click", function(){
   calCursor.setMonth(calCursor.getMonth() - 1);
   renderCalendar();
 });
-
-
+ 
 $("cal-next").addEventListener("click", function(){
   calCursor.setMonth(calCursor.getMonth() + 1);
   renderCalendar();
 });
-
-
+ 
 $("cal-grid").addEventListener("click", function(ev){
   var dayBtn = ev.target.closest(".cal-day[data-date]");
   if(!dayBtn) return;
@@ -424,8 +567,7 @@ $("cal-grid").addEventListener("click", function(ev){
   selectedDateKey = (selectedDateKey === dk) ? null : dk;
   render();
 });
-
-
+ 
 $("reset-filters").addEventListener("click", function(){
   searchQuery = "";
   $("search-q").value = "";
@@ -435,29 +577,25 @@ $("reset-filters").addEventListener("click", function(){
   for(var i=0;i<all.length;i++) all[i].classList.toggle("active", all[i].dataset.filter === "all");
   render();
 });
-
-
+ 
 function renderCalendar(){
   var y = calCursor.getFullYear();
   var m = calCursor.getMonth();
   var monthName = new Date(y, m, 1).toLocaleDateString("es-CL", { month: "long", year: "numeric" });
   $("cal-title").textContent = monthName;
-
-
+ 
   var dreamCounts = {};
   entries.forEach(function(e){
     var dk = dateKey(e.at);
     dreamCounts[dk] = (dreamCounts[dk] || 0) + 1;
   });
-
-
+ 
   var todayDk = dateKey(Date.now());
   var firstDow = (new Date(y, m, 1).getDay() + 6) % 7;
   var daysInMonth = new Date(y, m + 1, 0).getDate();
   var dows = ["Lu","Ma","Mi","Ju","Vi","Sá","Do"];
   var html = dows.map(function(d){ return '<div class="cal-dow">'+d+'</div>'; }).join("");
-
-
+ 
   for(var i=0;i<firstDow;i++){
     html += '<div class="cal-day empty"></div>';
   }
@@ -473,8 +611,7 @@ function renderCalendar(){
   }
   $("cal-grid").innerHTML = html;
 }
-
-
+ 
 $("save").addEventListener("click",function(){
   if(listening) stopRec();
   var t=txt.value.trim();
@@ -500,8 +637,7 @@ $("save").addEventListener("click",function(){
   calCursor = new Date(nowTs);
   calCursor.setDate(1);
   render();
-
-
+ 
   if(typeof window.DreamSaverSync.onSaveEntry === "function"){
     window.DreamSaverSync.onSaveEntry(newEntry).then(function(){
       $("saved").textContent="Sueño guardado y sincronizado en la nube.";
@@ -512,34 +648,29 @@ $("save").addEventListener("click",function(){
   }
 });
 $("clr").addEventListener("click",function(){ if(listening) stopRec(); txt.value=""; startedAt=null; $("saved").textContent=""; });
-
-
+ 
 var openId=null, delId=null, astroOpenMap={};
 function render(){
   renderCalendar();
   var list=$("list"), html="", m=0, k=0;
   entries.forEach(function(e){ if(e.out){ if(e.out.hit) m++; else k++; } });
   $("n").textContent=entries.length; $("m").textContent=m; $("k").textContent=k;
-
-
+ 
   var hasActiveFilter = Boolean(selectedDateKey || searchQuery || activeTagFilter !== "all");
   var bar = $("active-filter-bar");
-
-
+ 
   if(!entries.length){
     bar.style.display = "none";
     list.innerHTML='<div class="empty">Aún no hay sueños registrados.</div>';
     return;
   }
-
-
+ 
   if(!hasActiveFilter){
     bar.style.display = "none";
     list.innerHTML='<div class="empty">Selecciona un día marcado en el calendario o usa el buscador para ver tus registros.</div>';
     return;
   }
-
-
+ 
   var filtered = entries.filter(function(e){
     var tagHash = (e.astro && (e.astro.hashtag || makeHashtagFromTheme(e.astro.theme))) || "";
     if(selectedDateKey && dateKey(e.at) !== selectedDateKey) return false;
@@ -560,8 +691,7 @@ function render(){
     }
     return true;
   });
-
-
+ 
   var parts = [];
   if(selectedDateKey){
     var sp = selectedDateKey.split("-");
@@ -574,17 +704,14 @@ function render(){
   if(searchQuery) parts.push("«" + searchQuery + "»");
   $("active-filter-text").textContent = "Mostrando " + filtered.length + " de " + entries.length + " · " + parts.join(" · ");
   bar.style.display = "flex";
-
-
+ 
   if(!filtered.length){ list.innerHTML='<div class="empty">No hay sueños registrados para esa fecha o filtro.</div>'; return; }
-
-
+ 
   filtered.forEach(function(e){
     var hashtag = (e.astro && (e.astro.hashtag || makeHashtagFromTheme(e.astro.theme))) || "#SimbolismoLibre";
     var hasAstroSummary = Boolean(e.astro && e.astro.summary);
     var isAstroOpen = Boolean(astroOpenMap[e.id]);
-
-
+ 
     html+='<article class="card entry"><h3>'+esc(fmt(e.at))+'</h3><p>'+esc(e.text)+'</p><div class="tags-row">';
     html+='<button type="button" class="tag hashtag" data-a="hashtag" data-tag="'+esc(hashtag)+'" title="Buscar patrones con '+esc(hashtag)+'">'+esc(hashtag)+'</button>';
     if(e.par) html+='<span class="tag">parálisis del sueño</span>';
@@ -592,18 +719,15 @@ function render(){
     if(e.shared) html+='<span class="tag">contado a '+esc(e.shared)+'</span>';
     if(e.out) html+='<span class="tag '+(e.out.hit?'ok':'')+'">'+(e.out.hit?'coincidió en la vida real':'sin coincidencia')+'</span>';
     html+='</div>';
-
-
+ 
     if(hasAstroSummary && isAstroOpen){
       html+='<div class="astral-insight"><strong>Lectura simbólica · '+esc(e.astro.theme || hashtag)+'</strong>'+esc(e.astro.summary)+'</div>';
     }
-
-
+ 
     if(e.out && e.out.note){
       html+='<div class="res"><strong>Contrastado el '+esc(e.out.date)+':</strong> '+esc(e.out.note)+'</div>';
     }
-
-
+ 
     if(openId===e.id){
       var prevNote = (e.out && e.out.note) ? e.out.note : "";
       html+='<div class="fld">¿Ocurrió algo parecido en la vida real? Añade tu comentario o explicación<input type="text" id="note-'+e.id+'" value="'+esc(prevNote)+'" placeholder="Describe qué pasó y cuándo, o deja una nota sobre lo que significó"></div>';
@@ -663,21 +787,20 @@ $("list").addEventListener("click",function(ev){
   }
   render();
 });
-
-
+ 
 render();
 })();
 </script>
-
+ 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-analytics.js";
-  import { 
+    import { 
     getAuth, 
     signInWithEmailAndPassword, 
     createUserWithEmailAndPassword, 
     signOut, 
-    onAuthStateChanged 
+    onAuthStateChanged,
+    sendPasswordResetEmail
   } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
   import { 
     getFirestore, 
@@ -688,8 +811,7 @@ render();
     deleteDoc,
     onSnapshot
   } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
-
-
+ 
   const firebaseConfig = {
     apiKey: "AIzaSyBvTWS64ZbMKm3px6DF_ip1oKtaSvpVihY",
     authDomain: "dreamsaver-e880f.firebaseapp.com",
@@ -699,25 +821,38 @@ render();
     appId: "1:890089285987:web:2b8210c7e59da8a304cb56",
     measurementId: "G-MDVV8HV4EQ"
   };
-
-
-  const APP_ASTRO_KEY = "f149a69924d2e22280bc44183e5182de9b220a100a5acc5c687cbaf26f91c847";
-
-
+ 
+  // La clave de FreeAstroAPI YA NO está en el navegador: vive como secreto en una Cloud Function.
+  // Reemplaza la URL por la que te entregue "firebase deploy --only functions" (ver archivo de backend).
+  const ASTRO_PROXY_URL = "https://REEMPLAZAR-con-la-url-de-tu-funcion.cloudfunctions.net/astroNatal";
+ 
   const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
   const auth = getAuth(app);
   const db = getFirestore(app);
-
-
+ 
+  function escapeHtml(v) {
+    return String(v == null ? "" : v)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+ 
+  function authMsg(err) {
+    const c = (err && err.code) || "";
+    if (c === "auth/invalid-credential" || c === "auth/wrong-password" || c === "auth/user-not-found" || c === "auth/invalid-email") return "Correo o contraseña incorrectos.";
+    if (c === "auth/email-already-in-use") return "No se pudo crear la cuenta con esos datos.";
+    if (c === "auth/weak-password") return "La contraseña es muy débil. Usa al menos 8 caracteres.";
+    if (c === "auth/too-many-requests") return "Demasiados intentos. Espera unos minutos e inténtalo de nuevo.";
+    if (c === "auth/network-request-failed") return "Sin conexión. Revisa tu internet.";
+    return "No se pudo completar la operación. Inténtalo de nuevo.";
+  }
+ 
   const authCard = document.getElementById("auth-card");
   const appContent = document.getElementById("app-content");
   const authError = document.getElementById("auth-error");
   const userDisplay = document.getElementById("user-display");
   const passwordInput = document.getElementById("auth-password");
   const togglePasswordBtn = document.getElementById("toggle-password");
-
-
+ 
   const sidebar = document.getElementById("profile-sidebar");
   const overlay = document.getElementById("sidebar-overlay");
   const btnProfile = document.getElementById("btn-profile");
@@ -733,18 +868,15 @@ render();
   const coordsDisplay = document.getElementById("coords-display");
   const astroResults = document.getElementById("astrology-results");
   const astroChart = document.getElementById("astrology-chart");
-
-
+ 
   const errDob = document.getElementById("err-dob");
   const errTob = document.getElementById("err-tob");
   const errCity = document.getElementById("err-city");
-
-
+ 
   let unsubscribeDreams = null;
   let hasLoadedRemoteOnce = false;
   let birthDataLocked = false;
-
-
+ 
   const ZODIAC_SIGNS = [
     { key: "aries", name: "Aries", symbol: "♈" },
     { key: "taurus", name: "Tauro", symbol: "♉" },
@@ -759,8 +891,7 @@ render();
     { key: "aquarius", name: "Acuario", symbol: "♒" },
     { key: "pisces", name: "Piscis", symbol: "♓" }
   ];
-
-
+ 
   const SIGN_ALIASES = {
     ari: "Aries", aries: "Aries",
     tau: "Tauro", taurus: "Tauro", tauro: "Tauro",
@@ -775,18 +906,16 @@ render();
     aqu: "Acuario", aquarius: "Acuario", acuario: "Acuario",
     pis: "Piscis", pisces: "Piscis", piscis: "Piscis"
   };
-
-
+ 
   function normalizeSign(rawSign) {
     if (!rawSign || typeof rawSign !== "string") return "N/D";
     const cleaned = rawSign.trim().toLowerCase().replace(/[^a-zñáéíóú]/g, "");
     if (SIGN_ALIASES[cleaned]) return SIGN_ALIASES[cleaned];
     const prefix3 = cleaned.slice(0, 3);
     if (SIGN_ALIASES[prefix3]) return SIGN_ALIASES[prefix3];
-    return rawSign.trim();
+    return "N/D"; // solo se aceptan signos conocidos (evita inyectar texto externo)
   }
-
-
+ 
   function applyBirthLockState(locked) {
     birthDataLocked = Boolean(locked);
     dobInput.disabled = birthDataLocked;
@@ -801,8 +930,7 @@ render();
       profileIntro.textContent = "Completa tus datos de nacimiento. Escribe tu ciudad y selecciónala de la lista para validar sus coordenadas automáticamente.";
     }
   }
-
-
+ 
   function buildDreamReading(sun, moon, asc) {
     const parts = [];
     if (moon && moon !== "N/D") {
@@ -819,22 +947,19 @@ render();
     }
     return parts.join(" ").replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
   }
-
-
+ 
   function renderNatalChartSvg(sun, moon, asc) {
     const sunIdx = ZODIAC_SIGNS.findIndex(s => s.name === sun);
     const moonIdx = ZODIAC_SIGNS.findIndex(s => s.name === moon);
     const ascIdx = ZODIAC_SIGNS.findIndex(s => s.name === asc);
-
-
+ 
     const cx = 145, cy = 145, rOuter = 128, rMid = 96, rInner = 62, rMarker = 79;
     const toRad = deg => (deg - 90) * (Math.PI / 180);
     const polar = (r, deg) => ({
       x: cx + r * Math.cos(toRad(deg)),
       y: cy + r * Math.sin(toRad(deg))
     });
-
-
+ 
     let sectors = "";
     ZODIAC_SIGNS.forEach((sign, i) => {
       const a0 = i * 30;
@@ -844,36 +969,30 @@ render();
       const p1In = polar(rMid, a1);
       const p0In = polar(rMid, a0);
       const isHighlight = i === sunIdx || i === moonIdx || i === ascIdx;
-
-
+ 
       sectors += `<path d="M ${p0Out.x.toFixed(1)} ${p0Out.y.toFixed(1)} A ${rOuter} ${rOuter} 0 0 1 ${p1Out.x.toFixed(1)} ${p1Out.y.toFixed(1)} L ${p1In.x.toFixed(1)} ${p1In.y.toFixed(1)} A ${rMid} ${rMid} 0 0 0 ${p0In.x.toFixed(1)} ${p0In.y.toFixed(1)} Z" fill="${isHighlight ? "rgba(167,123,250,0.18)" : "transparent"}" stroke="currentColor" stroke-opacity="0.22" stroke-width="1"/>`;
-
-
+ 
       const pLine = polar(rOuter, a0);
       const pCenter = polar(rInner, a0);
       sectors += `<line x1="${pCenter.x.toFixed(1)}" y1="${pCenter.y.toFixed(1)}" x2="${pLine.x.toFixed(1)}" y2="${pLine.y.toFixed(1)}" stroke="currentColor" stroke-opacity="0.16" stroke-width="1"/>`;
-
-
+ 
       const midPos = polar((rOuter + rMid) / 2, a0 + 15);
       sectors += `<text x="${midPos.x.toFixed(1)}" y="${midPos.y.toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="13" fill="currentColor">${sign.symbol}</text>`;
     });
-
-
+ 
     const markers = [
       { idx: sunIdx, label: "☉", color: "#d9822b", offset: -8 },
       { idx: moonIdx, label: "☽", color: "#2d7a5e", offset: 0 },
       { idx: ascIdx, label: "AC", color: "#b8336a", offset: 8 }
     ].filter(m => m.idx >= 0);
-
-
+ 
     let markerSvg = "";
     markers.forEach(m => {
       const angle = m.idx * 30 + 15 + m.offset;
       const pt = polar(rMarker, angle);
       markerSvg += `<g transform="translate(${pt.x.toFixed(1)},${pt.y.toFixed(1)})"><circle r="10.5" fill="${m.color}"/><text text-anchor="middle" dominant-baseline="central" font-size="9.5" font-weight="700" fill="#fff">${m.label}</text></g>`;
     });
-
-
+ 
     astroChart.innerHTML = `
       <svg viewBox="0 0 290 290" role="img" aria-label="Gráfico circular de carta astral">
         <circle cx="${cx}" cy="${cy}" r="${rOuter}" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-width="1.5"/>
@@ -891,17 +1010,14 @@ render();
       </div>
     `;
   }
-
-
+ 
   function renderAstrologyCard(sunRaw, moonRaw, ascRaw) {
     const sun = normalizeSign(sunRaw);
     const moon = normalizeSign(moonRaw);
     const asc = normalizeSign(ascRaw);
-
-
+ 
     window.DreamSaverProfile = { sun, moon, asc };
-
-
+ 
     astroResults.innerHTML = `
       <div class="astro-summary">
         <p><strong>Sol:</strong> ${sun}</p>
@@ -913,18 +1029,15 @@ render();
     renderNatalChartSvg(sun, moon, asc);
     return { sun, moon, asc };
   }
-
-
+ 
   function dreamsColRef(uid) {
     return collection(db, "users", uid, "dreams");
   }
-
-
+ 
   function dreamDocRef(uid, dreamId) {
     return doc(db, "users", uid, "dreams", String(dreamId));
   }
-
-
+ 
   async function saveDreamToCloud(uid, entry) {
     await setDoc(dreamDocRef(uid, entry.id), {
       id: Number(entry.id),
@@ -939,21 +1052,18 @@ render();
       updatedAt: new Date().toISOString()
     }, { merge: true });
   }
-
-
+ 
   async function deleteDreamFromCloud(uid, dreamId) {
     await deleteDoc(dreamDocRef(uid, dreamId));
   }
-
-
+ 
   function subscribeUserDreams(user) {
     if (unsubscribeDreams) {
       unsubscribeDreams();
       unsubscribeDreams = null;
     }
     hasLoadedRemoteOnce = false;
-
-
+ 
     const col = dreamsColRef(user.uid);
     unsubscribeDreams = onSnapshot(col, async (snap) => {
       const remoteEntries = [];
@@ -976,8 +1086,7 @@ render();
           });
         }
       });
-
-
+ 
       if (!hasLoadedRemoteOnce) {
         hasLoadedRemoteOnce = true;
         const localEntries = typeof window.DreamSaverGetEntries === "function"
@@ -995,57 +1104,48 @@ render();
           }
         }
       }
-
-
+ 
       if (typeof window.DreamSaverSetEntries === "function") {
         window.DreamSaverSetEntries(remoteEntries);
       }
     }, (err) => {
       console.error("Error escuchando sueños en Firestore:", err);
     });
-
-
+ 
     window.DreamSaverSync.onSaveEntry = async (entry) => {
       if (!auth.currentUser) return;
       await saveDreamToCloud(auth.currentUser.uid, entry);
     };
-
-
+ 
     window.DreamSaverSync.onUpdateEntry = async (entry) => {
       if (!auth.currentUser) return;
       await saveDreamToCloud(auth.currentUser.uid, entry);
     };
-
-
+ 
     window.DreamSaverSync.onDeleteEntry = async (dreamId) => {
       if (!auth.currentUser) return;
       await deleteDreamFromCloud(auth.currentUser.uid, dreamId);
     };
   }
-
-
+ 
   let verifiedLocation = null;
   let searchTimer = null;
-
-
+ 
   const nowDate = new Date();
   const pad2 = n => String(n).padStart(2, "0");
   const todayStr = `${nowDate.getFullYear()}-${pad2(nowDate.getMonth() + 1)}-${pad2(nowDate.getDate())}`;
   dobInput.max = todayStr;
-
-
+ 
   function showError(msg) {
     authError.textContent = msg;
     authError.style.display = "block";
   }
-
-
+ 
   function clearError() {
     authError.textContent = "";
     authError.style.display = "none";
   }
-
-
+ 
   function setFieldError(el, msg) {
     if (msg) {
       el.textContent = msg;
@@ -1055,55 +1155,46 @@ render();
       el.style.display = "none";
     }
   }
-
-
+ 
   function setLocationState(loc, stateText, statusClass) {
     verifiedLocation = loc;
     coordsDisplay.className = "status-pill" + (statusClass ? " " + statusClass : "");
     coordsDisplay.textContent = stateText;
   }
-
-
+ 
   togglePasswordBtn.addEventListener("click", () => {
     const isHidden = passwordInput.type === "password";
     passwordInput.type = isHidden ? "text" : "password";
     togglePasswordBtn.textContent = isHidden ? "Ocultar" : "Mostrar";
     togglePasswordBtn.setAttribute("aria-pressed", String(isHidden));
   });
-
-
+ 
   function toggleSidebar(open) {
     sidebar.classList.toggle("open", open);
     overlay.classList.toggle("open", open);
     document.body.style.overflow = open ? "hidden" : "";
     if (!open) suggestionsBox.classList.remove("open");
   }
-
-
+ 
   btnProfile.addEventListener("click", () => toggleSidebar(true));
   closeProfile.addEventListener("click", () => toggleSidebar(false));
   overlay.addEventListener("click", () => toggleSidebar(false));
-
-
+ 
   async function searchOpenMeteoCities(queryText) {
     if (birthDataLocked) return [];
     const parts = queryText.split(",").map(s => s.trim()).filter(Boolean);
     const cityName = parts[0] || "";
     const countryFilter = parts.slice(1).join(" ").toLowerCase();
-
-
+ 
     if (cityName.length < 2) return [];
-
-
+ 
     const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(cityName)}&count=10&language=es&format=json`;
     const res = await fetch(url);
     if (!res.ok) throw new Error(`HTTP ${res.status} al consultar servicio de ciudades.`);
-
-
+ 
     const data = await res.json();
     let results = Array.isArray(data.results) ? data.results : [];
-
-
+ 
     if (countryFilter) {
       const filtered = results.filter(item => {
         const c = (item.country || "").toLowerCase();
@@ -1113,8 +1204,7 @@ render();
       });
       if (filtered.length > 0) results = filtered;
     }
-
-
+ 
     return results.map(item => {
       const region = item.admin1 && item.admin1 !== item.name ? `, ${item.admin1}` : "";
       const country = item.country ? `, ${item.country}` : "";
@@ -1127,37 +1217,32 @@ render();
       };
     });
   }
-
-
+ 
   function renderSuggestions(items) {
     if (birthDataLocked || !items.length) {
       suggestionsBox.innerHTML = "";
       suggestionsBox.classList.remove("open");
       return;
     }
-
-
+ 
     suggestionsBox.innerHTML = items.map((item, idx) => `
       <button type="button" class="city-item" data-idx="${idx}" role="option">
-        <strong>${item.fullLabel}</strong>
-        <small>Lat: ${item.lat.toFixed(4)}, Lon: ${item.lon.toFixed(4)} · ${item.timezone}</small>
+        <strong>${escapeHtml(item.fullLabel)}</strong>
+        <small>Lat: ${item.lat.toFixed(4)}, Lon: ${item.lon.toFixed(4)} · ${escapeHtml(item.timezone)}</small>
       </button>
     `).join("");
-
-
+ 
     suggestionsBox._items = items;
     suggestionsBox.classList.add("open");
   }
-
-
+ 
   suggestionsBox.addEventListener("click", (ev) => {
     if (birthDataLocked) return;
     const btn = ev.target.closest(".city-item");
     if (!btn || !suggestionsBox._items) return;
     const chosen = suggestionsBox._items[Number(btn.dataset.idx)];
     if (!chosen) return;
-
-
+ 
     cityInput.value = chosen.label;
     setFieldError(errCity, "");
     setLocationState(
@@ -1167,29 +1252,25 @@ render();
     );
     suggestionsBox.classList.remove("open");
   });
-
-
+ 
   document.addEventListener("click", (ev) => {
     if (!ev.target.closest(".fld")) {
       suggestionsBox.classList.remove("open");
     }
   });
-
-
+ 
   cityInput.addEventListener("input", () => {
     if (birthDataLocked) return;
     setFieldError(errCity, "");
     verifiedLocation = null;
     const val = cityInput.value.trim();
-
-
+ 
     if (val.length < 3) {
       suggestionsBox.classList.remove("open");
       setLocationState(null, "Escribe al menos 3 letras para buscar", "");
       return;
     }
-
-
+ 
     setLocationState(null, "Buscando coincidencias...", "");
     clearTimeout(searchTimer);
     searchTimer = setTimeout(async () => {
@@ -1208,20 +1289,17 @@ render();
       }
     }, 350);
   });
-
-
+ 
   async function validateProfileForm() {
     let isValid = true;
     setFieldError(errDob, "");
     setFieldError(errTob, "");
     setFieldError(errCity, "");
-
-
+ 
     const dob = dobInput.value.trim();
     const tob = tobInput.value.trim();
     const rawCity = cityInput.value.trim();
-
-
+ 
     if (!dob || !/^\d{4}-\d{2}-\d{2}$/.test(dob)) {
       setFieldError(errDob, "Selecciona una fecha de nacimiento válida.");
       isValid = false;
@@ -1237,14 +1315,12 @@ render();
         isValid = false;
       }
     }
-
-
+ 
     if (!tob || !/^\d{2}:\d{2}(:\d{2})?$/.test(tob)) {
       setFieldError(errTob, "Ingresa una hora válida (HH:MM).");
       isValid = false;
     }
-
-
+ 
     if (!rawCity) {
       setFieldError(errCity, "Ingresa tu ciudad y país (ej. Castro, Chile).");
       isValid = false;
@@ -1279,8 +1355,7 @@ render();
         }
       }
     }
-
-
+ 
     if (verifiedLocation) {
       const { lat, lon } = verifiedLocation;
       if (typeof lat !== "number" || typeof lon !== "number" || lat < -90 || lat > 90 || lon < -180 || lon > 180) {
@@ -1288,12 +1363,10 @@ render();
         isValid = false;
       }
     }
-
-
+ 
     return isValid ? { dob, tob, location: verifiedLocation } : null;
   }
-
-
+ 
   function extractAscendant(bodyData, planets) {
     const fromPlanets = planets.find(p => {
       const n = (p.name || p.planet || p.id || "").toLowerCase();
@@ -1309,8 +1382,7 @@ render();
     }
     return null;
   }
-
-
+ 
   async function fetchNatalChart(dob, tob, coords) {
     if (!dob || !tob || !coords) return null;
     astroResults.innerHTML = "Calculando carta astral...";
@@ -1320,8 +1392,7 @@ render();
       const timeParts = tob.split(":").map(Number);
       const hour = timeParts[0] || 0;
       const minute = timeParts[1] || 0;
-
-
+ 
       const payload = {
         year,
         month,
@@ -1334,18 +1405,21 @@ render();
         lon: coords.lon,
         timezone: coords.timezone || "UTC"
       };
-
-
-      const response = await fetch("https://api.freeastroapi.com/api/v1/natal/calculate", {
+ 
+      if (!auth.currentUser) {
+        astroResults.textContent = "Inicia sesión para calcular tu carta astral.";
+        return null;
+      }
+      const idToken = await auth.currentUser.getIdToken();
+      const response = await fetch(ASTRO_PROXY_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-api-key": APP_ASTRO_KEY
+          "Authorization": "Bearer " + idToken
         },
         body: JSON.stringify(payload)
       });
-
-
+ 
       const rawText = await response.text();
       let data = {};
       try {
@@ -1353,25 +1427,20 @@ render();
       } catch (_) {
         data = { message: rawText || `HTTP ${response.status}` };
       }
-
-
+ 
       if (!response.ok || data.status === "error") {
         const msg = data.message || data.error || `HTTP ${response.status}`;
         astroResults.textContent = "Error al calcular la carta: " + msg;
         return null;
       }
-
-
+ 
       const bodyData = data.data || data;
-      console.log("FreeAstroAPI natal response:", bodyData);
-
-
+ 
       const planets = Array.isArray(bodyData.planets) ? bodyData.planets : [];
       const sunRaw = planets.find(p => (p.name || p.planet || "").toLowerCase() === "sun")?.sign || bodyData.sun?.sign || null;
       const moonRaw = planets.find(p => (p.name || p.planet || "").toLowerCase() === "moon")?.sign || bodyData.moon?.sign || null;
       const ascRaw = extractAscendant(bodyData, planets);
-
-
+ 
       return renderAstrologyCard(sunRaw, moonRaw, ascRaw);
     } catch (err) {
       console.error(err);
@@ -1379,8 +1448,7 @@ render();
       return null;
     }
   }
-
-
+ 
   async function loadUserProfile(user) {
     applyBirthLockState(false);
     try {
@@ -1391,8 +1459,7 @@ render();
         dobInput.value = data.dob || "";
         tobInput.value = data.tob || "";
         cityInput.value = data.city || "";
-
-
+ 
         if (typeof data.lat === "number" && typeof data.lon === "number") {
           const savedLoc = {
             label: data.city || "",
@@ -1408,13 +1475,11 @@ render();
         } else {
           setLocationState(null, "Ubicación sin verificar", "");
         }
-
-
+ 
         if (data.dob && data.tob && data.city && typeof data.lat === "number" && typeof data.lon === "number") {
           applyBirthLockState(true);
         }
-
-
+ 
         if (data.sun || data.moon || data.asc) {
           renderAstrologyCard(data.sun, data.moon, data.asc);
         } else if (data.dob && data.tob && verifiedLocation) {
@@ -1425,8 +1490,7 @@ render();
       console.error("Error al cargar perfil", err);
     }
   }
-
-
+ 
   profileForm.addEventListener("submit", async (ev) => {
     ev.preventDefault();
     if (birthDataLocked) {
@@ -1435,27 +1499,22 @@ render();
     }
     const user = auth.currentUser;
     if (!user) return;
-
-
+ 
     btnSaveProfile.disabled = true;
     profileSaved.textContent = "Validando datos...";
-
-
+ 
     const validated = await validateProfileForm();
     if (!validated) {
       profileSaved.textContent = "Corrige los campos marcados antes de guardar.";
       btnSaveProfile.disabled = false;
       return;
     }
-
-
+ 
     const { dob, tob, location } = validated;
     profileSaved.textContent = "Calculando carta astral y guardando...";
-
-
+ 
     const astroData = await fetchNatalChart(dob, tob, location);
-
-
+ 
     try {
       const payload = {
         email: user.email,
@@ -1485,13 +1544,13 @@ render();
       if (!birthDataLocked) btnSaveProfile.disabled = false;
     }
   });
-
-
+ 
   onAuthStateChanged(auth, (user) => {
     if (user) {
       authCard.style.display = "none";
       appContent.style.display = "block";
       userDisplay.textContent = user.email;
+      if (typeof window.DreamSaverSetUser === "function") window.DreamSaverSetUser(user.uid);
       loadUserProfile(user);
       subscribeUserDreams(user);
     } else {
@@ -1504,51 +1563,67 @@ render();
       appContent.style.display = "none";
       userDisplay.textContent = "";
       window.DreamSaverProfile = null;
+      if (typeof window.DreamSaverClearLocal === "function") window.DreamSaverClearLocal();
       toggleSidebar(false);
     }
   });
-
-
+ 
   document.getElementById("btn-login").addEventListener("click", async () => {
     clearError();
     const email = document.getElementById("auth-email").value.trim();
     const password = passwordInput.value;
-
-
+ 
     if (!email || !password) {
       showError("Ingresa tu correo y contraseña.");
       return;
     }
-
-
+ 
     try {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (err) {
-      showError("Error al iniciar sesión: " + err.message);
+      console.error(err.code);
+      showError(authMsg(err));
     }
   });
-
-
+ 
   document.getElementById("btn-register").addEventListener("click", async () => {
     clearError();
     const email = document.getElementById("auth-email").value.trim();
     const password = passwordInput.value;
-
-
+ 
     if (!email || !password) {
       showError("Ingresa un correo y contraseña válida.");
       return;
     }
-
-
+    if (password.length < 8) {
+      showError("La contraseña debe tener al menos 8 caracteres.");
+      return;
+    }
+ 
     try {
       await createUserWithEmailAndPassword(auth, email, password);
     } catch (err) {
-      showError("Error al crear cuenta: " + err.message);
+      console.error(err.code);
+      showError(authMsg(err));
     }
   });
-
-
+ 
+  document.getElementById("btn-reset").addEventListener("click", async () => {
+    clearError();
+    const email = document.getElementById("auth-email").value.trim();
+    if (!email) {
+      showError("Escribe tu correo y vuelve a tocar el botón para enviarte el enlace.");
+      return;
+    }
+    try {
+      await sendPasswordResetEmail(auth, email);
+    } catch (err) {
+      console.error(err.code);
+    }
+    // Mismo mensaje exista o no la cuenta (no revela qué correos están registrados)
+    showError("Si el correo está registrado, te enviamos un enlace para restablecer la contraseña.");
+  });
+ 
   document.getElementById("btn-logout").addEventListener("click", async () => {
     try {
       await signOut(auth);
@@ -1557,6 +1632,5 @@ render();
     }
   });
 </script>
-
 </body>
 </html>
