@@ -46,6 +46,9 @@ button:disabled{opacity:.55;cursor:not-allowed}
 .entry p{margin:0 0 8px;font:400 17px/1.5 "Newsreader",Georgia,serif;white-space:pre-wrap}
 .tag{display:inline-block;font-size:12.5px;border:1px solid var(--line);border-radius:99px;padding:1px 9px;margin:0 6px 6px 0;color:var(--mute)}
 .tag.ok{color:var(--ok);border-color:var(--ok)}
+.tag.astro{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent);background:color-mix(in srgb,var(--accent) 8%,transparent)}
+.astral-insight{margin:10px 0 6px;padding:10px 12px;border-radius:10px;background:color-mix(in srgb,var(--accent) 7%,var(--bg));border-left:3px solid var(--accent);font-size:13.5px;color:var(--ink);line-height:1.45}
+.astral-insight strong{color:var(--accent);display:block;font-size:12px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
 .res{font-size:14px;margin:6px 0;color:var(--ok)}
 .empty{color:var(--mute);text-align:center;padding:24px 8px}
 #warn,.auth-err{background:var(--surface);border:1px solid var(--rec);border-radius:10px;padding:10px 12px;font-size:14px;margin-top:10px;color:var(--rec)}
@@ -210,6 +213,82 @@ function showWarn(){ if(!storageOk){ warn.style.display="block"; warn.textConten
 showWarn();
 
 
+// Perfil astral compartido en memoria para enriquecer cada sueño guardado
+window.DreamSaverProfile = window.DreamSaverProfile || null;
+
+
+var DREAM_SYMBOLS = [
+  { rx: /\b(agua|mar|r[ií]o|lluvia|oc[eé]ano|nadar|ola|lago|inundaci[oó]n)\b/i, theme: "Agua y memoria emocional", note: "Suele reflejar movimientos afectivos profundos, nostalgia o necesidad de contención." },
+  { rx: /\b(volar|caer|ca[ií]da|aire|cielo|nube|altura|abismo)\b/i, theme: "Movimiento y perspectiva", note: "Apunta a cambios de rumbo, búsqueda de libertad o sensación de pérdida de control." },
+  { rx: /\b(casa|hogar|habitaci[oó]n|puerta|ventana|escalera|techo|pasillo)\b/i, theme: "Espacios interiores", note: "Representa tu estructura interna y aspectos de tu historia personal que estás revisando." },
+  { rx: /\b(perseguir|correr|huir|escapar|sombra|monstruo|miedo)\b/i, theme: "Tensión o evitación", note: "Suele aparecer cuando postergas una decisión o evitas confrontar una preocupación." },
+  { rx: /\b(hablar|voz|carta|mensaje|tel[eé]fono|gritar|silencio|escribir)\b/i, theme: "Expresión y vínculo", note: "Señala algo que busca ser comunicado o aclarado en tus relaciones cercanas." },
+  { rx: /\b(fuego|sol|luz|llama|incendio|calor|quemar)\b/i, theme: "Energía vital y transformación", note: "Habla de impulso creativo, deseo de renovación o emociones intensas." },
+  { rx: /\b(perro|gato|serpiente|ave|p[aá]jaro|caballo|lobo|animal)\b/i, theme: "Instinto y naturaleza", note: "Conecta con respuestas intuitivas y señales espontáneas de tu inconsciente." }
+];
+
+
+var SIGN_DREAM_TONES = {
+  "Aries": "impulso directo y resolución rápida",
+  "Tauro": "búsqueda de estabilidad, cuerpo y seguridad",
+  "Géminis": "asociaciones rápidas, diálogos y curiosidad",
+  "Cáncer": "memoria afectiva, hogar y protección emocional",
+  "Leo": "expresión personal, autenticidad y reconocimiento",
+  "Virgo": "orden interno, detalle y discernimiento práctico",
+  "Libra": "equilibrio relacional, empatía y armonía",
+  "Escorpio": "transformación profunda, intensidad y verdad oculta",
+  "Sagitario": "búsqueda de sentido, expansión y horizonte",
+  "Capricornio": "responsabilidad, estructura y metas a largo plazo",
+  "Acuario": "visión original, desapego y cambio de paradigma",
+  "Piscis": "permeabilidad simbólica, intuición y ensueño"
+};
+
+
+function interpretDreamWithChart(text, chart) {
+  var found = [];
+  for (var i = 0; i < DREAM_SYMBOLS.length; i++) {
+    if (DREAM_SYMBOLS[i].rx.test(text)) found.push(DREAM_SYMBOLS[i]);
+  }
+  var primary = found[0] || {
+    theme: "Simbolismo libre",
+    note: "Observa qué emoción predominó al despertar para contrastarla con los hechos de los próximos días."
+  };
+
+
+  if (!chart || (!chart.sun && !chart.moon && !chart.asc)) {
+    return {
+      theme: primary.theme,
+      summary: primary.note + " (Configura tu Perfil Astral para cruzar este símbolo con tu Sol, Luna y Ascendente)."
+    };
+  }
+
+
+  var parts = [primary.note];
+  if (chart.moon && chart.moon !== "N/D") {
+    var moonTone = SIGN_DREAM_TONES[chart.moon] || "sensibilidad receptiva";
+    parts.push("Tu Luna en " + chart.moon + " filtra esta escena desde " + moonTone + ".");
+  }
+  if (chart.sun && chart.sun !== "N/D") {
+    var sunTone = SIGN_DREAM_TONES[chart.sun] || "identidad consciente";
+    parts.push("Tu Sol en " + chart.sun + " invita a integrarlo con " + sunTone + ".");
+  }
+  if (chart.asc && chart.asc !== "N/D") {
+    parts.push("Ascendente en " + chart.asc + " como lente de acción al despertar.");
+  }
+
+
+  return {
+    theme: primary.theme,
+    summary: parts.join(" "),
+    chartSnapshot: {
+      sun: chart.sun || "N/D",
+      moon: chart.moon || "N/D",
+      asc: chart.asc || "N/D"
+    }
+  };
+}
+
+
 var SR=window.SpeechRecognition||window.webkitSpeechRecognition, r=null, listening=false, base="", startedAt=null;
 function touch(){ if(!startedAt) startedAt=Date.now(); }
 txt.addEventListener("input",touch);
@@ -237,9 +316,20 @@ $("save").addEventListener("click",function(){
   if(listening) stopRec();
   var t=txt.value.trim();
   if(!t){ $("saved").textContent="Escribe o dicta algo antes de guardar."; return; }
-  entries.unshift({id:Date.now(),at:startedAt||Date.now(),savedAt:Date.now(),text:t,par:$("par").checked,luc:$("luc").checked,shared:$("sh").value.trim(),out:null});
+  var astroReading = interpretDreamWithChart(t, window.DreamSaverProfile);
+  entries.unshift({
+    id:Date.now(),
+    at:startedAt||Date.now(),
+    savedAt:Date.now(),
+    text:t,
+    par:$("par").checked,
+    luc:$("luc").checked,
+    shared:$("sh").value.trim(),
+    astro:astroReading,
+    out:null
+  });
   persist(); txt.value=""; $("par").checked=false; $("luc").checked=false; $("sh").value=""; startedAt=null;
-  $("saved").textContent="Sueño guardado con fecha y hora."; render();
+  $("saved").textContent="Sueño guardado con fecha, hora y lectura astral."; render();
 });
 $("clr").addEventListener("click",function(){ if(listening) stopRec(); txt.value=""; startedAt=null; $("saved").textContent=""; });
 
@@ -256,8 +346,12 @@ function render(){
     if(e.par) html+='<span class="tag">parálisis del sueño</span>';
     if(e.luc) html+='<span class="tag">sueño lúcido</span>';
     if(e.shared) html+='<span class="tag">contado a '+esc(e.shared)+'</span>';
+    if(e.astro&&e.astro.theme) html+='<span class="tag astro">✦ '+esc(e.astro.theme)+'</span>';
     if(e.out) html+='<span class="tag '+(e.out.hit?'ok':'')+'">'+(e.out.hit?'coincidió':'sin coincidencia')+'</span>';
     html+='</div>';
+    if(e.astro&&e.astro.summary){
+      html+='<div class="astral-insight"><strong>Lectura simbólica · '+esc(e.astro.theme)+'</strong>'+esc(e.astro.summary)+'</div>';
+    }
     if(e.out&&e.out.note) html+='<div class="res">'+esc(e.out.date)+': '+esc(e.out.note)+'</div>';
     if(openId===e.id){
       html+='<div class="fld">¿Qué pasó? (qué ocurrió y cuándo)<input type="text" id="note-'+e.id+'" placeholder="Describe el hecho, o escribe: no ocurrió nada parecido"></div><div class="row"><button class="b p" data-a="hit" data-id="'+e.id+'">Coincidió</button><button class="b" data-a="miss" data-id="'+e.id+'">Sin coincidencia</button><button class="b" data-a="cancel" data-id="'+e.id+'">Cancelar</button></div>';
@@ -281,7 +375,7 @@ $("list").addEventListener("click",function(ev){
 
 
 $("copy").addEventListener("click",function(){
-  var out=entries.map(function(e){ return fmt(e.at)+(e.par?" [parálisis del sueño]":"")+(e.luc?" [sueño lúcido]":"")+(e.shared?" [contado a "+e.shared+"]":"")+"\n"+e.text+(e.out?"\nResultado ("+e.out.date+"): "+(e.out.hit?"coincidió":"sin coincidencia")+(e.out.note?" - "+e.out.note:""):""); }).join("\n\n---\n\n");
+  var out=entries.map(function(e){ return fmt(e.at)+(e.par?" [parálisis del sueño]":"")+(e.luc?" [sueño lúcido]":"")+(e.shared?" [contado a "+e.shared+"]":"")+"\n"+e.text+(e.astro&&e.astro.summary?"\nLectura astral ("+e.astro.theme+"): "+e.astro.summary:"")+(e.out?"\nResultado ("+e.out.date+"): "+(e.out.hit?"coincidió":"sin coincidencia")+(e.out.note?" - "+e.out.note:""):""); }).join("\n\n---\n\n");
   function done(ok){ $("copy").textContent=ok?"Copiado":"No se pudo copiar"; setTimeout(function(){ $("copy").textContent="Copiar todo como texto"; },2000); }
   try{ navigator.clipboard.writeText(out).then(function(){done(true)},function(){fallback()}); }catch(e){ fallback(); }
   function fallback(){ var t=document.createElement("textarea"); t.value=out; document.body.appendChild(t); t.select(); var ok=false; try{ ok=document.execCommand("copy"); }catch(e){} document.body.removeChild(t); done(ok); }
@@ -494,6 +588,9 @@ render();
     const sun = normalizeSign(sunRaw);
     const moon = normalizeSign(moonRaw);
     const asc = normalizeSign(ascRaw);
+
+
+    window.DreamSaverProfile = { sun, moon, asc };
 
 
     astroResults.innerHTML = `
@@ -966,6 +1063,7 @@ render();
       authCard.style.display = "block";
       appContent.style.display = "none";
       userDisplay.textContent = "";
+      window.DreamSaverProfile = null;
       toggleSidebar(false);
     }
   });
