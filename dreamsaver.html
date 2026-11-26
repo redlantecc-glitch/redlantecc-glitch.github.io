@@ -49,13 +49,14 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
 .header-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 .user-info{display:flex;align-items:center;gap:10px}
 /* Sidebar styles */
-.sidebar{position:fixed;top:0;right:-350px;width:350px;height:100%;background:var(--surface);border-left:1px solid var(--line);box-shadow:-5px 0 15px rgba(0,0,0,0.1);transition:right 0.3s ease;z-index:1000;padding:20px;display:flex;flex-direction:column}
+.sidebar{position:fixed;top:0;right:-350px;width:350px;max-width:92vw;height:100%;background:var(--surface);border-left:1px solid var(--line);box-shadow:-5px 0 15px rgba(0,0,0,0.1);transition:right 0.3s ease;z-index:1000;padding:20px;display:flex;flex-direction:column}
 .sidebar.open{right:0}
 .sidebar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
 .sidebar-content{flex:1;overflow-y:auto}
 .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;z-index:999}
 .overlay.open{display:block}
 .astrology-box{margin-top:20px;padding:15px;background:var(--bg);border-radius:10px;border:1px solid var(--line)}
+.coords-badge{font-size:12.5px;color:var(--mute);margin-top:6px}
 </style>
 </head>
 <body>
@@ -137,7 +138,7 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
     <button class="b" id="close-profile" type="button">Cerrar</button>
   </div>
   <div class="sidebar-content">
-    <p class="note">Completa tus datos de nacimiento para conectar tu información con los movimientos estelares.</p>
+    <p class="note">Completa tus datos de nacimiento. Usa el formato <strong>Ciudad, País</strong> (ej. <em>Castro, Chile</em>) o coordenadas <strong>lat, lon</strong> (ej. <em>-42.4721, -73.7639</em>).</p>
     <div class="fld">
       Fecha de nacimiento
       <input type="date" id="profile-dob">
@@ -147,8 +148,9 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
       <input type="time" id="profile-tob">
     </div>
     <div class="fld">
-      Lugar de nacimiento (Ciudad, País)
-      <input type="text" id="profile-city" placeholder="Ej. Castro, Chile">
+      Lugar de nacimiento (Ciudad, País o Lat, Lon)
+      <input type="text" id="profile-city" placeholder="Ej. Castro, Chile" required pattern="^\s*([a-zA-ZÀ-ÿ\s.-]{2,},\s*[a-zA-ZÀ-ÿ\s.-]{2,}|-?\d{1,2}(\.\d+)?\s*,\s*-?\d{1,3}(\.\d+)?)\s*$" title="Ingresa 'Ciudad, País' o coordenadas 'latitud, longitud'">
+      <div class="coords-badge" id="coords-display">Coordenadas: pendientes</div>
     </div>
     <div class="row">
       <button class="b p" id="save-profile" type="button">Guardar Perfil</button>
@@ -276,7 +278,8 @@ render();
     measurementId: "G-MDVV8HV4EQ"
   };
 
-  const APP_ASTRO_KEY = "f149a69924d2e22280bc44183e5182de9b220a100a5acc5c687cbaf26f91c847";
+  // Reemplaza temporalmente con tu clave de FreeAstroAPI
+  const APP_ASTRO_KEY = "TU_CLAVE_FREEASTROAPI";
 
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
@@ -297,6 +300,8 @@ render();
   const closeProfile = document.getElementById("close-profile");
   const btnSaveProfile = document.getElementById("save-profile");
   const profileSaved = document.getElementById("profile-saved");
+  const cityInput = document.getElementById("profile-city");
+  const coordsDisplay = document.getElementById("coords-display");
   const astroResults = document.getElementById("astrology-results");
 
   function showError(msg) {
@@ -325,38 +330,135 @@ render();
   closeProfile.addEventListener("click", () => toggleSidebar(false));
   overlay.addEventListener("click", () => toggleSidebar(false));
 
-  async function fetchNatalChart(dob, tob, city) {
-    if (!dob || !tob || !city) return;
+  // Valida y resuelve ubicación: acepta "lat, lon" o "Ciudad, País" usando Open-Meteo (sin registro)
+  async function resolveLocationToCoords(rawLocation) {
+    const cleaned = (rawLocation || "").trim();
+    if (!cleaned) {
+      throw new Error("Ingresa un lugar de nacimiento.");
+    }
+
+    // 1. Verificar si el usuario escribió coordenadas directas "lat, lon"
+    const coordMatch = cleaned.match(/^(-?\d{1,2}(?:\.\d+)?)\s*,\s*(-?\d{1,3}(?:\.\d+)?)$/);
+    if (coordMatch) {
+      const lat = Number(coordMatch[1]);
+      const lon = Number(coordMatch[2]);
+      if (Number.isNaN(lat) || Number.isNaN(lon) || lat < -90 || lat > 90 || lon < -180 || lon > 180) {
+        throw new Error("Coordenadas fuera de rango (latitud -90 a 90, longitud -180 a 180).");
+      }
+      return {
+        lat,
+        lon,
+        label: `${lat.toFixed(4)}, ${lon.toFixed(4)}`,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC"
+      };
+    }
+
+    // 2. Validar formato "Ciudad, País"
+    const parts = cleaned.split(",").map(s => s.trim()).filter(Boolean);
+    if (parts.length < 2 || parts[0].length < 2 || parts[1].length < 2) {
+      throw new Error("Usa el formato 'Ciudad, País' (ej. Castro, Chile) o 'latitud, longitud'.");
+    }
+
+    const cityName = parts[0];
+    const countryName = parts.slice(1).join(" ").toLowerCase();
+
+    // 3. Consultar Open-Meteo Geocoding API (gratuito y sin API key)
+    const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(cityName)}&count=10&language=es&format=json`;
+    const res = await fetch(url);
+    if (!res.ok) {
+      throw new Error("No se pudo consultar el servicio de geolocalización.");
+    }
+    const geoData = await res.json();
+    const results = Array.isArray(geoData.results) ? geoData.results : [];
+
+    if (!results.length) {
+      throw new Error(`No se encontraron coordenadas para "${cleaned}".`);
+    }
+
+    // Filtrar coincidencia aproximada por país si es posible
+    const matched = results.find(item => {
+      const c = (item.country || "").toLowerCase();
+      const code = (item.country_code || "").toLowerCase();
+      return c.includes(countryName) || countryName.includes(c) || code === countryName;
+    }) || results[0];
+
+    return {
+      lat: Number(matched.latitude),
+      lon: Number(matched.longitude),
+      label: `${matched.name}${matched.country ? ", " + matched.country : ""}`,
+      timezone: matched.timezone || "UTC"
+    };
+  }
+
+  function updateCoordsBadge(coords) {
+    if (coords && typeof coords.lat === "number" && typeof coords.lon === "number") {
+      coordsDisplay.textContent = `Coordenadas: ${coords.lat.toFixed(4)}, ${coords.lon.toFixed(4)} (${coords.timezone || "UTC"})`;
+    } else {
+      coordsDisplay.textContent = "Coordenadas: pendientes";
+    }
+  }
+
+  cityInput.addEventListener("input", () => {
+    cityInput.setCustomValidity("");
+  });
+
+  async function fetchNatalChart(dob, tob, coords) {
+    if (!dob || !tob || !coords) return null;
+    if (!APP_ASTRO_KEY || APP_ASTRO_KEY === "f149a69924d2e22280bc44183e5182de9b220a100a5acc5c687cbaf26f91c847") {
+      astroResults.textContent = "Configura tu clave en APP_ASTRO_KEY para consultar FreeAstroAPI.";
+      return null;
+    }
+
     astroResults.innerHTML = "Calculando carta astral...";
     try {
-      // Nota: Para precisión total se requieren lat/long. Ejemplo usando endpoint general de FreeAstroAPI
-      const [year, month, day] = dob.split("-");
-      const [hour, minute] = tob.split(":");
-      
-      const response = await fetch(`https://api.freeastroapi.com/v1/calc/western-chart?year=${year}&month=${month}&day=${day}&hour=${hour}&minute=${minute}&city=${encodeURIComponent(city)}`, {
-        headers: { 'x-api-key': APP_ASTRO_KEY }
+      const [year, month, day] = dob.split("-").map(Number);
+      const [hour, minute] = tob.split(":").map(Number);
+
+      const payload = {
+        year,
+        month,
+        day,
+        hour,
+        minute,
+        latitude: coords.lat,
+        longitude: coords.lon,
+        lat: coords.lat,
+        lon: coords.lon,
+        timezone: coords.timezone || "UTC"
+      };
+
+      const response = await fetch("https://api.freeastroapi.com/api/v1/natal/calculate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": APP_ASTRO_KEY
+        },
+        body: JSON.stringify(payload)
       });
+
       const data = await response.json();
-      
-      if (data.status === "success") {
-        const sun = data.data.planets.find(p => p.name === "Sun").sign;
-        const moon = data.data.planets.find(p => p.name === "Moon").sign;
-        const asc = data.data.ascendant.sign;
-        
-        astroResults.innerHTML = `
-          <p><strong>Sol:</strong> ${sun}</p>
-          <p><strong>Luna:</strong> ${moon}</p>
-          <p><strong>Ascendente:</strong> ${asc}</p>
-        `;
-        return { sun, moon, asc };
-      } else {
-        astroResults.textContent = "Error al calcular la carta: " + (data.message || "Intenta de nuevo.");
+      if (!response.ok || data.status === "error") {
+        astroResults.textContent = "Error al calcular la carta: " + (data.message || `HTTP ${response.status}`);
+        return null;
       }
+
+      const bodyData = data.data || data;
+      const planets = Array.isArray(bodyData.planets) ? bodyData.planets : [];
+      const sun = planets.find(p => (p.name || "").toLowerCase() === "sun")?.sign || bodyData.sun?.sign || "N/D";
+      const moon = planets.find(p => (p.name || "").toLowerCase() === "moon")?.sign || bodyData.moon?.sign || "N/D";
+      const asc = bodyData.ascendant?.sign || planets.find(p => (p.name || "").toLowerCase() === "ascendant")?.sign || "N/D";
+
+      astroResults.innerHTML = `
+        <p><strong>Sol:</strong> ${sun}</p>
+        <p><strong>Luna:</strong> ${moon}</p>
+        <p><strong>Ascendente:</strong> ${asc}</p>
+      `;
+      return { sun, moon, asc };
     } catch (err) {
       console.error(err);
       astroResults.textContent = "No se pudo conectar con el servicio de astrología.";
+      return null;
     }
-    return null;
   }
 
   async function loadUserProfile(user) {
@@ -367,16 +469,21 @@ render();
         const data = docSnap.data();
         document.getElementById("profile-dob").value = data.dob || "";
         document.getElementById("profile-tob").value = data.tob || "";
-        document.getElementById("profile-city").value = data.city || "";
-        
+        cityInput.value = data.city || "";
+
+        const coords = (typeof data.lat === "number" && typeof data.lon === "number")
+          ? { lat: data.lat, lon: data.lon, timezone: data.timezone || "UTC" }
+          : null;
+        updateCoordsBadge(coords);
+
         if (data.sun) {
           astroResults.innerHTML = `
             <p><strong>Sol:</strong> ${data.sun}</p>
             <p><strong>Luna:</strong> ${data.moon}</p>
             <p><strong>Ascendente:</strong> ${data.asc}</p>
           `;
-        } else if (data.dob && data.tob && data.city) {
-          fetchNatalChart(data.dob, data.tob, data.city);
+        } else if (data.dob && data.tob && coords) {
+          fetchNatalChart(data.dob, data.tob, coords);
         }
       }
     } catch (err) {
@@ -388,19 +495,44 @@ render();
     const user = auth.currentUser;
     if (!user) return;
 
-    profileSaved.textContent = "Guardando y calculando...";
     const dob = document.getElementById("profile-dob").value;
     const tob = document.getElementById("profile-tob").value;
-    const city = document.getElementById("profile-city").value;
+    const rawCity = cityInput.value.trim();
 
-    const astroData = await fetchNatalChart(dob, tob, city);
+    if (!dob || !tob) {
+      profileSaved.textContent = "Completa fecha y hora de nacimiento.";
+      return;
+    }
+
+    if (!cityInput.checkValidity()) {
+      cityInput.reportValidity();
+      profileSaved.textContent = "Revisa el formato del lugar de nacimiento.";
+      return;
+    }
+
+    profileSaved.textContent = "Validando coordenadas y calculando carta...";
+    let coords;
+    try {
+      coords = await resolveLocationToCoords(rawCity);
+      updateCoordsBadge(coords);
+    } catch (err) {
+      cityInput.setCustomValidity(err.message);
+      cityInput.reportValidity();
+      profileSaved.textContent = err.message;
+      return;
+    }
+
+    const astroData = await fetchNatalChart(dob, tob, coords);
 
     try {
       const payload = {
         email: user.email,
-        dob: dob,
-        tob: tob,
-        city: city,
+        dob,
+        tob,
+        city: rawCity,
+        lat: coords.lat,
+        lon: coords.lon,
+        timezone: coords.timezone,
         updatedAt: new Date().toISOString()
       };
       if (astroData) {
@@ -409,7 +541,9 @@ render();
         payload.asc = astroData.asc;
       }
       await setDoc(doc(db, "users", user.uid), payload, { merge: true });
-      profileSaved.textContent = "Perfil y carta astral guardados con éxito.";
+      profileSaved.textContent = astroData
+        ? "Perfil, coordenadas y carta astral guardados con éxito."
+        : "Perfil y coordenadas guardados.";
     } catch (err) {
       profileSaved.textContent = "Error al guardar el perfil.";
       console.error(err);
