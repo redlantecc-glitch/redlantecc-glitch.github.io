@@ -55,6 +55,7 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
 .sidebar-content{flex:1;overflow-y:auto}
 .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;z-index:999}
 .overlay.open{display:block}
+.astrology-box{margin-top:20px;padding:15px;background:var(--bg);border-radius:10px;border:1px solid var(--line)}
 </style>
 </head>
 <body>
@@ -153,6 +154,12 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
       <button class="b p" id="save-profile" type="button">Guardar Perfil</button>
     </div>
     <p class="note" id="profile-saved" aria-live="polite"></p>
+
+    <!-- Contenedor Carta Natal -->
+    <div class="astrology-box" id="astrology-container">
+      <h3>Tu Carta Astral</h3>
+      <div id="astrology-results">Configura tus datos para calcular tu carta.</div>
+    </div>
   </div>
 </div>
 
@@ -269,6 +276,8 @@ render();
     measurementId: "G-MDVV8HV4EQ"
   };
 
+  const APP_ASTRO_KEY = "f149a69924d2e22280bc44183e5182de9b220a100a5acc5c687cbaf26f91c847";
+
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
   const auth = getAuth(app);
@@ -288,6 +297,7 @@ render();
   const closeProfile = document.getElementById("close-profile");
   const btnSaveProfile = document.getElementById("save-profile");
   const profileSaved = document.getElementById("profile-saved");
+  const astroResults = document.getElementById("astrology-results");
 
   function showError(msg) {
     authError.textContent = msg;
@@ -299,7 +309,6 @@ render();
     authError.style.display = "none";
   }
 
-  // Mostrar / ocultar contraseña
   togglePasswordBtn.addEventListener("click", () => {
     const isHidden = passwordInput.type === "password";
     passwordInput.type = isHidden ? "text" : "password";
@@ -307,7 +316,6 @@ render();
     togglePasswordBtn.setAttribute("aria-pressed", String(isHidden));
   });
 
-  // Lógica Sidebar
   function toggleSidebar(open) {
     sidebar.classList.toggle("open", open);
     overlay.classList.toggle("open", open);
@@ -317,7 +325,40 @@ render();
   closeProfile.addEventListener("click", () => toggleSidebar(false));
   overlay.addEventListener("click", () => toggleSidebar(false));
 
-  // Cargar perfil desde Firestore
+  async function fetchNatalChart(dob, tob, city) {
+    if (!dob || !tob || !city) return;
+    astroResults.innerHTML = "Calculando carta astral...";
+    try {
+      // Nota: Para precisión total se requieren lat/long. Ejemplo usando endpoint general de FreeAstroAPI
+      const [year, month, day] = dob.split("-");
+      const [hour, minute] = tob.split(":");
+      
+      const response = await fetch(`https://api.freeastroapi.com/v1/calc/western-chart?year=${year}&month=${month}&day=${day}&hour=${hour}&minute=${minute}&city=${encodeURIComponent(city)}`, {
+        headers: { 'x-api-key': APP_ASTRO_KEY }
+      });
+      const data = await response.json();
+      
+      if (data.status === "success") {
+        const sun = data.data.planets.find(p => p.name === "Sun").sign;
+        const moon = data.data.planets.find(p => p.name === "Moon").sign;
+        const asc = data.data.ascendant.sign;
+        
+        astroResults.innerHTML = `
+          <p><strong>Sol:</strong> ${sun}</p>
+          <p><strong>Luna:</strong> ${moon}</p>
+          <p><strong>Ascendente:</strong> ${asc}</p>
+        `;
+        return { sun, moon, asc };
+      } else {
+        astroResults.textContent = "Error al calcular la carta: " + (data.message || "Intenta de nuevo.");
+      }
+    } catch (err) {
+      console.error(err);
+      astroResults.textContent = "No se pudo conectar con el servicio de astrología.";
+    }
+    return null;
+  }
+
   async function loadUserProfile(user) {
     try {
       const docRef = doc(db, "users", user.uid);
@@ -327,38 +368,54 @@ render();
         document.getElementById("profile-dob").value = data.dob || "";
         document.getElementById("profile-tob").value = data.tob || "";
         document.getElementById("profile-city").value = data.city || "";
+        
+        if (data.sun) {
+          astroResults.innerHTML = `
+            <p><strong>Sol:</strong> ${data.sun}</p>
+            <p><strong>Luna:</strong> ${data.moon}</p>
+            <p><strong>Ascendente:</strong> ${data.asc}</p>
+          `;
+        } else if (data.dob && data.tob && data.city) {
+          fetchNatalChart(data.dob, data.tob, data.city);
+        }
       }
     } catch (err) {
       console.error("Error al cargar perfil", err);
     }
   }
 
-  // Guardar perfil en Firestore
   btnSaveProfile.addEventListener("click", async () => {
     const user = auth.currentUser;
     if (!user) return;
 
-    profileSaved.textContent = "Guardando...";
+    profileSaved.textContent = "Guardando y calculando...";
     const dob = document.getElementById("profile-dob").value;
     const tob = document.getElementById("profile-tob").value;
     const city = document.getElementById("profile-city").value;
 
+    const astroData = await fetchNatalChart(dob, tob, city);
+
     try {
-      await setDoc(doc(db, "users", user.uid), {
+      const payload = {
         email: user.email,
         dob: dob,
         tob: tob,
         city: city,
         updatedAt: new Date().toISOString()
-      }, { merge: true });
-      profileSaved.textContent = "Datos de nacimiento guardados con éxito.";
+      };
+      if (astroData) {
+        payload.sun = astroData.sun;
+        payload.moon = astroData.moon;
+        payload.asc = astroData.asc;
+      }
+      await setDoc(doc(db, "users", user.uid), payload, { merge: true });
+      profileSaved.textContent = "Perfil y carta astral guardados con éxito.";
     } catch (err) {
       profileSaved.textContent = "Error al guardar el perfil.";
       console.error(err);
     }
   });
 
-  // Escuchar cambios de estado en la autenticación
   onAuthStateChanged(auth, (user) => {
     if (user) {
       authCard.style.display = "none";
@@ -373,7 +430,6 @@ render();
     }
   });
 
-  // Iniciar sesión
   document.getElementById("btn-login").addEventListener("click", async () => {
     clearError();
     const email = document.getElementById("auth-email").value.trim();
@@ -391,7 +447,6 @@ render();
     }
   });
 
-  // Crear cuenta
   document.getElementById("btn-register").addEventListener("click", async () => {
     clearError();
     const email = document.getElementById("auth-email").value.trim();
@@ -409,7 +464,6 @@ render();
     }
   });
 
-  // Cerrar sesión
   document.getElementById("btn-logout").addEventListener("click", async () => {
     try {
       await signOut(auth);
