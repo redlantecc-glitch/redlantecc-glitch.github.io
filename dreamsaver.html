@@ -27,7 +27,7 @@ h2{font:600 clamp(20px,5vw,22px)/1.25 "Newsreader",Georgia,serif;margin:0 0 6px}
 @keyframes pulse{50%{box-shadow:0 0 0 10px color-mix(in srgb,var(--rec) 25%,transparent)}}
 @media (prefers-reduced-motion:reduce){#rec.on{animation:none}}
 #status{color:var(--mute);font-size:14px;flex:1;min-width:0}
-textarea,input[type=text],input[type=email],input[type=password],input[type=date],input[type=time]{width:100%;max-width:100%;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;font-size:16px}
+textarea,input[type=text],input[type=email],input[type=password],input[type=date],input[type=time],input[type=search]{width:100%;max-width:100%;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;font-size:16px}
 textarea{min-height:112px;resize:vertical;font-family:"Newsreader",Georgia,serif;font-size:16.5px;line-height:1.45}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 label.chk{display:flex;gap:10px;align-items:center;margin:10px 0 6px;font-size:14.5px;min-height:34px}
@@ -56,6 +56,7 @@ button:disabled{opacity:.55;cursor:not-allowed}
 #warn{display:none;margin-bottom:14px}
 
 /* Barra superior centrada y compacta */ .header-bar{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;margin-bottom:8px} .header-brand{width:100%;display:flex;flex-direction:column;align-items:center} .user-info{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;width:100%;padding-top:6px;border-top:1px solid var(--line)} #user-display{margin:0;width:100%;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;text-align:center} .user-actions{display:flex;gap:8px;justify-content:center;width:100%;max-width:340px} .user-actions button.b{flex:1;padding:7px 12px;min-height:36px;font-size:13.5px}
+/* Explorador: Calendario y Búsqueda */ .explorer-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px} .explorer-head h3{margin:0;font:600 16px/1.2 "Newsreader",Georgia,serif;color:var(--ink)} .cal-toggle{padding:5px 10px;font-size:12.5px;min-height:32px} .search-bar{display:flex;gap:8px;align-items:center;margin-bottom:10px} .search-bar input{flex:1;min-width:0;padding:9px 12px} .filter-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px} .chip{border:1px solid var(--line);background:var(--bg);color:var(--mute);border-radius:999px;padding:5px 11px;font-size:12.5px;cursor:pointer;touch-action:manipulation;transition:all .15s} .chip.active{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600} .cal-box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px;margin-top:6px} .cal-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px} .cal-nav button{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;width:34px;height:32px;cursor:pointer;font-weight:600} .cal-title{font-weight:600;font-size:14px;text-transform:capitalize} .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center} .cal-dow{font-size:11px;color:var(--mute);font-weight:600;padding-bottom:4px} .cal-day{position:relative;aspect-ratio:1/1;min-height:36px;border:1px solid transparent;background:transparent;color:var(--ink);border-radius:9px;font:inherit;font-size:13px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0;touch-action:manipulation} .cal-day:hover{background:color-mix(in srgb,var(--accent) 10%,transparent)} .cal-day.empty{pointer-events:none} .cal-day.today{border-color:color-mix(in srgb,var(--accent) 45%,transparent)} .cal-day.has-dream{font-weight:700;background:color-mix(in srgb,var(--accent) 13%,var(--surface))} .cal-day.has-dream::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);margin-top:2px} .cal-day.selected{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)} .cal-day.selected::after{background:var(--accent-ink)} .active-filter-bar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:10px;padding:8px 10px;border-radius:9px;background:color-mix(in srgb,var(--accent) 10%,var(--bg));font-size:12.5px;color:var(--ink)} .active-filter-bar button{border:0;background:transparent;color:var(--accent);font-weight:600;cursor:pointer;font-size:12.5px;padding:2px 6px}
 /* Sidebar responsivo */ .sidebar{position:fixed;top:0;right:0;width:400px;max-width:100vw;height:100%;height:100dvh;background:var(--surface);border-left:1px solid var(--line);box-shadow:-5px 0 20px rgba(0,0,0,0.22);transform:translateX(100%);transition:transform 0.3s ease;z-index:1000;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(24px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column} .sidebar.open{transform:translateX(0)} .sidebar-header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px} .sidebar-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:28px} .overlay{position:fixed;inset:0;background:rgba(12,6,26,0.58);display:none;z-index:999} .overlay.open{display:block} .astrology-box{margin-top:20px;padding:14px;background:var(--bg);border-radius:12px;border:1px solid var(--line)} .astro-summary p{margin:6px 0;font-size:14px} .astro-reading{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:13px;color:var(--mute);line-height:1.45} .chart-wrap{margin-top:12px;display:flex;flex-direction:column;align-items:center} .chart-wrap svg{width:100%;max-width:270px;height:auto;display:block} .chart-legend{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;font-size:12px;color:var(--mute);margin-top:6px}
 /* Autocomplete & Validation UI */ .city-suggestions{position:absolute;left:0;right:0;top:100%;margin-top:4px;background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.18);max-height:210px;overflow-y:auto;z-index:1100;display:none} .city-suggestions.open{display:block} .city-item{width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--line);padding:10px 12px;color:var(--ink);font:inherit;font-size:14px;cursor:pointer;display:block} .city-item:last-child{border-bottom:0} .city-item:hover,.city-item:focus{background:var(--bg)} .city-item small{display:block;color:var(--mute);font-size:12px} .status-pill{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;margin-top:6px;padding:5px 9px;border-radius:8px;background:var(--bg);border:1px solid var(--line);color:var(--mute);max-width:100%;word-break:break-word} .status-pill.valid{color:var(--ok);border-color:var(--ok)} .status-pill.invalid{color:var(--rec);border-color:var(--rec)} .field-err{font-size:12.5px;color:var(--rec);margin-top:4px;display:none}
 /* Ajustes específicos para pantallas verticales pequeñas (< 520px) */ @media (max-width: 520px){ main{padding:10px 12px 56px} .card{padding:12px;border-radius:14px;margin-bottom:12px} .row button.b{flex:1 1 auto;text-align:center} .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center} .stats span{background:var(--bg);padding:8px 4px;border-radius:10px;border:1px solid var(--line);font-size:12px} .stats b{display:block;font-size:19px;line-height:1.15;margin-bottom:2px} .sidebar{width:100vw;border-left:0} } </style>
@@ -88,7 +89,7 @@ button:disabled{opacity:.55;cursor:not-allowed}
     </p>
   </section>
 
-  <!-- Contenido Aplicación (Oculto por defecto hasta autenticar) -->
+  <!-- Contenido Aplicación -->
 
   <div id="app-content" style="display:none;">
     <div class="header-bar">
@@ -130,6 +131,36 @@ button:disabled{opacity:.55;cursor:not-allowed}
     <span><b id="k">0</b> sin coincidir</span>
   </div>
   <p class="note">Marca como “sin coincidencia” los sueños que pasaron más de un par de semanas sin que ocurriera algo parecido. Contar también esos es lo que permite saber si la tasa de aciertos supera al azar.</p>
+</section>
+
+<!-- Explorador: Calendario y Búsqueda -->
+<section class="card" aria-label="Buscar y explorar sueños">
+  <div class="explorer-head">
+    <h3>Explorar registros</h3>
+    <button class="b cal-toggle" id="toggle-cal" type="button" aria-expanded="true">Ocultar calendario</button>
+  </div>
+  <div class="search-bar">
+    <input type="search" id="search-q" placeholder="Buscar por palabra, tema astral o persona…" aria-label="Buscar sueños">
+  </div>
+  <div class="filter-chips" id="filter-chips" role="group" aria-label="Filtros rápidos">
+    <button type="button" class="chip active" data-filter="all">Todos</button>
+    <button type="button" class="chip" data-filter="luc">Lúcidos</button>
+    <button type="button" class="chip" data-filter="par">Parálisis</button>
+    <button type="button" class="chip" data-filter="hit">Coincidieron</button>
+    <button type="button" class="chip" data-filter="pending">Pendientes</button>
+  </div>
+  <div class="cal-box" id="cal-box">
+    <div class="cal-nav">
+      <button type="button" id="cal-prev" aria-label="Mes anterior">‹</button>
+      <span class="cal-title" id="cal-title"></span>
+      <button type="button" id="cal-next" aria-label="Mes siguiente">›</button>
+    </div>
+    <div class="cal-grid" id="cal-grid"></div>
+  </div>
+  <div class="active-filter-bar" id="active-filter-bar" style="display:none;">
+    <span id="active-filter-text"></span>
+    <button type="button" id="reset-filters">Limpiar filtros</button>
+  </div>
 </section>
 
 <div id="list"></div>
@@ -290,6 +321,110 @@ rec.addEventListener("click",function(){ listening?stopRec():startRec(); });
 
 function fmt(t){ try{ return new Date(t).toLocaleString("es-CL",{weekday:"long",day:"numeric",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit"}); }catch(e){ return new Date(t).toString(); } }
 function esc(s){ var d=document.createElement("div"); d.textContent=s; return d.innerHTML; }
+function dateKey(ts){ var d=new Date(ts); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+
+
+/* Estado de búsqueda, filtros y calendario */
+var searchQuery = "";
+var activeTagFilter = "all";
+var selectedDateKey = null;
+var calCursor = new Date();
+calCursor.setDate(1);
+var calVisible = true;
+
+
+$("toggle-cal").addEventListener("click", function(){
+  calVisible = !calVisible;
+  $("cal-box").style.display = calVisible ? "block" : "none";
+  $("toggle-cal").textContent = calVisible ? "Ocultar calendario" : "Ver calendario";
+  $("toggle-cal").setAttribute("aria-expanded", String(calVisible));
+});
+
+
+$("search-q").addEventListener("input", function(){
+  searchQuery = this.value.trim().toLowerCase();
+  render();
+});
+
+
+$("filter-chips").addEventListener("click", function(ev){
+  var btn = ev.target.closest(".chip");
+  if(!btn) return;
+  activeTagFilter = btn.dataset.filter;
+  var all = $("filter-chips").querySelectorAll(".chip");
+  for(var i=0;i<all.length;i++) all[i].classList.toggle("active", all[i] === btn);
+  render();
+});
+
+
+$("cal-prev").addEventListener("click", function(){
+  calCursor.setMonth(calCursor.getMonth() - 1);
+  renderCalendar();
+});
+
+
+$("cal-next").addEventListener("click", function(){
+  calCursor.setMonth(calCursor.getMonth() + 1);
+  renderCalendar();
+});
+
+
+$("cal-grid").addEventListener("click", function(ev){
+  var dayBtn = ev.target.closest(".cal-day[data-date]");
+  if(!dayBtn) return;
+  var dk = dayBtn.dataset.date;
+  selectedDateKey = (selectedDateKey === dk) ? null : dk;
+  render();
+});
+
+
+$("reset-filters").addEventListener("click", function(){
+  searchQuery = "";
+  $("search-q").value = "";
+  activeTagFilter = "all";
+  selectedDateKey = null;
+  var all = $("filter-chips").querySelectorAll(".chip");
+  for(var i=0;i<all.length;i++) all[i].classList.toggle("active", all[i].dataset.filter === "all");
+  render();
+});
+
+
+function renderCalendar(){
+  var y = calCursor.getFullYear();
+  var m = calCursor.getMonth();
+  var monthName = new Date(y, m, 1).toLocaleDateString("es-CL", { month: "long", year: "numeric" });
+  $("cal-title").textContent = monthName;
+
+
+  var dreamCounts = {};
+  entries.forEach(function(e){
+    var dk = dateKey(e.at);
+    dreamCounts[dk] = (dreamCounts[dk] || 0) + 1;
+  });
+
+
+  var todayDk = dateKey(Date.now());
+  var firstDow = (new Date(y, m, 1).getDay() + 6) % 7; // Lunes = 0
+  var daysInMonth = new Date(y, m + 1, 0).getDate();
+  var dows = ["Lu","Ma","Mi","Ju","Vi","Sá","Do"];
+  var html = dows.map(function(d){ return '<div class="cal-dow">'+d+'</div>'; }).join("");
+
+
+  for(var i=0;i<firstDow;i++){
+    html += '<div class="cal-day empty"></div>';
+  }
+  for(var day=1;day<=daysInMonth;day++){
+    var dk = y + "-" + String(m+1).padStart(2,"0") + "-" + String(day).padStart(2,"0");
+    var count = dreamCounts[dk] || 0;
+    var cls = "cal-day";
+    if(dk === todayDk) cls += " today";
+    if(count > 0) cls += " has-dream";
+    if(dk === selectedDateKey) cls += " selected";
+    var titleAttr = count ? (count + (count === 1 ? " sueño registrado" : " sueños registrados")) : "Sin registros";
+    html += '<button type="button" class="'+cls+'" data-date="'+dk+'" title="'+titleAttr+'">'+day+'</button>';
+  }
+  $("cal-grid").innerHTML = html;
+}
 
 
 $("save").addEventListener("click",function(){
@@ -297,9 +432,10 @@ $("save").addEventListener("click",function(){
   var t=txt.value.trim();
   if(!t){ $("saved").textContent="Escribe o dicta algo antes de guardar."; return; }
   var astroReading = interpretDreamWithChart(t, window.DreamSaverProfile);
+  var nowTs = startedAt||Date.now();
   entries.unshift({
     id:Date.now(),
-    at:startedAt||Date.now(),
+    at:nowTs,
     savedAt:Date.now(),
     text:t,
     par:$("par").checked,
@@ -309,19 +445,68 @@ $("save").addEventListener("click",function(){
     out:null
   });
   persist(); txt.value=""; $("par").checked=false; $("luc").checked=false; $("sh").value=""; startedAt=null;
-  $("saved").textContent="Sueño guardado con fecha, hora y lectura astral."; render();
+  $("saved").textContent="Sueño guardado con fecha, hora y lectura astral.";
+  calCursor = new Date(nowTs);
+  calCursor.setDate(1);
+  render();
 });
 $("clr").addEventListener("click",function(){ if(listening) stopRec(); txt.value=""; startedAt=null; $("saved").textContent=""; });
 
 
 var openId=null, delId=null;
 function render(){
+  renderCalendar();
   var list=$("list"), html="", m=0, k=0;
   entries.forEach(function(e){ if(e.out){ if(e.out.hit) m++; else k++; } });
   $("n").textContent=entries.length; $("m").textContent=m; $("k").textContent=k;
   $("tools").style.display=entries.length?"flex":"none";
+
+
+  var filtered = entries.filter(function(e){
+    if(selectedDateKey && dateKey(e.at) !== selectedDateKey) return false;
+    if(activeTagFilter === "luc" && !e.luc) return false;
+    if(activeTagFilter === "par" && !e.par) return false;
+    if(activeTagFilter === "hit" && !(e.out && e.out.hit)) return false;
+    if(activeTagFilter === "pending" && e.out) return false;
+    if(searchQuery){
+      var hay = [
+        e.text || "",
+        e.shared || "",
+        (e.astro && e.astro.theme) || "",
+        (e.astro && e.astro.summary) || "",
+        (e.out && e.out.note) || ""
+      ].join(" ").toLowerCase();
+      if(hay.indexOf(searchQuery) === -1) return false;
+    }
+    return true;
+  });
+
+
+  var hasActiveFilter = Boolean(selectedDateKey || searchQuery || activeTagFilter !== "all");
+  var bar = $("active-filter-bar");
+  if(hasActiveFilter){
+    var parts = [];
+    if(selectedDateKey){
+      var sp = selectedDateKey.split("-");
+      parts.push("Fecha: " + sp[2] + "/" + sp[1] + "/" + sp[0]);
+    }
+    if(activeTagFilter !== "all"){
+      var labels = { luc: "Lúcidos", par: "Parálisis", hit: "Coincidieron", pending: "Pendientes" };
+      parts.push("Filtro: " + (labels[activeTagFilter] || activeTagFilter));
+    }
+    if(searchQuery) parts.push("«" + searchQuery + "»");
+    $("active-filter-text").textContent = "Mostrando " + filtered.length + " de " + entries.length + " · " + parts.join(" · ");
+    bar.style.display = "flex";
+  } else {
+    bar.style.display = "none";
+  }
+
+
   if(!entries.length){ list.innerHTML='<div class="empty">Aún no hay sueños registrados.</div>'; return; }
-  entries.forEach(function(e){
+  if(!filtered.length){ list.innerHTML='<div class="empty">No hay sueños que coincidan con los filtros seleccionados.</div>'; return; }
+
+
+  filtered.forEach(function(e){
     html+='<article class="card entry"><h3>'+esc(fmt(e.at))+'</h3><p>'+esc(e.text)+'</p><div>';
     if(e.par) html+='<span class="tag">parálisis del sueño</span>';
     if(e.luc) html+='<span class="tag">sueño lúcido</span>';
