@@ -129,7 +129,10 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
 .sidebar-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:28px}
 .overlay{position:fixed;inset:0;background:rgba(12,6,26,0.58);display:none;z-index:999}
 .overlay.open{display:block}
-.astrology-box{margin-top:20px;padding:14px;background:var(--bg);border-radius:12px;border:1px solid var(--line)}
+.astrology-box{margin-top:0;margin-bottom:16px;padding:14px;background:var(--bg);border-radius:12px;border:1px solid var(--line)}
+.astrology-box h3,.birth-section-box h3{margin:0 0 8px;font:600 17px/1.25 "Newsreader",Georgia,serif;color:var(--ink)}
+.birth-section-box{margin-bottom:14px;padding:14px;background:var(--bg);border-radius:12px;border:1px solid var(--line)}
+.astral-disclaimer{margin-top:14px;padding:11px 13px;border-radius:10px;background:color-mix(in srgb,var(--mute) 8%,var(--bg));border:1px solid var(--line);font-size:12.5px;color:var(--mute);line-height:1.45}
 .astro-summary p{margin:6px 0;font-size:14px}
 .astro-reading{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:13px;color:var(--mute);line-height:1.45}
 .chart-wrap{margin-top:12px;display:flex;flex-direction:column;align-items:center}
@@ -321,39 +324,48 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
     <button class="b" id="close-profile" type="button">Cerrar</button>
   </div>
   <div class="sidebar-content">
-    <p class="note" id="profile-intro">Completa tus datos de nacimiento. Escribe tu ciudad y selecciónala de la lista para validar sus coordenadas automáticamente.</p>
-    <form id="profile-form" novalidate>
-      <div class="fld">
-        Fecha de nacimiento
-        <input type="date" id="profile-dob" min="1900-01-01" required>
-        <div class="field-err" id="err-dob"></div>
-      </div>
-      <div class="fld">
-        Hora de nacimiento
-        <input type="time" id="profile-tob" required>
-        <div class="field-err" id="err-tob"></div>
-      </div>
-      <div class="fld">
-        Lugar de nacimiento (Ciudad, País)
-        <input type="text" id="profile-city" placeholder="Escribe ej. Castro, Chile" autocomplete="off" required>
-        <div class="city-suggestions" id="city-suggestions" role="listbox" aria-label="Sugerencias de ciudades"></div>
-        <div class="field-err" id="err-city"></div>
-        <div class="status-pill" id="coords-display">Ubicación sin verificar</div>
-      </div>
-      <div class="row">
-        <button class="b p" id="save-profile" type="submit">Guardar Perfil</button>
-      </div>
-    </form>
-    <p class="note" id="profile-saved" aria-live="polite"></p>
-    <div class="lock-notice" id="birth-lock-notice">
-      <strong>Datos de nacimiento protegidos:</strong> Una vez guardados, tu fecha, hora y lugar de nacimiento quedan bloqueados para evitar cambios repetidos o consultas de terceros. Si necesitas corregir un dato o solicitar un cambio justificado, escribe a <a href="mailto:redlantecc@gmail.com">redlantecc@gmail.com</a> desde el correo de tu cuenta.
-    </div>
- 
-    <!-- Contenedor Carta Natal -->
+    <!-- 1. Contenedor Carta Natal al principio -->
     <div class="astrology-box" id="astrology-container">
       <h3>Tu Carta Astral</h3>
-      <div id="astrology-results">Configura tus datos para calcular tu carta.</div>
+      <div id="astrology-results">Configura tus datos de nacimiento más abajo para calcular tu carta astral.</div>
       <div id="astrology-chart" class="chart-wrap"></div>
+    </div>
+
+    <!-- 2. Datos de nacimiento -->
+    <div class="birth-section-box">
+      <h3>Datos de nacimiento</h3>
+      <p class="note" id="profile-intro">Completa tus datos de nacimiento. Escribe tu ciudad y selecciónala de la lista para validar sus coordenadas automáticamente.</p>
+      <form id="profile-form" novalidate>
+        <div class="fld">
+          Fecha de nacimiento
+          <input type="date" id="profile-dob" min="1900-01-01" required>
+          <div class="field-err" id="err-dob"></div>
+        </div>
+        <div class="fld">
+          Hora de nacimiento
+          <input type="time" id="profile-tob" required>
+          <div class="field-err" id="err-tob"></div>
+        </div>
+        <div class="fld">
+          Lugar de nacimiento (Ciudad, País)
+          <input type="text" id="profile-city" placeholder="Escribe ej. Castro, Chile" autocomplete="off" required>
+          <div class="city-suggestions" id="city-suggestions" role="listbox" aria-label="Sugerencias de ciudades"></div>
+          <div class="field-err" id="err-city"></div>
+          <div class="status-pill" id="coords-display">Ubicación sin verificar</div>
+        </div>
+        <div class="row">
+          <button class="b p" id="save-profile" type="submit">Guardar Perfil</button>
+        </div>
+      </form>
+      <p class="note" id="profile-saved" aria-live="polite"></p>
+      <div class="lock-notice" id="birth-lock-notice">
+        <strong>Datos de nacimiento protegidos:</strong> Una vez guardados, tu fecha, hora y lugar de nacimiento quedan bloqueados para evitar cambios repetidos o consultas de terceros. Si necesitas corregir un dato o solicitar un cambio justificado, escribe a <a href="mailto:redlantecc@gmail.com">redlantecc@gmail.com</a> desde el correo de tu cuenta.
+      </div>
+    </div>
+
+    <!-- 3. Disclaimer al final -->
+    <div class="astral-disclaimer" id="astral-disclaimer">
+      <strong>Aviso importante:</strong> La carta astral y las lecturas simbólicas en DreamSaver tienen fines de reflexión personal y entretenimiento; no sustituyen orientación médica, psicológica ni profesional. Cada usuario debe gestionar su propio perfil individual.
     </div>
   </div>
 </div>
