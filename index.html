@@ -824,7 +824,7 @@ render();
  
   // La clave de FreeAstroAPI YA NO está en el navegador: vive como secreto en una Cloud Function.
   // Reemplaza la URL por la que te entregue "firebase deploy --only functions" (ver archivo de backend).
-  const ASTRO_PROXY_URL = "https://console.firebase.google.com/project/dreamsaver-e880f/overview";
+  const ASTRO_PROXY_URL = "https://us-central1-dreamsaver-e880f.cloudfunctions.net/astroNatal";
  
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
