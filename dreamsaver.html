@@ -24,7 +24,7 @@ h1{font:600 28px/1.2 "Newsreader",Georgia,serif;margin:8px 0 4px}
 @keyframes pulse{50%{box-shadow:0 0 0 10px color-mix(in srgb,var(--rec) 25%,transparent)}}
 @media (prefers-reduced-motion:reduce){#rec.on{animation:none}}
 #status{color:var(--mute);font-size:14px}
-textarea,input[type=text]{width:100%;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit}
+textarea,input[type=text],input[type=email],input[type=password]{width:100%;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit}
 textarea{min-height:150px;resize:vertical;font-family:"Newsreader",Georgia,serif;font-size:18px;line-height:1.5}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 label.chk{display:flex;gap:8px;align-items:center;margin:12px 0 8px;font-size:15px}
@@ -42,45 +42,74 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
 .tag.ok{color:var(--ok);border-color:var(--ok)}
 .res{font-size:14px;margin:6px 0;color:var(--ok)}
 .empty{color:var(--mute);text-align:center;padding:24px 8px}
-#warn{display:none;background:var(--surface);border:1px solid var(--rec);border-radius:10px;padding:10px 12px;font-size:14px;margin-bottom:14px}
+#warn, .auth-err{background:var(--surface);border:1px solid var(--rec);border-radius:10px;padding:10px 12px;font-size:14px;margin-top:10px;color:var(--rec)}
+#warn{display:none;margin-bottom:14px}
+.header-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 </style>
 </head>
 <body>
 <main>
-<h1>Diario de sueños</h1>
-<p class="sub">Habla al despertar y el texto se escribe solo. Cada registro guarda la fecha y la hora, para poder contrastarlo después.</p>
-<div id="warn"></div>
+  <!-- Sección Autenticación -->
+  <section class="card" id="auth-card">
+    <h2>Iniciar sesión / Crear cuenta</h2>
+    <div class="fld">
+      Correo electrónico
+      <input type="email" id="auth-email" placeholder="tu@email.com" autocomplete="email">
+    </div>
+    <div class="fld">
+      Contraseña
+      <input type="password" id="auth-password" placeholder="••••••••" autocomplete="current-password">
+    </div>
+    <div class="row">
+      <button class="b p" id="btn-login" type="button">Entrar</button>
+      <button class="b" id="btn-register" type="button">Crear cuenta</button>
+    </div>
+    <div id="auth-error" class="auth-err" style="display:none;"></div>
+  </section>
 
-<section class="card" aria-label="Nuevo registro">
-  <div class="rec-wrap">
-    <button id="rec" type="button" aria-pressed="false">Grabar</button>
-    <div id="status">Toca para hablar. Toca otra vez para detener.</div>
+  <!-- Contenido Aplicación (Oculto por defecto hasta autenticar) -->
+  <div id="app-content" style="display:none;">
+    <div class="header-bar">
+      <div>
+        <h1>Diario de sueños</h1>
+        <span id="user-display" class="note"></span>
+      </div>
+      <button class="b" id="btn-logout" type="button">Cerrar sesión</button>
+    </div>
+    <p class="sub">Habla al despertar y el texto se escribe solo. Cada registro guarda la fecha y la hora, para poder contrastarlo después.</p>
+    <div id="warn"></div>
+
+    <section class="card" aria-label="Nuevo registro">
+      <div class="rec-wrap">
+        <button id="rec" type="button" aria-pressed="false">Grabar</button>
+        <div id="status">Toca para hablar. Toca otra vez para detener.</div>
+      </div>
+      <textarea id="txt" placeholder="Tu sueño aparecerá aquí mientras hablas. También puedes escribir o corregir." aria-label="Texto del sueño"></textarea>
+      <label class="chk"><input type="checkbox" id="par"> Hubo parálisis del sueño</label>
+      <label class="chk"><input type="checkbox" id="luc"> Fue un sueño lúcido</label>
+      <div class="fld">Se lo conté a (opcional)<input type="text" id="sh" placeholder="Nombre de la persona"></div>
+      <div class="row">
+        <button class="b p" id="save" type="button">Guardar sueño</button>
+        <button class="b" id="clr" type="button">Limpiar</button>
+      </div>
+      <p class="note" id="saved" aria-live="polite"></p>
+    </section>
+
+    <section class="card" aria-label="Resumen">
+      <div class="stats">
+        <span><b id="n">0</b> registrados</span>
+        <span><b id="m">0</b> con coincidencia</span>
+        <span><b id="k">0</b> sin coincidencia</span>
+      </div>
+      <p class="note">Marca como “sin coincidencia” los sueños que pasaron más de un par de semanas sin que ocurriera algo parecido. Contar también esos es lo que permite saber si la tasa de aciertos supera al azar.</p>
+    </section>
+
+    <div id="list"></div>
+
+    <div class="row" id="tools" style="display:none">
+      <button class="b" id="copy" type="button">Copiar todo como texto</button>
+    </div>
   </div>
-  <textarea id="txt" placeholder="Tu sueño aparecerá aquí mientras hablas. También puedes escribir o corregir." aria-label="Texto del sueño"></textarea>
-  <label class="chk"><input type="checkbox" id="par"> Hubo parálisis del sueño</label>
-  <label class="chk"><input type="checkbox" id="luc"> Fue un sueño lúcido</label>
-  <div class="fld">Se lo conté a (opcional)<input type="text" id="sh" placeholder="Nombre de la persona"></div>
-  <div class="row">
-    <button class="b p" id="save" type="button">Guardar sueño</button>
-    <button class="b" id="clr" type="button">Limpiar</button>
-  </div>
-  <p class="note" id="saved" aria-live="polite"></p>
-</section>
-
-<section class="card" aria-label="Resumen">
-  <div class="stats">
-    <span><b id="n">0</b> registrados</span>
-    <span><b id="m">0</b> con coincidencia</span>
-    <span><b id="k">0</b> sin coincidencia</span>
-  </div>
-  <p class="note">Marca como “sin coincidencia” los sueños que pasaron más de un par de semanas sin que ocurriera algo parecido. Contar también esos es lo que permite saber si la tasa de aciertos supera al azar.</p>
-</section>
-
-<div id="list"></div>
-
-<div class="row" id="tools" style="display:none">
-  <button class="b" id="copy" type="button">Copiar todo como texto</button>
-</div>
 </main>
 
 <script>
@@ -103,7 +132,7 @@ function startRec(){
   r=new SR(); r.lang="es-CL"; r.continuous=true; r.interimResults=true;
   base=txt.value.trim(); if(base) base+=" ";
   r.onresult=function(e){ var f="",i2=""; for(var i=0;i<e.results.length;i++){ var x=e.results[i]; if(x.isFinal) f+=x[0].transcript; else i2+=x[0].transcript; } txt.value=base+f+i2; };
-  r.onerror=function(e){ if(e.error==="not-allowed"||e.error==="service-not-allowed"){ listening=false; status.textContent="Sin permiso de micrófono. Actívalo en el navegador y vuelve a intentar."; setUI(); status.textContent="Sin permiso de micrófono. Actívalo en el navegador y vuelve a intentar."; } };
+  r.onerror=function(e){ if(e.error==="not-allowed"||e.error==="service-not-allowed"){ listening=false; status.textContent="Sin permiso de micrófono. Actívalo en el navegador y vuelve a intentar."; setUI(); } };
   r.onend=function(){ if(listening){ base=txt.value.trim(); if(base) base+=" "; try{ r.start(); }catch(e){ listening=false; setUI(); } } else setUI(); };
   listening=true; setUI();
   try{ r.start(); }catch(e){ listening=false; setUI(); }
@@ -168,15 +197,18 @@ $("copy").addEventListener("click",function(){
 render();
 })();
 </script>
-  <script type="module">
-  // Import the functions you need from the SDKs you need
+
+<script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+  import { 
+    getAuth, 
+    signInWithEmailAndPassword, 
+    createUserWithEmailAndPassword, 
+    signOut, 
+    onAuthStateChanged 
+  } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
     apiKey: "AIzaSyBvTWS64ZbMKm3px6DF_ip1oKtaSvpVihY",
     authDomain: "dreamsaver-e880f.firebaseapp.com",
@@ -187,9 +219,82 @@ render();
     measurementId: "G-MDVV8HV4EQ"
   };
 
-  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
+  const auth = getAuth(app);
+
+  const authCard = document.getElementById("auth-card");
+  const appContent = document.getElementById("app-content");
+  const authError = document.getElementById("auth-error");
+  const userDisplay = document.getElementById("user-display");
+
+  function showError(msg) {
+    authError.textContent = msg;
+    authError.style.display = "block";
+  }
+
+  function clearError() {
+    authError.textContent = "";
+    authError.style.display = "none";
+  }
+
+  // Escuchar cambios de estado en la autenticación
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      authCard.style.display = "none";
+      appContent.style.display = "block";
+      userDisplay.textContent = user.email;
+    } else {
+      authCard.style.display = "block";
+      appContent.style.display = "none";
+      userDisplay.textContent = "";
+    }
+  });
+
+  // Iniciar sesión
+  document.getElementById("btn-login").addEventListener("click", async () => {
+    clearError();
+    const email = document.getElementById("auth-email").value.trim();
+    const password = document.getElementById("auth-password").value.trim();
+
+    if (!email || !password) {
+      showError("Ingresa tu correo y contraseña.");
+      return;
+    }
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (err) {
+      showError("Error al iniciar sesión: " + err.message);
+    }
+  });
+
+  // Crear cuenta
+  document.getElementById("btn-register").addEventListener("click", async () => {
+    clearError();
+    const email = document.getElementById("auth-email").value.trim();
+    const password = document.getElementById("auth-password").value.trim();
+
+    if (!email || !password) {
+      showError("Ingresa un correo y contraseña válida.");
+      return;
+    }
+
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (err) {
+      showError("Error al crear cuenta: " + err.message);
+    }
+  });
+
+  // Cerrar sesión
+  document.getElementById("btn-logout").addEventListener("click", async () => {
+    try {
+      await signOut(auth);
+    } catch (err) {
+      console.error("Error al cerrar sesión", err);
+    }
+  });
 </script>
 </body>
 </html>
