@@ -279,7 +279,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
     </div>
     <div id="auth-error" class="auth-err" style="display:none;"></div>
     <p class="privacy-note">
-      <strong>Privacidad y propiedad:</strong> Tus sueños se guardan en tu cuenta y no se comparten. Para calcular tu carta astral, tu fecha, hora y lugar de nacimiento se envían una sola vez a un servicio de astrología a través de nuestro servidor y quedan guardados en tu perfil; la búsqueda de ciudades usa Open-Meteo.
+      <strong>Privacidad y propiedad:</strong> Tus sueños se guardan en tu cuenta y no se comparten. Tu carta astral se calcula en tu propio dispositivo: la fecha, hora y lugar de nacimiento no se envían a ningún servicio de astrología y quedan guardados en tu perfil; solo la búsqueda de ciudades usa Open-Meteo.
     </p>
   </section>
 
@@ -1731,6 +1731,140 @@ render();
 })();
 </script>
 
+<script src="astronomy.min.js"></script>
+<script>
+/*NATAL-ENGINE*/
+var NATAL_SIGNS = ["Aries","Taurus","Gemini","Cancer","Leo","Virgo","Libra","Scorpio","Sagittarius","Capricorn","Aquarius","Pisces"];
+var NATAL_BODIES = [["sun","Sun"],["moon","Moon"],["mercury","Mercury"],["venus","Venus"],["mars","Mars"],["jupiter","Jupiter"],["saturn","Saturn"],["uranus","Uranus"],["neptune","Neptune"],["pluto","Pluto"]];
+var NATAL_ES = {sun:"Sol",moon:"Luna",mercury:"Mercurio",venus:"Venus",mars:"Marte",jupiter:"Júpiter",saturn:"Saturno",uranus:"Urano",neptune:"Neptuno",pluto:"Plutón",northnode:"Nodo Norte"};
+function natalNorm(x){ x = x % 360; return x < 0 ? x + 360 : x; }
+function natalRad(d){ return d * Math.PI / 180; }
+function natalDeg(r){ return r * 180 / Math.PI; }
+
+function natalUtcMs(dob, tob, tz){
+  var p = dob.split("-").map(Number), t = (tob || "12:00").split(":").map(Number);
+  var naive = Date.UTC(p[0], p[1]-1, p[2], t[0]||0, t[1]||0, 0);
+  if (!tz || tz === "UTC") return naive;
+  var f = new Intl.DateTimeFormat("en-US", {timeZone: tz, year:"numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit", second:"2-digit", hour12:false});
+  function off(ms){ var m = {}; f.formatToParts(new Date(ms)).forEach(function(x){ m[x.type] = x.value; });
+    var h = Number(m.hour) === 24 ? 0 : Number(m.hour);
+    return Date.UTC(Number(m.year), Number(m.month)-1, Number(m.day), h, Number(m.minute), Number(m.second)) - ms; }
+  var g1 = naive - off(naive);
+  return naive - off(g1);
+}
+
+function natalEclLon(bodyName, time){
+  var v = Astronomy.GeoVector(bodyName, time, true);
+  var r = Astronomy.RotateVector(Astronomy.Rotation_EQJ_ECT(time), v);
+  return natalNorm(Astronomy.SphereFromVector(r).lon);
+}
+
+function natalTrueNode(ms){
+  var T = (ms - Date.UTC(2000,0,1,12,0,0)) / 86400000 / 36525;
+  var D = natalRad(297.8501921 + 445267.1114034*T - 0.0018819*T*T);
+  var M = natalRad(357.5291092 + 35999.0502909*T);
+  var Mm = natalRad(134.9633964 + 477198.8675055*T + 0.0087414*T*T);
+  var F = natalRad(93.2720950 + 483202.0175233*T - 0.0036539*T*T);
+  var om = 125.0445479 - 1934.1362891*T + 0.0020754*T*T + T*T*T/467441;
+  return natalNorm(om - 1.4979*Math.sin(2*(D-F)) - 0.1500*Math.sin(M) - 0.1226*Math.sin(2*D) + 0.1176*Math.sin(2*F) - 0.0801*Math.sin(2*(Mm-F)));
+}
+
+function natalObliquity(time){
+  try { var e = Astronomy.e_tilt(time); if (e && typeof e.tobl === "number") return e.tobl; } catch (_) {}
+  var T = (time.tt) / 36525; return 23.4392911 - 0.0130042*T;
+}
+
+function natalAscMc(ramc, eps, lat){
+  var r = natalRad(ramc), e = natalRad(eps), phi = natalRad(lat);
+  var mc = natalNorm(natalDeg(Math.atan2(Math.sin(r), Math.cos(r)*Math.cos(e))));
+  var asc = natalNorm(natalDeg(Math.atan2(Math.cos(r), -(Math.sin(e)*Math.tan(phi) + Math.cos(e)*Math.sin(r)))));
+  return {asc: asc, mc: mc};
+}
+
+function natalPlacidusCusp(ramc, eps, lat, kind){
+  var e = natalRad(eps), phi = natalRad(lat);
+  var ra = ramc + ({11:30, 12:60, 2:120, 3:150})[kind];
+  for (var i = 0; i < 40; i++){
+    var rr = natalRad(ra);
+    var lam = Math.atan2(Math.sin(rr), Math.cos(rr)*Math.cos(e));
+    var dec = Math.asin(Math.sin(e)*Math.sin(lam));
+    var x = -Math.tan(phi)*Math.tan(dec);
+    if (!(Math.abs(x) < 1)) return null;
+    var sa = natalDeg(Math.acos(x)), nsa = 180 - sa, next;
+    if (kind === 11) next = ramc + sa/3;
+    else if (kind === 12) next = ramc + 2*sa/3;
+    else if (kind === 2) next = ramc + 180 - 2*nsa/3;
+    else next = ramc + 180 - nsa/3;
+    if (Math.abs(next - ra) < 1e-9){ ra = next; break; }
+    ra = next;
+  }
+  var rr2 = natalRad(ra);
+  return natalNorm(natalDeg(Math.atan2(Math.sin(rr2), Math.cos(rr2)*Math.cos(e))));
+}
+
+function natalHouses(ramc, eps, lat){
+  var am = natalAscMc(ramc, eps, lat), c = new Array(13), system = "Placidus";
+  c[1] = am.asc; c[10] = am.mc; c[4] = natalNorm(am.mc + 180); c[7] = natalNorm(am.asc + 180);
+  var k11 = natalPlacidusCusp(ramc, eps, lat, 11), k12 = natalPlacidusCusp(ramc, eps, lat, 12),
+      k2 = natalPlacidusCusp(ramc, eps, lat, 2), k3 = natalPlacidusCusp(ramc, eps, lat, 3);
+  if ([k11,k12,k2,k3].some(function(v){ return v === null; })){
+    system = "Casas iguales (Placidus no es posible a esta latitud)";
+    for (var i = 1; i <= 12; i++) c[i] = natalNorm(am.asc + (i-1)*30);
+  } else {
+    c[11] = k11; c[12] = k12; c[2] = k2; c[3] = k3;
+    c[5] = natalNorm(k11+180); c[6] = natalNorm(k12+180); c[8] = natalNorm(k2+180); c[9] = natalNorm(k3+180);
+  }
+  return {cusps: c, asc: am.asc, mc: am.mc, system: system};
+}
+
+function natalHouseOf(lon, cusps){
+  for (var i = 1; i <= 12; i++){
+    var a = cusps[i], b = cusps[i === 12 ? 1 : i+1], span = natalNorm(b - a), pos = natalNorm(lon - a);
+    if (pos < span) return i;
+  }
+  return 1;
+}
+
+function natalSignDeg(lon){ var n = natalNorm(lon); return {sign: NATAL_SIGNS[Math.floor(n/30)], degree: n % 30}; }
+
+var NATAL_ASPECTS = [["Conjunción",0,8],["Sextil",60,6],["Cuadratura",90,8],["Trígono",120,8],["Oposición",180,8]];
+
+function computeNatalLocal(dob, tob, lat, lon, tz){
+  if (typeof Astronomy === "undefined") throw new Error("Falta la librería de efemérides");
+  var ms = natalUtcMs(dob, tob, tz), time = Astronomy.MakeTime(new Date(ms));
+  var eps = natalObliquity(time);
+  var ramc = natalNorm(Astronomy.SiderealTime(time)*15 + lon);
+  var H = natalHouses(ramc, eps, lat);
+  var pts = [];
+  NATAL_BODIES.forEach(function(b){
+    var L = natalEclLon(b[1], time), t1 = Astronomy.MakeTime(new Date(ms - 43200000)), t2 = Astronomy.MakeTime(new Date(ms + 43200000));
+    var d = natalEclLon(b[1], t2) - natalEclLon(b[1], t1); if (d > 180) d -= 360; if (d < -180) d += 360;
+    pts.push({key:b[0], lon:L, retro: (b[0] !== "sun" && b[0] !== "moon" && d < 0)});
+  });
+  pts.push({key:"northnode", lon:natalTrueNode(ms), retro:false});
+  var planets = pts.map(function(p){
+    var sd = natalSignDeg(p.lon);
+    return {name:p.key, sign:sd.sign, degree:Math.round(sd.degree*100)/100, house:natalHouseOf(p.lon, H.cusps), retrograde:p.retro, longitude:Math.round(p.lon*1000)/1000};
+  });
+  var houses = [];
+  for (var i = 1; i <= 12; i++){ var s = natalSignDeg(H.cusps[i]); houses.push({house:i, sign:s.sign, degree:Math.round(s.degree*100)/100}); }
+  var aspects = [], main = pts.filter(function(p){ return p.key !== "northnode"; });
+  for (var a = 0; a < main.length; a++) for (var b = a+1; b < main.length; b++){
+    var diff = Math.abs(main[a].lon - main[b].lon); if (diff > 180) diff = 360 - diff;
+    for (var k = 0; k < NATAL_ASPECTS.length; k++){
+      var orb = Math.abs(diff - NATAL_ASPECTS[k][1]);
+      if (orb <= NATAL_ASPECTS[k][2]){ aspects.push({p1:NATAL_ES[main[a].key], p2:NATAL_ES[main[b].key], type:NATAL_ASPECTS[k][0], orb:Math.round(orb*100)/100}); break; }
+    }
+  }
+  aspects.sort(function(x,y){ return x.orb - y.orb; });
+  var asd = natalSignDeg(H.asc), msd = natalSignDeg(H.mc);
+  return {planets:planets, houses:houses, aspects:aspects.slice(0,30), house_system:H.system,
+          ascendant:{sign:asd.sign, degree:Math.round(asd.degree*100)/100}, midheaven:{sign:msd.sign, degree:Math.round(msd.degree*100)/100},
+          engine:"astronomy-engine"};
+}
+/*END-NATAL-ENGINE*/
+
+</script>
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
   import { 
@@ -1761,7 +1895,6 @@ render();
     measurementId: "G-MDVV8HV4EQ"
   };
 
-  const ASTRO_PROXY_URL = "https://us-central1-dreamsaver-e880f.cloudfunctions.net/astroNatal";
   const ASTRO_QUOTA_COOLDOWN_MS = 24 * 60 * 60 * 1000;
 
   const app = initializeApp(firebaseConfig);
@@ -2330,7 +2463,7 @@ render();
     };
     const elemCounts = { Fuego: 0, Tierra: 0, Aire: 0, Agua: 0 };
     const modCounts = { Cardinal: 0, Fijo: 0, Mutable: 0 };
-    const corePoints = [...chart.planets];
+    const corePoints = chart.planets.filter(p => p.key !== "northnode" && p.key !== "southnode");
     if (chart.asc && chart.asc !== "N/D" && !corePoints.some(p => p.key === "ascendant")) {
       corePoints.push({ key: "ascendant", label: "Ascendente", sign: chart.asc });
     }
@@ -3056,82 +3189,35 @@ render();
     if (!dob || !tob || !coords) return null;
     if (astroFetching) return null;
 
-    if (getQuotaCooldownRemainingMs() > 0) {
-      renderQuotaLimitNotice();
-      syncAstroActionVisibility("N/D", "N/D", "N/D", Boolean(savedNatalReportHtml), true);
-      return null;
-    }
-
     astroFetching = true;
-    astroResults.innerHTML = "Calculando carta astral (consulta única)...";
+    astroResults.textContent = "Calculando carta astral…";
     astroChart.innerHTML = "";
     try {
-      const [year, month, day] = dob.split("-").map(Number);
-      const timeParts = tob.split(":").map(Number);
-      const hour = timeParts[0] || 0;
-      const minute = timeParts[1] || 0;
-
-      const payload = {
-        year,
-        month,
-        day,
-        hour,
-        minute,
-        latitude: coords.lat,
-        longitude: coords.lon,
-        lat: coords.lat,
-        lon: coords.lon,
-        timezone: coords.timezone || "UTC"
-      };
-
-      if (!auth.currentUser) {
-        astroResults.textContent = "Inicia sesión para calcular tu carta astral.";
+      if (typeof computeNatalLocal !== "function" || typeof Astronomy === "undefined") {
+        astroResults.textContent = "No se pudo cargar el motor de cálculo astral. Verifica que el archivo astronomy.min.js esté junto al index.html.";
+        syncAstroActionVisibility("N/D", "N/D", "N/D", Boolean(savedNatalReportHtml), true);
         return null;
       }
-      const uid = auth.currentUser.uid;
-      const idToken = await auth.currentUser.getIdToken();
-      const response = await fetch(ASTRO_PROXY_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + idToken
-        },
-        body: JSON.stringify(payload)
-      });
-
-      const rawText = await response.text();
-      let data = {};
-      try {
-        data = rawText ? JSON.parse(rawText) : {};
-      } catch (_) {
-        data = { message: rawText || `HTTP ${response.status}` };
-      }
-
-      if (!response.ok || data.status === "error") {
-        const msg = data.message || data.error || `HTTP ${response.status}`;
-        if (response.status === 429 || /limit|rate|quota|l[ií]mite/i.test(msg)) {
-          await recordQuotaReached(uid, msg);
-          renderQuotaLimitNotice();
-        } else {
-          astroResults.innerHTML = "Error al calcular la carta: " + escapeHtml(msg);
-        }
+      const lat = Number(coords.lat);
+      const lon = Number(coords.lon);
+      if (!Number.isFinite(lat) || !Number.isFinite(lon)) {
+        astroResults.textContent = "La ubicación de nacimiento no es válida.";
         syncAstroActionVisibility("N/D", "N/D", "N/D", Boolean(savedNatalReportHtml), true);
         return null;
       }
 
-      await clearQuotaReached(uid);
-
-      const bodyData = data.data || data;
-      const planets = Array.isArray(bodyData.planets) ? bodyData.planets : [];
-      const sunRaw = planets.find(p => (p.name || p.planet || "").toLowerCase() === "sun")?.sign || bodyData.sun?.sign || null;
-      const moonRaw = planets.find(p => (p.name || p.planet || "").toLowerCase() === "moon")?.sign || bodyData.moon?.sign || null;
-      const ascRaw = extractAscendant(bodyData, planets);
+      // Cálculo 100% local: sin API, sin cuota y sin enviar los datos de nacimiento a ningún servicio.
+      const bodyData = computeNatalLocal(dob, tob, lat, lon, coords.timezone || "UTC");
+      const planets = bodyData.planets;
+      const sunRaw = planets.find(p => p.name === "sun")?.sign || null;
+      const moonRaw = planets.find(p => p.name === "moon")?.sign || null;
+      const ascRaw = bodyData.ascendant?.sign || null;
 
       const rawBodyToStore = {
-        planets: Array.isArray(bodyData.planets) ? bodyData.planets : [],
-        houses: Array.isArray(bodyData.houses) ? bodyData.houses : [],
-        aspects: Array.isArray(bodyData.aspects) ? bodyData.aspects.slice(0, 30) : [],
-        house_system: bodyData.house_system || bodyData.houseSystem || null
+        planets: bodyData.planets,
+        houses: bodyData.houses,
+        aspects: bodyData.aspects.slice(0, 30),
+        house_system: bodyData.house_system
       };
 
       const rendered = renderAstrologyCard(sunRaw, moonRaw, ascRaw, rawBodyToStore, "");
@@ -3144,7 +3230,7 @@ render();
       return rendered;
     } catch (err) {
       console.error(err);
-      astroResults.textContent = "No se pudo conectar con el servicio de astrología.";
+      astroResults.textContent = "No se pudo calcular la carta astral con los datos ingresados.";
       syncAstroActionVisibility("N/D", "N/D", "N/D", Boolean(savedNatalReportHtml), true);
       return null;
     } finally {
