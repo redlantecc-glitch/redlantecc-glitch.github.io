@@ -61,6 +61,7 @@ button.tag.hashtag{color:var(--accent);border-color:color-mix(in srgb,var(--acce
 button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transparent)}
 .astral-insight{margin:10px 0 6px;padding:12px 14px;border-radius:11px;background:color-mix(in srgb,var(--accent) 7%,var(--bg));border-left:3px solid var(--accent);font-size:14px;color:var(--ink);line-height:1.5}
 .astral-insight strong{color:var(--accent);display:block;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.astral-sky-meta{font-size:12px;color:var(--mute);margin-bottom:6px;font-weight:500}
 .res{font-size:14px;margin:8px 0;padding:8px 11px;border-radius:9px;background:color-mix(in srgb,var(--ok) 8%,var(--bg));border:1px solid color-mix(in srgb,var(--ok) 30%,transparent);color:var(--ink)}
 .res strong{color:var(--ok)}
 
@@ -468,7 +469,7 @@ function makeHashtagFromTheme(theme) {
   }).join("");
 }
 
-function interpretDreamWithChart(text, chart) {
+function interpretDreamWithChart(text, chart, entryTimestamp) {
   var found = [];
   for (var i = 0; i < DREAM_SYMBOLS.length; i++) {
     if (DREAM_SYMBOLS[i].rx.test(text)) found.push(DREAM_SYMBOLS[i]);
@@ -479,36 +480,39 @@ function interpretDreamWithChart(text, chart) {
     note: "Observa qué emoción predominó al despertar para contrastarla con los hechos de los próximos días."
   };
 
-  if (!chart || (!chart.sun && !chart.moon && !chart.asc)) {
-    return {
-      hashtag: primary.hashtag,
-      theme: primary.theme,
-      summary: primary.note + " (Configura tu Perfil Astral para cruzar este símbolo con tu Sol, Luna y Ascendente)."
-    };
-  }
+  var skyInfo = getLunarInfo(entryTimestamp || Date.now());
+  var skyLabel = skyInfo.phaseName + " · Luna en " + skyInfo.moonSign + " (" + skyInfo.illum + "%)";
+  var parts = [primary.note, "Cielo del registro: " + skyLabel + " — " + skyInfo.phaseAdvice];
 
-  var parts = [primary.note];
-  if (chart.moon && chart.moon !== "N/D") {
-    var moonTone = SIGN_DREAM_TONES[chart.moon] || "sensibilidad receptiva";
-    parts.push("Tu Luna en " + chart.moon + " filtra esta escena desde " + moonTone + ".");
+  if (chart && chart.moon && chart.moon !== "N/D") {
+    if (chart.moon === skyInfo.moonSign) {
+      parts.push("Retorno lunar sobre tu Luna natal en " + chart.moon + ": alta resonancia afectiva y memoria simbólica.");
+    } else {
+      var moonTone = SIGN_DREAM_TONES[chart.moon] || "sensibilidad receptiva";
+      parts.push("Tu Luna natal en " + chart.moon + " filtra esta escena desde " + moonTone + ".");
+    }
   }
-  if (chart.sun && chart.sun !== "N/D") {
+  if (chart && chart.sun && chart.sun !== "N/D") {
     var sunTone = SIGN_DREAM_TONES[chart.sun] || "identidad consciente";
     parts.push("Tu Sol en " + chart.sun + " invita a integrarlo con " + sunTone + ".");
   }
-  if (chart.asc && chart.asc !== "N/D") {
+  if (chart && chart.asc && chart.asc !== "N/D") {
     parts.push("Ascendente en " + chart.asc + " como lente de acción al despertar.");
+  }
+  if (!chart || (!chart.sun && !chart.moon && !chart.asc)) {
+    parts.push("(Configura tu Perfil Astral para cruzar este cielo con tu Sol, Luna y Ascendente).");
   }
 
   return {
     hashtag: primary.hashtag,
     theme: primary.theme,
+    skyLabel: skyLabel,
     summary: parts.join(" "),
-    chartSnapshot: {
+    chartSnapshot: chart ? {
       sun: chart.sun || "N/D",
       moon: chart.moon || "N/D",
       asc: chart.asc || "N/D"
-    }
+    } : null
   };
 }
 
@@ -782,8 +786,8 @@ $("save").addEventListener("click",function(){
   if(listening) stopRec();
   var t=txt.value.trim();
   if(!t){ $("saved").textContent="Escribe o dicta algo antes de guardar."; return; }
-  var astroReading = interpretDreamWithChart(t, window.DreamSaverProfile);
   var nowTs = startedAt||Date.now();
+  var astroReading = interpretDreamWithChart(t, window.DreamSaverProfile, nowTs);
   var newEntry = {
     id:Date.now(),
     at:nowTs,
@@ -875,8 +879,11 @@ function render(){
   if(!filtered.length){ list.innerHTML='<div class="empty">No hay sueños registrados para esa fecha o filtro.</div>'; return; }
 
   filtered.forEach(function(e){
-    var hashtag = (e.astro && (e.astro.hashtag || makeHashtagFromTheme(e.astro.theme))) || "#SimbolismoLibre";
-    var hasAstroSummary = Boolean(e.astro && e.astro.summary);
+    var liveAstro = interpretDreamWithChart(e.text || "", window.DreamSaverProfile, e.at);
+    var hashtag = (e.astro && (e.astro.hashtag || makeHashtagFromTheme(e.astro.theme))) || liveAstro.hashtag;
+    var themeLabel = (e.astro && e.astro.theme) || liveAstro.theme;
+    var skyLabel = (e.astro && e.astro.skyLabel) || liveAstro.skyLabel;
+    var summaryText = (e.astro && e.astro.summary) || liveAstro.summary;
     var isAstroOpen = Boolean(astroOpenMap[e.id]);
 
     html+='<article class="card entry"><h3>'+esc(fmt(e.at))+'</h3><p>'+esc(e.text)+'</p><div class="tags-row">';
@@ -887,8 +894,8 @@ function render(){
     if(e.out) html+='<span class="tag '+(e.out.hit?'ok':'')+'">'+(e.out.hit?'coincidió en la vida real':'sin coincidencia')+'</span>';
     html+='</div>';
 
-    if(hasAstroSummary && isAstroOpen){
-      html+='<div class="astral-insight"><strong>Lectura simbólica · '+esc(e.astro.theme || hashtag)+'</strong>'+esc(e.astro.summary)+'</div>';
+    if(isAstroOpen){
+      html+='<div class="astral-insight"><strong>Lectura simbólica · '+esc(themeLabel)+'</strong><div class="astral-sky-meta">☽ '+esc(skyLabel)+'</div>'+esc(summaryText)+'</div>';
     }
 
     if(e.out && e.out.note){
@@ -902,9 +909,7 @@ function render(){
       html+='<button type="button" class="btn-del-icon'+(delId===e.id?' confirm':'')+'" data-a="del" data-id="'+e.id+'" title="'+(delId===e.id?'Confirmar eliminación':'Eliminar registro')+'" aria-label="'+(delId===e.id?'Confirmar eliminación':'Eliminar registro')+'">'+(delId===e.id?'¿Borrar?':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>')+'</button></div>';
     } else {
       html+='<div class="entry-actions"><div class="entry-actions-left">';
-      if(hasAstroSummary){
-        html+='<button type="button" class="b btn-astral-toggle" data-a="astro" data-id="'+e.id+'" aria-expanded="'+isAstroOpen+'">'+(isAstroOpen?'Ocultar lectura simbólica':'✦ Lectura simbólica')+'</button>';
-      }
+      html+='<button type="button" class="b btn-astral-toggle" data-a="astro" data-id="'+e.id+'" aria-expanded="'+isAstroOpen+'">'+(isAstroOpen?'Ocultar lectura simbólica':'✦ Lectura simbólica')+'</button>';
       html+='<button type="button" class="b" data-a="open" data-id="'+e.id+'">'+(e.out?'Editar contraste':'Contrastarlo con la realidad')+'</button>';
       html+='</div>';
       html+='<button type="button" class="btn-del-icon'+(delId===e.id?' confirm':'')+'" data-a="del" data-id="'+e.id+'" title="'+(delId===e.id?'Confirmar eliminación':'Eliminar registro')+'" aria-label="'+(delId===e.id?'Confirmar eliminación':'Eliminar registro')+'">'+(delId===e.id?'¿Borrar?':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>')+'</button>';
@@ -1598,7 +1603,7 @@ render();
   h3 { font-size: 11pt; color: #1f1733; margin: 0 0 6px; page-break-after: avoid; }
   table {
     width: 100%; border-collapse: collapse; margin-bottom: 14px;
-    font-family: system-ui, -apple-system, sans-serif; font-size: 8.8pt;
+    font-family: system-ui, sans-serif; font-size: 8.8pt;
   }
   th {
     background: #4e2a7a; color: #ffffff; text-align: left;
