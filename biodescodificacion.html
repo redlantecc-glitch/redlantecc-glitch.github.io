@@ -114,6 +114,7 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
 
 <script>
 (function(){
+  var DATA_URL = "./data/biodesc.json";
   var STOP_WORDS = { "dolor":1, "de":1, "del":1, "la":1, "el":1, "los":1, "las":1, "en":1, "un":1, "una":1, "por":1, "para":1, "con":1, "y":1, "o":1, "mi":1, "mis":1 };
 
   var catalog = [];
@@ -123,14 +124,22 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
   var userLogs = [];
 
   function $(id){ return document.getElementById(id); }
+
   function esc(v){
     return String(v == null ? "" : v)
       .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
       .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
   }
 
+  function cleanText(v){
+    if (v == null) return "";
+    if (Array.isArray(v)) return v.map(cleanText).filter(Boolean).join(", ");
+    if (typeof v === "object") return Object.values(v).map(cleanText).filter(Boolean).join(" · ");
+    return String(v).replace(/\s+/g, " ").trim();
+  }
+
   function norm(str){
-    return String(str == null ? "" : str)
+    return cleanText(str)
       .toLowerCase()
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
@@ -139,55 +148,117 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
       .trim();
   }
 
+  function slugify(str, fallbackIndex){
+    var base = norm(str).replace(/\s+/g, "-");
+    return base || ("item-" + fallbackIndex);
+  }
+
   function getTokens(str){
     return norm(str).split(" ").filter(function(t){
       return t && t.length > 1 && !STOP_WORDS[t];
     });
   }
 
-  function slugify(str, fallbackIndex){
-    var base = norm(str).replace(/\s+/g, "-");
-    return base || ("item-" + fallbackIndex);
+  function normalizeListArray(val){
+    if (!val) return [];
+    if (Array.isArray(val)) return val.map(cleanText).filter(Boolean);
+    return String(val).split(/[,;|]+/).map(cleanText).filter(Boolean);
+  }
+
+  function normalizeAuthors(authors){
+    if (!authors || typeof authors !== "object") return null;
+    var normalized = {};
+    Object.keys(authors).forEach(function(k){
+      var val = cleanText(authors[k]);
+      if (val) normalized[norm(k).replace(/\s+/g, "_")] = val;
+    });
+    return Object.keys(normalized).length ? normalized : null;
   }
 
   function normalizeCatalogData(raw){
     var list = Array.isArray(raw)
       ? raw
-      : (raw && Array.isArray(raw.fichas) ? raw.fichas : (raw && Array.isArray(raw.symptoms) ? raw.symptoms : []));
+      : (raw && Array.isArray(raw.fichas) ? raw.fichas : (raw && Array.isArray(raw.symptoms) ? raw.symptoms : (raw && Array.isArray(raw.items) ? raw.items : [])));
 
     return list.filter(function(item){
-      return item && typeof item === "object" && item.symptom;
+      if (!item || typeof item !== "object") return false;
+      return Boolean(cleanText(item.symptom || item.sintoma || item.title || item.titulo || item.name));
     }).map(function(item, idx){
-      return Object.assign({}, item, {
-        id: item.id ? String(item.id) : slugify(item.symptom, idx)
-      });
+      var symptom = cleanText(item.symptom || item.sintoma || item.title || item.titulo || item.name);
+      var system = cleanText(item.system || item.sistema || item.zone || "General") || "General";
+      var stage = cleanText(item.stage || item.etapa || item.fase);
+      var emotion = cleanText(item.emotion || item.emocion || item.conflict || item.conflicto);
+      var summary = cleanText(item.summary || item.resumen || item.description || item.descripcion);
+      var resentir = cleanText(item.resentir || item.feeling);
+      var solution = cleanText(item.solution || item.solucion || item.reparacion);
+      var keywords = normalizeListArray(item.keywords || item.palabras_clave || item.tags);
+      var questions = normalizeListArray(item.questions || item.preguntas);
+      var related = normalizeListArray(item.related || item.relacionados);
+      var authors = normalizeAuthors(item.authors || item.autores);
+      var rawId = cleanText(item.id);
+      var id = rawId ? slugify(rawId, idx) : slugify(symptom, idx);
+
+      return {
+        id: id,
+        system: system,
+        stage: stage,
+        symptom: symptom,
+        emotion: emotion,
+        summary: summary,
+        resentir: resentir,
+        solution: solution,
+        keywords: keywords,
+        questions: questions,
+        related: related,
+        authors: authors
+      };
     });
   }
 
   function populateSystems(){
     var sel = $("system-select");
-    var systems = [];
+    var map = {};
     catalog.forEach(function(item){
-      if (item.system && systems.indexOf(item.system) === -1) systems.push(item.system);
+      var key = norm(item.system);
+      if (key && !map[key]) map[key] = item.system;
     });
+
+    var systems = Object.keys(map).map(function(k){ return map[k]; }).sort(function(a,b){
+      return a.localeCompare(b, "es", { sensitivity: "base" });
+    });
+
     sel.innerHTML = '<option value="all">Todos los sistemas</option>' +
       systems.map(function(s){ return '<option value="' + esc(s) + '">' + esc(s) + '</option>'; }).join("");
-    if (selectedSystem !== "all" && systems.indexOf(selectedSystem) === -1){
-      selectedSystem = "all";
+
+    if (selectedSystem !== "all"){
+      var matched = systems.find(function(s){ return norm(s) === norm(selectedSystem); });
+      selectedSystem = matched || "all";
     }
     sel.value = selectedSystem;
+  }
+
+  function tokenMatches(hay, tok){
+    if (hay.indexOf(tok) !== -1) return true;
+    if (tok.length > 3 && hay.indexOf(tok.slice(0, -1)) !== -1) return true;
+    return false;
   }
 
   function getFilteredItems(){
     var rawNorm = norm(searchQuery);
     var tokens = getTokens(searchQuery);
+    var sysNorm = norm(selectedSystem);
 
-    return catalog.filter(function(item){
-      if (selectedSystem !== "all" && item.system !== selectedSystem) return false;
-      if (!rawNorm) return true;
+    var bySystem = catalog.filter(function(item){
+      if (selectedSystem === "all") return true;
+      return norm(item.system) === sysNorm;
+    });
 
+    if (!rawNorm) return bySystem;
+
+    var scored = bySystem.map(function(item){
       var authorsText = item.authors ? Object.values(item.authors).join(" ") : "";
-      var kwText = Array.isArray(item.keywords) ? item.keywords.join(" ") : (item.keywords || "");
+      var kwText = item.keywords.join(" ");
+      var symptomNorm = norm(item.symptom);
       var hay = norm([
         item.system,
         item.stage,
@@ -196,18 +267,38 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
         item.emotion,
         item.summary,
         item.resentir,
+        item.solution,
         authorsText
       ].join(" "));
 
-      if (hay.indexOf(rawNorm) !== -1) return true;
-      if (!tokens.length) return true;
+      var exactPhrase = hay.indexOf(rawNorm) !== -1;
+      var allTokensMatch = !tokens.length || tokens.every(function(tok){ return tokenMatches(hay, tok); });
+      var anyTokenMatch = !tokens.length || tokens.some(function(tok){ return tokenMatches(hay, tok); });
 
-      return tokens.some(function(tok){
-        if (hay.indexOf(tok) !== -1) return true;
-        if (tok.length > 3 && hay.indexOf(tok.slice(0, -1)) !== -1) return true;
-        return false;
+      if (!exactPhrase && !allTokensMatch && !anyTokenMatch) return null;
+
+      var score = 0;
+      if (symptomNorm === rawNorm) score += 100;
+      else if (symptomNorm.indexOf(rawNorm) !== -1) score += 60;
+      if (exactPhrase) score += 40;
+      if (allTokensMatch) score += 25;
+      tokens.forEach(function(tok){
+        if (symptomNorm.indexOf(tok) !== -1) score += 12;
+        else if (tokenMatches(hay, tok)) score += 5;
       });
+
+      return { item: item, score: score, allTokensMatch: allTokensMatch };
+    }).filter(Boolean);
+
+    var strictMatches = scored.filter(function(entry){ return entry.allTokensMatch; });
+    var pool = strictMatches.length ? strictMatches : scored;
+
+    pool.sort(function(a, b){
+      if (b.score !== a.score) return b.score - a.score;
+      return a.item.symptom.localeCompare(b.item.symptom, "es", { sensitivity: "base" });
     });
+
+    return pool.map(function(entry){ return entry.item; });
   }
 
   function renderAuthors(authors){
@@ -215,20 +306,33 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
     var labels = {
       jacques_martel: "Jacques Martel",
       louise_hay: "Louise L. Hay",
-      lisa_bourbeau: "Lisa Bourbeau"
+      lisa_bourbeau: "Lisa Bourbeau",
+      enric_corbera: "Enric Corbera",
+      salomon_sellam: "Salomón Sellam",
+      christian_fleche: "Christian Flèche"
     };
     var keys = Object.keys(authors).filter(function(k){ return authors[k]; });
     if (!keys.length) return "";
     return keys.map(function(k){
-      return '<h4>' + esc(labels[k] || k) + '</h4><p class="block-p">' + esc(authors[k]) + '</p>';
+      return '<h4>' + esc(labels[k] || k.replace(/_/g, " ")) + '</h4><p class="block-p">' + esc(authors[k]) + '</p>';
     }).join("");
   }
 
-  function renderRelated(relatedIds){
-    if (!Array.isArray(relatedIds) || !relatedIds.length) return "";
-    var items = relatedIds.map(function(rid){
-      return catalog.find(function(x){ return x.id === rid; });
-    }).filter(Boolean);
+  function findRelatedItem(ref){
+    var refSlug = slugify(ref, -1);
+    var refNorm = norm(ref);
+    return catalog.find(function(x){
+      return x.id === refSlug || norm(x.id) === refNorm || norm(x.symptom) === refNorm;
+    }) || null;
+  }
+
+  function renderRelated(relatedList){
+    if (!Array.isArray(relatedList) || !relatedList.length) return "";
+    var items = relatedList.map(function(ref){
+      var found = findRelatedItem(ref);
+      return found || { id: slugify(ref, -1), symptom: cleanText(ref), unresolved: true };
+    }).filter(function(x){ return x.symptom; });
+
     if (!items.length) return "";
     return '<h4>Zonas o síntomas relacionados</h4><div class="rel-row">' +
       items.map(function(rel){
@@ -244,7 +348,7 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
 
     if (!catalog.length){
       chips.innerHTML = "";
-      detail.innerHTML = "<p class='note' style='margin:0;'>No hay fichas disponibles en ./data/biodesc.json.</p>";
+      detail.innerHTML = "<p class='note' style='margin:0;'>No hay fichas disponibles en " + esc(DATA_URL) + ".</p>";
       return;
     }
 
@@ -289,7 +393,7 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
       return;
     }
     box.innerHTML = userLogs.map(function(log){
-      var dt = log.createdAt ? new Date(log.createdAt).toLocaleString("es-CL") : "";
+      var dt = log.createdAt ? new Date(Number(log.createdAt)).toLocaleString("es-CL") : "";
       return '<div class="history-item">' +
         '<strong>' + esc(log.symptom || "Consulta") + '</strong>' +
         (log.system ? ' <span class="note">(' + esc(log.system) + ')</span>' : '') +
@@ -300,20 +404,21 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
   }
 
   async function loadExternalCatalog(){
+    $("source-status").textContent = "Cargando " + DATA_URL + "...";
     try {
-      var res = await fetch("./data/biodesc.json", { cache: "no-store" });
+      var res = await fetch(DATA_URL, { cache: "no-store" });
       if (!res.ok) throw new Error("HTTP " + res.status);
       var raw = await res.json();
       var normalized = normalizeCatalogData(raw);
-      if (!normalized.length) throw new Error("JSON vacío o sin elementos válidos");
+      if (!normalized.length) throw new Error("JSON vacío o sin fichas válidas");
 
       catalog = normalized;
       selectedId = catalog[0].id;
-      $("source-status").textContent = "Catálogo cargado desde ./data/biodesc.json (" + catalog.length + " fichas).";
+      $("source-status").textContent = "Catálogo cargado desde " + DATA_URL + " (" + catalog.length + " fichas).";
     } catch (e) {
       catalog = [];
       selectedId = "";
-      $("source-status").textContent = "No se pudo cargar ./data/biodesc.json (" + e.message + ").";
+      $("source-status").textContent = "No se pudo cargar " + DATA_URL + " (" + e.message + ").";
     }
     populateSystems();
     renderCatalog();
@@ -325,7 +430,7 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
   });
 
   $("bio-search").addEventListener("input", function(){
-    searchQuery = this.value.trim();
+    searchQuery = this.value;
     renderCatalog();
   });
 
@@ -339,7 +444,7 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
   $("symptom-detail").addEventListener("click", function(ev){
     var relBtn = ev.target.closest(".rel-btn[data-rel-id]");
     if (!relBtn) return;
-    var target = catalog.find(function(x){ return x.id === relBtn.dataset.relId; });
+    var target = findRelatedItem(relBtn.dataset.relId);
     if (!target) return;
     selectedSystem = "all";
     $("system-select").value = "all";
@@ -435,17 +540,21 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
       statusEl.textContent = "Escribe una breve reflexión antes de guardar.";
       return;
     }
-    const id = String(Date.now());
-    await setDoc(doc(db, "users", auth.currentUser.uid, "biodesc_logs", id), {
-      id,
-      symptomId: item ? item.id : "",
-      symptom: item ? item.symptom : "",
-      system: item ? item.system : "",
-      reflection,
-      createdAt: Date.now()
-    });
-    txtEl.value = "";
-    statusEl.textContent = "Consulta y reflexión guardadas en tu perfil.";
+    try {
+      const id = String(Date.now());
+      await setDoc(doc(db, "users", auth.currentUser.uid, "biodesc_logs", id), {
+        id,
+        symptomId: item ? item.id : "",
+        symptom: item ? item.symptom : "",
+        system: item ? item.system : "",
+        reflection,
+        createdAt: Date.now()
+      });
+      txtEl.value = "";
+      statusEl.textContent = "Consulta y reflexión guardadas en tu perfil.";
+    } catch (e) {
+      statusEl.textContent = "No se pudo guardar la consulta (" + (e.message || "error") + ").";
+    }
   });
 </script>
 </body>
