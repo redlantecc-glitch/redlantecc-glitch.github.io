@@ -65,7 +65,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
 .res{font-size:14px;margin:8px 0;padding:8px 11px;border-radius:9px;background:color-mix(in srgb,var(--ok) 8%,var(--bg));border:1px solid color-mix(in srgb,var(--ok) 30%,transparent);color:var(--ink)}
 .res strong{color:var(--ok)}
 
-/* Barra de acciones de tarjeta: botones a la izquierda, eliminar aislado a la derecha */
+/* Barra de acciones de tarjeta */
 .entry-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
 .entry-actions-left{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .btn-astral-toggle{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));color:var(--accent);font-weight:500}
@@ -79,7 +79,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
 #warn,.auth-err{background:var(--surface);border:1px solid var(--rec);border-radius:10px;padding:10px 12px;font-size:14px;margin-top:10px;color:var(--rec)}
 #warn{display:none;margin-bottom:14px}
 
-/* Barra superior centrada en móvil */
+/* Barra superior */
 .header-bar{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;margin-bottom:8px}
 .header-brand{width:100%;display:flex;flex-direction:column;align-items:center}
 .user-info{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;width:100%;padding-top:6px;border-top:1px solid var(--line)}
@@ -163,6 +163,30 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
 .chart-wrap svg{width:100%;max-width:270px;height:auto;display:block}
 .chart-legend{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;font-size:12px;color:var(--mute);margin-top:6px}
 
+/* Sección dedicada de Diseño Humano */
+.hd-overlay{position:fixed;inset:0;background:rgba(12,6,26,0.66);display:none;z-index:1200;padding:14px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.hd-overlay.open{display:flex;align-items:flex-start;justify-content:center}
+.hd-modal{width:100%;max-width:860px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;margin:auto;box-shadow:0 18px 48px rgba(10,4,24,.35)}
+.hd-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.hd-head h2{margin:2px 0 0;font:600 clamp(21px,5vw,25px)/1.2 "Newsreader",Georgia,serif}
+.hd-grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:10px;margin-bottom:14px}
+.hd-stat-card{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:11px 12px}
+.hd-stat-card small{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--mute);margin-bottom:3px}
+.hd-stat-card strong{font-size:15px;color:var(--ink);display:block}
+.hd-stat-card span{display:block;font-size:12px;color:var(--mute);margin-top:3px;line-height:1.35}
+.hd-section{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px}
+.hd-section h3{margin:0 0 8px;font:600 17px/1.25 "Newsreader",Georgia,serif;color:var(--ink)}
+.hd-nodes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.hd-node-box{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:10px 12px}
+.hd-node-box strong{color:var(--accent);font-size:13.5px;display:block;margin-bottom:3px}
+.hd-centers-list{display:flex;flex-wrap:wrap;gap:6px}
+.hd-center-pill{font-size:12px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.hd-center-pill.defined{border-color:color-mix(in srgb,var(--accent) 55%,var(--line));background:color-mix(in srgb,var(--accent) 12%,var(--surface));font-weight:600}
+.hd-transit-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+.hd-transit-bar input[type=date]{width:auto;min-width:170px;padding:7px 10px;font-size:14px}
+.hd-transit-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px}
+.hd-transit-item{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:9px 11px;font-size:13px}
+
 /* Autocomplete & Validation UI */
 .city-suggestions{position:absolute;left:0;right:0;top:100%;margin-top:4px;background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.18);max-height:210px;overflow-y:auto;z-index:1100;display:none}
 .city-suggestions.open{display:block}
@@ -224,6 +248,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
   .stats span{background:var(--bg);padding:8px 4px;border-radius:10px;border:1px solid var(--line);font-size:12px}
   .stats b{display:block;font-size:19px;line-height:1.15;margin-bottom:2px}
   .sidebar{width:100vw;border-left:0}
+  .hd-modal{padding:14px;border-radius:14px}
 }
 </style>
 </head>
@@ -377,6 +402,9 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
         <button class="b p" type="button" id="btn-download-natal-pdf" style="width:100%">Descargar Carta Natal completa (PDF)</button>
       </div>
       <p class="note" id="astro-pdf-status" aria-live="polite"></p>
+      <div class="row" style="margin-top:10px">
+        <button class="b" type="button" id="btn-open-hd" style="width:100%;border-color:color-mix(in srgb,var(--accent) 50%,var(--line));color:var(--accent);font-weight:600">✦ Abrir sección Diseño Humano</button>
+      </div>
     </div>
 
     <!-- 2. Datos de nacimiento -->
@@ -413,7 +441,49 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
 
     <!-- 3. Disclaimer al final -->
     <div class="astral-disclaimer" id="astral-disclaimer">
-      <strong>Aviso importante:</strong> La carta astral y las lecturas simbólicas en DreamSaver tienen fines de reflexión personal y entretenimiento; no sustituyen orientación médica, psicológica ni profesional. Cada usuario debe gestionar su propio perfil individual.
+      <strong>Aviso importante:</strong> La carta astral, el diseño humano y las lecturas simbólicas en DreamSaver tienen fines de reflexión personal y entretenimiento; no sustituyen orientación médica, psicológica ni profesional. Cada usuario debe gestionar su propio perfil individual.
+    </div>
+  </div>
+</div>
+
+<!-- Sección Nueva: Diseño Humano -->
+<div class="hd-overlay" id="hd-overlay" role="dialog" aria-modal="true" aria-labelledby="hd-modal-title">
+  <div class="hd-modal">
+    <div class="hd-head">
+      <div>
+        <div class="brand-badge">✦ Sección Nueva · Diseño Humano</div>
+        <h2 id="hd-modal-title">Mapa, Nodos y Tránsitos</h2>
+        <p class="note" id="hd-birth-meta">Calculado localmente desde tu perfil guardado sin sumar consultas externas.</p>
+      </div>
+      <button class="b" type="button" id="btn-close-hd">Volver al perfil</button>
+    </div>
+
+    <div id="hd-body">
+      <div class="hd-grid-4" id="hd-summary-grid"></div>
+
+      <section class="hd-section" aria-label="Nodos lunares en Diseño Humano">
+        <h3>Nodos (Personalidad y Diseño)</h3>
+        <p class="note" style="margin-bottom:10px">En Diseño Humano, los Nodos muestran el eje de entorno y aprendizaje: el <strong>Nodo Norte</strong> apunta hacia dónde se abre la dirección evolutiva y el <strong>Nodo Sur</strong> refleja la base o entorno conocido.</p>
+        <div class="hd-nodes-grid" id="hd-nodes-grid"></div>
+      </section>
+
+      <section class="hd-section" aria-label="Centros energéticos">
+        <h3>Centros y canales activados (estimación local)</h3>
+        <div class="hd-centers-list" id="hd-centers-list"></div>
+        <p class="note" id="hd-channels-note"></p>
+      </section>
+
+      <section class="hd-section" aria-label="Tránsitos del día">
+        <h3>Tránsitos planetarios y puertas activas</h3>
+        <div class="hd-transit-bar">
+          <label for="hd-transit-date" class="note" style="margin:0">Fecha de tránsito:</label>
+          <input type="date" id="hd-transit-date">
+          <button class="b" type="button" id="hd-transit-today">Hoy</button>
+        </div>
+        <div class="hd-transit-list" id="hd-transit-list"></div>
+      </section>
+
+      <p class="note"><strong>Nota:</strong> Las posiciones eclípticas, puertas del I Ching (64 hexagramas) y activaciones aquí mostradas son estimaciones astronómicas locales con fines de introspección y seguimiento onírico.</p>
     </div>
   </div>
 </div>
@@ -594,6 +664,242 @@ function getLunarInfo(dateObj) {
   };
 }
 
+/* --- Motor local de Diseño Humano (64 puertas, Nodos y Tránsitos) --- */
+var HD_GATE_WHEEL = [
+  41, 19, 13, 49, 30, 55, 37, 63, 22, 36, 25, 17, 21, 51, 42, 3,
+  27, 24, 2, 23, 8, 20, 16, 35, 45, 12, 15, 52, 39, 53, 62, 56,
+  31, 33, 7, 4, 29, 59, 40, 64, 47, 6, 46, 18, 48, 57, 32, 50,
+  28, 44, 1, 43, 14, 34, 9, 5, 26, 11, 10, 58, 38, 54, 61, 60
+];
+
+var HD_GATE_NAMES = {
+  1:"Creatividad / Autoexpresión", 2:"Receptividad / Dirección", 3:"Orden / Dificultad Inicial", 4:"Formulación / Respuestas",
+  5:"Espera / Ritmo Natural", 6:"Fricción / Intimidad", 7:"El Ejército / Rol de Guía", 8:"Contribución / Hacer la Diferencia",
+  9:"Enfoque / Poder del Detalle", 10:"Comportamiento del Ser", 11:"Ideas / Paz", 12:"Cautela / Quietud",
+  13:"El Oyente / Comunidad", 14:"Riqueza / Poder en Manos", 15:"Extremos / Humildad", 16:"Habilidades / Entusiasmo",
+  17:"Opinión / Seguir", 18:"Corrección / Trabajo sobre lo Dañado", 19:"Necesidad / Acercamiento", 20:"El Ahora / Contemplación",
+  21:"Cazador / Control", 22:"Gracia / Apertura Emocional", 23:"Asimilación / Dividir", 24:"Retorno / Racionalización",
+  25:"Inocencia / Espíritu del Ser", 26:"El Domesticador / Gran Acumulación", 27:"Cuidado / Nutrición", 28:"El Jugador / Riesgo",
+  29:"Lo Abismal / Compromiso", 30:"Fuego Aferrado / Reconocimiento", 31:"Influencia / Liderazgo", 32:"Duración / Continuidad",
+  33:"Retirada / Privacidad", 34:"Gran Poder / Fuerza", 35:"Progreso / Cambio", 36:"Oscurecimiento de la Luz / Crisis",
+  37:"Amistad / Familia", 38:"Oposición / Lucha con Sentido", 39:"Obstáculo / Provocación", 40:"Liberación / Entrega",
+  41:"Disminución / Presión de Experiencia", 42:"Aumento / Crecimiento", 43:"Resolución / Perspicacia", 44:"Ir al Encuentro / Patrones",
+  45:"Reunión / Cohesión", 46:"Ascenso / Determinación", 47:"Agotamiento / Realización", 48:"El Pozo / Profundidad",
+  49:"Revolución / Principios", 50:"El Caldero / Valores", 51:"Lo Suscitador / Conmoción", 52:"Aquietamiento / Quietud",
+  53:"Desarrollo / Comienzos", 54:"La Muchacha / Ambición", 55:"Abundancia / Espíritu", 56:"El Viajero / Estimulación",
+  57:"Lo Penetrante / Intuición", 58:"Lo Gozoso / Vitalidad", 59:"Dispersión / Apertura", 60:"Limitación / Aceptación",
+  61:"Verdad Interior / Misterio", 62:"Pequeña Preponderancia / Detalle", 63:"Después de Completar / Duda", 64:"Antes de Completar / Confusión"
+};
+
+var HD_CHANNELS = [
+  [1,8],[2,14],[3,60],[4,63],[5,15],[6,59],[7,31],[9,52],[10,20],[10,34],[10,57],
+  [11,56],[12,22],[13,33],[16,48],[17,62],[18,58],[19,49],[20,34],[20,57],[21,45],
+  [23,43],[24,61],[25,51],[26,44],[27,50],[28,38],[29,46],[30,41],[32,54],[34,57],[35,36],[37,40],[39,55],[42,53],[47,64]
+];
+
+var HD_CENTERS = [
+  { id:"head", name:"Cabeza (Presión mental / inspiración)", gates:[64,61,63] },
+  { id:"ajna", name:"Ajna (Conceptualización / mente)", gates:[47,24,4,17,43,11] },
+  { id:"throat", name:"Garganta (Expresión / manifestación)", gates:[62,23,56,35,12,45,33,8,31,20,16] },
+  { id:"g", name:"G / Identidad (Dirección / amor / ser)", gates:[7,1,13,10,25,15,46,2] },
+  { id:"heart", name:"Corazón / Ego (Fuerza de voluntad / valor)", gates:[21,51,26,40] },
+  { id:"spleen", name:"Bazo (Instinto / supervivencia / intuición)", gates:[48,57,44,50,32,28,18] },
+  { id:"solar", name:"Plexo Solar (Emoción / onda emocional)", gates:[6,37,22,36,49,55,30] },
+  { id:"sacral", name:"Sacro (Energía vital / respuesta)", gates:[5,14,29,59,9,3,42,27,34] },
+  { id:"root", name:"Raíz (Presión de impulso / adrenalina)", gates:[53,60,52,19,39,41,58,38,54] }
+];
+
+function degToGateLine(lonDeg) {
+  var norm = ((Number(lonDeg) % 360) + 360) % 360;
+  var shifted = (norm + 58) % 360;
+  var sliceSize = 360 / 64;
+  var idx = Math.floor(shifted / sliceSize) % 64;
+  var posInSlice = (shifted % sliceSize) / sliceSize;
+  var line = Math.min(6, Math.max(1, Math.floor(posInSlice * 6) + 1));
+  var gate = HD_GATE_WHEEL[idx];
+  return {
+    gate: gate,
+    line: line,
+    sign: ZODIAC_ORDER[Math.floor(norm / 30) % 12],
+    title: HD_GATE_NAMES[gate] || ("Puerta " + gate)
+  };
+}
+
+function estimatePositionsAtMs(ms) {
+  var d2000 = (Number(ms) - Date.UTC(2000, 0, 1, 12, 0, 0)) / 86400000;
+  var wrap = function(v){ var x = v % 360; return x < 0 ? x + 360 : x; };
+
+  var M = wrap(357.529 + 0.98560028 * d2000) * Math.PI / 180;
+  var sunLon = wrap(280.460 + 0.98564736 * d2000 + 1.915 * Math.sin(M) + 0.020 * Math.sin(2 * M));
+
+  var Lmoon = wrap(218.316 + 13.176396 * d2000);
+  var Mmoon = wrap(134.963 + 13.064993 * d2000) * Math.PI / 180;
+  var moonLon = wrap(Lmoon + 6.289 * Math.sin(Mmoon));
+
+  var northNodeLon = wrap(125.0445 - 0.05295377 * d2000);
+  var southNodeLon = wrap(northNodeLon + 180);
+
+  var mercLon = wrap(252.251 + 4.09233445 * d2000 + 20 * Math.sin(M));
+  var venLon = wrap(181.979 + 1.60213034 * d2000 + 1.5 * Math.sin(M));
+  var marsLon = wrap(355.433 + 0.52402068 * d2000 + 10 * Math.sin(M));
+  var jupLon = wrap(34.351 + 0.08308529 * d2000 + 5 * Math.sin(M));
+  var satLon = wrap(50.077 + 0.03344414 * d2000 + 6 * Math.sin(M));
+  var uraLon = wrap(314.055 + 0.01172834 * d2000 + 2 * Math.sin(M));
+  var nepLon = wrap(304.348 + 0.00598103 * d2000 + 1.5 * Math.sin(M));
+  var pluLon = wrap(238.958 + 0.003964 * d2000);
+
+  return {
+    sun: sunLon,
+    earth: wrap(sunLon + 180),
+    moon: moonLon,
+    northNode: northNodeLon,
+    southNode: southNodeLon,
+    mercury: mercLon,
+    venus: venLon,
+    mars: marsLon,
+    jupiter: jupLon,
+    saturn: satLon,
+    uranus: uraLon,
+    neptune: nepLon,
+    pluto: pluLon
+  };
+}
+
+function findDesignMomentMs(birthMs) {
+  var birthPos = estimatePositionsAtMs(birthMs);
+  var targetSun = ((birthPos.sun - 88) % 360 + 360) % 360;
+  var approxDaysBack = 88 / 0.985647;
+  var estMs = birthMs - approxDaysBack * 86400000;
+  for (var i = 0; i < 6; i++) {
+    var cur = estimatePositionsAtMs(estMs).sun;
+    var diff = ((cur - targetSun + 540) % 360) - 180;
+    estMs -= (diff / 0.985647) * 86400000;
+  }
+  return estMs;
+}
+
+function computeHumanDesignLocal(birthMeta, targetDateObj) {
+  var dob = (birthMeta && birthMeta.dob) || "";
+  var tob = (birthMeta && birthMeta.tob) || "12:00";
+  var birthMs = null;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(dob)) {
+    var parts = dob.split("-").map(Number);
+    var tParts = (tob || "12:00").split(":").map(Number);
+    birthMs = Date.UTC(parts[0], parts[1] - 1, parts[2], tParts[0] || 0, tParts[1] || 0, 0);
+  }
+
+  var refMs = birthMs || Date.now();
+  var designMs = findDesignMomentMs(refMs);
+  var pPos = estimatePositionsAtMs(refMs);
+  var dPos = estimatePositionsAtMs(designMs);
+
+  var pNodes = {
+    north: degToGateLine(pPos.northNode),
+    south: degToGateLine(pPos.southNode)
+  };
+  var dNodes = {
+    north: degToGateLine(dPos.northNode),
+    south: degToGateLine(dPos.southNode)
+  };
+
+  var pSun = degToGateLine(pPos.sun);
+  var dSun = degToGateLine(dPos.sun);
+  var profileCode = pSun.line + "/" + dSun.line;
+
+  var activeGatesSet = {};
+  [pPos, dPos].forEach(function(set){
+    Object.keys(set).forEach(function(k){
+      activeGatesSet[degToGateLine(set[k]).gate] = true;
+    });
+  });
+
+  var activeChannels = [];
+  HD_CHANNELS.forEach(function(pair){
+    if (activeGatesSet[pair[0]] && activeGatesSet[pair[1]]) {
+      activeChannels.push(pair[0] + "-" + pair[1]);
+    }
+  });
+
+  var centersStatus = HD_CENTERS.map(function(c){
+    var defined = c.gates.some(function(g){ return Boolean(activeGatesSet[g]); });
+    return { id: c.id, name: c.name, defined: defined };
+  });
+
+  var isDefined = function(id){
+    var found = centersStatus.find(function(x){ return x.id === id; });
+    return Boolean(found && found.defined);
+  };
+
+  var sacralDef = isDefined("sacral");
+  var solarDef = isDefined("solar");
+  var spleenDef = isDefined("spleen");
+  var heartDef = isDefined("heart");
+  var gDef = isDefined("g");
+
+  var typeName = "Generador", strategyName = "Esperar para responder", authorityName = "Sacral";
+  if (!sacralDef && (isDefined("throat") || isDefined("heart") || solarDef || spleenDef)) {
+    var hasMotorToThroat = activeChannels.some(function(ch){
+      var ab = ch.split("-").map(Number);
+      var hasThroat = HD_CENTERS[2].gates.indexOf(ab[0]) >= 0 || HD_CENTERS[2].gates.indexOf(ab[1]) >= 0;
+      var hasMotor = [4,5,6].some(function(ci){
+        return HD_CENTERS[ci].defined && (HD_CENTERS[ci].gates.indexOf(ab[0]) >= 0 || HD_CENTERS[ci].gates.indexOf(ab[1]) >= 0);
+      });
+      return hasThroat && hasMotor;
+    });
+    if (hasMotorToThroat) {
+      typeName = "Manifestador";
+      strategyName = "Informar antes de actuar";
+    } else {
+      typeName = "Proyector";
+      strategyName = "Esperar la invitación";
+    }
+  } else if (!sacralDef && !isDefined("throat") && !solarDef && !spleenDef && !heartDef && !gDef) {
+    typeName = "Reflector";
+    strategyName = "Esperar un ciclo lunar completo (28 días)";
+    authorityName = "Lunar (ciclo completo)";
+  } else if (sacralDef && activeChannels.some(function(ch){
+    var ab = ch.split("-").map(Number);
+    return HD_CENTERS[2].gates.indexOf(ab[0]) >= 0 || HD_CENTERS[2].gates.indexOf(ab[1]) >= 0;
+  })) {
+    typeName = "Generador Manifestante";
+    strategyName = "Responder y luego informar";
+  }
+
+  if (typeName !== "Reflector") {
+    if (solarDef) authorityName = "Emocional (plexo solar)";
+    else if (sacralDef) authorityName = "Sacral (respuesta visceral)";
+    else if (spleenDef) authorityName = "Splénica (intuición instantánea)";
+    else if (heartDef) authorityName = "Ego / Corazón (voluntad)";
+    else if (gDef) authorityName = "G / Identidad (dirección)";
+    else authorityName = "Mental / Ambiental";
+  }
+
+  var tObj = (targetDateObj instanceof Date) ? targetDateObj : new Date(targetDateObj || Date.now());
+  var tPos = estimatePositionsAtMs(tObj.getTime());
+  var transitItems = [
+    { label: "Sol en tránsito", info: degToGateLine(tPos.sun) },
+    { label: "Luna en tránsito", info: degToGateLine(tPos.moon) },
+    { label: "Nodo Norte en tránsito", info: degToGateLine(tPos.northNode) },
+    { label: "Nodo Sur en tránsito", info: degToGateLine(tPos.southNode) },
+    { label: "Mercurio en tránsito", info: degToGateLine(tPos.mercury) },
+    { label: "Venus en tránsito", info: degToGateLine(tPos.venus) }
+  ];
+
+  return {
+    hasBirth: Boolean(birthMs),
+    typeName: typeName,
+    strategyName: strategyName,
+    authorityName: authorityName,
+    profileCode: profileCode,
+    pNodes: pNodes,
+    dNodes: dNodes,
+    centersStatus: centersStatus,
+    activeChannels: activeChannels,
+    transitItems: transitItems
+  };
+}
+/* --- Fin motor Diseño Humano --- */
+
 function moonSvg(phaseRatio, size) {
   var s = size || 14;
   var r = s / 2 - 1;
@@ -644,6 +950,7 @@ function renderLunarBanner() {
 }
 window.DreamSaverRefreshLunar = renderLunarBanner;
 window.DreamSaverGetLunarInfo = getLunarInfo;
+window.DreamSaverComputeHD = computeHumanDesignLocal;
 
 window.DreamSaverSync = window.DreamSaverSync || {
   onSaveEntry: null,
@@ -1046,6 +1353,12 @@ render();
   const btnDownloadNatalPdf = document.getElementById("btn-download-natal-pdf");
   const astroPdfStatus = document.getElementById("astro-pdf-status");
 
+  const btnOpenHd = document.getElementById("btn-open-hd");
+  const hdOverlay = document.getElementById("hd-overlay");
+  const btnCloseHd = document.getElementById("btn-close-hd");
+  const hdTransitDate = document.getElementById("hd-transit-date");
+  const hdTransitToday = document.getElementById("hd-transit-today");
+
   const errDob = document.getElementById("err-dob");
   const errTob = document.getElementById("err-tob");
   const errCity = document.getElementById("err-city");
@@ -1060,6 +1373,96 @@ render();
   let searchTimer = null;
   let astroFetching = false;
   let quotaState = { exceeded: false, reachedAt: null, message: "" };
+
+  function renderHumanDesignSection() {
+    if (typeof window.DreamSaverComputeHD !== "function") return;
+    const activeBirth = currentBirthMeta || {
+      dob: dobInput.value || "",
+      tob: tobInput.value || "12:00",
+      city: cityInput.value || ""
+    };
+
+    const tVal = hdTransitDate.value;
+    const transitDateObj = tVal && /^\d{4}-\d{2}-\d{2}$/.test(tVal)
+      ? new Date(tVal + "T12:00:00")
+      : new Date();
+
+    const hd = window.DreamSaverComputeHD(activeBirth, transitDateObj);
+
+    const metaEl = document.getElementById("hd-birth-meta");
+    if (activeBirth.dob) {
+      metaEl.textContent = `Base natal: ${activeBirth.dob} · ${activeBirth.tob || "12:00"}${activeBirth.city ? " · " + activeBirth.city : ""} (sin consultas extra a APIs).`;
+    } else {
+      metaEl.textContent = "Aún no hay fecha de nacimiento guardada; se muestra referencia general y tránsitos del día.";
+    }
+
+    document.getElementById("hd-summary-grid").innerHTML = `
+      <div class="hd-stat-card"><small>Tipo</small><strong>${escapeHtml(hd.typeName)}</strong><span>Clasificación energética general</span></div>
+      <div class="hd-stat-card"><small>Estrategia</small><strong>${escapeHtml(hd.strategyName)}</strong><span>Cómo interactuar con el entorno</span></div>
+      <div class="hd-stat-card"><small>Autoridad</small><strong>${escapeHtml(hd.authorityName)}</strong><span>Referencia interna para decidir</span></div>
+      <div class="hd-stat-card"><small>Perfil</small><strong>${escapeHtml(hd.profileCode)}</strong><span>Línea de Personalidad / Diseño</span></div>
+    `;
+
+    document.getElementById("hd-nodes-grid").innerHTML = `
+      <div class="hd-node-box">
+        <strong>Personalidad (Consciente)</strong>
+        <div>Nodo Norte: <b>Puerta ${hd.pNodes.north.gate}.${hd.pNodes.north.line}</b> (${escapeHtml(hd.pNodes.north.sign)}) — ${escapeHtml(hd.pNodes.north.title)}</div>
+        <div style="margin-top:4px">Nodo Sur: <b>Puerta ${hd.pNodes.south.gate}.${hd.pNodes.south.line}</b> (${escapeHtml(hd.pNodes.south.sign)}) — ${escapeHtml(hd.pNodes.south.title)}</div>
+      </div>
+      <div class="hd-node-box">
+        <strong>Diseño (~88° previos · Inconsciente)</strong>
+        <div>Nodo Norte: <b>Puerta ${hd.dNodes.north.gate}.${hd.dNodes.north.line}</b> (${escapeHtml(hd.dNodes.north.sign)}) — ${escapeHtml(hd.dNodes.north.title)}</div>
+        <div style="margin-top:4px">Nodo Sur: <b>Puerta ${hd.dNodes.south.gate}.${hd.dNodes.south.line}</b> (${escapeHtml(hd.dNodes.south.sign)}) — ${escapeHtml(hd.dNodes.south.title)}</div>
+      </div>
+    `;
+
+    document.getElementById("hd-centers-list").innerHTML = hd.centersStatus.map(c =>
+      `<span class="hd-center-pill ${c.defined ? "defined" : ""}">${escapeHtml(c.name)} · ${c.defined ? "Definido" : "Abierto"}</span>`
+    ).join("");
+
+    document.getElementById("hd-channels-note").textContent = hd.activeChannels.length
+      ? ("Canales estimados activos: " + hd.activeChannels.join(", "))
+      : "Sin canales cerrados en esta estimación local (centros abiertos o receptivos).";
+
+    document.getElementById("hd-transit-list").innerHTML = hd.transitItems.map(item =>
+      `<div class="hd-transit-item"><strong>${escapeHtml(item.label)}:</strong> Puerta ${item.info.gate}.${item.info.line} (${escapeHtml(item.info.sign)})<br><span class="note" style="margin:2px 0 0">${escapeHtml(item.info.title)}</span></div>`
+    ).join("");
+  }
+
+  if (btnOpenHd) {
+    btnOpenHd.addEventListener("click", () => {
+      if (!hdTransitDate.value) {
+        const d = new Date();
+        hdTransitDate.value = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+      }
+      renderHumanDesignSection();
+      hdOverlay.classList.add("open");
+    });
+  }
+
+  if (btnCloseHd) {
+    btnCloseHd.addEventListener("click", () => {
+      hdOverlay.classList.remove("open");
+    });
+  }
+
+  if (hdOverlay) {
+    hdOverlay.addEventListener("click", (ev) => {
+      if (ev.target === hdOverlay) hdOverlay.classList.remove("open");
+    });
+  }
+
+  if (hdTransitDate) {
+    hdTransitDate.addEventListener("change", renderHumanDesignSection);
+  }
+
+  if (hdTransitToday) {
+    hdTransitToday.addEventListener("click", () => {
+      const d = new Date();
+      hdTransitDate.value = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+      renderHumanDesignSection();
+    });
+  }
 
   function readLocalAstroCache(uid) {
     if (!uid) return null;
@@ -1997,7 +2400,10 @@ render();
     sidebar.classList.toggle("open", open);
     overlay.classList.toggle("open", open);
     document.body.style.overflow = open ? "hidden" : "";
-    if (!open) suggestionsBox.classList.remove("open");
+    if (!open) {
+      suggestionsBox.classList.remove("open");
+      if (hdOverlay) hdOverlay.classList.remove("open");
+    }
   }
 
   btnProfile.addEventListener("click", () => toggleSidebar(true));
