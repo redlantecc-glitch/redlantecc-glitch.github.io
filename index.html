@@ -105,14 +105,14 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
     "recorder"
     "lunar"
     "explorer"
-    "stats"
-    "list";
+    "list"
+    "stats";
   gap:0;
 }
 .recorder-card{grid-area:recorder;min-width:0}
 .explorer-card{grid-area:explorer;min-width:0}
 .stats-card{grid-area:stats;min-width:0}
-.list-area{grid-area:list;min-width:0}
+.list-area{grid-area:list;min-width:0;margin-bottom:14px}
  
 /* Explorador: Calendario y Búsqueda */
 .explorer-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
@@ -192,8 +192,8 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
     grid-template-areas:
       "recorder explorer"
       "lunar lunar"
-      "stats stats"
-      "list list";
+      "list list"
+      "stats stats";
     gap:18px 20px;
     align-items:stretch;
   }
@@ -205,7 +205,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
   .stats-card .stats span{background:var(--bg);padding:8px 16px;border-radius:12px;border:1px solid var(--line);font-size:13px;white-space:nowrap}
   .stats-card .stats b{font-size:20px;margin-right:4px}
   .stats-card .note{margin:0;flex:1}
-  .list-area{grid-area:list;width:100%}
+  .list-area{grid-area:list;width:100%;margin-bottom:0}
  
   .card{padding:18px;box-shadow:0 10px 28px rgba(24,12,48,.06)}
   .entry{padding:20px 24px}
@@ -311,7 +311,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
       <section class="card explorer-card" aria-label="Buscar y explorar sueños">
         <div class="explorer-head">
           <h3>Calendario lunar y registros</h3>
-          <button class="b cal-toggle" id="toggle-cal" type="button" aria-expanded="true">Ocultar calendario</button>
+          <button class="b cal-toggle" id="toggle-cal" type="button" aria-expanded="false">Ver calendario</button>
         </div>
         <div class="search-bar">
           <input type="search" id="search-q" placeholder="Buscar por palabra, #hashtag o persona…" aria-label="Buscar sueños">
@@ -323,7 +323,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
           <button type="button" class="chip" data-filter="hit">Coincidieron</button>
           <button type="button" class="chip" data-filter="pending">Pendientes</button>
         </div>
-        <div class="cal-box" id="cal-box">
+        <div class="cal-box" id="cal-box" style="display:none;">
           <div class="cal-nav">
             <button type="button" id="cal-prev" aria-label="Mes anterior">‹</button>
             <span class="cal-title" id="cal-title"></span>
@@ -337,6 +337,8 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
         </div>
       </section>
  
+      <div id="list" class="list-area"></div>
+
       <section class="card stats-card" aria-label="Resumen">
         <div class="stats">
           <span><b id="n">0</b> registrados</span>
@@ -345,8 +347,6 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
         </div>
         <p class="note">Si pasan más de dos semanas sin que ocurra algo parecido a tu sueño, márcalo como “sin coincidencia”. Llevar ese control te permite distinguir si hubo un patrón real o fue solo casualidad.</p>
       </section>
- 
-      <div id="list" class="list-area"></div>
     </div>
   </div>
  
@@ -684,7 +684,7 @@ var activeTagFilter = "all";
 var selectedDateKey = null;
 var calCursor = new Date();
 calCursor.setDate(1);
-var calVisible = true;
+var calVisible = false;
  
 $("toggle-cal").addEventListener("click", function(){
   calVisible = !calVisible;
@@ -723,6 +723,10 @@ $("cal-grid").addEventListener("click", function(ev){
   var dk = dayBtn.dataset.date;
   selectedDateKey = (selectedDateKey === dk) ? null : dk;
   render();
+  if(selectedDateKey){
+    var listEl = $("list");
+    if(listEl) listEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
 });
  
 $("reset-filters").addEventListener("click", function(){
