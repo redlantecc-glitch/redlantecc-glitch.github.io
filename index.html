@@ -86,7 +86,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
 .user-actions{display:flex;gap:8px;justify-content:center;width:100%;max-width:340px}
 .user-actions button.b{flex:1;padding:7px 12px;min-height:36px;font-size:13.5px}
  
-/* Banner Lunar (en móvil va debajo del calendario; en escritorio arriba) */
+/* Banner Lunar */
 .lunar-card{grid-area:lunar;margin-bottom:14px;display:flex;flex-direction:column;gap:10px}
 .lunar-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
 .lunar-main{display:flex;align-items:center;gap:11px;min-width:0}
@@ -97,7 +97,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
 .lunar-pill{font-size:12px;padding:4px 10px;border-radius:999px;background:var(--bg);border:1px solid var(--line);color:var(--ink);font-weight:500;white-space:nowrap}
 .lunar-desc{font-size:13.5px;color:var(--mute);line-height:1.45;padding-top:8px;border-top:1px solid var(--line);margin:0}
  
-/* Contenedor principal de layout: en móvil grabador arriba, luego explorador, luego banner lunar */
+/* Contenedor principal de layout */
 .workspace-grid{
   display:grid;
   grid-template-columns:minmax(0,1fr);
@@ -174,7 +174,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
 .status-pill.invalid{color:var(--rec);border-color:var(--rec)}
 .field-err{font-size:12.5px;color:var(--rec);margin-top:4px;display:none}
  
-/* Ajustes para escritorio / PC (>= 960px): Grabador y Calendario arriba, Estadísticas a todo ancho y Registros a todo ancho para lectura cómoda */
+/* Ajustes para escritorio / PC (>= 960px) */
 @media (min-width: 960px){
   main{max-width:1100px;padding:24px 28px 56px}
   #auth-card{max-width:460px;margin:32px auto 0;padding:22px}
@@ -251,7 +251,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
     </div>
     <div id="auth-error" class="auth-err" style="display:none;"></div>
     <p class="privacy-note">
-      <strong>Privacidad y propiedad:</strong> Tus sueños se guardan en tu cuenta y no se comparten. Para calcular tu carta astral, tu fecha, hora y lugar de nacimiento se envían a un servicio de astrología (FreeAstroAPI) a través de nuestro servidor, y la búsqueda de ciudades usa Open-Meteo.
+      <strong>Privacidad y propiedad:</strong> Tus sueños se guardan en tu cuenta y no se comparten. Para calcular tu carta astral, tu fecha, hora y lugar de nacimiento se envían una sola vez a un servicio de astrología a través de nuestro servidor y quedan guardados en tu perfil; la búsqueda de ciudades usa Open-Meteo.
     </p>
   </section>
  
@@ -292,7 +292,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
         <p class="note" id="saved" aria-live="polite"></p>
       </section>
  
-      <!-- Información Lunar (en móvil debajo del calendario; en escritorio arriba) -->
+      <!-- Información Lunar -->
       <section class="card lunar-card" id="lunar-banner" aria-label="Fase lunar actual">
         <div class="lunar-top">
           <div class="lunar-main">
@@ -571,7 +571,6 @@ function getLunarInfo(dateObj) {
     phaseAdvice = "Descanso profundo y síntesis: ideal para revisar coincidencias acumuladas en el diario.";
   }
  
-  /* Longitud eclíptica aproximada de la Luna (epoch J2000) */
   var d2000 = (t - Date.UTC(2000, 0, 1, 12, 0, 0)) / 86400000;
   var L = (218.316 + 13.176396 * d2000) % 360;
   if (L < 0) L += 360;
@@ -595,7 +594,6 @@ function moonSvg(phaseRatio, size) {
   var r = s / 2 - 1;
   var cx = s / 2, cy = s / 2;
   var p = phaseRatio;
-  /* Dibujo limpio de disco lunar iluminado vs sombra */
   var sweepOuter = p <= 0.5 ? 1 : 0;
   var termRx = Math.abs(Math.cos(2 * Math.PI * p)) * r;
   var sweepInner = (p <= 0.25 || (p > 0.5 && p <= 0.75)) ? (p <= 0.5 ? 0 : 1) : (p <= 0.5 ? 1 : 0);
@@ -607,6 +605,10 @@ function moonSvg(phaseRatio, size) {
     '<path d="'+litPath+'" fill="#f4c95d"/>' +
     '</svg>';
 }
+
+var searchQuery = "";
+var activeTagFilter = "all";
+var selectedDateKey = null;
  
 function renderLunarBanner() {
   var refDate = selectedDateKey ? new Date(selectedDateKey + "T12:00:00") : new Date();
@@ -657,8 +659,6 @@ window.DreamSaverGetEntries = function(){
   return entries.slice();
 };
  
-/* Se llama al iniciar sesión: carga SOLO la caché de ese uid.
-   La caché antigua (suenos:v1) se adopta una única vez y luego se elimina. */
 window.DreamSaverSetUser = function(uid){
   KEY = uid ? "suenos:v2:" + uid : null;
   try{
@@ -672,7 +672,6 @@ window.DreamSaverSetUser = function(uid){
   render();
 };
  
-/* Se llama al cerrar sesión: borra toda caché de sueños del dispositivo. */
 window.DreamSaverClearLocal = function(){
   try{
     var del=[];
@@ -683,10 +682,6 @@ window.DreamSaverClearLocal = function(){
   render();
 };
  
-/* Estado de búsqueda, filtros y calendario */
-var searchQuery = "";
-var activeTagFilter = "all";
-var selectedDateKey = null;
 var calCursor = new Date();
 calCursor.setDate(1);
 var calVisible = window.innerWidth >= 960;
@@ -941,6 +936,7 @@ $("list").addEventListener("click",function(ev){
     if(delId===id){
       entries=entries.filter(function(x){return x.id!==id});
       delete astroOpenMap[id];
+      if(openId===id) openId=null;
       delId=null;
       persistLocal();
       if(typeof window.DreamSaverSync.onDeleteEntry === "function"){
@@ -966,7 +962,7 @@ render();
  
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
-    import { 
+  import { 
     getAuth, 
     signInWithEmailAndPassword, 
     createUserWithEmailAndPassword, 
@@ -994,8 +990,6 @@ render();
     measurementId: "G-MDVV8HV4EQ"
   };
  
-  // La clave de FreeAstroAPI YA NO está en el navegador: vive como secreto en una Cloud Function.
-  // Reemplaza la URL por la que te entregue "firebase deploy --only functions" (ver archivo de backend).
   const ASTRO_PROXY_URL = "https://us-central1-dreamsaver-e880f.cloudfunctions.net/astroNatal";
  
   const app = initializeApp(firebaseConfig);
@@ -1040,6 +1034,9 @@ render();
   const coordsDisplay = document.getElementById("coords-display");
   const astroResults = document.getElementById("astrology-results");
   const astroChart = document.getElementById("astrology-chart");
+  const astroPdfActions = document.getElementById("astro-pdf-actions");
+  const btnDownloadNatalPdf = document.getElementById("btn-download-natal-pdf");
+  const astroPdfStatus = document.getElementById("astro-pdf-status");
  
   const errDob = document.getElementById("err-dob");
   const errTob = document.getElementById("err-tob");
@@ -1048,6 +1045,12 @@ render();
   let unsubscribeDreams = null;
   let hasLoadedRemoteOnce = false;
   let birthDataLocked = false;
+  let currentFullNatalChart = null;
+  let currentBirthMeta = null;
+  let savedNatalReportHtml = "";
+  let verifiedLocation = null;
+  let searchTimer = null;
+  let astroFetching = false;
  
   const ZODIAC_SIGNS = [
     { key: "aries", name: "Aries", symbol: "♈" },
@@ -1085,7 +1088,7 @@ render();
     if (SIGN_ALIASES[cleaned]) return SIGN_ALIASES[cleaned];
     const prefix3 = cleaned.slice(0, 3);
     if (SIGN_ALIASES[prefix3]) return SIGN_ALIASES[prefix3];
-    return "N/D"; // solo se aceptan signos conocidos (evita inyectar texto externo)
+    return "N/D";
   }
  
   function applyBirthLockState(locked) {
@@ -1119,12 +1122,6 @@ render();
     }
     return parts.join(" ").replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
   }
- 
-  const astroPdfActions = document.getElementById("astro-pdf-actions");
-  const btnDownloadNatalPdf = document.getElementById("btn-download-natal-pdf");
-  const astroPdfStatus = document.getElementById("astro-pdf-status");
-  let currentFullNatalChart = null;
-  let currentBirthMeta = null;
  
   const PLANET_LABELS_ES = {
     sun: "Sol", moon: "Luna", mercury: "Mercurio", venus: "Venus", mars: "Marte",
@@ -1251,7 +1248,6 @@ render();
       const midPos = polar((rOuter + rMid) / 2, a0 + 15);
       sectors += `<text x="${midPos.x.toFixed(1)}" y="${midPos.y.toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="14" fill="${textCol}">${sign.symbol}</text>`;
  
-      // Número de casa en el anillo interior (si hay Ascendente definido)
       if (ascIdx >= 0) {
         const houseNum = ((i - ascIdx + 12) % 12) + 1;
         const hPos = polar((rHouse + rInner) / 2, a0 + 15);
@@ -1297,31 +1293,6 @@ render();
     `;
   }
  
-  function renderAstrologyCard(sunRaw, moonRaw, ascRaw, rawBodyData = null) {
-    const sun = normalizeSign(sunRaw);
-    const moon = normalizeSign(moonRaw);
-    const asc = normalizeSign(ascRaw);
- 
-    window.DreamSaverProfile = { sun, moon, asc };
-    currentFullNatalChart = buildFullNatalDetails(rawBodyData, sun, moon, asc);
- 
-    astroResults.innerHTML = `
-      <div class="astro-summary">
-        <p><strong>Sol:</strong> ${sun}</p>
-        <p><strong>Luna:</strong> ${moon}</p>
-        <p><strong>Ascendente:</strong> ${asc}</p>
-      </div>
-      <div class="astro-reading">${buildDreamReading(sun, moon, asc)}</div>
-    `;
-    renderNatalChartSvg(sun, moon, asc);
-    if (astroPdfActions) {
-      const hasAny = [sun, moon, asc].some(v => v && v !== "N/D");
-      astroPdfActions.style.display = hasAny ? "flex" : "none";
-    }
-    if (typeof window.DreamSaverRefreshLunar === "function") window.DreamSaverRefreshLunar();
-    return { sun, moon, asc, fullChart: currentFullNatalChart };
-  }
- 
   function buildPrintableNatalReportHtml() {
     const chart = currentFullNatalChart || buildFullNatalDetails(null, "N/D", "N/D", "N/D");
     const dobVal = dobInput.value || currentBirthMeta?.dob || "No registrada";
@@ -1332,7 +1303,6 @@ render();
     const tzVal = verifiedLocation?.timezone || currentBirthMeta?.timezone || "UTC";
     const userEmail = auth.currentUser?.email || "";
  
-    // Calcular condiciones astronómicas exactas del MOMENTO DE NACER (no del momento actual)
     let birthDateObj = null;
     if (dobVal && /^\d{4}-\d{2}-\d{2}$/.test(dobVal)) {
       const timeStr = (tobVal && /^\d{2}:\d{2}/.test(tobVal)) ? tobVal.slice(0, 5) : "12:00";
@@ -1346,7 +1316,6 @@ render();
       ? window.DreamSaverGetLunarInfo(birthDateObj)
       : null;
  
-    // Balance elemental y de modalidades basado exclusivamente en las posiciones natales
     const SIGN_ELEMENTS = {
       "Aries": "Fuego", "Leo": "Fuego", "Sagitario": "Fuego",
       "Tauro": "Tierra", "Virgo": "Tierra", "Capricornio": "Tierra",
@@ -1569,14 +1538,71 @@ render();
 </html>`;
   }
  
+  function persistAstroSnapshotToCloudAndCache(uid, sun, moon, asc, rawBody, reportHtml, extraFields = {}) {
+    const cacheObj = {
+      sun,
+      moon,
+      asc,
+      rawBody: rawBody || null,
+      natalReportHtml: reportHtml || ""
+    };
+    try {
+      localStorage.setItem("astro_cache:" + uid, JSON.stringify(cacheObj));
+    } catch (_) {}
+ 
+    const docPayload = Object.assign({
+      sun,
+      moon,
+      asc,
+      updatedAt: new Date().toISOString()
+    }, extraFields);
+ 
+    if (rawBody) {
+      try { docPayload.astroRawJson = JSON.stringify(rawBody); } catch (_) {}
+    }
+    if (reportHtml) {
+      docPayload.natalReportHtml = reportHtml;
+    }
+ 
+    return setDoc(doc(db, "users", uid), docPayload, { merge: true });
+  }
+ 
+  function renderAstrologyCard(sunRaw, moonRaw, ascRaw, rawBodyData = null, prebuiltReportHtml = "") {
+    const sun = normalizeSign(sunRaw);
+    const moon = normalizeSign(moonRaw);
+    const asc = normalizeSign(ascRaw);
+ 
+    window.DreamSaverProfile = { sun, moon, asc };
+    currentFullNatalChart = buildFullNatalDetails(rawBodyData, sun, moon, asc);
+    savedNatalReportHtml = prebuiltReportHtml || "";
+ 
+    astroResults.innerHTML = `
+      <div class="astro-summary">
+        <p><strong>Sol:</strong> ${sun}</p>
+        <p><strong>Luna:</strong> ${moon}</p>
+        <p><strong>Ascendente:</strong> ${asc}</p>
+      </div>
+      <div class="astro-reading">${buildDreamReading(sun, moon, asc)}</div>
+    `;
+    renderNatalChartSvg(sun, moon, asc);
+    if (astroPdfActions) {
+      const hasAny = [sun, moon, asc].some(v => v && v !== "N/D") || Boolean(savedNatalReportHtml);
+      astroPdfActions.style.display = hasAny ? "flex" : "none";
+    }
+    if (typeof window.DreamSaverRefreshLunar === "function") window.DreamSaverRefreshLunar();
+    return { sun, moon, asc, fullChart: currentFullNatalChart };
+  }
+ 
   if (btnDownloadNatalPdf) {
     btnDownloadNatalPdf.addEventListener("click", () => {
-      if (!currentFullNatalChart) return;
-      if (astroPdfStatus) astroPdfStatus.textContent = "Preparando documento PDF de tu carta natal completa...";
-      const reportHtml = buildPrintableNatalReportHtml();
+      if (!savedNatalReportHtml && currentFullNatalChart) {
+        savedNatalReportHtml = buildPrintableNatalReportHtml();
+      }
+      if (!savedNatalReportHtml) return;
+      if (astroPdfStatus) astroPdfStatus.textContent = "Preparando documento PDF guardado de tu carta natal...";
+      const reportHtml = savedNatalReportHtml;
       const printWin = window.open("", "_blank", "width=920,height=780");
       if (!printWin) {
-        // Fallback mediante iframe oculto si el navegador bloquea ventanas emergentes
         const iframe = document.createElement("iframe");
         iframe.style.position = "fixed";
         iframe.style.right = "0";
@@ -1706,9 +1732,6 @@ render();
     };
   }
  
-  let verifiedLocation = null;
-  let searchTimer = null;
- 
   const nowDate = new Date();
   const pad2 = n => String(n).padStart(2, "0");
   const todayStr = `${nowDate.getFullYear()}-${pad2(nowDate.getMonth() + 1)}-${pad2(nowDate.getDate())}`;
@@ -1755,24 +1778,6 @@ render();
   }
  
   btnProfile.addEventListener("click", () => toggleSidebar(true));
-  astroResults.addEventListener("click", async (ev) => {
-    const retryBtn = ev.target.closest("#btn-retry-astro");
-    if (!retryBtn || !auth.currentUser) return;
-    const dob = dobInput.value.trim();
-    const tob = tobInput.value.trim();
-    if (!dob || !tob || !verifiedLocation) return;
-    retryBtn.disabled = true;
-    const astroData = await fetchNatalChart(dob, tob, verifiedLocation);
-    if (astroData && [astroData.sun, astroData.moon, astroData.asc].some(v => v && v !== "N/D")) {
-      await setDoc(doc(db, "users", auth.currentUser.uid), {
-        sun: astroData.sun,
-        moon: astroData.moon,
-        asc: astroData.asc,
-        ...(astroData.rawBody ? { astroRawJson: JSON.stringify(astroData.rawBody) } : {}),
-        updatedAt: new Date().toISOString()
-      }, { merge: true }).catch(err => console.error(err));
-    }
-  });
   closeProfile.addEventListener("click", () => toggleSidebar(false));
   overlay.addEventListener("click", () => toggleSidebar(false));
  
@@ -1979,12 +1984,11 @@ render();
     return null;
   }
  
-  let astroFetching = false;
-  async function fetchNatalChart(dob, tob, coords) {
+  async function fetchNatalChartOnce(dob, tob, coords) {
     if (!dob || !tob || !coords) return null;
-    if (astroFetching) return null; // ya hay una consulta en curso: no se repite
+    if (astroFetching) return null;
     astroFetching = true;
-    astroResults.innerHTML = "Calculando carta astral...";
+    astroResults.innerHTML = "Calculando carta astral (consulta única)...";
     astroChart.innerHTML = "";
     try {
       const [year, month, day] = dob.split("-").map(Number);
@@ -2030,37 +2034,32 @@ render();
       if (!response.ok || data.status === "error") {
         const msg = data.message || data.error || `HTTP ${response.status}`;
         if (response.status === 429 || /limit|rate|quota|l[ií]mite/i.test(msg)) {
-          astroResults.innerHTML = 'Se alcanzó el límite diario del servicio de astrología. Tus datos de nacimiento ya están guardados; podrás generar tu carta mañana sin volver a ingresarlos.<div class="row" style="margin-top:8px"><button class="b" type="button" id="btn-retry-astro">Reintentar cálculo</button></div>';
+          astroResults.innerHTML = "Se alcanzó el límite diario del servicio de astrología. Tus datos de nacimiento ya están guardados; podrás generar tu carta mañana sin volver a ingresarlos.";
         } else {
-          astroResults.innerHTML = 'Error al calcular la carta: ' + escapeHtml(msg) + '<div class="row" style="margin-top:8px"><button class="b" type="button" id="btn-retry-astro">Reintentar cálculo</button></div>';
+          astroResults.innerHTML = "Error al calcular la carta: " + escapeHtml(msg);
         }
         return null;
       }
  
       const bodyData = data.data || data;
- 
       const planets = Array.isArray(bodyData.planets) ? bodyData.planets : [];
       const sunRaw = planets.find(p => (p.name || p.planet || "").toLowerCase() === "sun")?.sign || bodyData.sun?.sign || null;
       const moonRaw = planets.find(p => (p.name || p.planet || "").toLowerCase() === "moon")?.sign || bodyData.moon?.sign || null;
       const ascRaw = extractAscendant(bodyData, planets);
  
-      const rendered = renderAstrologyCard(sunRaw, moonRaw, ascRaw, bodyData);
-      // Respuesta cruda de la API (solo lo necesario para rehacer la carta y el PDF sin volver a consultar)
       const rawBodyToStore = {
         planets: Array.isArray(bodyData.planets) ? bodyData.planets : [],
         houses: Array.isArray(bodyData.houses) ? bodyData.houses : [],
         aspects: Array.isArray(bodyData.aspects) ? bodyData.aspects.slice(0, 30) : [],
         house_system: bodyData.house_system || bodyData.houseSystem || null
       };
-      if (rendered) rendered.rawBody = rawBodyToStore;
-      if (auth.currentUser && rendered && [rendered.sun, rendered.moon, rendered.asc].some(v => v && v !== "N/D")) {
-        const cacheObj = {
-          sun: rendered.sun,
-          moon: rendered.moon,
-          asc: rendered.asc,
-          rawBody: rawBodyToStore
-        };
-        try { localStorage.setItem("astro_cache:" + auth.currentUser.uid, JSON.stringify(cacheObj)); } catch (_) {}
+ 
+      const rendered = renderAstrologyCard(sunRaw, moonRaw, ascRaw, rawBodyToStore, "");
+      const reportHtml = buildPrintableNatalReportHtml();
+      savedNatalReportHtml = reportHtml;
+      if (rendered) {
+        rendered.rawBody = rawBodyToStore;
+        rendered.natalReportHtml = reportHtml;
       }
       return rendered;
     } catch (err) {
@@ -2074,6 +2073,7 @@ render();
  
   async function loadUserProfile(user) {
     applyBirthLockState(false);
+    savedNatalReportHtml = "";
     try {
       const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
@@ -2117,21 +2117,30 @@ render();
         let storedRaw = null;
         if (typeof data.astroRawJson === "string") { try { storedRaw = JSON.parse(data.astroRawJson); } catch (_) {} }
         const rawBody = storedRaw || data.astroRaw || cached?.rawBody || null;
-        const hasFullRaw = Boolean(rawBody && Array.isArray(rawBody.planets) && rawBody.planets.length >= 3);
+        const storedReportHtml = data.natalReportHtml || cached?.natalReportHtml || "";
  
-        const hasValidAstro = [data.sun, data.moon, data.asc].some(v => v && v !== "N/D");
-        if (hasValidAstro) {
-          try { localStorage.setItem("astro_cache:" + user.uid, JSON.stringify({ sun: data.sun, moon: data.moon, asc: data.asc, rawBody })); } catch (_) {}
-          renderAstrologyCard(data.sun, data.moon, data.asc, rawBody);
-          if (!hasFullRaw) {
-            // Cuenta antigua sin carta completa guardada: una única consulta, solo si la persona lo pide
-            astroResults.insertAdjacentHTML("beforeend", '<div class="row" style="margin-top:8px"><button class="b p" type="button" id="btn-retry-astro">Completar informe (1 consulta)</button></div>');
+        const sun = data.sun || cached?.sun || "N/D";
+        const moon = data.moon || cached?.moon || "N/D";
+        const asc = data.asc || cached?.asc || "N/D";
+        const hasValidAstro = [sun, moon, asc].some(v => v && v !== "N/D");
+ 
+        if (hasValidAstro || storedReportHtml) {
+          renderAstrologyCard(sun, moon, asc, rawBody, storedReportHtml);
+          if (!storedReportHtml) {
+            const generatedHtml = buildPrintableNatalReportHtml();
+            savedNatalReportHtml = generatedHtml;
+            persistAstroSnapshotToCloudAndCache(user.uid, normalizeSign(sun), normalizeSign(moon), normalizeSign(asc), rawBody, generatedHtml).catch(() => {});
+          } else {
+            try {
+              localStorage.setItem("astro_cache:" + user.uid, JSON.stringify({
+                sun: normalizeSign(sun),
+                moon: normalizeSign(moon),
+                asc: normalizeSign(asc),
+                rawBody,
+                natalReportHtml: storedReportHtml
+              }));
+            } catch (_) {}
           }
-        } else if (cached && [cached.sun, cached.moon, cached.asc].some(v => v && v !== "N/D")) {
-          renderAstrologyCard(cached.sun, cached.moon, cached.asc, rawBody);
-          setDoc(doc(db, "users", user.uid), { sun: cached.sun, moon: cached.moon, asc: cached.asc, ...(rawBody ? { astroRawJson: JSON.stringify(rawBody) } : {}) }, { merge: true }).catch(() => {});
-        } else if (data.dob && data.tob && verifiedLocation) {
-          astroResults.innerHTML = 'Tus datos de nacimiento están listos, pero la carta astral aún no se ha generado.<div class="row" style="margin-top:8px"><button class="b p" type="button" id="btn-retry-astro">Calcular mi carta astral</button></div>';
         }
       }
     } catch (err) {
@@ -2159,9 +2168,17 @@ render();
     }
  
     const { dob, tob, location } = validated;
-    profileSaved.textContent = "Calculando carta astral y guardando...";
+    currentBirthMeta = {
+      dob,
+      tob,
+      city: location.label,
+      lat: location.lat,
+      lon: location.lon,
+      timezone: location.timezone
+    };
  
-    const astroData = await fetchNatalChart(dob, tob, location);
+    profileSaved.textContent = "Consultando servicio astrológico una sola vez y guardando en tu perfil...";
+    const astroData = await fetchNatalChartOnce(dob, tob, location);
  
     try {
       const payload = {
@@ -2180,15 +2197,27 @@ render();
         payload.moon = astroData.moon;
         payload.asc = astroData.asc;
         if (astroData.rawBody) {
-          // Se guarda como texto JSON: evita problemas de estructura en Firestore y mantiene la carta completa
           try { payload.astroRawJson = JSON.stringify(astroData.rawBody); } catch (_) {}
         }
+        const finalReportHtml = astroData.natalReportHtml || savedNatalReportHtml || "";
+        if (finalReportHtml) {
+          payload.natalReportHtml = finalReportHtml;
+        }
+        try {
+          localStorage.setItem("astro_cache:" + user.uid, JSON.stringify({
+            sun: astroData.sun,
+            moon: astroData.moon,
+            asc: astroData.asc,
+            rawBody: astroData.rawBody || null,
+            natalReportHtml: finalReportHtml
+          }));
+        } catch (_) {}
       }
       await setDoc(doc(db, "users", user.uid), payload, { merge: true });
       applyBirthLockState(true);
       profileSaved.textContent = astroData
-        ? "Carta astral completa guardada. Ya puedes descargar tu informe cuando quieras, sin nuevas consultas."
-        : "Perfil y ubicación verificada guardados. Datos natales bloqueados.";
+        ? "Carta astral y PDF guardados en tu perfil. No se volverá a consultar la API al abrir tu perfil."
+        : "Perfil guardado. Si hubo límite de API, reintenta mañana sin volver a ingresar tus datos.";
     } catch (err) {
       profileSaved.textContent = "Error al guardar el perfil.";
       console.error(err);
@@ -2215,6 +2244,9 @@ render();
       appContent.style.display = "none";
       userDisplay.textContent = "";
       window.DreamSaverProfile = null;
+      savedNatalReportHtml = "";
+      currentFullNatalChart = null;
+      currentBirthMeta = null;
       if (typeof window.DreamSaverClearLocal === "function") window.DreamSaverClearLocal();
       toggleSidebar(false);
     }
@@ -2272,7 +2304,6 @@ render();
     } catch (err) {
       console.error(err.code);
     }
-    // Mismo mensaje exista o no la cuenta (no revela qué correos están registrados)
     showError("Si el correo está registrado, te enviamos un enlace para restablecer la contraseña.");
   });
  
@@ -2286,4 +2317,3 @@ render();
 </script>
 </body>
 </html>
- 
