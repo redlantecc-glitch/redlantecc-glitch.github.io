@@ -146,5 +146,153 @@
       "¿Qué puedo postergar hoy para descansar la mente?"
     ],
     "related": ["cuello-cervicales", "garganta"]
+  }, [
+  {
+    "id": "cuello-cervicales",
+    "system": "Osteoarticular y muscular",
+    "stage": "3.ª etapa (desvalorización)",
+    "symptom": "Cuello y cervicales",
+    "emotion": "Desvalorización intelectual o inflexibilidad ante lo que ocurre",
+    "summary": "Tensión, rigidez o molestia en la zona cervical asociada a la percepción de no ver claro un camino o sentirse exigido a asumir posturas que no deseas.",
+    "resentir": "No puedo ver otra salida o me exigen girar hacia donde no quiero ir.",
+    "authors": {
+      "jacques_martel": "Puede reflejar resistencia a flexibilizar el punto de vista o presión por lo que se carga sobre los hombros y la cabeza.",
+      "louise_hay": "Relacionado con negarse a ver otros aspectos de una situación y rigidez mental.",
+      "lisa_bourbeau": "Suele vincularse con no saber qué dirección tomar o sentir que no se es flexible frente a los demás."
+    },
+    "solution": "Reconocer dónde te estás exigiendo rigidez y darte permiso para mirar la situación desde otro ángulo sin juzgarte.",
+    "keywords": ["cuello", "cervicales", "rigidez", "tension", "nuca"],
+    "questions": [
+      "¿Qué situación me cuesta mirar desde otra perspectiva?",
+      "¿En qué momento siento que me falta flexibilidad o me estoy forzando?"
+    ],
+    "related": ["hombros", "cabeza"]
+  },
+  {
+    "id": "hombros",
+    "system": "Osteoarticular y muscular",
+    "stage": "3.ª etapa (desvalorización)",
+    "symptom": "Hombros",
+    "emotion": "Sobrecarga de responsabilidades o carga emocional ajena",
+    "summary": "Molestia o pesadez en los hombros vinculada a cargar con deberes, preocupaciones o expectativas propias y de otros más allá de lo que resulta cómodo.",
+    "resentir": "Todo el peso recae sobre mí y no puedo soltarlo.",
+    "authors": {
+      "jacques_martel": "Refleja la sensación de llevar una carga pesada en el día a día y querer sostenerlo todo.",
+      "louise_hay": "Asociado a cargar con experiencias y responsabilidades en lugar de vivir con ligereza.",
+      "lisa_bourbeau": "Vinculado a tomar sobre sí lo que corresponde a otras personas o situaciones."
+    },
+    "solution": "Identificar qué cargas no te corresponden y repartir o soltar aquello que te está agotando.",
+    "keywords": ["hombros", "carga", "responsabilidad", "peso", "tension"],
+    "questions": [
+      "¿Qué responsabilidad estoy cargando que no me toca resolver solo?",
+      "¿Qué pasaría si suelto una parte de este peso hoy?"
+    ],
+    "related": ["cuello-cervicales", "espalda-lumbar"]
+  },
+  {
+    "id": "espalda-lumbar",
+    "system": "Osteoarticular y muscular",
+    "stage": "3.ª etapa (desvalorización)",
+    "symptom": "Zona lumbar y cintura",
+    "emotion": "Inseguridad material, afectiva o miedo a perder apoyo",
+    "summary": "Molestia en la parte baja de la espalda relacionada con la sensación de falta de sostén, respaldo o estabilidad en el entorno cotidiano o económico.",
+    "resentir": "Siento que no tengo respaldo o que me falta base firme.",
+    "authors": {
+      "jacques_martel": "Se asocia con preocupaciones sobre el sostén, los recursos o el apoyo de quienes nos rodean.",
+      "louise_hay": "Relacionado con el temor al dinero o a la falta de apoyo emocional.",
+      "lisa_bourbeau": "Ligado a la sensación de no sentirse apoyado o de exigir demasiado al propio cuerpo para sostenerse."
+    },
+    "solution": "Buscar apoyos concretos, ordenar prioridades prácticas y evitar exigirte sostenerlo todo en soledad.",
+    "keywords": ["lumbar", "cintura", "espalda baja", "apoyo", "sosten"],
+    "questions": [
+      "¿En qué área siento que me falta respaldo o estabilidad?",
+      "¿Qué pequeño paso práctico puedo dar para fortalecer mi base hoy?"
+    ],
+    "related": ["hombros", "rodillas"]
+  },
+  {
+    "id": "rodillas",
+    "system": "Osteoarticular y muscular",
+    "stage": "3.ª etapa (desvalorización)",
+    "symptom": "Rodillas",
+    "emotion": "Resistencia a ceder, avanzar o someterse",
+    "summary": "Molestia o rigidez en las rodillas vinculada al avance paso a paso, a ceder orgullo o a sentir resistencia frente a un cambio o autoridad.",
+    "resentir": "No quiero ceder o me cuesta avanzar en esta dirección.",
+    "authors": {
+      "jacques_martel": "Relacionado con la flexibilidad para avanzar y con la actitud frente a ceder o someterse.",
+      "louise_hay": "Asociado al ego, el orgullo y la dificultad para doblarse o adaptarse.",
+      "lisa_bourbeau": "Vinculado al miedo a no avanzar o a no querer ceder ante una situación."
+    },
+    "solution": "Observar dónde confundes ceder con perder valor y avanzar con calma a tu propio ritmo.",
+    "keywords": ["rodillas", "avanzar", "ceder", "flexibilidad", "paso"],
+    "questions": [
+      "¿Qué paso me cuesta dar o qué cambio estoy resistiendo?",
+      "¿Dónde puedo actuar con mayor flexibilidad sin traicionarme?"
+    ],
+    "related": ["espalda-lumbar", "estomago"]
+  },
+  {
+    "id": "estomago",
+    "system": "Digestivo",
+    "stage": "2.ª etapa (protección / asimilación)",
+    "symptom": "Estómago y acidez",
+    "emotion": "Contrariedad o dificultad para digerir una situación",
+    "summary": "Pesadez, ardor o malestar estomacal asociado a algo vivido como difícil de tragar o asimilar en el entorno familiar, laboral o personal.",
+    "resentir": "Esto no lo puedo tragar ni digerir fácilmente.",
+    "authors": {
+      "jacques_martel": "Vinculado a situaciones o personas que resultan difíciles de asimilar o aceptar.",
+      "louise_hay": "Relacionado con miedos y la incapacidad de asimilar lo nuevo.",
+      "lisa_bourbeau": "Asociado a no querer aceptar o digerir un acontecimiento tal como se presenta."
+    },
+    "solution": "Poner en palabras qué situación te resulta indigesta y revisar qué límite necesitas marcar.",
+    "keywords": ["estomago", "acidez", "digestion", "tragar", "ardor"],
+    "questions": [
+      "¿Qué situación o comentario me está costando asimilar?",
+      "¿Qué necesito expresar con claridad para no guardarlo dentro?"
+    ],
+    "related": ["garganta", "rodillas"]
+  },
+  {
+    "id": "garganta",
+    "system": "Respiratorio y expresión",
+    "stage": "4.ª etapa (identidad / comunicación)",
+    "symptom": "Garganta y voz",
+    "emotion": "Lo no dicho o miedo a expresar lo que sientes",
+    "summary": "Molestia, sequedad o sensación de nudo en la garganta ligada a tragar palabras, callar por prudencia o sentir que no eres escuchado.",
+    "resentir": "Tengo cosas que decir y no me atrevo o no me escuchan.",
+    "authors": {
+      "jacques_martel": "Relacionado con la comunicación, la autoexpresión y el temor a decir lo que se piensa.",
+      "louise_hay": "Asociado a tragarse la rabia o sentir que no tienes derecho a expresarte.",
+      "lisa_bourbeau": "Vinculado a reprimir palabras por miedo al conflicto o al rechazo."
+    },
+    "solution": "Buscar un espacio seguro para expresar lo que sientes con calma y honestidad.",
+    "keywords": ["garganta", "voz", "afonia", "decir", "callar"],
+    "questions": [
+      "¿Qué palabra o límite me estoy tragando en este momento?",
+      "¿Cómo puedo comunicar lo que necesito de forma clara y respetuosa?"
+    ],
+    "related": ["estomago", "cabeza"]
+  },
+  {
+    "id": "cabeza",
+    "system": "Neurológico y sensorial",
+    "stage": "3.ª / 4.ª etapa",
+    "symptom": "Cabeza y jaquecas",
+    "emotion": "Sobrecarga mental, autoexigencia o rumiación",
+    "summary": "Dolor o presión en la cabeza asociado a exceso de pensamientos, perfeccionismo o intentar resolverlo todo mediante el análisis constante.",
+    "resentir": "Pienso demasiado y quiero tenerlo todo bajo control.",
+    "authors": {
+      "jacques_martel": "Vinculado a la autoexigencia mental, la preocupación excesiva y el deseo de control.",
+      "louise_hay": "Relacionado con invalidarse o criticarse por dentro.",
+      "lisa_bourbeau": "Asociado a darle vueltas a un problema y no descansar la mente."
+    },
+    "solution": "Bajar el ritmo mental, pausar la autoexigencia y dedicar un momento a descansar sin resolver nada.",
+    "keywords": ["cabeza", "jaqueca", "migraña", "pensar", "estres"],
+    "questions": [
+      "¿Qué pensamiento estoy repitiendo una y otra vez sin que me ayude?",
+      "¿Qué puedo postergar hoy para descansar la mente?"
+    ],
+    "related": ["cuello-cervicales", "garganta"]
   }
+]
 ]
