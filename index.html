@@ -103,8 +103,8 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
   grid-template-columns:minmax(0,1fr);
   grid-template-areas:
     "recorder"
-    "explorer"
     "lunar"
+    "explorer"
     "stats"
     "list";
   gap:0;
@@ -190,8 +190,8 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
     display:grid;
     grid-template-columns:minmax(0,1.15fr) minmax(340px,0.85fr);
     grid-template-areas:
-      "lunar lunar"
       "recorder explorer"
+      "lunar lunar"
       "stats stats"
       "list list";
     gap:18px 20px;
@@ -292,6 +292,21 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
         <p class="note" id="saved" aria-live="polite"></p>
       </section>
  
+      <!-- Información Lunar (en móvil debajo del calendario; en escritorio arriba) -->
+      <section class="card lunar-card" id="lunar-banner" aria-label="Fase lunar actual">
+        <div class="lunar-top">
+          <div class="lunar-main">
+            <div class="lunar-orb" id="lunar-orb" aria-hidden="true"></div>
+            <div>
+              <div class="lunar-title" id="lunar-title">Calculando fase lunar…</div>
+              <div class="lunar-meta" id="lunar-meta">Ciclo sinódico</div>
+            </div>
+          </div>
+          <div class="lunar-pills" id="lunar-pills"></div>
+        </div>
+        <p class="lunar-desc" id="lunar-desc"></p>
+      </section>
+
       <!-- Explorador: Calendario y Búsqueda -->
       <section class="card explorer-card" aria-label="Buscar y explorar sueños">
         <div class="explorer-head">
@@ -320,21 +335,6 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
           <span id="active-filter-text"></span>
           <button type="button" id="reset-filters">Limpiar filtros</button>
         </div>
-      </section>
-
-      <!-- Información Lunar (en móvil debajo del calendario; en escritorio arriba) -->
-      <section class="card lunar-card" id="lunar-banner" aria-label="Fase lunar actual">
-        <div class="lunar-top">
-          <div class="lunar-main">
-            <div class="lunar-orb" id="lunar-orb" aria-hidden="true"></div>
-            <div>
-              <div class="lunar-title" id="lunar-title">Calculando fase lunar…</div>
-              <div class="lunar-meta" id="lunar-meta">Ciclo sinódico</div>
-            </div>
-          </div>
-          <div class="lunar-pills" id="lunar-pills"></div>
-        </div>
-        <p class="lunar-desc" id="lunar-desc"></p>
       </section>
  
       <section class="card stats-card" aria-label="Resumen">
