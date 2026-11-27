@@ -2046,11 +2046,9 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     }
   }
 
-  function getQuotaCooldownRemainingMs(state = quotaState) {
-    if (!state?.exceeded || !state?.reachedAt) return 0;
-    const elapsed = Date.now() - Number(state.reachedAt);
-    if (Number.isNaN(elapsed) || elapsed < 0) return ASTRO_QUOTA_COOLDOWN_MS;
-    return Math.max(0, ASTRO_QUOTA_COOLDOWN_MS - elapsed);
+  // El cálculo astral ahora es local: ya no existe límite diario ni enfriamiento.
+  function getQuotaCooldownRemainingMs() {
+    return 0;
   }
 
   function formatQuotaUnlockTime(reachedAt) {
@@ -3264,16 +3262,13 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     currentBirthMeta = { dob, tob, city, lat, lon, timezone };
     syncActiveBirthForHd();
 
-    const rawReachedAt = snapData.astroQuotaReachedAt ?? cached?.astroQuotaReachedAt ?? null;
-    const isQuotaFlagged = Boolean(snapData.astroQuotaExceeded ?? cached?.astroQuotaExceeded);
-    if (isQuotaFlagged && rawReachedAt) {
-      quotaState = {
-        exceeded: true,
-        reachedAt: Number(rawReachedAt),
-        message: snapData.astroLastErrorMsg || cached?.astroLastErrorMsg || "Límite diario alcanzado."
-      };
-    } else {
-      quotaState = { exceeded: false, reachedAt: null, message: "" };
+    quotaState = { exceeded: false, reachedAt: null, message: "" };
+    const hadLegacyQuotaFlag = Boolean(
+      snapData.astroQuotaExceeded || cached?.astroQuotaExceeded ||
+      snapData.astroQuotaReachedAt || cached?.astroQuotaReachedAt
+    );
+    if (hadLegacyQuotaFlag) {
+      clearQuotaReached(uid); // borra el bloqueo heredado de la época en que se usaba la API
     }
 
     const isLocked = Boolean(
@@ -3295,9 +3290,10 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
 
     if (hasValidAstro || storedReportHtml) {
       renderAstrologyCard(sun, moon, asc, rawBody, storedReportHtml);
-    } else if (getQuotaCooldownRemainingMs() > 0) {
-      renderQuotaLimitNotice();
-      syncAstroActionVisibility("N/D", "N/D", "N/D", false, true);
+    } else if (isLocked && dob && tob && typeof lat === "number" && typeof lon === "number") {
+      // Datos guardados pero sin carta: se calcula automáticamente en este dispositivo.
+      syncAstroActionVisibility("N/D", "N/D", "N/D", false, false);
+      retrySavedBirthChart();
     } else {
       syncAstroActionVisibility("N/D", "N/D", "N/D", false, false);
     }
