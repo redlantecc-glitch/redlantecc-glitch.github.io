@@ -441,7 +441,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
       <div class="hd-grid-4" id="hd-summary-grid"></div>
 
       <section class="hd-section" aria-label="Gráfico de los 9 centros">
-        <h3>Gráfico de los 9 centros · Toca una zona para profundizar</h3>
+        <h3>Gráfico de los 9 centros sobre silueta humana · Toca una zona para profundizar</h3>
         <p class="note" style="margin-bottom:10px">Los centros <strong>coloreados (definidos)</strong> reflejan un funcionamiento más constante en ti; los <strong>claros (abiertos)</strong> muestran dónde sientes o percibes más el entorno y tus sueños.</p>
         <div class="hd-graph-layout">
           <div class="hd-graph-box" id="hd-bodygraph-wrap"></div>
@@ -979,47 +979,65 @@ function renderBodyGraphSvg(definedMap) {
   var wrap = $("hd-bodygraph-wrap");
   if (!wrap) return;
   var shapes = [
-    { id: "head", label: "Cabeza", x: 110, y: 26, kind: "tri-down" },
-    { id: "ajna", label: "Ajna", x: 110, y: 74, kind: "tri-up" },
-    { id: "throat", label: "Garganta", x: 110, y: 124, kind: "rect" },
-    { id: "g", label: "Identidad", x: 110, y: 178, kind: "diamond" },
-    { id: "heart", label: "Corazón", x: 156, y: 162, kind: "tri-up" },
-    { id: "spleen", label: "Bazo", x: 56, y: 214, kind: "tri-up" },
-    { id: "solar", label: "Plexo", x: 164, y: 214, kind: "tri-up" },
-    { id: "sacral", label: "Sacro", x: 110, y: 234, kind: "rect" },
-    { id: "root", label: "Raíz", x: 110, y: 286, kind: "rect" }
+    { id: "head", label: "Cabeza", x: 130, y: 46, kind: "tri-up", accentHex: "#f4c95d" },
+    { id: "ajna", label: "Ajna", x: 130, y: 88, kind: "tri-down", accentHex: "#4fd1b5" },
+    { id: "throat", label: "Garganta", x: 130, y: 134, kind: "rect", accentHex: "#63b3ed" },
+    { id: "g", label: "Identidad", x: 130, y: 184, kind: "diamond", accentHex: "#a3e635" },
+    { id: "heart", label: "Corazón", x: 168, y: 170, kind: "tri-up", accentHex: "#f6ad55" },
+    { id: "spleen", label: "Bazo", x: 78, y: 214, kind: "tri-up", accentHex: "#9f7aea" },
+    { id: "solar", label: "Plexo", x: 180, y: 214, kind: "tri-up", accentHex: "#f687b3" },
+    { id: "sacral", label: "Sacro", x: 130, y: 234, kind: "rect", accentHex: "#ed8936" },
+    { id: "root", label: "Raíz", x: 130, y: 280, kind: "rect", accentHex: "#c084fc" }
   ];
 
   var svgParts = shapes.map(function(s){
     var isDef = Boolean(definedMap && definedMap[s.id]);
     var isSel = selectedCenterId === s.id;
-    var fill = isDef ? "color-mix(in srgb, var(--accent) 28%, var(--surface))" : "var(--bg)";
-    var stroke = isSel ? "var(--rec)" : (isDef ? "var(--accent)" : "var(--mute)");
-    var sw = isSel ? "2.6" : "1.6";
+    var fill = isDef
+      ? "color-mix(in srgb, " + s.accentHex + " 38%, var(--surface))"
+      : "color-mix(in srgb, var(--surface) 88%, var(--bg))";
+    var stroke = isSel ? "var(--rec)" : (isDef ? s.accentHex : "var(--mute)");
+    var sw = isSel ? "2.8" : (isDef ? "2.1" : "1.5");
+    var glow = isDef
+      ? '<circle cx="' + s.x + '" cy="' + s.y + '" r="22" fill="' + s.accentHex + '" opacity="0.16"/>'
+      : "";
     var shapeEl = "";
     if (s.kind === "rect") {
-      shapeEl = '<rect x="' + (s.x - 22) + '" y="' + (s.y - 14) + '" width="44" height="28" rx="5" fill="' + fill + '" stroke="' + stroke + '" stroke-width="' + sw + '"/>';
+      shapeEl = '<rect x="' + (s.x - 21) + '" y="' + (s.y - 13) + '" width="42" height="26" rx="5" fill="' + fill + '" stroke="' + stroke + '" stroke-width="' + sw + '"/>';
     } else if (s.kind === "diamond") {
-      shapeEl = '<polygon points="' + s.x + ',' + (s.y - 18) + ' ' + (s.x + 18) + ',' + s.y + ' ' + s.x + ',' + (s.y + 18) + ' ' + (s.x - 18) + ',' + s.y + '" fill="' + fill + '" stroke="' + stroke + '" stroke-width="' + sw + '"/>';
+      shapeEl = '<polygon points="' + s.x + ',' + (s.y - 17) + ' ' + (s.x + 17) + ',' + s.y + ' ' + s.x + ',' + (s.y + 17) + ' ' + (s.x - 17) + ',' + s.y + '" fill="' + fill + '" stroke="' + stroke + '" stroke-width="' + sw + '"/>';
     } else if (s.kind === "tri-up") {
-      shapeEl = '<polygon points="' + s.x + ',' + (s.y - 17) + ' ' + (s.x + 19) + ',' + (s.y + 14) + ' ' + (s.x - 19) + ',' + (s.y + 14) + '" fill="' + fill + '" stroke="' + stroke + '" stroke-width="' + sw + '"/>';
+      shapeEl = '<polygon points="' + s.x + ',' + (s.y - 16) + ' ' + (s.x + 18) + ',' + (s.y + 13) + ' ' + (s.x - 18) + ',' + (s.y + 13) + '" fill="' + fill + '" stroke="' + stroke + '" stroke-width="' + sw + '"/>';
     } else {
-      shapeEl = '<polygon points="' + (s.x - 19) + ',' + (s.y - 14) + ' ' + (s.x + 19) + ',' + (s.y - 14) + ' ' + s.x + ',' + (s.y + 17) + '" fill="' + fill + '" stroke="' + stroke + '" stroke-width="' + sw + '"/>';
+      shapeEl = '<polygon points="' + (s.x - 18) + ',' + (s.y - 13) + ' ' + (s.x + 18) + ',' + (s.y - 13) + ' ' + s.x + ',' + (s.y + 16) + '" fill="' + fill + '" stroke="' + stroke + '" stroke-width="' + sw + '"/>';
     }
     return '<g data-center-id="' + s.id + '" style="cursor:pointer" role="button" tabindex="0" aria-label="' + esc(s.label) + '">' +
+      glow +
       shapeEl +
-      '<text x="' + s.x + '" y="' + (s.y + 3) + '" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" fill="var(--ink)">' + esc(s.label) + '</text>' +
+      '<text x="' + s.x + '" y="' + (s.y + 2) + '" text-anchor="middle" dominant-baseline="central" font-size="8.5" font-weight="700" fill="var(--ink)">' + esc(s.label) + '</text>' +
     '</g>';
   }).join("");
 
-  wrap.innerHTML = '<svg viewBox="0 0 220 315" style="width:100%;max-width:240px;height:auto;display:block;margin:0 auto">' +
-    '<line x1="110" y1="42" x2="110" y2="58" stroke="var(--line)" stroke-width="2"/>' +
-    '<line x1="110" y1="88" x2="110" y2="110" stroke="var(--line)" stroke-width="2"/>' +
-    '<line x1="110" y1="138" x2="110" y2="160" stroke="var(--line)" stroke-width="2"/>' +
-    '<line x1="110" y1="196" x2="110" y2="220" stroke="var(--line)" stroke-width="2"/>' +
-    '<line x1="110" y1="248" x2="110" y2="272" stroke="var(--line)" stroke-width="2"/>' +
-    '<line x1="72" y1="214" x2="88" y2="224" stroke="var(--line)" stroke-width="2"/>' +
-    '<line x1="148" y1="214" x2="132" y2="224" stroke="var(--line)" stroke-width="2"/>' +
+  wrap.innerHTML = '<svg viewBox="0 0 260 356" style="width:100%;max-width:265px;height:auto;display:block;margin:0 auto">' +
+    '<defs>' +
+      '<radialGradient id="hdAura" cx="50%" cy="42%" r="55%">' +
+        '<stop offset="0%" stop-color="var(--accent)" stop-opacity="0.16"/>' +
+        '<stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>' +
+      '</radialGradient>' +
+    '</defs>' +
+    '<ellipse cx="130" cy="176" rx="112" ry="158" fill="url(#hdAura)"/>' +
+    '<circle cx="130" cy="176" r="102" fill="none" stroke="var(--accent)" stroke-opacity="0.14" stroke-width="1" stroke-dasharray="3 4"/>' +
+    '<path d="M 130 22 C 110 22, 98 38, 99 60 C 99 73, 105 84, 113 91 L 111 106 C 92 114, 62 124, 48 148 C 34 172, 24 218, 22 256 C 21 274, 34 286, 52 288 C 68 290, 82 282, 92 272 C 74 286, 54 298, 46 314 C 40 326, 52 336, 78 336 C 102 336, 118 326, 130 318 C 142 326, 158 336, 182 336 C 208 336, 220 326, 214 314 C 206 298, 186 286, 168 272 C 178 282, 192 290, 208 288 C 226 286, 239 274, 238 256 C 236 218, 226 172, 212 148 C 198 124, 168 114, 149 106 L 147 91 C 155 84, 161 73, 161 60 C 162 38, 150 22, 130 22 Z" fill="color-mix(in srgb, var(--accent) 5%, var(--bg))" stroke="var(--accent)" stroke-opacity="0.42" stroke-width="1.8" stroke-linejoin="round"/>' +
+    '<path d="M 52 288 C 60 282, 68 276, 74 270" fill="none" stroke="var(--accent)" stroke-opacity="0.32" stroke-width="1.4" stroke-linecap="round"/>' +
+    '<path d="M 208 288 C 200 282, 192 276, 186 270" fill="none" stroke="var(--accent)" stroke-opacity="0.32" stroke-width="1.4" stroke-linecap="round"/>' +
+    '<line x1="130" y1="60" x2="130" y2="75" stroke="var(--accent)" stroke-opacity="0.45" stroke-width="2"/>' +
+    '<line x1="130" y1="101" x2="130" y2="121" stroke="var(--accent)" stroke-opacity="0.45" stroke-width="2"/>' +
+    '<line x1="130" y1="147" x2="130" y2="167" stroke="var(--accent)" stroke-opacity="0.45" stroke-width="2"/>' +
+    '<line x1="130" y1="201" x2="130" y2="221" stroke="var(--accent)" stroke-opacity="0.45" stroke-width="2"/>' +
+    '<line x1="130" y1="247" x2="130" y2="267" stroke="var(--accent)" stroke-opacity="0.45" stroke-width="2"/>' +
+    '<line x1="92" y1="214" x2="109" y2="224" stroke="var(--accent)" stroke-opacity="0.38" stroke-width="1.8"/>' +
+    '<line x1="168" y1="214" x2="151" y2="224" stroke="var(--accent)" stroke-opacity="0.38" stroke-width="1.8"/>' +
+    '<line x1="146" y1="138" x2="160" y2="158" stroke="var(--accent)" stroke-opacity="0.35" stroke-width="1.6"/>' +
     svgParts +
   '</svg>';
 
