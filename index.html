@@ -994,6 +994,7 @@ render();
   };
 
   const ASTRO_PROXY_URL = "https://us-central1-dreamsaver-e880f.cloudfunctions.net/astroNatal";
+  const ASTRO_QUOTA_COOLDOWN_MS = 24 * 60 * 60 * 1000;
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
@@ -1056,6 +1057,99 @@ render();
   let verifiedLocation = null;
   let searchTimer = null;
   let astroFetching = false;
+  let quotaState = { exceeded: false, reachedAt: null, message: "" };
+
+  function getQuotaCooldownRemainingMs(state = quotaState) {
+    if (!state?.exceeded || !state?.reachedAt) return 0;
+    const elapsed = Date.now() - Number(state.reachedAt);
+    if (Number.isNaN(elapsed) || elapsed < 0) return ASTRO_QUOTA_COOLDOWN_MS;
+    return Math.max(0, ASTRO_QUOTA_COOLDOWN_MS - elapsed);
+  }
+
+  function formatQuotaUnlockTime(reachedAt) {
+    const unlockMs = Number(reachedAt) + ASTRO_QUOTA_COOLDOWN_MS;
+    if (Number.isNaN(unlockMs)) return "en 24 horas";
+    try {
+      return new Date(unlockMs).toLocaleString("es-CL", {
+        day: "numeric",
+        month: "short",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+    } catch (_) {
+      return new Date(unlockMs).toLocaleString();
+    }
+  }
+
+  function formatQuotaReachedTime(reachedAt) {
+    const ts = Number(reachedAt);
+    if (Number.isNaN(ts)) return "";
+    try {
+      return new Date(ts).toLocaleString("es-CL", {
+        day: "numeric",
+        month: "short",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+    } catch (_) {
+      return new Date(ts).toLocaleString();
+    }
+  }
+
+  function updateLocalAstroCache(uid, patch = {}) {
+    if (!uid) return;
+    let existing = {};
+    try { existing = JSON.parse(localStorage.getItem("astro_cache:" + uid) || "{}") || {}; } catch (_) {}
+    const merged = Object.assign({}, existing, patch);
+    try {
+      localStorage.setItem("astro_cache:" + uid, JSON.stringify(merged));
+    } catch (_) {}
+  }
+
+  async function recordQuotaReached(uid, detailMsg = "") {
+    const reachedAt = Date.now();
+    quotaState = {
+      exceeded: true,
+      reachedAt,
+      message: detailMsg || "Límite diario de consultas alcanzado."
+    };
+    updateLocalAstroCache(uid, {
+      astroQuotaExceeded: true,
+      astroQuotaReachedAt: reachedAt,
+      astroLastErrorMsg: quotaState.message
+    });
+    if (uid) {
+      try {
+        await setDoc(doc(db, "users", uid), {
+          astroQuotaExceeded: true,
+          astroQuotaReachedAt: reachedAt,
+          astroLastErrorMsg: quotaState.message,
+          updatedAt: new Date().toISOString()
+        }, { merge: true });
+      } catch (err) {
+        console.error("No se pudo guardar estado de límite diario:", err);
+      }
+    }
+  }
+
+  async function clearQuotaReached(uid) {
+    quotaState = { exceeded: false, reachedAt: null, message: "" };
+    updateLocalAstroCache(uid, {
+      astroQuotaExceeded: false,
+      astroQuotaReachedAt: null,
+      astroLastErrorMsg: ""
+    });
+    if (uid) {
+      try {
+        await setDoc(doc(db, "users", uid), {
+          astroQuotaExceeded: false,
+          astroQuotaReachedAt: null,
+          astroLastErrorMsg: "",
+          updatedAt: new Date().toISOString()
+        }, { merge: true });
+      } catch (_) {}
+    }
+  }
 
   const ZODIAC_SIGNS = [
     { key: "aries", name: "Aries", symbol: "♈" },
@@ -1109,10 +1203,29 @@ render();
     if (astroPdfActions) {
       astroPdfActions.style.display = hasAnyAstro ? "flex" : "none";
     }
+    const remainingCooldown = getQuotaCooldownRemainingMs();
     const shouldShowRetry = Boolean(birthDataLocked && hasSavedBirthCoordinates() && (!hasAnyAstro || hadError));
     if (astroRetryActions) {
       astroRetryActions.style.display = shouldShowRetry ? "flex" : "none";
     }
+    if (btnRetryAstro) {
+      if (remainingCooldown > 0) {
+        btnRetryAstro.disabled = true;
+        btnRetryAstro.textContent = "Límite activo · Disponible " + formatQuotaUnlockTime(quotaState.reachedAt);
+      } else {
+        btnRetryAstro.disabled = astroFetching;
+        btnRetryAstro.textContent = "Reintentar cálculo de carta";
+      }
+    }
+  }
+
+  function renderQuotaLimitNotice() {
+    const reachedTxt = quotaState.reachedAt ? formatQuotaReachedTime(quotaState.reachedAt) : "";
+    const unlockTxt = quotaState.reachedAt ? formatQuotaUnlockTime(quotaState.reachedAt) : "en 24 horas";
+    astroResults.innerHTML =
+      "Se alcanzó el límite diario del servicio de astrología" +
+      (reachedTxt ? ` (registrado el ${escapeHtml(reachedTxt)})` : "") +
+      `. Tus datos de nacimiento ya están guardados; el reintento se habilitará aproximadamente el <strong>${escapeHtml(unlockTxt)}</strong> sin volver a ingresarlos.`;
   }
 
   function applyBirthLockState(locked) {
@@ -1129,10 +1242,12 @@ render();
       const curMoon = window.DreamSaverProfile?.moon || "N/D";
       const curAsc = window.DreamSaverProfile?.asc || "N/D";
       const hasAstro = [curSun, curMoon, curAsc].some(v => v && v !== "N/D") || Boolean(savedNatalReportHtml);
-      if (!hasAstro && astroResults.textContent.includes("Configura tus datos de nacimiento más abajo")) {
+      if (!hasAstro && getQuotaCooldownRemainingMs() > 0) {
+        renderQuotaLimitNotice();
+      } else if (!hasAstro && astroResults.textContent.includes("Configura tus datos de nacimiento más abajo")) {
         astroResults.innerHTML = "Tus datos de nacimiento están guardados, pero aún no se ha registrado una carta astral completa en tu perfil.";
       }
-      syncAstroActionVisibility(curSun, curMoon, curAsc, Boolean(savedNatalReportHtml), false);
+      syncAstroActionVisibility(curSun, curMoon, curAsc, Boolean(savedNatalReportHtml), getQuotaCooldownRemainingMs() > 0);
     } else {
       profileIntro.textContent = "Completa tus datos de nacimiento. Escribe tu ciudad y selecciónala de la lista para validar sus coordenadas automáticamente.";
       if (astroRetryActions) astroRetryActions.style.display = "none";
@@ -1572,21 +1687,24 @@ render();
   }
 
   function persistAstroSnapshotToCloudAndCache(uid, sun, moon, asc, rawBody, reportHtml, extraFields = {}) {
-    const cacheObj = {
+    updateLocalAstroCache(uid, {
       sun,
       moon,
       asc,
       rawBody: rawBody || null,
-      natalReportHtml: reportHtml || ""
-    };
-    try {
-      localStorage.setItem("astro_cache:" + uid, JSON.stringify(cacheObj));
-    } catch (_) {}
+      natalReportHtml: reportHtml || "",
+      astroQuotaExceeded: false,
+      astroQuotaReachedAt: null,
+      astroLastErrorMsg: ""
+    });
 
     const docPayload = Object.assign({
       sun,
       moon,
       asc,
+      astroQuotaExceeded: false,
+      astroQuotaReachedAt: null,
+      astroLastErrorMsg: "",
       updatedAt: new Date().toISOString()
     }, extraFields);
 
@@ -1627,6 +1745,14 @@ render();
     const user = auth.currentUser;
     if (!user || astroFetching) return;
 
+    const remainingCooldown = getQuotaCooldownRemainingMs();
+    if (remainingCooldown > 0) {
+      renderQuotaLimitNotice();
+      syncAstroActionVisibility("N/D", "N/D", "N/D", Boolean(savedNatalReportHtml), true);
+      profileSaved.textContent = "Reintento pausado por límite diario. Disponible aprox. " + formatQuotaUnlockTime(quotaState.reachedAt) + ".";
+      return;
+    }
+
     const dob = (currentBirthMeta?.dob || dobInput.value || "").trim();
     const tob = (currentBirthMeta?.tob || tobInput.value || "").trim();
     const lat = currentBirthMeta?.lat ?? verifiedLocation?.lat;
@@ -1639,12 +1765,13 @@ render();
       return;
     }
 
-    btnRetryAstro.disabled = true;
+    if (btnRetryAstro) btnRetryAstro.disabled = true;
     profileSaved.textContent = "Reintentando cálculo de carta astral con tus datos guardados...";
     const coords = { lat, lon, timezone, label: city };
     const astroData = await fetchNatalChartOnce(dob, tob, coords);
 
     if (astroData) {
+      await clearQuotaReached(user.uid);
       const finalReportHtml = astroData.natalReportHtml || savedNatalReportHtml || buildPrintableNatalReportHtml();
       savedNatalReportHtml = finalReportHtml;
       try {
@@ -1664,10 +1791,18 @@ render();
       }
     } else {
       syncAstroActionVisibility("N/D", "N/D", "N/D", Boolean(savedNatalReportHtml), true);
-      profileSaved.textContent = "No se pudo completar el cálculo en este momento.";
+      profileSaved.textContent = getQuotaCooldownRemainingMs() > 0
+        ? "Límite diario registrado. Evitamos nuevos reintentos hasta " + formatQuotaUnlockTime(quotaState.reachedAt) + "."
+        : "No se pudo completar el cálculo en este momento.";
     }
 
-    btnRetryAstro.disabled = false;
+    syncAstroActionVisibility(
+      window.DreamSaverProfile?.sun || "N/D",
+      window.DreamSaverProfile?.moon || "N/D",
+      window.DreamSaverProfile?.asc || "N/D",
+      Boolean(savedNatalReportHtml),
+      !astroData
+    );
   }
 
   if (btnRetryAstro) {
@@ -2068,6 +2203,13 @@ render();
   async function fetchNatalChartOnce(dob, tob, coords) {
     if (!dob || !tob || !coords) return null;
     if (astroFetching) return null;
+
+    if (getQuotaCooldownRemainingMs() > 0) {
+      renderQuotaLimitNotice();
+      syncAstroActionVisibility("N/D", "N/D", "N/D", Boolean(savedNatalReportHtml), true);
+      return null;
+    }
+
     astroFetching = true;
     astroResults.innerHTML = "Calculando carta astral (consulta única)...";
     astroChart.innerHTML = "";
@@ -2094,6 +2236,7 @@ render();
         astroResults.textContent = "Inicia sesión para calcular tu carta astral.";
         return null;
       }
+      const uid = auth.currentUser.uid;
       const idToken = await auth.currentUser.getIdToken();
       const response = await fetch(ASTRO_PROXY_URL, {
         method: "POST",
@@ -2115,13 +2258,16 @@ render();
       if (!response.ok || data.status === "error") {
         const msg = data.message || data.error || `HTTP ${response.status}`;
         if (response.status === 429 || /limit|rate|quota|l[ií]mite/i.test(msg)) {
-          astroResults.innerHTML = "Se alcanzó el límite diario del servicio de astrología. Tus datos de nacimiento ya están guardados; podrás reintentar más tarde sin volver a ingresarlos.";
+          await recordQuotaReached(uid, msg);
+          renderQuotaLimitNotice();
         } else {
           astroResults.innerHTML = "Error al calcular la carta: " + escapeHtml(msg);
         }
         syncAstroActionVisibility("N/D", "N/D", "N/D", Boolean(savedNatalReportHtml), true);
         return null;
       }
+
+      await clearQuotaReached(uid);
 
       const bodyData = data.data || data;
       const planets = Array.isArray(bodyData.planets) ? bodyData.planets : [];
@@ -2157,6 +2303,7 @@ render();
   async function loadUserProfile(user) {
     applyBirthLockState(false);
     savedNatalReportHtml = "";
+    quotaState = { exceeded: false, reachedAt: null, message: "" };
     try {
       const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
@@ -2191,16 +2338,24 @@ render();
           timezone: data.timezone || "UTC"
         };
 
+        let cached = null;
+        try { cached = JSON.parse(localStorage.getItem("astro_cache:" + user.uid) || "null"); } catch (_) {}
+
+        const rawReachedAt = data.astroQuotaReachedAt ?? cached?.astroQuotaReachedAt ?? null;
+        const isQuotaFlagged = Boolean(data.astroQuotaExceeded || cached?.astroQuotaExceeded);
+        if (isQuotaFlagged && rawReachedAt) {
+          quotaState = {
+            exceeded: true,
+            reachedAt: Number(rawReachedAt),
+            message: data.astroLastErrorMsg || cached?.astroLastErrorMsg || "Límite diario alcanzado."
+          };
+        }
+
         const isLocked = Boolean(
           data.birthDataLocked ||
           (data.dob && data.tob && data.city && typeof data.lat === "number" && typeof data.lon === "number")
         );
-        if (isLocked) {
-          applyBirthLockState(true);
-        }
 
-        let cached = null;
-        try { cached = JSON.parse(localStorage.getItem("astro_cache:" + user.uid) || "null"); } catch (_) {}
         let storedRaw = null;
         if (typeof data.astroRawJson === "string") { try { storedRaw = JSON.parse(data.astroRawJson); } catch (_) {} }
         const rawBody = storedRaw || data.astroRaw || cached?.rawBody || null;
@@ -2211,6 +2366,10 @@ render();
         const asc = data.asc || cached?.asc || "N/D";
         const hasValidAstro = [sun, moon, asc].some(v => v && v !== "N/D");
 
+        if (isLocked) {
+          applyBirthLockState(true);
+        }
+
         if (hasValidAstro || storedReportHtml) {
           renderAstrologyCard(sun, moon, asc, rawBody, storedReportHtml);
           if (!storedReportHtml) {
@@ -2218,18 +2377,19 @@ render();
             savedNatalReportHtml = generatedHtml;
             persistAstroSnapshotToCloudAndCache(user.uid, normalizeSign(sun), normalizeSign(moon), normalizeSign(asc), rawBody, generatedHtml).catch(() => {});
           } else {
-            try {
-              localStorage.setItem("astro_cache:" + user.uid, JSON.stringify({
-                sun: normalizeSign(sun),
-                moon: normalizeSign(moon),
-                asc: normalizeSign(asc),
-                rawBody,
-                natalReportHtml: storedReportHtml
-              }));
-            } catch (_) {}
+            updateLocalAstroCache(user.uid, {
+              sun: normalizeSign(sun),
+              moon: normalizeSign(moon),
+              asc: normalizeSign(asc),
+              rawBody,
+              natalReportHtml: storedReportHtml
+            });
           }
         } else {
-          syncAstroActionVisibility("N/D", "N/D", "N/D", false, false);
+          if (getQuotaCooldownRemainingMs() > 0) {
+            renderQuotaLimitNotice();
+          }
+          syncAstroActionVisibility("N/D", "N/D", "N/D", false, getQuotaCooldownRemainingMs() > 0);
         }
       }
     } catch (err) {
@@ -2285,6 +2445,9 @@ render();
         payload.sun = astroData.sun;
         payload.moon = astroData.moon;
         payload.asc = astroData.asc;
+        payload.astroQuotaExceeded = false;
+        payload.astroQuotaReachedAt = null;
+        payload.astroLastErrorMsg = "";
         if (astroData.rawBody) {
           try { payload.astroRawJson = JSON.stringify(astroData.rawBody); } catch (_) {}
         }
@@ -2292,15 +2455,16 @@ render();
         if (finalReportHtml) {
           payload.natalReportHtml = finalReportHtml;
         }
-        try {
-          localStorage.setItem("astro_cache:" + user.uid, JSON.stringify({
-            sun: astroData.sun,
-            moon: astroData.moon,
-            asc: astroData.asc,
-            rawBody: astroData.rawBody || null,
-            natalReportHtml: finalReportHtml
-          }));
-        } catch (_) {}
+        updateLocalAstroCache(user.uid, {
+          sun: astroData.sun,
+          moon: astroData.moon,
+          asc: astroData.asc,
+          rawBody: astroData.rawBody || null,
+          natalReportHtml: finalReportHtml,
+          astroQuotaExceeded: false,
+          astroQuotaReachedAt: null,
+          astroLastErrorMsg: ""
+        });
       }
       await setDoc(doc(db, "users", user.uid), payload, { merge: true });
       applyBirthLockState(true);
@@ -2328,6 +2492,7 @@ render();
         unsubscribeDreams();
         unsubscribeDreams = null;
       }
+      quotaState = { exceeded: false, reachedAt: null, message: "" };
       applyBirthLockState(false);
       authCard.style.display = "block";
       appContent.style.display = "none";
