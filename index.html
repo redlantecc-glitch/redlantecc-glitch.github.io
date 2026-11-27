@@ -96,7 +96,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
 .lunar-pills{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .lunar-pill{font-size:12px;padding:4px 10px;border-radius:999px;background:var(--bg);border:1px solid var(--line);color:var(--ink);font-weight:500;white-space:nowrap}
 .lunar-desc{font-size:13.5px;color:var(--mute);line-height:1.45;padding-top:8px;border-top:1px solid var(--line);margin:0}
-
+ 
 /* Contenedor principal de layout: en móvil grabador arriba, luego explorador, luego banner lunar */
 .workspace-grid{
   display:grid;
@@ -306,7 +306,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
         </div>
         <p class="lunar-desc" id="lunar-desc"></p>
       </section>
-
+ 
       <!-- Explorador: Calendario y Búsqueda -->
       <section class="card explorer-card" aria-label="Buscar y explorar sueños">
         <div class="explorer-head">
@@ -338,7 +338,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
       </section>
  
       <div id="list" class="list-area"></div>
-
+ 
       <section class="card stats-card" aria-label="Resumen">
         <div class="stats">
           <span><b id="n">0</b> registrados</span>
@@ -374,7 +374,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
       </div>
       <p class="note" id="astro-pdf-status" aria-live="polite"></p>
     </div>
-
+ 
     <!-- 2. Datos de nacimiento -->
     <div class="birth-section-box">
       <h3>Datos de nacimiento</h3>
@@ -406,7 +406,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
         <strong>Datos de nacimiento protegidos:</strong> Una vez guardados, tu fecha, hora y lugar de nacimiento quedan bloqueados para evitar cambios repetidos o consultas de terceros. Si necesitas corregir un dato o solicitar un cambio justificado, escribe a <a href="mailto:redlantecc@gmail.com">redlantecc@gmail.com</a> desde el correo de tu cuenta.
       </div>
     </div>
-
+ 
     <!-- 3. Disclaimer al final -->
     <div class="astral-disclaimer" id="astral-disclaimer">
       <strong>Aviso importante:</strong> La carta astral y las lecturas simbólicas en DreamSaver tienen fines de reflexión personal y entretenimiento; no sustituyen orientación médica, psicológica ni profesional. Cada usuario debe gestionar su propio perfil individual.
@@ -531,19 +531,19 @@ rec.addEventListener("click",function(){ listening?stopRec():startRec(); });
 function fmt(t){ try{ return new Date(t).toLocaleString("es-CL",{weekday:"long",day:"numeric",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit"}); }catch(e){ return new Date(t).toString(); } }
 function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;"); }
 function dateKey(ts){ var d=new Date(ts); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
-
+ 
 /* Cálculo astronómico de fase lunar, iluminación y signo lunar */
 var SYNODIC_MONTH = 29.53058867;
 var KNOWN_NEW_MOON_MS = Date.UTC(2000, 0, 6, 18, 14, 0);
 var ZODIAC_ORDER = ["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"];
-
+ 
 function getLunarInfo(dateObj) {
   var t = (dateObj instanceof Date) ? dateObj.getTime() : Number(dateObj || Date.now());
   var daysSince = (t - KNOWN_NEW_MOON_MS) / 86400000;
   var cyclePos = ((daysSince % SYNODIC_MONTH) + SYNODIC_MONTH) % SYNODIC_MONTH;
   var phaseRatio = cyclePos / SYNODIC_MONTH;
   var illum = Math.round(((1 - Math.cos(2 * Math.PI * phaseRatio)) / 2) * 100);
-
+ 
   var phaseName = "", phaseAdvice = "";
   if (phaseRatio < 0.033 || phaseRatio >= 0.967) {
     phaseName = "Luna Nueva";
@@ -570,7 +570,7 @@ function getLunarInfo(dateObj) {
     phaseName = "Luna Menguante";
     phaseAdvice = "Descanso profundo y síntesis: ideal para revisar coincidencias acumuladas en el diario.";
   }
-
+ 
   /* Longitud eclíptica aproximada de la Luna (epoch J2000) */
   var d2000 = (t - Date.UTC(2000, 0, 1, 12, 0, 0)) / 86400000;
   var L = (218.316 + 13.176396 * d2000) % 360;
@@ -579,7 +579,7 @@ function getLunarInfo(dateObj) {
   var lon = (L + 6.289 * Math.sin(M)) % 360;
   if (lon < 0) lon += 360;
   var moonSign = ZODIAC_ORDER[Math.floor(lon / 30) % 12];
-
+ 
   return {
     cycleDay: cyclePos.toFixed(1),
     phaseRatio: phaseRatio,
@@ -589,7 +589,7 @@ function getLunarInfo(dateObj) {
     moonSign: moonSign
   };
 }
-
+ 
 function moonSvg(phaseRatio, size) {
   var s = size || 14;
   var r = s / 2 - 1;
@@ -607,7 +607,7 @@ function moonSvg(phaseRatio, size) {
     '<path d="'+litPath+'" fill="#f4c95d"/>' +
     '</svg>';
 }
-
+ 
 function renderLunarBanner() {
   var refDate = selectedDateKey ? new Date(selectedDateKey + "T12:00:00") : new Date();
   var info = getLunarInfo(refDate);
@@ -615,14 +615,14 @@ function renderLunarBanner() {
   $("lunar-orb").innerHTML = moonSvg(info.phaseRatio, 24);
   $("lunar-title").textContent = prefix + info.phaseName + " · Luna en " + info.moonSign;
   $("lunar-meta").textContent = "Iluminación estimada " + info.illum + "% · Día " + info.cycleDay + " del ciclo sinódico";
-
+ 
   var pillsHtml = '<span class="lunar-pill">☽ en ' + esc(info.moonSign) + '</span>';
   var prof = window.DreamSaverProfile;
   if (prof && (prof.sun || prof.moon || prof.asc)) {
     pillsHtml += '<span class="lunar-pill">Perfil: ☉ ' + esc(prof.sun || "N/D") + ' · ☽ ' + esc(prof.moon || "N/D") + ' · AC ' + esc(prof.asc || "N/D") + '</span>';
   }
   $("lunar-pills").innerHTML = pillsHtml;
-
+ 
   var descParts = [info.phaseAdvice];
   if (prof && prof.moon && prof.moon !== "N/D") {
     if (prof.moon === info.moonSign) {
@@ -676,7 +676,7 @@ window.DreamSaverSetUser = function(uid){
 window.DreamSaverClearLocal = function(){
   try{
     var del=[];
-    for(var i=0;i<localStorage.length;i++){ var n=localStorage.key(i); if(n && n.indexOf("suenos:")===0) del.push(n); }
+    for(var i=0;i<localStorage.length;i++){ var n=localStorage.key(i); if(n && (n.indexOf("suenos:")===0 || n.indexOf("astro_cache:")===0)) del.push(n); }
     del.forEach(function(n){ localStorage.removeItem(n); });
   }catch(e){}
   entries=[]; KEY=null; openId=null; delId=null;
@@ -1125,14 +1125,14 @@ render();
   const astroPdfStatus = document.getElementById("astro-pdf-status");
   let currentFullNatalChart = null;
   let currentBirthMeta = null;
-
+ 
   const PLANET_LABELS_ES = {
     sun: "Sol", moon: "Luna", mercury: "Mercurio", venus: "Venus", mars: "Marte",
     jupiter: "Júpiter", saturn: "Saturno", uranus: "Urano", neptune: "Neptuno", pluto: "Plutón",
     chiron: "Quirón", northnode: "Nodo Norte", truenode: "Nodo Norte", meannode: "Nodo Norte",
     southnode: "Nodo Sur", lilith: "Lilith", ascendant: "Ascendente", mc: "Medio Cielo (MC)", midheaven: "Medio Cielo (MC)"
   };
-
+ 
   const HOUSE_AREAS_ES = [
     { num: 1, name: "Casa I · Ascendente", focus: "Identidad, cuerpo físico, proyección personal y manera de iniciar experiencias." },
     { num: 2, name: "Casa II · Recursos", focus: "Valor propio, talentos materiales, estabilidad financiera y relación con el cuerpo." },
@@ -1147,7 +1147,7 @@ render();
     { num: 11, name: "Casa XI · Comunidad y Futuro", focus: "Amistades, redes colectivas, ideales humanitarios y proyectos a futuro." },
     { num: 12, name: "Casa XII · Inconsciente y Sueños", focus: "Mundo onírico, retiro interior, memoria kármica, empatía y disolución del ego." }
   ];
-
+ 
   function parseHouseSignAndDegree(rawHouse, idx, ascSignName) {
     if (typeof rawHouse === "string") {
       return { house: idx + 1, sign: normalizeSign(rawHouse), degree: null };
@@ -1155,7 +1155,7 @@ render();
     if (rawHouse && typeof rawHouse === "object") {
       const sign = normalizeSign(rawHouse.sign || rawHouse.zodiac || rawHouse.name || "");
       const deg = typeof rawHouse.degree === "number" ? rawHouse.degree : (typeof rawHouse.normDegree === "number" ? rawHouse.normDegree : (typeof rawHouse.pos === "number" ? rawHouse.pos % 30 : null));
-      if (sign !== "N/D") return { house: Number(rawHouse.house || rawHouse.number || idx + 1), sign, degree: deg };
+      if (sign !== "N/D") return { house: Number(rawHouse.house || rawHouse.number || idx + 1), sign, degree: deg, estimated: Boolean(rawHouse.estimated) };
     }
     const ascIdx = ZODIAC_SIGNS.findIndex(s => s.name === ascSignName);
     if (ascIdx >= 0) {
@@ -1163,33 +1163,33 @@ render();
     }
     return { house: idx + 1, sign: "N/D", degree: null };
   }
-
+ 
   function buildFullNatalDetails(bodyData, sun, moon, asc) {
     const rawPlanets = Array.isArray(bodyData?.planets) ? bodyData.planets : [];
     const planetsList = [];
     const seenKeys = new Set();
-
+ 
     rawPlanets.forEach(p => {
-      const rawKey = String(p.name || p.planet || p.id || "").toLowerCase().replace(/[\s_-]+/g, "");
+      const rawKey = String(p.name || p.planet || p.id || p.key || "").toLowerCase().replace(/[\s_-]+/g, "");
       if (!rawKey || seenKeys.has(rawKey)) return;
       seenKeys.add(rawKey);
       const label = PLANET_LABELS_ES[rawKey] || (p.name || p.planet || rawKey);
       const sign = normalizeSign(p.sign || "");
       const deg = typeof p.degree === "number" ? p.degree : (typeof p.normDegree === "number" ? p.normDegree : (typeof p.fullDegree === "number" ? p.fullDegree % 30 : null));
       const house = p.house || p.houseNumber || null;
-      const retro = Boolean(p.retrograde || p.isRetro || p.is_retrograde);
+      const retro = Boolean(p.retrograde || p.isRetro || p.is_retrograde || p.retro);
       if (sign !== "N/D") {
         planetsList.push({ key: rawKey, label, sign, degree: deg, house, retro });
       }
     });
-
+ 
     if (!planetsList.some(p => p.key === "sun") && sun !== "N/D") {
       planetsList.unshift({ key: "sun", label: "Sol", sign: sun, degree: null, house: null, retro: false });
     }
     if (!planetsList.some(p => p.key === "moon") && moon !== "N/D") {
       planetsList.splice(1, 0, { key: "moon", label: "Luna", sign: moon, degree: null, house: null, retro: false });
     }
-
+ 
     const rawHouses = Array.isArray(bodyData?.houses) ? bodyData.houses : [];
     const housesList = [];
     for (let i = 0; i < 12; i++) {
@@ -1204,7 +1204,7 @@ render();
         estimated: Boolean(parsed.estimated)
       });
     }
-
+ 
     const aspects = Array.isArray(bodyData?.aspects) ? bodyData.aspects.slice(0, 14) : [];
     return {
       sun,
@@ -1216,22 +1216,22 @@ render();
       houseSystem: bodyData?.house_system || bodyData?.houseSystem || (rawHouses.length ? "Placidus / API" : "Signo Entero desde Ascendente")
     };
   }
-
+ 
   function buildNatalChartSvgMarkup(sun, moon, asc, housesList, forPrint) {
     const sunIdx = ZODIAC_SIGNS.findIndex(s => s.name === sun);
     const moonIdx = ZODIAC_SIGNS.findIndex(s => s.name === moon);
     const ascIdx = ZODIAC_SIGNS.findIndex(s => s.name === asc);
-
+ 
     const cx = 160, cy = 160, rOuter = 142, rMid = 108, rHouse = 82, rInner = 54, rMarker = 95;
     const toRad = deg => (deg - 90) * (Math.PI / 180);
     const polar = (r, deg) => ({
       x: cx + r * Math.cos(toRad(deg)),
       y: cy + r * Math.sin(toRad(deg))
     });
-
+ 
     const strokeCol = forPrint ? "#3a2c54" : "currentColor";
     const textCol = forPrint ? "#1f1733" : "currentColor";
-
+ 
     let sectors = "";
     ZODIAC_SIGNS.forEach((sign, i) => {
       const a0 = i * 30;
@@ -1241,16 +1241,16 @@ render();
       const p1In = polar(rMid, a1);
       const p0In = polar(rMid, a0);
       const isHighlight = i === sunIdx || i === moonIdx || i === ascIdx;
-
+ 
       sectors += `<path d="M ${p0Out.x.toFixed(1)} ${p0Out.y.toFixed(1)} A ${rOuter} ${rOuter} 0 0 1 ${p1Out.x.toFixed(1)} ${p1Out.y.toFixed(1)} L ${p1In.x.toFixed(1)} ${p1In.y.toFixed(1)} A ${rMid} ${rMid} 0 0 0 ${p0In.x.toFixed(1)} ${p0In.y.toFixed(1)} Z" fill="${isHighlight ? "rgba(107,63,160,0.16)" : "transparent"}" stroke="${strokeCol}" stroke-opacity="0.25" stroke-width="1"/>`;
-
+ 
       const pLine = polar(rOuter, a0);
       const pCenter = polar(rInner, a0);
       sectors += `<line x1="${pCenter.x.toFixed(1)}" y1="${pCenter.y.toFixed(1)}" x2="${pLine.x.toFixed(1)}" y2="${pLine.y.toFixed(1)}" stroke="${strokeCol}" stroke-opacity="0.18" stroke-width="1"/>`;
-
+ 
       const midPos = polar((rOuter + rMid) / 2, a0 + 15);
       sectors += `<text x="${midPos.x.toFixed(1)}" y="${midPos.y.toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="14" fill="${textCol}">${sign.symbol}</text>`;
-
+ 
       // Número de casa en el anillo interior (si hay Ascendente definido)
       if (ascIdx >= 0) {
         const houseNum = ((i - ascIdx + 12) % 12) + 1;
@@ -1258,20 +1258,20 @@ render();
         sectors += `<text x="${hPos.x.toFixed(1)}" y="${hPos.y.toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="9.5" font-weight="600" fill="${textCol}" opacity="0.72">${houseNum}</text>`;
       }
     });
-
+ 
     const markers = [
       { idx: sunIdx, label: "☉", color: "#d9822b", offset: -8 },
       { idx: moonIdx, label: "☽", color: "#2d7a5e", offset: 0 },
       { idx: ascIdx, label: "AC", color: "#b8336a", offset: 8 }
     ].filter(m => m.idx >= 0);
-
+ 
     let markerSvg = "";
     markers.forEach(m => {
       const angle = m.idx * 30 + 15 + m.offset;
       const pt = polar(rMarker, angle);
       markerSvg += `<g transform="translate(${pt.x.toFixed(1)},${pt.y.toFixed(1)})"><circle r="11" fill="${m.color}"/><text text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#fff">${m.label}</text></g>`;
     });
-
+ 
     return `
       <svg viewBox="0 0 320 320" role="img" aria-label="Gráfico circular de carta astral con 12 casas">
         <circle cx="${cx}" cy="${cy}" r="${rOuter}" fill="none" stroke="${strokeCol}" stroke-opacity="0.38" stroke-width="1.5"/>
@@ -1285,7 +1285,7 @@ render();
       </svg>
     `;
   }
-
+ 
   function renderNatalChartSvg(sun, moon, asc) {
     astroChart.innerHTML = `
       ${buildNatalChartSvgMarkup(sun, moon, asc, currentFullNatalChart?.houses, false)}
@@ -1321,7 +1321,7 @@ render();
     if (typeof window.DreamSaverRefreshLunar === "function") window.DreamSaverRefreshLunar();
     return { sun, moon, asc, fullChart: currentFullNatalChart };
   }
-
+ 
   function buildPrintableNatalReportHtml() {
     const chart = currentFullNatalChart || buildFullNatalDetails(null, "N/D", "N/D", "N/D");
     const dobVal = dobInput.value || currentBirthMeta?.dob || "No registrada";
@@ -1331,7 +1331,7 @@ render();
     const lonVal = verifiedLocation?.lon ?? currentBirthMeta?.lon;
     const tzVal = verifiedLocation?.timezone || currentBirthMeta?.timezone || "UTC";
     const userEmail = auth.currentUser?.email || "";
-
+ 
     // Calcular condiciones astronómicas exactas del MOMENTO DE NACER (no del momento actual)
     let birthDateObj = null;
     if (dobVal && /^\d{4}-\d{2}-\d{2}$/.test(dobVal)) {
@@ -1345,7 +1345,7 @@ render();
     const lunarAtBirth = (birthDateObj && typeof window.DreamSaverGetLunarInfo === "function")
       ? window.DreamSaverGetLunarInfo(birthDateObj)
       : null;
-
+ 
     // Balance elemental y de modalidades basado exclusivamente en las posiciones natales
     const SIGN_ELEMENTS = {
       "Aries": "Fuego", "Leo": "Fuego", "Sagitario": "Fuego",
@@ -1370,9 +1370,9 @@ render();
       if (el) elemCounts[el]++;
       if (mod) modCounts[mod]++;
     });
-
+ 
     const svgWheel = buildNatalChartSvgMarkup(chart.sun, chart.moon, chart.asc, chart.houses, true);
-
+ 
     const planetsRows = chart.planets.map(p => {
       const degTxt = typeof p.degree === "number" ? `${p.degree.toFixed(1)}°` : "—";
       const houseTxt = p.house ? `Casa ${p.house}` : "—";
@@ -1385,7 +1385,7 @@ render();
         <td>${escapeHtml(statusTxt)}</td>
       </tr>`;
     }).join("");
-
+ 
     const housesRows = chart.houses.map(h => {
       const degTxt = typeof h.degree === "number" ? ` · ${h.degree.toFixed(1)}°` : (h.estimated ? " (referencia)" : "");
       return `<tr>
@@ -1394,7 +1394,7 @@ render();
         <td>${escapeHtml(h.focus)}</td>
       </tr>`;
     }).join("");
-
+ 
     const aspectsSection = chart.aspects && chart.aspects.length ? `
       <h2>Aspectos Planetarios Principales</h2>
       <table>
@@ -1409,7 +1409,7 @@ render();
         </tbody>
       </table>
     ` : "";
-
+ 
     const momentHtml = `
       <div class="moment-box">
         <h3>Condiciones Astronómicas y Astrales del Momento de Nacer</h3>
@@ -1419,7 +1419,7 @@ render();
         <p><strong>Distribución por Modalidades (posiciones natales):</strong> Cardinal (${modCounts.Cardinal}) · Fijo (${modCounts.Fijo}) · Mutable (${modCounts.Mutable})</p>
       </div>
     `;
-
+ 
     return `<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -1513,7 +1513,7 @@ render();
       <div class="sub">${userEmail ? "Perfil: " + escapeHtml(userEmail) + " · " : ""}Registro radix del instante de nacimiento (${escapeHtml(dobVal)} · ${escapeHtml(tobVal)})</div>
     </div>
   </div>
-
+ 
   <div class="birth-grid">
     <div class="birth-row">
       <div class="birth-cell"><strong>Fecha de nacimiento</strong>${escapeHtml(dobVal)}</div>
@@ -1526,7 +1526,7 @@ render();
       <div class="birth-cell"><strong>Sistema de casas</strong>${escapeHtml(chart.houseSystem)}</div>
     </div>
   </div>
-
+ 
   <div class="top-section">
     <div class="wheel-col">
       ${svgWheel}
@@ -1541,9 +1541,9 @@ render();
       <p style="font-size:9.8pt;margin:6px 0 0">${buildDreamReading(chart.sun, chart.moon, chart.asc)}</p>
     </div>
   </div>
-
+ 
   ${momentHtml}
-
+ 
   <h2>Posiciones Planetarias</h2>
   <table>
     <thead>
@@ -1551,7 +1551,7 @@ render();
     </thead>
     <tbody>${planetsRows}</tbody>
   </table>
-
+ 
   <h2>Las 12 Casas Astrológicas</h2>
   <table>
     <thead>
@@ -1559,16 +1559,16 @@ render();
     </thead>
     <tbody>${housesRows}</tbody>
   </table>
-
+ 
   ${aspectsSection}
-
+ 
   <div class="footer">
     <strong>✦ DreamSaver</strong> · Documento generado para reflexión personal y seguimiento onírico. Contacto: redlantecc@gmail.com
   </div>
 </body>
 </html>`;
   }
-
+ 
   if (btnDownloadNatalPdf) {
     btnDownloadNatalPdf.addEventListener("click", () => {
       if (!currentFullNatalChart) return;
@@ -1768,6 +1768,7 @@ render();
         sun: astroData.sun,
         moon: astroData.moon,
         asc: astroData.asc,
+        ...(astroData.rawBody ? { astroRawJson: JSON.stringify(astroData.rawBody) } : {}),
         updatedAt: new Date().toISOString()
       }, { merge: true }).catch(err => console.error(err));
     }
@@ -1978,8 +1979,11 @@ render();
     return null;
   }
  
+  let astroFetching = false;
   async function fetchNatalChart(dob, tob, coords) {
     if (!dob || !tob || !coords) return null;
+    if (astroFetching) return null; // ya hay una consulta en curso: no se repite
+    astroFetching = true;
     astroResults.innerHTML = "Calculando carta astral...";
     astroChart.innerHTML = "";
     try {
@@ -2041,17 +2045,20 @@ render();
       const ascRaw = extractAscendant(bodyData, planets);
  
       const rendered = renderAstrologyCard(sunRaw, moonRaw, ascRaw, bodyData);
+      // Respuesta cruda de la API (solo lo necesario para rehacer la carta y el PDF sin volver a consultar)
+      const rawBodyToStore = {
+        planets: Array.isArray(bodyData.planets) ? bodyData.planets : [],
+        houses: Array.isArray(bodyData.houses) ? bodyData.houses : [],
+        aspects: Array.isArray(bodyData.aspects) ? bodyData.aspects.slice(0, 30) : [],
+        house_system: bodyData.house_system || bodyData.houseSystem || null
+      };
+      if (rendered) rendered.rawBody = rawBodyToStore;
       if (auth.currentUser && rendered && [rendered.sun, rendered.moon, rendered.asc].some(v => v && v !== "N/D")) {
         const cacheObj = {
           sun: rendered.sun,
           moon: rendered.moon,
           asc: rendered.asc,
-          rawBody: {
-            planets: Array.isArray(bodyData.planets) ? bodyData.planets : [],
-            houses: Array.isArray(bodyData.houses) ? bodyData.houses : [],
-            aspects: Array.isArray(bodyData.aspects) ? bodyData.aspects : [],
-            house_system: bodyData.house_system || bodyData.houseSystem || null
-          }
+          rawBody: rawBodyToStore
         };
         try { localStorage.setItem("astro_cache:" + auth.currentUser.uid, JSON.stringify(cacheObj)); } catch (_) {}
       }
@@ -2060,6 +2067,8 @@ render();
       console.error(err);
       astroResults.textContent = "No se pudo conectar con el servicio de astrología.";
       return null;
+    } finally {
+      astroFetching = false;
     }
   }
  
@@ -2098,22 +2107,29 @@ render();
           lon: data.lon,
           timezone: data.timezone || "UTC"
         };
-
+ 
         if (data.dob && data.tob && data.city && typeof data.lat === "number" && typeof data.lon === "number") {
           applyBirthLockState(true);
         }
  
         let cached = null;
         try { cached = JSON.parse(localStorage.getItem("astro_cache:" + user.uid) || "null"); } catch (_) {}
-        const rawBody = data.astroRaw || cached?.rawBody || null;
-
+        let storedRaw = null;
+        if (typeof data.astroRawJson === "string") { try { storedRaw = JSON.parse(data.astroRawJson); } catch (_) {} }
+        const rawBody = storedRaw || data.astroRaw || cached?.rawBody || null;
+        const hasFullRaw = Boolean(rawBody && Array.isArray(rawBody.planets) && rawBody.planets.length >= 3);
+ 
         const hasValidAstro = [data.sun, data.moon, data.asc].some(v => v && v !== "N/D");
         if (hasValidAstro) {
           try { localStorage.setItem("astro_cache:" + user.uid, JSON.stringify({ sun: data.sun, moon: data.moon, asc: data.asc, rawBody })); } catch (_) {}
           renderAstrologyCard(data.sun, data.moon, data.asc, rawBody);
+          if (!hasFullRaw) {
+            // Cuenta antigua sin carta completa guardada: una única consulta, solo si la persona lo pide
+            astroResults.insertAdjacentHTML("beforeend", '<div class="row" style="margin-top:8px"><button class="b p" type="button" id="btn-retry-astro">Completar informe (1 consulta)</button></div>');
+          }
         } else if (cached && [cached.sun, cached.moon, cached.asc].some(v => v && v !== "N/D")) {
           renderAstrologyCard(cached.sun, cached.moon, cached.asc, rawBody);
-          setDoc(doc(db, "users", user.uid), { sun: cached.sun, moon: cached.moon, asc: cached.asc, ...(rawBody ? { astroRaw: rawBody } : {}) }, { merge: true }).catch(() => {});
+          setDoc(doc(db, "users", user.uid), { sun: cached.sun, moon: cached.moon, asc: cached.asc, ...(rawBody ? { astroRawJson: JSON.stringify(rawBody) } : {}) }, { merge: true }).catch(() => {});
         } else if (data.dob && data.tob && verifiedLocation) {
           astroResults.innerHTML = 'Tus datos de nacimiento están listos, pero la carta astral aún no se ha generado.<div class="row" style="margin-top:8px"><button class="b p" type="button" id="btn-retry-astro">Calcular mi carta astral</button></div>';
         }
@@ -2163,19 +2179,15 @@ render();
         payload.sun = astroData.sun;
         payload.moon = astroData.moon;
         payload.asc = astroData.asc;
-        if (astroData.fullChart) {
-          payload.astroRaw = {
-            planets: astroData.fullChart.planets || [],
-            houses: astroData.fullChart.houses || [],
-            aspects: astroData.fullChart.aspects || [],
-            house_system: astroData.fullChart.houseSystem || null
-          };
+        if (astroData.rawBody) {
+          // Se guarda como texto JSON: evita problemas de estructura en Firestore y mantiene la carta completa
+          try { payload.astroRawJson = JSON.stringify(astroData.rawBody); } catch (_) {}
         }
       }
       await setDoc(doc(db, "users", user.uid), payload, { merge: true });
       applyBirthLockState(true);
       profileSaved.textContent = astroData
-        ? "Perfil y carta astral guardados. Datos natales bloqueados."
+        ? "Carta astral completa guardada. Ya puedes descargar tu informe cuando quieras, sin nuevas consultas."
         : "Perfil y ubicación verificada guardados. Datos natales bloqueados.";
     } catch (err) {
       profileSaved.textContent = "Error al guardar el perfil.";
@@ -2274,3 +2286,4 @@ render();
 </script>
 </body>
 </html>
+ 
