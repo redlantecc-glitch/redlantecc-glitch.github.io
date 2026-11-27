@@ -170,16 +170,9 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
 .hd-nodes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
 .hd-node-box{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-size:13.5px;line-height:1.45}
 .hd-node-box strong{color:var(--accent)}
-.hd-graph-layout{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;align-items:start}
+.hd-graph-layout{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;align-items:start}
 .hd-graph-box,.hd-detail-box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px}
 .hd-graph-box{text-align:center}
-.hd-art-stage{position:relative;width:100%;max-width:290px;margin:0 auto;border-radius:12px;overflow:hidden;background:#0c0719;border:1px solid var(--line);box-shadow:0 10px 26px rgba(10,5,24,.28)}
-.hd-art-stage img{display:block;width:100%;height:auto}
-.hd-hotspot{position:absolute;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:999px;border:2px solid transparent;background:rgba(255,255,255,0.04);cursor:pointer;padding:0;touch-action:manipulation;transition:transform 0.15s ease,border-color 0.15s ease,background 0.15s ease,box-shadow 0.15s ease}
-.hd-hotspot:hover{transform:translate(-50%,-50%) scale(1.1);border-color:rgba(255,255,255,.75);background:rgba(167,123,250,.22)}
-.hd-hotspot.is-defined{border-color:rgba(244,201,93,0.68);box-shadow:0 0 10px rgba(244,201,93,0.28)}
-.hd-hotspot.is-selected{border-color:#ffffff;background:rgba(167,123,250,0.35);box-shadow:0 0 0 3px rgba(235,94,147,0.8);transform:translate(-50%,-50%) scale(1.12)}
-.hd-img-fallback{padding:18px 14px;text-align:center;font-size:12.5px;color:#d6ccf0;background:radial-gradient(circle at top,#28174d,#0e091c 75%)}
 .hd-transit-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
 .hd-transit-bar input[type=date]{width:auto;min-width:170px;padding:7px 10px;font-size:14px}
 .hd-transit-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px}
@@ -449,7 +442,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
 
       <section class="hd-section" aria-label="Gráfico de los 9 centros">
         <h3>Gráfico de los 9 centros sobre silueta humana · Toca una zona para profundizar</h3>
-        <p class="note" style="margin-bottom:10px">Los centros con halo dorado (<strong>definidos</strong>) reflejan un funcionamiento más constante en ti; los demás (<strong>abiertos</strong>) muestran dónde sientes o percibes más el entorno y tus sueños.</p>
+        <p class="note" style="margin-bottom:10px">Los centros <strong>coloreados (definidos)</strong> reflejan un funcionamiento más constante en ti; los <strong>claros (abiertos)</strong> muestran dónde sientes o percibes más el entorno y tus sueños.</p>
         <div class="hd-graph-layout">
           <div class="hd-graph-box" id="hd-bodygraph-wrap"></div>
           <div class="hd-detail-box" id="hd-center-detail"></div>
@@ -982,42 +975,77 @@ function renderCenterDetail(centerId, definedMap) {
     '<p style="margin:6px 0 0;font-size:13px;line-height:1.45;color:var(--mute)"><strong>En tus sueños:</strong> ' + esc(guide.dreamTip) + '</p>';
 }
 
-function renderBodyGraphIllustration(definedMap) {
+function renderBodyGraphSvg(definedMap) {
   var wrap = $("hd-bodygraph-wrap");
   if (!wrap) return;
-
-  var hotspots = [
-    { id: "head", label: "Cabeza", top: 22, left: 50 },
-    { id: "ajna", label: "Ajna", top: 31, left: 50 },
-    { id: "throat", label: "Garganta", top: 40, left: 50 },
-    { id: "g", label: "Identidad", top: 50, left: 50 },
-    { id: "heart", label: "Corazón", top: 53, left: 57 },
-    { id: "spleen", label: "Bazo", top: 63, left: 37 },
-    { id: "solar", label: "Plexo Solar", top: 63, left: 61 },
-    { id: "sacral", label: "Sacro", top: 67, left: 50 },
-    { id: "root", label: "Raíz", top: 81, left: 50 }
+  var shapes = [
+    { id: "head", label: "Cabeza", x: 130, y: 46, kind: "tri-up", accentHex: "#f4c95d" },
+    { id: "ajna", label: "Ajna", x: 130, y: 88, kind: "tri-down", accentHex: "#4fd1b5" },
+    { id: "throat", label: "Garganta", x: 130, y: 134, kind: "rect", accentHex: "#63b3ed" },
+    { id: "g", label: "Identidad", x: 130, y: 184, kind: "diamond", accentHex: "#a3e635" },
+    { id: "heart", label: "Corazón", x: 168, y: 170, kind: "tri-up", accentHex: "#f6ad55" },
+    { id: "spleen", label: "Bazo", x: 78, y: 214, kind: "tri-up", accentHex: "#9f7aea" },
+    { id: "solar", label: "Plexo", x: 180, y: 214, kind: "tri-up", accentHex: "#f687b3" },
+    { id: "sacral", label: "Sacro", x: 130, y: 234, kind: "rect", accentHex: "#ed8936" },
+    { id: "root", label: "Raíz", x: 130, y: 280, kind: "rect", accentHex: "#c084fc" }
   ];
 
-  var buttonsHtml = hotspots.map(function(h){
-    var isDef = Boolean(definedMap && definedMap[h.id]);
-    var isSel = selectedCenterId === h.id;
-    var cls = "hd-hotspot" + (isDef ? " is-defined" : "") + (isSel ? " is-selected" : "");
-    return '<button type="button" class="' + cls + '" data-center-id="' + h.id + '" style="top:' + h.top + '%;left:' + h.left + '%" title="' + esc(h.label) + '" aria-label="' + esc(h.label) + '"></button>';
+  var svgParts = shapes.map(function(s){
+    var isDef = Boolean(definedMap && definedMap[s.id]);
+    var isSel = selectedCenterId === s.id;
+    var fill = isDef
+      ? "color-mix(in srgb, " + s.accentHex + " 38%, var(--surface))"
+      : "color-mix(in srgb, var(--surface) 88%, var(--bg))";
+    var stroke = isSel ? "var(--rec)" : (isDef ? s.accentHex : "var(--mute)");
+    var sw = isSel ? "2.8" : (isDef ? "2.1" : "1.5");
+    var glow = isDef
+      ? '<circle cx="' + s.x + '" cy="' + s.y + '" r="22" fill="' + s.accentHex + '" opacity="0.16"/>'
+      : "";
+    var shapeEl = "";
+    if (s.kind === "rect") {
+      shapeEl = '<rect x="' + (s.x - 21) + '" y="' + (s.y - 13) + '" width="42" height="26" rx="5" fill="' + fill + '" stroke="' + stroke + '" stroke-width="' + sw + '"/>';
+    } else if (s.kind === "diamond") {
+      shapeEl = '<polygon points="' + s.x + ',' + (s.y - 17) + ' ' + (s.x + 17) + ',' + s.y + ' ' + s.x + ',' + (s.y + 17) + ' ' + (s.x - 17) + ',' + s.y + '" fill="' + fill + '" stroke="' + stroke + '" stroke-width="' + sw + '"/>';
+    } else if (s.kind === "tri-up") {
+      shapeEl = '<polygon points="' + s.x + ',' + (s.y - 16) + ' ' + (s.x + 18) + ',' + (s.y + 13) + ' ' + (s.x - 18) + ',' + (s.y + 13) + '" fill="' + fill + '" stroke="' + stroke + '" stroke-width="' + sw + '"/>';
+    } else {
+      shapeEl = '<polygon points="' + (s.x - 18) + ',' + (s.y - 13) + ' ' + (s.x + 18) + ',' + (s.y - 13) + ' ' + s.x + ',' + (s.y + 16) + '" fill="' + fill + '" stroke="' + stroke + '" stroke-width="' + sw + '"/>';
+    }
+    return '<g data-center-id="' + s.id + '" style="cursor:pointer" role="button" tabindex="0" aria-label="' + esc(s.label) + '">' +
+      glow +
+      shapeEl +
+      '<text x="' + s.x + '" y="' + (s.y + 2) + '" text-anchor="middle" dominant-baseline="central" font-size="8.5" font-weight="700" fill="var(--ink)">' + esc(s.label) + '</text>' +
+    '</g>';
   }).join("");
 
-  wrap.innerHTML =
-    '<div class="hd-art-stage">' +
-      '<img src="./9-centros-sin-texto.jpg" alt="Ilustración de los 9 centros energéticos sobre figura humana" onerror="this.style.display='none';this.parentNode.querySelector('.hd-img-fallback').style.display='block';">' +
-      '<div class="hd-img-fallback" style="display:none">Sube <strong>9-centros-sin-texto.jpg</strong> a la raíz de tu repositorio en GitHub para visualizar la ilustración completa aquí.</div>' +
-      buttonsHtml +
-    '</div>' +
-    '<p class="note" style="margin-top:8px">Centro seleccionado: <strong>' + esc((CENTER_GUIDES[selectedCenterId] && CENTER_GUIDES[selectedCenterId].title) || "Plexo Solar") + '</strong></p>';
+  wrap.innerHTML = '<svg viewBox="0 0 260 356" style="width:100%;max-width:265px;height:auto;display:block;margin:0 auto">' +
+    '<defs>' +
+      '<radialGradient id="hdAura" cx="50%" cy="42%" r="55%">' +
+        '<stop offset="0%" stop-color="var(--accent)" stop-opacity="0.16"/>' +
+        '<stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>' +
+      '</radialGradient>' +
+    '</defs>' +
+    '<ellipse cx="130" cy="176" rx="112" ry="158" fill="url(#hdAura)"/>' +
+    '<circle cx="130" cy="176" r="102" fill="none" stroke="var(--accent)" stroke-opacity="0.14" stroke-width="1" stroke-dasharray="3 4"/>' +
+    '<path d="M 130 22 C 110 22, 98 38, 99 60 C 99 73, 105 84, 113 91 L 111 106 C 92 114, 62 124, 48 148 C 34 172, 24 218, 22 256 C 21 274, 34 286, 52 288 C 68 290, 82 282, 92 272 C 74 286, 54 298, 46 314 C 40 326, 52 336, 78 336 C 102 336, 118 326, 130 318 C 142 326, 158 336, 182 336 C 208 336, 220 326, 214 314 C 206 298, 186 286, 168 272 C 178 282, 192 290, 208 288 C 226 286, 239 274, 238 256 C 236 218, 226 172, 212 148 C 198 124, 168 114, 149 106 L 147 91 C 155 84, 161 73, 161 60 C 162 38, 150 22, 130 22 Z" fill="color-mix(in srgb, var(--accent) 5%, var(--bg))" stroke="var(--accent)" stroke-opacity="0.42" stroke-width="1.8" stroke-linejoin="round"/>' +
+    '<path d="M 52 288 C 60 282, 68 276, 74 270" fill="none" stroke="var(--accent)" stroke-opacity="0.32" stroke-width="1.4" stroke-linecap="round"/>' +
+    '<path d="M 208 288 C 200 282, 192 276, 186 270" fill="none" stroke="var(--accent)" stroke-opacity="0.32" stroke-width="1.4" stroke-linecap="round"/>' +
+    '<line x1="130" y1="60" x2="130" y2="75" stroke="var(--accent)" stroke-opacity="0.45" stroke-width="2"/>' +
+    '<line x1="130" y1="101" x2="130" y2="121" stroke="var(--accent)" stroke-opacity="0.45" stroke-width="2"/>' +
+    '<line x1="130" y1="147" x2="130" y2="167" stroke="var(--accent)" stroke-opacity="0.45" stroke-width="2"/>' +
+    '<line x1="130" y1="201" x2="130" y2="221" stroke="var(--accent)" stroke-opacity="0.45" stroke-width="2"/>' +
+    '<line x1="130" y1="247" x2="130" y2="267" stroke="var(--accent)" stroke-opacity="0.45" stroke-width="2"/>' +
+    '<line x1="92" y1="214" x2="109" y2="224" stroke="var(--accent)" stroke-opacity="0.38" stroke-width="1.8"/>' +
+    '<line x1="168" y1="214" x2="151" y2="224" stroke="var(--accent)" stroke-opacity="0.38" stroke-width="1.8"/>' +
+    '<line x1="146" y1="138" x2="160" y2="158" stroke="var(--accent)" stroke-opacity="0.35" stroke-width="1.6"/>' +
+    svgParts +
+  '</svg>';
 
-  var btns = wrap.querySelectorAll("[data-center-id]");
-  for (var i = 0; i < btns.length; i++) {
-    btns[i].addEventListener("click", function(){
+  var nodes = wrap.querySelectorAll("[data-center-id]");
+  for (var i = 0; i < nodes.length; i++) {
+    nodes[i].addEventListener("click", function(){
       selectedCenterId = this.getAttribute("data-center-id");
-      renderBodyGraphIllustration(lastDefinedMap);
+      renderBodyGraphSvg(lastDefinedMap);
       renderCenterDetail(selectedCenterId, lastDefinedMap);
     });
   }
@@ -1064,7 +1092,7 @@ window.DreamSaverRenderHD = function(birthMetaOverride){
   var definedMap = {};
   hd.centersStatus.forEach(function(c){ definedMap[c.id] = c.defined; });
   lastDefinedMap = definedMap;
-  renderBodyGraphIllustration(definedMap);
+  renderBodyGraphSvg(definedMap);
   renderCenterDetail(selectedCenterId, definedMap);
 
   var chNote = $("hd-channels-note");
