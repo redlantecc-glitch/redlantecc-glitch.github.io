@@ -190,8 +190,8 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
     display:grid;
     grid-template-columns:minmax(0,1.15fr) minmax(340px,0.85fr);
     grid-template-areas:
-      "recorder explorer"
       "lunar lunar"
+      "recorder explorer"
       "list list"
       "stats stats";
     gap:18px 20px;
@@ -684,13 +684,17 @@ var activeTagFilter = "all";
 var selectedDateKey = null;
 var calCursor = new Date();
 calCursor.setDate(1);
-var calVisible = false;
- 
-$("toggle-cal").addEventListener("click", function(){
-  calVisible = !calVisible;
+var calVisible = window.innerWidth >= 960;
+function syncCalVisibility(){
   $("cal-box").style.display = calVisible ? "block" : "none";
   $("toggle-cal").textContent = calVisible ? "Ocultar calendario" : "Ver calendario";
   $("toggle-cal").setAttribute("aria-expanded", String(calVisible));
+}
+syncCalVisibility();
+ 
+$("toggle-cal").addEventListener("click", function(){
+  calVisible = !calVisible;
+  syncCalVisibility();
 });
  
 $("search-q").addEventListener("input", function(){
