@@ -1345,6 +1345,23 @@ render();
   }
  
   btnProfile.addEventListener("click", () => toggleSidebar(true));
+  astroResults.addEventListener("click", async (ev) => {
+    const retryBtn = ev.target.closest("#btn-retry-astro");
+    if (!retryBtn || !auth.currentUser) return;
+    const dob = dobInput.value.trim();
+    const tob = tobInput.value.trim();
+    if (!dob || !tob || !verifiedLocation) return;
+    retryBtn.disabled = true;
+    const astroData = await fetchNatalChart(dob, tob, verifiedLocation);
+    if (astroData && [astroData.sun, astroData.moon, astroData.asc].some(v => v && v !== "N/D")) {
+      await setDoc(doc(db, "users", auth.currentUser.uid), {
+        sun: astroData.sun,
+        moon: astroData.moon,
+        asc: astroData.asc,
+        updatedAt: new Date().toISOString()
+      }, { merge: true }).catch(err => console.error(err));
+    }
+  });
   closeProfile.addEventListener("click", () => toggleSidebar(false));
   overlay.addEventListener("click", () => toggleSidebar(false));
  
@@ -1598,7 +1615,11 @@ render();
  
       if (!response.ok || data.status === "error") {
         const msg = data.message || data.error || `HTTP ${response.status}`;
-        astroResults.textContent = "Error al calcular la carta: " + msg;
+        if (response.status === 429 || /limit|rate|quota|l[ií]mite/i.test(msg)) {
+          astroResults.innerHTML = 'Se alcanzó el límite diario del servicio de astrología. Tus datos de nacimiento ya están guardados; podrás generar tu carta mañana sin volver a ingresarlos.<div class="row" style="margin-top:8px"><button class="b" type="button" id="btn-retry-astro">Reintentar cálculo</button></div>';
+        } else {
+          astroResults.innerHTML = 'Error al calcular la carta: ' + escapeHtml(msg) + '<div class="row" style="margin-top:8px"><button class="b" type="button" id="btn-retry-astro">Reintentar cálculo</button></div>';
+        }
         return null;
       }
  
@@ -1609,7 +1630,11 @@ render();
       const moonRaw = planets.find(p => (p.name || p.planet || "").toLowerCase() === "moon")?.sign || bodyData.moon?.sign || null;
       const ascRaw = extractAscendant(bodyData, planets);
  
-      return renderAstrologyCard(sunRaw, moonRaw, ascRaw);
+      const rendered = renderAstrologyCard(sunRaw, moonRaw, ascRaw);
+      if (auth.currentUser && rendered && [rendered.sun, rendered.moon, rendered.asc].some(v => v && v !== "N/D")) {
+        try { localStorage.setItem("astro_cache:" + auth.currentUser.uid, JSON.stringify(rendered)); } catch (_) {}
+      }
+      return rendered;
     } catch (err) {
       console.error(err);
       astroResults.textContent = "No se pudo conectar con el servicio de astrología.";
@@ -1648,10 +1673,19 @@ render();
           applyBirthLockState(true);
         }
  
-        if (data.sun || data.moon || data.asc) {
+        const hasValidAstro = [data.sun, data.moon, data.asc].some(v => v && v !== "N/D");
+        if (hasValidAstro) {
+          try { localStorage.setItem("astro_cache:" + user.uid, JSON.stringify({ sun: data.sun, moon: data.moon, asc: data.asc })); } catch (_) {}
           renderAstrologyCard(data.sun, data.moon, data.asc);
-        } else if (data.dob && data.tob && verifiedLocation) {
-          fetchNatalChart(data.dob, data.tob, verifiedLocation);
+        } else {
+          let cached = null;
+          try { cached = JSON.parse(localStorage.getItem("astro_cache:" + user.uid) || "null"); } catch (_) {}
+          if (cached && [cached.sun, cached.moon, cached.asc].some(v => v && v !== "N/D")) {
+            renderAstrologyCard(cached.sun, cached.moon, cached.asc);
+            setDoc(doc(db, "users", user.uid), { sun: cached.sun, moon: cached.moon, asc: cached.asc }, { merge: true }).catch(() => {});
+          } else if (data.dob && data.tob && verifiedLocation) {
+            astroResults.innerHTML = 'Tus datos de nacimiento están listos, pero la carta astral aún no se ha generado.<div class="row" style="margin-top:8px"><button class="b p" type="button" id="btn-retry-astro">Calcular mi carta astral</button></div>';
+          }
         }
       }
     } catch (err) {
