@@ -62,7 +62,7 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
   <div id="app-content" style="display:none;">
     <div class="top-bar">
       <div>
-        <div class="brand-badge">✦ DreamSaver · Módulo independiente</div>
+        <div class="brand-badge">✦ DreamSaver · Biodescodificación</div>
         <h1>Biodescodificación</h1>
       </div>
       <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
@@ -74,7 +74,7 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
 
     <section class="card">
       <h2>Consulta por sistema y síntoma</h2>
-      <p class="note" id="source-status">Cargando catálogo externo...</p>
+      <p class="note" id="source-status">Cargando ./data/biodesc.json...</p>
 
       <div class="fld">
         Sistema biológico
@@ -85,7 +85,7 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
 
       <div class="fld">
         Buscar síntoma, zona o emoción
-        <input type="search" id="bio-search" placeholder="Ej. dolor de pie, talón, tobillo, estómago, acidez...">
+        <input type="search" id="bio-search" placeholder="Buscar por síntoma, zona o emoción...">
       </div>
 
       <div class="chips" id="symptom-chips"></div>
@@ -114,183 +114,12 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
 
 <script>
 (function(){
-  var FALLBACK_CATALOG = [
-    {
-      id: "pies",
-      system: "Osteoarticular y movimiento",
-      stage: "3ª Etapa (Movimiento / Valoración)",
-      symptom: "Pies (General)",
-      keywords: "pie pies dolor de pie dolor en los pies caminar avanzar direccion madre equilibrio planta",
-      emotion: "Conflictos relacionados con la MADRE y con la dirección o avance en la vida",
-      summary: "El pie en general se asocia con conflictos ligados a la madre (madre simbólica que protege, Seguridad Social / ayudas estatales; madre = protección, padre = permiso), desvalorización por no poder correr, bailar o guardar el equilibrio, falta de estabilidad/seguridad o conflicto en la dirección que se toma.",
-      resentir: "Sensación de estar parado en el mismo lugar, dificultad para avanzar o conflicto en la dirección elegida.",
-      authors: {
-        jacques_martel: "Mi dirección (quedarse en el mismo sitio) y mi comprensión de mí mismo y de la vida (pasado, presente, futuro).",
-        louise_hay: "Causa probable: comprensión de uno mismo, de la vida y de los demás; temor al futuro y miedo de no avanzar en la vida. Nuevo modelo mental: «Mi entendimiento es claro y estoy dispuesto a cambiar con los tiempos. Estoy a salvo. Con facilidad y alegría avanzo en la vida.»",
-        lisa_bourbeau: "Bloqueo emocional: dificultad para encontrar los medios para avanzar, inseguridad en la dirección, estar detenido, desear huir sin suficiente arraigo en la Tierra o miedo a ser cesado. Si duelen más en reposo que en actividad, indica no permitirse detenerse a descansar. Bloqueo mental: avanzar con alegría y entusiasmo, mantenerse arraigado al «aquí y ahora» y no dejarse «pisar» por nadie."
-      },
-      solution: "Reflexionar y discernir. Autoestima y confianza. Alineamiento integral.",
-      questions: [
-        "¿En qué área de mi vida siento que estoy detenido o inseguro sobre la dirección a tomar?",
-        "¿Necesito más arraigo al presente o permitirme detenerme a descansar?"
-      ],
-      related: ["talon", "espolones-calcaneos", "fascitis-plantar", "dedos-de-los-pies", "hallux-valgus", "tobillo-esguince"]
-    },
-    {
-      id: "talon",
-      system: "Osteoarticular y movimiento",
-      stage: "3ª Etapa (Movimiento / Valoración)",
-      symptom: "Talón",
-      keywords: "talon dolor de talon dolor en el pie apoyar avanzar permiso aprobacion",
-      emotion: "Deseo de avanzar dudando por falta de apoyo o aprobación",
-      summary: "En el diccionario aparece con el desarrollo de Lisa Bourbeau: muchos dolores en el talón no tienen causa física aparente y se vinculan con querer avanzar hacia metas pero dudar por no sentirse apoyado.",
-      resentir: "Buscar consentimiento o permiso antes de actuar, culpa sin aprobación externa o malestar por quedarse en un lugar.",
-      authors: {
-        lisa_bourbeau: "Bloqueo emocional: desea avanzar hacia sus metas pero duda porque no se siente apoyada; busca consentimiento o permiso antes de actuar o sufre si debe quedarse en un sitio. Bloqueo mental: apoyarse en uno mismo para decidir y avanzar sin exigir que todos estén de acuerdo o apoyen siempre."
-      },
-      questions: [
-        "¿Estoy esperando el permiso o la aprobación de alguien para dar un paso?",
-        "¿Cómo puedo sostenerme y respaldarme a mí mismo en esta decisión?"
-      ],
-      related: ["pies", "espolones-calcaneos", "fascitis-plantar"]
-    },
-    {
-      id: "espolones-calcaneos",
-      system: "Osteoarticular y movimiento",
-      stage: "3ª Etapa (Movimiento / Valoración)",
-      symptom: "Espolones calcáneos",
-      keywords: "espolon espolones calcaneos planta del pie casa familiar madre marcharme tradicion",
-      emotion: "Posición frente al mundo, a la madre o a la casa familiar y sus valores",
-      summary: "La planta del pie representa a la madre y, simbólicamente, la casa donde está la madre o la casa familiar. Se asocia con conflicto de posición frente al mundo o a la casa materna, tradición/pasado o apego a valores heredados; conviene observar síndrome del aniversario o ciclos celulares.",
-      resentir: "«No tengo derecho a marcharme de casa o de salir del dominio de mi madre o a poner el pie en el suelo para marcharme.» «Me culpabilizo de pensar que quería marcharme.»",
-      questions: [
-        "¿Qué mandatos, tradiciones o vínculos familiares siento que me anclan o me generan culpa al querer avanzar?",
-        "¿Hay alguna fecha o ciclo repetitivo conectado con este momento?"
-      ],
-      related: ["pies", "talon", "fascitis-plantar"]
-    },
-    {
-      id: "fascitis-plantar",
-      system: "Osteoarticular y movimiento",
-      stage: "3ª Etapa (Movimiento / Valoración)",
-      symptom: "Fascitis plantar",
-      keywords: "fascitis plantar planta del pie rabia colera madre expresarme",
-      emotion: "Cólera o rabia reprimida en relación con la madre o la función materna",
-      summary: "Vinculada con cólera, rabia o rabia reprimida en relación con la madre o con la función materna.",
-      resentir: "«No tengo derecho a expresar...»",
-      questions: [
-        "¿Qué rabia o inconformidad estoy conteniendo frente a lo materno o protector?",
-        "¿Qué necesito expresar de forma clara y sana?"
-      ],
-      related: ["pies", "espolones-calcaneos", "talon"]
-    },
-    {
-      id: "dedos-de-los-pies",
-      system: "Osteoarticular y movimiento",
-      stage: "3ª Etapa (Movimiento / Valoración)",
-      symptom: "Dedos de los pies",
-      keywords: "dedos de los pies dedo gordo colaterales detalles futuro culpabilidad martillo",
-      emotion: "Detalles del avance y del futuro, culpabilidad o vínculos con madre y colaterales",
-      summary: "Asociados con haber dado un impulso y culpabilidad por no haber estado allí o haber estado lejos, además de heridas, enfado con uno mismo, conflicto mental o culpabilidad. Por dedo: Dedo gordo = obligación a la madre («Mi madre me obliga a...»); Dedo II = colaterales (hermanos, cuñados, esposo, compañeros de trabajo); Dedo III = problemas de comunicación (con colaterales); Dedo IV = vesícula biliar, cólera reprimida, rencor e injusticia con madre y/o colaterales; Dedo V = territorio (colaterales).",
-      resentir: "Preocupación excesiva por detalles que impiden ver el conjunto; en el dedo gordo, culpabilidad o arrepentimiento por la dirección tomada o deseada.",
-      authors: {
-        louise_hay: "Causa probable: detalles del futuro. Nuevo modelo mental: «Todos los detalles se resuelven solos.» Dedo en martillo: estrés y repugnancia a ir hacia adelante.",
-        lisa_bourbeau: "Bloqueo emocional: los dedos reflejan la percepción de los detalles del avance; miedos inútiles sobre el futuro o perder la visión global. Bloqueo mental: reconectar con lo que realmente quieres para tu futuro sin quedarte atrapado en los detalles."
-      },
-      questions: [
-        "¿Qué detalle menor o qué culpa pasada me está frenando para avanzar?",
-        "¿Qué vínculo familiar o laboral está tenso en este momento?"
-      ],
-      related: ["pies", "hallux-valgus", "tobillo-esguince"]
-    },
-    {
-      id: "hallux-valgus",
-      system: "Osteoarticular y movimiento",
-      stage: "3ª Etapa (Movimiento / Valoración)",
-      symptom: "Hallux valgus (Juanete, Callos)",
-      keywords: "hallux valgus juanete juanetes callos callosidad dedo gordo madre obligacion",
-      emotion: "Obligación hacia la madre o colaterales, rigidez de pensamiento o aprehensión al futuro",
-      summary: "El dedo gordo remite a la obligación a la madre o estar bajo su dominio; en los callos se suma el matiz de protección y el dedo implicado. Incluye la relación con colaterales (dedo encima: «debo actuar porque soy el mayor»; dedo debajo: «debo hacerlo en lugar de los mayores»; dos dedos: «dificultades para encontrar su camino»).",
-      resentir: "«Mi madre me obliga a...» o sensación de carga/obligación frente a otros.",
-      authors: {
-        louise_hay: "Hallux valgus: zonas de pensamiento endurecidas, aferramiento terco al dolor del pasado («Avanzo libre del pasado. Estoy a salvo; soy libre.»). Callosidades: conceptos e ideas endurecidos, miedo solidificado. Juanetes: falta de alegría ante las experiencias de la vida.",
-        lisa_bourbeau: "Callos en los pies: aprehensión frente al futuro y freno de impulsos o deseos vinculados con él."
-      },
-      questions: [
-        "¿Qué idea rígida o dolor pasado sigo sosteniendo?",
-        "¿Qué deseo o impulso propio estoy frenando por temor al futuro o al juicio ajeno?"
-      ],
-      related: ["dedos-de-los-pies", "pies"]
-    },
-    {
-      id: "tobillo-esguince",
-      system: "Osteoarticular y movimiento",
-      stage: "3ª Etapa (Movimiento / Valoración)",
-      symptom: "Tobillo y esguince",
-      keywords: "tobillo esguince torcedura direccion equilibrio flexibilidad indecisión",
-      emotion: "Indecisión o desvalorización ante la dirección tomada y necesidad de flexibilidad",
-      summary: "El tobillo se relaciona con desvalorización en la dirección que se toma o no se toma, indecisión y desvalorización por no poder correr, bailar o guardar el equilibrio. En el esguince: ligamento lateral externo anterior = vesícula biliar (rencores, injusticias, vergüenzas, cólera reprimida); posterior = vejiga (territorio, como el dedo pequeño); ligamento lateral interno = bazo y páncreas (dulzura o preocupación en relación con los hijos).",
-      resentir: "«No estoy tomando el buen camino» o tensión ante una situación que se resiste.",
-      authors: {
-        jacques_martel: "Tobillos: flexibilidad en las nuevas direcciones del futuro. Torcedura: resistencia e inquietud con necesidad de mayor apertura y flexibilidad.",
-        louise_hay: "Tobillos: inflexibilidad y culpa; capacidad de recibir placer. Torcedura: ira y resistencia, no querer avanzar en cierta dirección."
-      },
-      questions: [
-        "¿En qué dirección siento duda, resistencia o falta de flexibilidad?",
-        "¿Qué tensión o exigencia me está pesando más de la cuenta?"
-      ],
-      related: ["pies", "dedos-de-los-pies"]
-    },
-    {
-      id: "estomago-nudo",
-      system: "Sistema digestivo",
-      stage: "1ª Etapa (Supervivencia)",
-      symptom: "Nudo o pesadez estomacal",
-      keywords: "estomago nudo pesadez digerir tragar cambio",
-      emotion: "Dificultad para asimilar o 'tragar' una situación",
-      summary: "Suele asociarse con hechos, conversaciones o cambios recientes que cuesta digerir en lo cotidiano.",
-      questions: [
-        "¿Qué situación o comentario reciente me cuesta 'digerir'?",
-        "¿Qué estoy reteniendo o callando para evitar conflicto?"
-      ],
-      related: ["acidez-reflujo"]
-    },
-    {
-      id: "acidez-reflujo",
-      system: "Sistema digestivo",
-      stage: "1ª Etapa (Supervivencia)",
-      symptom: "Acidez o reflujo",
-      keywords: "acidez reflujo ardor molestia rechazo",
-      emotion: "Rechazo o fricción ante algo que no encaja",
-      summary: "A menudo se vincula con momentos en que algo genera malestar o rechazo al procesarlo.",
-      questions: [
-        "¿Qué circunstancia o demanda actual me resulta indigesta?",
-        "¿Dónde necesito poner un límite claro y oportuno?"
-      ],
-      related: ["estomago-nudo"]
-    },
-    {
-      id: "tension-muscular",
-      system: "Sistema muscular",
-      stage: "3ª Etapa (Movimiento / Valoración)",
-      symptom: "Rigidez o tensión muscular",
-      keywords: "musculo rigidez tension carga esfuerzo postura",
-      emotion: "Sostener esfuerzo o resistencia de forma continua",
-      summary: "Suele reflejar el esfuerzo sostenido por mantener el control, avanzar o no ceder.",
-      questions: [
-        "¿En qué área siento que estoy empujando o sosteniendo de más?",
-        "¿Qué pasaría si hoy aflojo un poco el ritmo o pido apoyo?"
-      ],
-      related: ["pies", "tobillo-esguince"]
-    }
-  ];
-
   var STOP_WORDS = { "dolor":1, "de":1, "del":1, "la":1, "el":1, "los":1, "las":1, "en":1, "un":1, "una":1, "por":1, "para":1, "con":1, "y":1, "o":1, "mi":1, "mis":1 };
 
-  var catalog = FALLBACK_CATALOG.slice();
+  var catalog = [];
   var selectedSystem = "all";
   var searchQuery = "";
-  var selectedId = catalog[0].id;
+  var selectedId = "";
   var userLogs = [];
 
   function $(id){ return document.getElementById(id); }
@@ -316,6 +145,25 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
     });
   }
 
+  function slugify(str, fallbackIndex){
+    var base = norm(str).replace(/\s+/g, "-");
+    return base || ("item-" + fallbackIndex);
+  }
+
+  function normalizeCatalogData(raw){
+    var list = Array.isArray(raw)
+      ? raw
+      : (raw && Array.isArray(raw.fichas) ? raw.fichas : (raw && Array.isArray(raw.symptoms) ? raw.symptoms : []));
+
+    return list.filter(function(item){
+      return item && typeof item === "object" && item.symptom;
+    }).map(function(item, idx){
+      return Object.assign({}, item, {
+        id: item.id ? String(item.id) : slugify(item.symptom, idx)
+      });
+    });
+  }
+
   function populateSystems(){
     var sel = $("system-select");
     var systems = [];
@@ -324,6 +172,9 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
     });
     sel.innerHTML = '<option value="all">Todos los sistemas</option>' +
       systems.map(function(s){ return '<option value="' + esc(s) + '">' + esc(s) + '</option>'; }).join("");
+    if (selectedSystem !== "all" && systems.indexOf(selectedSystem) === -1){
+      selectedSystem = "all";
+    }
     sel.value = selectedSystem;
   }
 
@@ -391,6 +242,12 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
     var chips = $("symptom-chips");
     var detail = $("symptom-detail");
 
+    if (!catalog.length){
+      chips.innerHTML = "";
+      detail.innerHTML = "<p class='note' style='margin:0;'>No hay fichas disponibles en ./data/biodesc.json.</p>";
+      return;
+    }
+
     if (!filtered.length){
       chips.innerHTML = "";
       detail.innerHTML = "<p class='note' style='margin:0;'>No hay síntomas que coincidan con el filtro actual. Prueba con otra zona, palabra clave o cambia el sistema.</p>";
@@ -408,19 +265,20 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
 
     var current = filtered.find(function(x){ return x.id === selectedId; }) || filtered[0];
     detail.innerHTML =
-      '<div class="note" style="margin:0;">' + esc(current.system) +
+      '<div class="note" style="margin:0;">' + esc(current.system || "") +
         (current.stage ? '<span class="stage-pill">' + esc(current.stage) + '</span>' : '') +
       '</div>' +
       '<h3>' + esc(current.symptom) + '</h3>' +
-      '<div class="emotion-pill">Emoción / conflicto: ' + esc(current.emotion) + '</div>' +
-      '<p class="block-p">' + esc(current.summary) + '</p>' +
+      (current.emotion ? '<div class="emotion-pill">Emoción / conflicto: ' + esc(current.emotion) + '</div>' : '') +
+      (current.summary ? '<p class="block-p">' + esc(current.summary) + '</p>' : '') +
       (current.resentir ? '<h4>Resentir</h4><p class="block-p quote-txt">' + esc(current.resentir) + '</p>' : '') +
       renderAuthors(current.authors) +
       (current.solution ? '<h4>Solución posible</h4><p class="block-p">' + esc(current.solution) + '</p>' : '') +
-      '<h4>Preguntas guía</h4>' +
-      '<ul style="margin:4px 0 0;padding-left:18px;font-size:13.5px;">' +
-        (current.questions || []).map(function(q){ return '<li>' + esc(q) + '</li>'; }).join("") +
-      '</ul>' +
+      (Array.isArray(current.questions) && current.questions.length
+        ? '<h4>Preguntas guía</h4><ul style="margin:4px 0 0;padding-left:18px;font-size:13.5px;">' +
+            current.questions.map(function(q){ return '<li>' + esc(q) + '</li>'; }).join("") +
+          '</ul>'
+        : '') +
       renderRelated(current.related);
   }
 
@@ -443,18 +301,19 @@ button.p{background:var(--accent);color:var(--accent-ink);border-color:var(--acc
 
   async function loadExternalCatalog(){
     try {
-      const res = await fetch("./data/biodesc.json", { cache: "no-store" });
+      var res = await fetch("./data/biodesc.json", { cache: "no-store" });
       if (!res.ok) throw new Error("HTTP " + res.status);
-      const data = await res.json();
-      if (Array.isArray(data) && data.length){
-        catalog = data;
-        selectedId = catalog[0].id;
-        $("source-status").textContent = "Catálogo cargado desde ./data/biodesc.json (" + catalog.length + " síntomas).";
-      } else {
-        $("source-status").textContent = "Usando catálogo inicial integrado (" + catalog.length + " fichas; puedes ampliar ./data/biodesc.json).";
-      }
+      var raw = await res.json();
+      var normalized = normalizeCatalogData(raw);
+      if (!normalized.length) throw new Error("JSON vacío o sin elementos válidos");
+
+      catalog = normalized;
+      selectedId = catalog[0].id;
+      $("source-status").textContent = "Catálogo cargado desde ./data/biodesc.json (" + catalog.length + " fichas).";
     } catch (e) {
-      $("source-status").textContent = "Usando catálogo inicial integrado (" + catalog.length + " fichas; agrega ./data/biodesc.json para ampliar el diccionario).";
+      catalog = [];
+      selectedId = "";
+      $("source-status").textContent = "No se pudo cargar ./data/biodesc.json (" + e.message + ").";
     }
     populateSystems();
     renderCatalog();
