@@ -445,6 +445,25 @@ body {
   border-color: rgba(196, 181, 253, 0.16);
 }
 
+
+/* ===== Template Portal Álmico: estética del umbral en todo el sitio ===== */
+.header-brand{flex-direction:row;justify-content:center;gap:12px}
+.app-logo{width:46px;height:46px;flex:none;filter:drop-shadow(0 0 10px color-mix(in srgb,var(--accent) 45%,transparent))}
+.app-brand-text{display:flex;flex-direction:column;align-items:flex-start}
+.app-wordmark{font:500 clamp(28px,7.5vw,34px)/1 "Newsreader",Georgia,serif;letter-spacing:.015em;margin:0;background:linear-gradient(120deg,var(--ink) 30%,var(--accent) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.app-sub{margin:6px 0 0;font-size:10.5px;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--accent)}
+.home-invite{font:italic 400 17px/1.45 "Newsreader",Georgia,serif;color:var(--ink);text-align:center;margin:10px 0 14px;text-shadow:0 1px 12px var(--bg)}
+.card,.tile{background:color-mix(in srgb,var(--surface) 80%,transparent);border-color:color-mix(in srgb,var(--accent) 18%,var(--line));-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.tile-empty{background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
+.tile-lore{font-size:9.5px;font-weight:600;letter-spacing:.12em;line-height:1.35;text-transform:uppercase;color:var(--accent);opacity:.9}
+.tile:hover{box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 35%,transparent),0 12px 32px color-mix(in srgb,var(--accent) 22%,transparent)}
+.tile-icon{box-shadow:0 0 16px color-mix(in srgb,var(--accent) 25%,transparent)}
+.view-title h2,.view-bar h2{letter-spacing:.01em}
+@media (min-width:960px){
+  .card,.tile{background:color-mix(in srgb,var(--surface) 72%,transparent)}
+  .header-brand{justify-content:flex-start}
+  .home-invite{text-align:left;font-size:19px}
+}
 </style>
 </head>
 <body>
@@ -497,8 +516,20 @@ body {
   <div id="app-content" style="display:none;">
     <div class="header-bar">
       <div class="header-brand">
-        <div class="brand-badge ds-text-box">✦ DreamSaver</div>
-        <h1 class="ds-text-box">Perfil astral</h1>
+        <svg class="app-logo" viewBox="0 0 64 64" aria-hidden="true">
+          <defs>
+            <linearGradient id="dsAppGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--accent)"/><stop offset="1" style="stop-color:#e7b6ff"/></linearGradient>
+            <mask id="dsAppMask"><rect width="64" height="64" fill="#fff"/><circle cx="39" cy="26" r="13" fill="#000"/></mask>
+          </defs>
+          <circle cx="32" cy="32" r="29.5" fill="none" stroke="url(#dsAppGrad)" stroke-width="1.4" opacity=".6"/>
+          <ellipse cx="32" cy="32" rx="30" ry="9" fill="none" stroke="url(#dsAppGrad)" stroke-width="1.2" opacity=".6" transform="rotate(-24 32 32)"/>
+          <circle cx="32" cy="32" r="16" fill="url(#dsAppGrad)" mask="url(#dsAppMask)"/>
+          <path d="M43 13.5l1.3 5.2 5.2 1.3-5.2 1.3-1.3 5.2-1.3-5.2-5.2-1.3 5.2-1.3z" fill="url(#dsAppGrad)"/>
+        </svg>
+        <div class="app-brand-text">
+          <h1 class="app-wordmark">DreamSaver</h1>
+          <p class="app-sub">Portal Álmico</p>
+        </div>
       </div>
       <div class="user-info">
         <div class="user-actions">
@@ -526,34 +557,39 @@ body {
 
     <!-- Pantalla principal: accesos a cada sección -->
     <div id="home-view">
-      <p class="sub"><span class="ds-text-box">Elige una sección para explorar tu mapa personal.</span></p>
-      <nav class="home-grid" aria-label="Secciones del perfil astral">
+      <p class="sub home-invite">¿Qué parte de tu mapa quieres mirar hoy?</p>
+      <nav class="home-grid" aria-label="Espejos del portal">
         <button type="button" class="tile" id="tile-dreams">
           <span class="tile-icon" aria-hidden="true">☾</span>
+          <span class="tile-lore">Las cartas nocturnas</span>
           <span class="tile-title">Sueños</span>
           <span class="tile-sub">Diario por voz y calendario lunar</span>
         </button>
         <button type="button" class="tile" id="btn-open-natal">
           <span class="tile-icon" aria-hidden="true">☉</span>
+          <span class="tile-lore">El cielo de tu llegada</span>
           <span class="tile-title">Carta natal</span>
           <span class="tile-sub">Planetas, casas y aspectos</span>
         </button>
         <button type="button" class="tile" id="btn-open-hd">
           <span class="tile-icon" aria-hidden="true">◈</span>
+          <span class="tile-lore">El diseño de tu energía</span>
           <span class="tile-title">Diseño humano</span>
           <span class="tile-sub">Tu mapa energético</span>
         </button>
         <button type="button" class="tile tile-num" id="btn-open-num">
           <span class="tile-icon" aria-hidden="true">∞</span>
+          <span class="tile-lore">Los números del camino</span>
           <span class="tile-title">Numerología</span>
           <span class="tile-sub">Números, dones y sincronías</span>
         </button>
         <button type="button" class="tile tile-bio" id="btn-open-bio">
           <span class="tile-icon" aria-hidden="true">❖</span>
+          <span class="tile-lore">El lenguaje del cuerpo</span>
           <span class="tile-title">Biodescodificación</span>
           <span class="tile-sub">Diccionario de síntomas y conflictos</span>
         </button>
-        <div class="tile tile-empty" aria-hidden="true"><span class="tile-sub">Próximamente</span></div>
+        <div class="tile tile-empty" aria-hidden="true"><span class="tile-lore">Los dones</span><span class="tile-sub">Próximamente</span></div>
       </nav>
     </div>
 
