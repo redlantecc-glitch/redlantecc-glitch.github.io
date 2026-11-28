@@ -154,10 +154,6 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
 .chart-wrap{margin-top:12px;display:flex;flex-direction:column;align-items:center}
 .chart-wrap svg{width:100%;max-width:270px;height:auto;display:block}
 .chart-legend{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;font-size:12px;color:var(--mute);margin-top:6px}
-.astro-planets{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:12px}
-.astro-planet{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 10px;font-size:12.5px;cursor:help}
-.astro-planet strong{display:block;font-size:13px;color:var(--ink);margin-bottom:2px}
-.astro-planet .ap-house{color:var(--mute);font-size:11.5px}
 
 .hd-overlay{position:fixed;inset:0;background:rgba(12,6,26,0.66);display:none;z-index:1200;padding:14px;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .hd-overlay.open{display:flex;align-items:flex-start;justify-content:center}
@@ -2687,64 +2683,192 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
   }
 
   function buildPurposeHtml(chart) {
-    const byKey = k => (chart.planets || []).find(pl => pl.key === k);
+    const bodies = chart.planets || [];
+    const byKey = k => bodies.find(pl => pl.key === k);
+    const signOk = pl => pl && pl.sign && pl.sign !== "N/D";
+    const areaName = n => { const a = HOUSE_AREAS_ES[Number(n) - 1]; return a ? a.name : "área " + n; };
+    const areaShort = n => { const a = HOUSE_AREAS_ES[Number(n) - 1]; return a ? (a.name.split("·")[1] || a.name).trim() : "área " + n; };
+    const signData = sg => SIGN_DATA_ES[sg] || null;
+    const place = pl => {
+      if (!signOk(pl)) return null;
+      let t = "en " + pl.sign;
+      if (pl.house) t += " (" + areaName(pl.house) + ")";
+      if (pl.retro) t += " en tránsito retrógrado";
+      return t;
+    };
+    const rulerNote = (signName, subject) => {
+      const d = signData(signName);
+      if (!d || !d.rulers) return "";
+      const parts = String(d.rulers).split(" / ").map(x => x.replace(/\(.*?\)/g, "").trim());
+      for (const name of parts) {
+        const rp = bodies.find(pl => pl.label && pl.label.toLowerCase().indexOf(name.toLowerCase()) === 0);
+        if (rp && signOk(rp)) {
+          const pp = place(rp);
+          if (pp) return " Nota concreta: tu regente, " + rp.label + ", va " + pp + " — ahí es donde la energía de " + signName + " se resuelve en lo cotidiano (" + subject + ").";
+        }
+      }
+      return "";
+    };
+
+    const moon = byKey("moon");
     const sun = byKey("sun");
     const saturn = byKey("saturn");
     const nn = byKey("northnode") || byKey("meannode") || byKey("truenode");
     const sn = byKey("southnode");
     const chiron = byKey("chiron");
     const mcHouse = (chart.houses || []).find(h => h.num === 10);
-    const inHouse10 = (chart.planets || []).filter(pl => Number(pl.house) === 10);
+    const h10 = bodies.filter(pl => Number(pl.house) === 10);
     const rows = [];
 
-    const sunData = sun ? SIGN_DATA_ES[sun.sign] : null;
-    if (sun && sun.sign !== "N/D" && sunData) {
+    if (signOk(sun)) {
+      const d = signData(sun.sign);
       rows.push({
-        title: "Quien eres por naturaleza (Sol)",
-        text: `Tu Sol en ${sun.sign} te da un centro de identidad así: ${sunData.essence}. ${sun.house ? "Al vivir esa energía en casa " + sun.house + " (" + (HOUSE_AREAS_ES[sun.house - 1] || {}).name + "), esa es el área de tu vida donde más te reconoces y donde otros te ven." : ""}`
+        t: "Tu centro: quién eres (Sol)",
+        p: "Tu Sol " + place(sun) + ". " + (d ? d.essence.charAt(0).toUpperCase() + d.essence.slice(1) + ". Palabras clave: " + d.keywords + "." : "") + (d ? "" : "") + rulerNote(sun.sign, "tu identidad")
       });
     }
-
+    if (signOk(moon)) {
+      const d = signData(moon.sign);
+      rows.push({
+        t: "Tu refugio: dónde te sostienes (Luna)",
+        p: "Tu Luna " + place(moon) + ": tu seguridad emocional se construye en el terreno de " + areaShort(moon.house || 1) + ", y es allí donde aparecen tus sueños y tus consuelos. " + (d ? d.essence.charAt(0).toUpperCase() + d.essence.slice(1) + ". " : "") + "Cuando la vida te quema por fuera, tu refugio real está en ese terreno, no donde otros dirían que debería estar."
+      });
+    }
     if (mcHouse && mcHouse.sign !== "N/D") {
-      const mcData = SIGN_DATA_ES[mcHouse.sign];
-      const h10 = inHouse10.map(pl => pl.label + (pl.retro ? " R" : "")).join(", ");
+      const d = signData(mcHouse.sign);
+      const h10txt = h10.length ? " Planetas en casa X: " + h10.map(pl => pl.label + (pl.retro ? " R" : "")).join(", ") + " — son los talentos concretos que tu vocación moviliza." : "";
       rows.push({
-        title: "Tu vocación visible (Medio Cielo)",
-        text: `Tu MC en ${mcHouse.sign}${mcData ? " (regente " + mcData.rulers + ")" : ""} orienta tu legado público: la energía de ${mcHouse.sign} — ${mcData ? mcData.essence : ""} — es el terreno de tu reconocimiento. ${h10 ? "Los planetas en casa X (" + h10 + ") muestran los talentos concretos que tu vocación moviliza." : ""}`
+        t: "Tu vocación visible (Medio Cielo)",
+        p: "Tu MC en " + mcHouse.sign + " (" + areaShort(10) + ")\u2014" + (d ? " regido por " + d.rulers + ": " + d.essence : " tu forma de dejar huella visible") + ". " + h10txt + " Tu trabajo visible no es el que más te gusta, sino el que otros pueden reconocer y seguir."
+      });
+    }
+    if (signOk(nn)) {
+      const d = signData(nn.sign);
+      const snTxt = signOk(sn) ? " Tu Nodo Sur " + place(sn) + " es talento heredado: úsalo con conciencia, no por inercia." : "";
+      rows.push({
+        t: "Tu dirección de crecimiento (Eje de Nodos)",
+        p: "Tu Nodo Norte " + place(nn) + " es una dirección simbólica de crecimiento: explorar " + (d ? d.essence : "un modo nuevo de ser y de hacer") + "." + snTxt + " En la práctica: elige una experiencia pequeña y segura en " + areaShort(nn.house || 1) + " que amplíe tu perspectiva; observa si te resulta valiosa y adapta el paso a tus circunstancias."
+      });
+    }
+    if (signOk(chiron)) {
+      rows.push({
+        t: "Tu escuela sanadora (Quirón)",
+        p: "Quirón " + place(chiron) + " puede simbolizar una sensibilidad o tema donde aprendiste a cuidarte. No define una herida inevitable ni te obliga a sanar a otros: puede ofrecer una pregunta útil sobre límites, apoyo y recursos en " + areaShort(chiron.house || 1) + ". Si este tema despierta dolor persistente, buscar apoyo profesional también es una forma de cuidado."
+      });
+    }
+    if (signOk(saturn)) {
+      rows.push({
+        t: "Tu disciplina y legado (Saturno)",
+        p: "Saturno " + place(saturn) + ": esta posición se puede leer como una invitación a desarrollar criterio, estructura y paciencia en " + areaShort(saturn.house || 1) + ". Empieza por un compromiso realista, acordado contigo y compatible con tus recursos; el aprendizaje no exige perfección ni tiene un calendario universal. " + (saturn.retro ? "La retrogradación se interpreta aquí como énfasis en revisar tus propias reglas y responsabilidades." : "")
       });
     }
 
-    if (nn && nn.sign !== "N/D") {
-      const nnData = SIGN_DATA_ES[nn.sign];
-      const snTxt = sn ? "; tu Nodo Sur en " + sn.sign + " es talento heredado que ya dominas y que conviene dejar de usar por inercia" : "";
+    const coreNames = ["sol", "luna", "saturno", "nodo norte", "quirón"];
+    const aspectTalk = {
+      "Cuadratura": "se rozan y se exigen: se resuelve actuando a tiempo, no evitando",
+      "Oposición": "tironean en direcciones opuestas: la tarea es integrar ambas caras, no elegir extremos",
+      "Semicuadratura": "no armonizan con facilidad: requieren ajustes pequeños y constantes",
+      "Quincuncio": "operan en ritmos distintos: piden flexibilidad y reorientación",
+      "Trígono": "fluyen juntos: úsalo como palanca, no como zona de comodidad",
+      "Sextil": "se apoyan si los activas: es un recurso que pide práctica"
+    };
+    const typeMatch = t => {
+      const n = String(t || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      if (n.indexOf("cuadr") === 0) return "Cuadratura";
+      if (n.indexOf("opos") === 0) return "Oposición";
+      if (n.indexOf("quinc") === 0) return "Quincuncio";
+      if (n.indexOf("semi") === 0) return n.indexOf("quinc") >= 0 ? "Quincuncio" : "Semicuadratura";
+      if (n.indexOf("trig") === 0) return "Trígono";
+      if (n.indexOf("sex") === 0) return "Sextil";
+      return null;
+    };
+    const aspects = (chart.aspects || []).filter(a => (a.p1 || a.planet1 || a.from) && (a.p2 || a.planet2 || a.to) && a.type);
+    const pick = types => aspects.filter(a => {
+      const t = typeMatch(a.type);
+      if (!types.includes(t)) return false;
+      const n1 = String(a.p1 || a.planet1 || a.from || "").toLowerCase();
+      const n2 = String(a.p2 || a.planet2 || a.to || "").toLowerCase();
+      return coreNames.some(c => n1 === c || n2 === c);
+    }).slice(0, 5);
+    const hard = pick(["Cuadratura", "Oposición", "Semicuadratura", "Quincuncio"]);
+    const soft = pick(["Trígono", "Sextil"]);
+    const aspectApplications = a => {
+      const p1n = String(a.p1 || a.planet1 || a.from || "");
+      const p2n = String(a.p2 || a.planet2 || a.to || "");
+      const p1 = bodies.find(pl => String(pl.label || "").toLowerCase() === p1n.toLowerCase());
+      const p2 = bodies.find(pl => String(pl.label || "").toLowerCase() === p2n.toLowerCase());
+      const named = [p1, p2].filter(Boolean);
+      const where = named.map(pl => pl.label + (pl.house ? " en " + areaShort(pl.house) : "") + " (" + pl.sign + ")").join(" + ");
+      const mapped = named.length ? " En tu carta: " + where + "." : "";
+      const lessons = {
+        "Cuadratura": "Para aterrizarla, elige una conversación o decisión que vienes evitando, divide el paso en dos y atiende primero el área más urgente.",
+        "Oposición": "En la práctica, escribe qué necesita cada lado de esa tensión; negocia un acuerdo que permita que ambos tengan espacio, en vez de sacrificar uno.",
+        "Semicuadratura": "Elige una fricción pequeña que se repita y cambia una sola rutina esta semana; mide si la carga baja.",
+        "Quincuncio": "Prueba un ajuste pequeño entre esas dos prioridades y revísalo al cabo de siete días, sin exigir una solución perfecta.",
+        "Trígono": "Convierte el talento fácil en una práctica compartible: ponle horario y úsalo para ayudar a alguien o terminar algo concreto.",
+        "Sextil": "Activa el recurso con una acción deliberada: pide colaboración, reserva tiempo y lleva la idea hasta un primer resultado visible."
+      };
+      return mapped + " " + (lessons[typeMatch(a.type)] || "Observa cómo se manifiesta en tus decisiones y vínculos cotidianos.");
+    };
+    const aspectLine = a => {
+      const p1 = a.p1 || a.planet1 || a.from;
+      const p2 = a.p2 || a.planet2 || a.to;
+      const orb = typeof a.orb === "number" ? " (orbe " + a.orb.toFixed(1) + "°)" : "";
+      const t = typeMatch(a.type);
+      return "<li><strong>" + escapeHtml(p1) + " " + escapeHtml(a.type) + " " + escapeHtml(p2) + "</strong>" + escapeHtml(orb) + ": " + escapeHtml(aspectTalk[t]) + ". " + escapeHtml(aspectApplications(a)) + "</li>";
+    };
+    if (hard.length) {
       rows.push({
-        title: "Hacia dónde creces (Eje de Nodos)",
-        text: `Tu Nodo Norte en ${nn.sign}${nn.house ? " (casa " + nn.house + ")" : ""} señala la lección evolutiva de esta vida: moverte hacia ${nnData ? nnData.essence : "un modo nuevo de ser y de hacer"}.${snTxt}.`
+        t: "Tensiones que puedes aprender a administrar",
+        p: "Estas conexiones tocan directamente tu identidad, tus necesidades, tus límites o tu desarrollo. La carta no dice que debas sufrirlas: ofrece preguntas para elegir respuestas más conscientes.",
+        list: hard.map(aspectLine)
+      });
+    }
+    if (soft.length) {
+      rows.push({
+        t: "Recursos que puedes poner en movimiento",
+        p: "Los aspectos fluidos no garantizan resultados: señalan capacidades que dan fruto cuando las practicas, les das tiempo y las compartes.",
+        list: soft.map(aspectLine)
       });
     }
 
-    if (chiron && chiron.sign !== "N/D") {
-      rows.push({
-        title: "Tu herida que se vuelve don (Quirón)",
-        text: `Quirón en ${chiron.sign}${chiron.house ? " (casa " + chiron.house + ")" : ""}: tu mayor vulnerabilidad es también tu mayor capacidad de sanar a otros. Al mirar este tema con honestidad, encuentras tu escuela personal y el regalo que solo tú puedes dar.`
-      });
-    }
+    const elemCounts = { Fuego: 0, Tierra: 0, Aire: 0, Agua: 0 };
+    const modCounts = { Cardinal: 0, Fijo: 0, Mutable: 0 };
+    bodies.forEach(pl => { const d = signData(pl.sign); if (d) { elemCounts[d.element] = (elemCounts[d.element] || 0) + 1; modCounts[d.modality] = (modCounts[d.modality] || 0) + 1; } });
+    const topEl = Object.keys(elemCounts).reduce((a, b) => (elemCounts[b] > elemCounts[a] ? b : a));
+    const topMod = Object.keys(modCounts).reduce((a, b) => (modCounts[b] > modCounts[a] ? b : a));
+    const elAdvice = {
+      Fuego: "tu energía arranca rápido: protege la continuidad de tus arranques y no confundas intensidad con dirección",
+      Tierra: "tu fortaleza es sostener: el riesgo es rigidez y agotamiento por sobrecargar lo práctico",
+      Aire: "vives de la red, la palabra y la idea: convierte conversación en acuerdo y no disperses el foco",
+      Agua: "tu sensibilidad es tu sensor: protege el descanso emocional; sentirte apagado suele ser agotamiento, no falta de ganas"
+    };
+    const modAdvice = {
+      Cardinal: "arrancas bien; la tarea es terminar: agenda cierres para lo que inicias",
+      Fijo: "sostienes y eres leal; la tarea es soltar a tiempo y aceptar cambios antes de que te obliguen",
+      Mutable: "adaptas y cierras ciclos; la tarea es comprometerse a fondo en una cosa antes de la siguiente"
+    };
+    rows.push({
+      t: "Tu ritmo de vida (síntesis elemental)",
+      p: "Tu carta está dominada por " + topEl + " y la modalidad " + topMod + ": " + elAdvice[topEl] + ". En el modo de actuar, tu rasgo es " + topMod.toLowerCase() + ": " + modAdvice[topMod] + "."
+    });
 
-    if (saturn && saturn.sign !== "N/D") {
-      rows.push({
-        title: "Tu tema de vida y disciplina (Saturno)",
-        text: `Saturno en ${saturn.sign}${saturn.house ? " (casa " + saturn.house + ")" : ""}: aquí se construye lo duradero. Es el área de tu vida que pide constancia, estructura y paciencia; el logro que llega después del esfuerzo es tuyo de por vida.`
-      });
-    }
+    const actions = [];
+    if (signOk(moon)) actions.push("Sostén tu base: tu refugio emocional está en " + areaShort(moon.house || 1) + "; protégelo como se protege la salud");
+    if (mcHouse && mcHouse.sign !== "N/D") actions.push("Invierte tiempo real en tu vocación visible: " + mcHouse.sign + " orienta tu legado público" + (h10.length ? " y tus planetas en casa X (" + h10.map(pl => pl.label).join(", ") + ") son los talentos que la mueven" : ""));
+    if (signOk(nn)) actions.push("Practica tu dirección de crecimiento: " + nn.sign + " (" + areaShort(nn.house || 1) + "), con tiempo asignado, aunque no domines el terreno");
+    if (signOk(saturn)) actions.push("Construye a fuego lento en " + areaShort(saturn.house || 1) + ": es donde tu logro resulta durable");
+    if (signOk(chiron)) actions.push("Convierte tu herida en don: cuando " + areaShort(chiron.house || 1) + " aparezca, entrégale atención en vez de esconderla");
 
     if (!rows.length) {
-      return `<p class="note">Con los datos disponibles no se pudo armar la síntesis de propósito. Revisa la sección de posiciones planetarias y las casas.</p>`;
+      return "<p class=\"note\">Con los datos disponibles no se pudo armar tu mapa de propósito. Revisa la sección de posiciones planetarias: el mapa se genera con la carta completa.</p>";
     }
 
-    return `<div class="purpose-box">
-      ${rows.map(r => `<div class="purpose-row"><h3>${escapeHtml(r.title)}</h3><p>${escapeHtml(r.text)}</p></div>`).join("")}
-      <div class="purpose-summary"><strong>Síntesis de propósito en esta encarnación:</strong> tu centro es ${sun ? sun.sign : "—"}, tu camino de crecimiento pasa por ${nn ? nn.sign : "—"} y tu legado visible se apoya en ${mcHouse && mcHouse.sign !== "N/D" ? mcHouse.sign : "—"}${chiron ? ", con Quirón en " + chiron.sign + " como escuela sanadora" : ""}. Cada área no trabajada volverá como tarea; cada área integrada se vuelve don.</div>
-    </div>`;
+    return "<div class=\"purpose-box\">" +
+      "<p class=\"purpose-intro\">Este mapa se construye con las posiciones, casas y aspectos natales disponibles. Úsalo como lenguaje simbólico para formular preguntas y probar decisiones pequeñas, no como diagnóstico, prueba científica ni mandato. Ninguna posición determina tu carácter, historia o futuro: tu contexto, tus relaciones, tus decisiones y los apoyos que tienes importan.</p>" +
+      rows.map(r => "<div class=\"purpose-row\"><h3>" + escapeHtml(r.t) + "</h3><p>" + escapeHtml(r.p) + "</p>" + (r.list ? "<ul class=\"purpose-list\">" + r.list.join("") + "</ul>" : "") + "</div>").join("") +
+      (actions.length ? "<div class=\"purpose-summary\"><strong>Tu mapa de acción en esta encarnación:</strong><ol class=\"purpose-list\">" + actions.map(a => "<li>" + escapeHtml(a) + "</li>").join("") + "</ol></div>" : "") +
+      "</div>";
   }
 
   function buildPrintableNatalReportHtml() {
@@ -2966,6 +3090,9 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     margin-top: 10px; padding-top: 8px; border-top: 1px dashed #d5c7ed;
     font-size: 9.4pt; line-height: 1.45;
   }
+  .purpose-intro { margin: 0 0 8px; font-size: 8.8pt; color: #62557d; font-style: italic; }
+  .purpose-list { margin: 6px 0 0; padding-left: 16px; }
+  .purpose-list li { margin: 3px 0; }
   @media print {
     body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
@@ -3041,7 +3168,7 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
   <h2>Síntesis Elemental y de Modalidades</h2>
   ${synthesisHtml}
 
-  <h2>Propósito de Vida en esta Encarnación</h2>
+  <h2>Tu Mapa de Propósito de Vida en esta Encarnación</h2>
   ${purposeHtml}
 
   <div class="footer">
@@ -3085,18 +3212,7 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     currentFullNatalChart = buildFullNatalDetails(rawBodyData, sun, moon, asc);
     savedNatalReportHtml = prebuiltReportHtml || "";
 
-    const screenPlanets = currentFullNatalChart?.planets || [];
-    const planetsGridHtml = screenPlanets.length ? `
-      <div class="astro-planets">
-        ${screenPlanets.map(pl => `<div class="astro-planet" title="${escapeHtml((PLANET_MEANINGS_ES[pl.key] || {}).core || pl.label)}"><strong>${escapeHtml(pl.label)}</strong> ${escapeHtml(pl.sign)}${pl.retro ? " R" : ""}<span class="ap-house">${pl.house ? " \u00b7 Casa " + pl.house : ""}</span></div>`).join("")}
-      </div>` : "";
     astroResults.innerHTML = `
-      <div class="astro-summary">
-        <p><strong>Sol:</strong> ${sun}</p>
-        <p><strong>Luna:</strong> ${moon}</p>
-        <p><strong>Ascendente:</strong> ${asc}</p>
-      </div>
-      ${planetsGridHtml}
       <div class="astro-reading">${buildDreamReading(sun, moon, asc)}</div>
     `;
     renderNatalChartSvg(sun, moon, asc);
