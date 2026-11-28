@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>DreamSaver · Perfil astral</title>
+<title>DreamSaver · Diario de sueños</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap">
 <style>
 :root{--bg:#f4effb;--surface:#ffffff;--ink:#1f1733;--mute:#62557d;--line:#dfd5f0;--accent:#6b3fa0;--accent-ink:#ffffff;--rec:#b8336a;--ok:#2d7a5e}
@@ -80,7 +80,6 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
 .header-bar{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;margin-bottom:8px}
 .header-brand{width:100%;display:flex;flex-direction:column;align-items:center}
 .user-info{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;width:100%;padding-top:6px;border-top:1px solid var(--line)}
-#user-display{margin:0;width:100%;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;text-align:center}
 .user-actions{display:flex;gap:8px;justify-content:center;width:100%;max-width:340px}
 .user-actions button.b{flex:1;padding:7px 12px;min-height:36px;font-size:13.5px}
 
@@ -99,6 +98,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
   grid-template-columns:minmax(0,1fr);
   grid-template-areas:
     "recorder"
+    "lunar"
     "explorer"
     "list"
     "stats";
@@ -138,12 +138,6 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
 .app-footer a{color:var(--accent);text-decoration:none;font-weight:500}
 .app-footer a:hover{text-decoration:underline}
 
-.sidebar{position:fixed;top:0;right:0;width:400px;max-width:100vw;height:100%;height:100dvh;background:var(--surface);border-left:1px solid var(--line);box-shadow:-5px 0 20px rgba(0,0,0,0.22);transform:translateX(100%);transition:transform 0.3s ease;z-index:1000;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(24px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column}
-.sidebar.open{transform:translateX(0)}
-.sidebar-header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
-.sidebar-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:28px}
-.overlay{position:fixed;inset:0;background:rgba(12,6,26,0.58);display:none;z-index:999}
-.overlay.open{display:block}
 .astrology-box{margin-top:0;margin-bottom:16px;padding:14px;background:var(--bg);border-radius:12px;border:1px solid var(--line)}
 .astrology-box h3,.birth-section-box h3{margin:0 0 8px;font:600 17px/1.25 "Newsreader",Georgia,serif;color:var(--ink)}
 .birth-section-box{margin-bottom:14px;padding:14px;background:var(--bg);border-radius:12px;border:1px solid var(--line)}
@@ -209,7 +203,6 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
   .header-bar{flex-direction:row;justify-content:space-between;align-items:center;text-align:left;padding-bottom:14px;margin-bottom:10px;border-bottom:1px solid var(--line)}
   .header-brand{width:auto;align-items:flex-start}
   .user-info{width:auto;padding-top:0;border-top:0;justify-content:flex-end;gap:14px;flex-wrap:nowrap}
-  #user-display{width:auto;max-width:240px;text-align:right;font-size:13px}
   .user-actions{width:auto;max-width:none}
   .user-actions button.b{flex:none;padding:7px 14px}
   .sub{text-align:left;margin-bottom:18px;font-size:14px}
@@ -218,6 +211,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
     display:grid;
     grid-template-columns:minmax(0,1.15fr) minmax(340px,0.85fr);
     grid-template-areas:
+      "lunar lunar"
       "recorder explorer"
       "list list"
       "stats stats";
@@ -248,7 +242,6 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
   .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
   .stats span{background:var(--bg);padding:8px 4px;border-radius:10px;border:1px solid var(--line);font-size:12px}
   .stats b{display:block;font-size:19px;line-height:1.15;margin-bottom:2px}
-  .sidebar{width:100vw;border-left:0}
   .hd-modal,.num-modal{padding:14px;border-radius:14px}
 }
 /* Numerología Integral */
@@ -267,25 +260,17 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
 .num-angel-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
 .num-angel-pill{background:var(--surface);border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));border-radius:10px;padding:8px 11px;font-size:13px;flex:1 1 200px}
 .num-angel-pill strong{color:var(--accent);font-size:15px;display:block;margin-bottom:2px}
-/* Pantalla principal: perfil astral */
-.home-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:6px 0 4px}
-.tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;min-height:134px;padding:16px 10px;text-align:center;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 24px rgba(24,12,48,.05);cursor:pointer;font:inherit;transition:transform .15s,border-color .15s,box-shadow .15s}
-.tile:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--accent) 55%,var(--line));box-shadow:0 12px 28px rgba(24,12,48,.1)}
-.tile:active{transform:scale(.98)}
-.tile-icon{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;line-height:1;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,var(--bg));border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line))}
-.tile-title{font:600 16.5px/1.2 "Newsreader",Georgia,serif;color:var(--ink)}
-.tile-sub{font-size:12px;line-height:1.35;color:var(--mute);max-width:15em}
-.tile-num .tile-icon{color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--bg));border-color:color-mix(in srgb,var(--ok) 32%,var(--line))}
-.tile-empty{border-style:dashed;background:transparent;box-shadow:none;cursor:default;opacity:.55;pointer-events:none}
-.view-bar{display:flex;align-items:center;gap:12px;margin:2px 0 10px}
-.view-bar h2{margin:0;font:600 20px/1.2 "Newsreader",Georgia,serif}
-.view-bar .b{flex:none}
-@media (min-width:720px){
-  .home-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:10px}
-  .tile{min-height:156px}
-  .tile-title{font-size:18px}
-}
-@media (prefers-reduced-motion:reduce){.tile{transition:none}.tile:hover{transform:none}}
+
+/* Botones de lecturas + ícono de perfil + ventanas */
+.tool-row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.tool-btn{flex:1 1 150px;font-weight:600}
+.tool-btn.accent{border-color:color-mix(in srgb,var(--accent) 50%,var(--line));color:var(--accent)}
+.tool-btn.ok{border-color:color-mix(in srgb,var(--ok) 50%,var(--line));color:var(--ok)}
+.user-actions button.b.btn-user{flex:none;width:42px;padding:0;display:inline-flex;align-items:center;justify-content:center}
+.btn-user svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.hd-modal.modal-narrow{max-width:540px}
+.fld .hint{display:block;font-size:12px;color:var(--mute);margin-top:2px}
+.profile-email{word-break:break-all;color:var(--ink)}
 </style>
 </head>
 <body>
@@ -293,7 +278,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
   <section class="card" id="auth-card">
     <div class="brand-badge">✦ DreamSaver</div>
     <h2>Iniciar sesión / Crear cuenta</h2>
-    <p class="note">Tu perfil astral personal: carta natal, diseño humano, numerología y diario de sueños.</p>
+    <p class="note">Tu refugio personal para registrar sueños y explorar tu mapa astral.</p>
     <div class="fld">
       Correo electrónico
       <input type="email" id="auth-email" placeholder="tu@email.com" autocomplete="email">
@@ -320,69 +305,26 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
     <div class="header-bar">
       <div class="header-brand">
         <div class="brand-badge">✦ DreamSaver</div>
-        <h1>Perfil astral</h1>
+        <h1>Diario de sueños</h1>
       </div>
       <div class="user-info">
-        <span id="user-display" class="note"></span>
         <div class="user-actions">
+          <button class="b btn-user" id="btn-profile" type="button" aria-label="Mi perfil" title="Mi perfil">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+          </button>
           <button class="b" id="btn-logout" type="button">Cerrar sesión</button>
         </div>
       </div>
     </div>
-
-    <section class="card lunar-card" id="lunar-banner" aria-label="Fase lunar actual">
-      <div class="lunar-top">
-        <div class="lunar-main">
-          <div class="lunar-orb" id="lunar-orb" aria-hidden="true"></div>
-          <div>
-            <div class="lunar-title" id="lunar-title">Calculando fase lunar…</div>
-            <div class="lunar-meta" id="lunar-meta">Ciclo sinódico</div>
-          </div>
-        </div>
-        <div class="lunar-pills" id="lunar-pills"></div>
-      </div>
-      <p class="lunar-desc" id="lunar-desc"></p>
-    </section>
-
-    <!-- Pantalla principal: accesos a cada sección -->
-    <div id="home-view">
-      <p class="sub">Elige una sección para explorar tu mapa personal.</p>
-      <nav class="home-grid" aria-label="Secciones del perfil astral">
-        <button type="button" class="tile" id="tile-dreams">
-          <span class="tile-icon" aria-hidden="true">☾</span>
-          <span class="tile-title">Sueños</span>
-          <span class="tile-sub">Diario por voz y calendario lunar</span>
-        </button>
-        <button type="button" class="tile" id="btn-profile">
-          <span class="tile-icon" aria-hidden="true">☉</span>
-          <span class="tile-title">Carta natal</span>
-          <span class="tile-sub">Planetas, casas y datos de nacimiento</span>
-        </button>
-        <button type="button" class="tile" id="btn-open-hd">
-          <span class="tile-icon" aria-hidden="true">◈</span>
-          <span class="tile-title">Diseño humano</span>
-          <span class="tile-sub">Tu mapa energético</span>
-        </button>
-        <button type="button" class="tile tile-num" id="btn-open-num">
-          <span class="tile-icon" aria-hidden="true">∞</span>
-          <span class="tile-title">Numerología</span>
-          <span class="tile-sub">Números, dones y sincronías</span>
-        </button>
-        <div class="tile tile-empty" aria-hidden="true"><span class="tile-sub">Próximamente</span></div>
-        <div class="tile tile-empty" aria-hidden="true"><span class="tile-sub">Próximamente</span></div>
-      </nav>
-    </div>
-
-    <!-- Sección: registro de sueños (mismo contenido de antes) -->
-    <div id="view-dreams" style="display:none;">
-      <div class="view-bar">
-        <button class="b" id="btn-back-home" type="button">← Inicio</button>
-        <h2>Registro de sueños</h2>
-      </div>
     <p class="sub">Habla al despertar y el texto se escribe solo. Cada registro guarda fecha, hora y fase lunar para contrastarlo después.</p>
-      <div id="warn"></div>
+    <div class="tool-row" role="group" aria-label="Lecturas astrales">
+      <button class="b tool-btn accent" type="button" id="btn-open-natal">✦ Carta Natal</button>
+      <button class="b tool-btn accent" type="button" id="btn-open-hd">✦ Diseño Humano</button>
+      <button class="b tool-btn ok" type="button" id="btn-open-num">✦ Numerología</button>
+    </div>
+    <div id="warn"></div>
 
-      <div class="workspace-grid">
+    <div class="workspace-grid">
       <section class="card recorder-card" aria-label="Nuevo registro">
         <div class="rec-wrap">
           <button id="rec" type="button" aria-pressed="false">Grabar</button>
@@ -399,6 +341,20 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
           <button class="b" id="clr" type="button">Limpiar</button>
         </div>
         <p class="note" id="saved" aria-live="polite"></p>
+      </section>
+
+      <section class="card lunar-card" id="lunar-banner" aria-label="Fase lunar actual">
+        <div class="lunar-top">
+          <div class="lunar-main">
+            <div class="lunar-orb" id="lunar-orb" aria-hidden="true"></div>
+            <div>
+              <div class="lunar-title" id="lunar-title">Calculando fase lunar…</div>
+              <div class="lunar-meta" id="lunar-meta">Ciclo sinódico</div>
+            </div>
+          </div>
+          <div class="lunar-pills" id="lunar-pills"></div>
+        </div>
+        <p class="lunar-desc" id="lunar-desc"></p>
       </section>
 
       <section class="card explorer-card" aria-label="Buscar y explorar sueños">
@@ -440,26 +396,30 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
         </div>
         <p class="note">Si pasan más de dos semanas sin que ocurra algo parecido a tu sueño, márcalo como “sin coincidencia”. Llevar ese control te permite distinguir si hubo un patrón real o fue solo casualidad.</p>
       </section>
-      </div>
     </div>
   </div>
 
   <footer class="app-footer">
-    <div><strong>✦ DreamSaver</strong> · Tu perfil astral y diario de sueños</div>
+    <div><strong>✦ DreamSaver</strong> · Tu diario personal de sueños y exploración astral</div>
     <div>Contacto y soporte: <a href="mailto:redlantecc@gmail.com">redlantecc@gmail.com</a></div>
   </footer>
 </main>
 
-<div class="overlay" id="sidebar-overlay"></div>
-<div class="sidebar" id="profile-sidebar">
-  <div class="sidebar-header">
-    <h2>Tu Carta Natal</h2>
-    <button class="b" id="close-profile" type="button">Cerrar</button>
-  </div>
-  <div class="sidebar-content">
-    <div class="astrology-box" id="astrology-container">
-      <h3>Tu Carta Astral</h3>
-      <div id="astrology-results">Configura tus datos de nacimiento más abajo para calcular tu carta astral.</div>
+<div class="hd-overlay" id="natal-overlay" role="dialog" aria-modal="true" aria-labelledby="natal-modal-title">
+  <div class="hd-modal modal-narrow">
+    <div class="hd-head">
+      <div>
+        <div class="brand-badge">✦ Carta Natal</div>
+        <h2 id="natal-modal-title">Tu carta astral</h2>
+        <p class="note" id="natal-meta">Calculada en tu dispositivo con los datos de tu perfil.</p>
+      </div>
+      <button class="b" type="button" id="btn-close-natal">Cerrar</button>
+    </div>
+    <div class="astrology-box" id="astrology-container" style="margin-bottom:0">
+      <div id="astrology-results">Completa tus datos de nacimiento en tu perfil (ícono de usuario) para calcular tu carta astral.</div>
+      <div class="row" id="natal-go-profile" style="display:none;margin-top:10px">
+        <button class="b p" type="button" id="btn-natal-go-profile" style="width:100%">Completar mis datos en el perfil</button>
+      </div>
       <div id="astrology-chart" class="chart-wrap"></div>
       <div class="row" id="astro-retry-actions" style="display:none;margin-top:10px">
         <button class="b" type="button" id="btn-retry-astro" style="width:100%">Reintentar cálculo de carta</button>
@@ -469,11 +429,38 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
       </div>
       <p class="note" id="astro-pdf-status" aria-live="polite"></p>
     </div>
+    <div class="astral-disclaimer" id="astral-disclaimer">
+      <strong>Aviso importante:</strong> La carta astral, el diseño humano y las lecturas simbólicas en DreamSaver tienen fines de reflexión personal y entretenimiento; no sustituyen orientación médica, psicológica ni profesional. Cada usuario debe gestionar su propio perfil individual.
+    </div>
+  </div>
+</div>
+
+<div class="hd-overlay" id="profile-overlay" role="dialog" aria-modal="true" aria-labelledby="profile-modal-title">
+  <div class="hd-modal modal-narrow">
+    <div class="hd-head">
+      <div>
+        <div class="brand-badge">✦ Mi perfil</div>
+        <h2 id="profile-modal-title">Tus datos personales</h2>
+        <p class="note">Cuenta: <strong class="profile-email" id="profile-email"></strong></p>
+      </div>
+      <button class="b" type="button" id="close-profile">Cerrar</button>
+    </div>
+
+    <div class="privacy-note" style="margin:0 0 14px">
+      <strong>Por qué te pedimos estos datos:</strong> tu fecha, hora y lugar de nacimiento permiten calcular tu Carta Natal y tu Diseño Humano, y tu nombre completo de nacimiento activa la Numerología. Los ingresas una sola vez y se usan en todas las secciones.<br>
+      <strong>Tu información está protegida:</strong> los cálculos se hacen en tu propio dispositivo, los datos se guardan en tu cuenta y no se comparten. Solo el nombre de la ciudad se consulta en Open-Meteo para obtener sus coordenadas.
+    </div>
 
     <div class="birth-section-box">
       <h3>Datos de nacimiento</h3>
-      <p class="note" id="profile-intro">Completa tus datos de nacimiento. Escribe tu ciudad y selecciónala de la lista para validar sus coordenadas automáticamente.</p>
+      <p class="note" id="profile-intro">Completa tus datos una sola vez. Escribe tu ciudad y selecciónala de la lista para validar sus coordenadas automáticamente.</p>
       <form id="profile-form" novalidate>
+        <div class="fld">
+          Nombre completo de nacimiento
+          <span class="hint">Nombres y apellidos, tal como aparecen en tu partida de nacimiento.</span>
+          <input type="text" id="profile-fullname" placeholder="Ej. María José Pérez González" autocomplete="name" maxlength="120" required>
+          <div class="field-err" id="err-fullname"></div>
+        </div>
         <div class="fld">
           Fecha de nacimiento
           <input type="date" id="profile-dob" min="1900-01-01" required>
@@ -492,17 +479,11 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
           <div class="status-pill" id="coords-display">Ubicación sin verificar</div>
         </div>
         <div class="row">
-          <button class="b p" id="save-profile" type="submit">Guardar Perfil</button>
+          <button class="b p" id="save-profile" type="submit">Guardar datos</button>
         </div>
       </form>
       <p class="note" id="profile-saved" aria-live="polite"></p>
-      <div class="lock-notice" id="birth-lock-notice">
-        <strong>Datos de nacimiento protegidos:</strong> Una vez guardados, tu fecha, hora y lugar de nacimiento quedan bloqueados para evitar cambios repetidos o consultas de terceros. Si necesitas corregir un dato o solicitar un cambio justificado, escribe a <a href="mailto:redlantecc@gmail.com">redlantecc@gmail.com</a> desde el correo de tu cuenta.
-      </div>
-    </div>
-
-    <div class="astral-disclaimer" id="astral-disclaimer">
-      <strong>Aviso importante:</strong> La carta astral, el diseño humano y las lecturas simbólicas en DreamSaver tienen fines de reflexión personal y entretenimiento; no sustituyen orientación médica, psicológica ni profesional. Cada usuario debe gestionar su propio perfil individual.
+      <div class="lock-notice" id="birth-lock-notice"></div>
     </div>
   </div>
 </div>
@@ -515,7 +496,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
         <h2 id="hd-modal-title">Tu mapa energético en palabras simples</h2>
         <p class="note" id="hd-birth-meta">Calculado localmente desde tu perfil guardado.</p>
       </div>
-      <button class="b" type="button" id="btn-close-hd">Volver al inicio</button>
+      <button class="b" type="button" id="btn-close-hd">Cerrar</button>
     </div>
     <div id="hd-body">
       <div class="hd-grid-4" id="hd-summary-grid"></div>
@@ -571,19 +552,9 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
       <div>
         <div class="brand-badge">✦ Numerología Pitagórica y Angelical</div>
         <h2 id="num-modal-title">Tu código numérico, dones, caminos y sincronías</h2>
-        <p class="note" id="num-birth-meta">Calculado localmente con tu fecha de nacimiento y nombre.</p>
+        <p class="note" id="num-birth-meta">Calculado en tu dispositivo con la fecha y el nombre de tu perfil.</p>
       </div>
-      <button class="b" type="button" id="btn-close-num">Volver al inicio</button>
-    </div>
-
-    <div class="num-section" style="padding:11px 14px">
-      <div class="fld" style="margin:0">
-        Nombre completo de nacimiento (opcional, activa Expresión, Alma, Personalidad y Dones del Nombre)
-        <div class="pw-wrap" style="margin-top:6px">
-          <input type="text" id="num-full-name" placeholder="Ej. Nombre(s) y Apellidos tal como aparecen en tu partida">
-          <button class="b p" type="button" id="btn-recalc-num">Actualizar</button>
-        </div>
-      </div>
+      <button class="b" type="button" id="btn-close-num">Cerrar</button>
     </div>
 
     <div id="num-body">
@@ -722,7 +693,7 @@ function interpretDreamWithChart(text, chart, entryTimestamp) {
   }
 
   if (!chart || (!chart.sun && !chart.moon && !chart.asc)) {
-    parts.push("(Configura tu Perfil Astral para cruzar este cielo con tu Sol, Luna y Ascendente).");
+    parts.push("(Completa tus datos en tu perfil para cruzar este cielo con tu Sol, Luna y Ascendente).");
   }
 
   return {
@@ -2018,6 +1989,8 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
   };
 
   const ASTRO_QUOTA_COOLDOWN_MS = 24 * 60 * 60 * 1000;
+  const BIRTH_MAX_EDITS = 3; // veces que se pueden corregir los datos antes de bloquearse
+  const ASTRO_EMPTY_MSG = "Completa tus datos de nacimiento en tu perfil (ícono de usuario) para calcular tu carta astral.";
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
@@ -2042,12 +2015,20 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
   const authCard = document.getElementById("auth-card");
   const appContent = document.getElementById("app-content");
   const authError = document.getElementById("auth-error");
-  const userDisplay = document.getElementById("user-display");
+  const profileEmail = document.getElementById("profile-email");
   const passwordInput = document.getElementById("auth-password");
   const togglePasswordBtn = document.getElementById("toggle-password");
 
-  const sidebar = document.getElementById("profile-sidebar");
-  const overlay = document.getElementById("sidebar-overlay");
+  const profileOverlay = document.getElementById("profile-overlay");
+  const natalOverlay = document.getElementById("natal-overlay");
+  const btnOpenNatal = document.getElementById("btn-open-natal");
+  const btnCloseNatal = document.getElementById("btn-close-natal");
+  const btnNatalGoProfile = document.getElementById("btn-natal-go-profile");
+  const natalGoProfileRow = document.getElementById("natal-go-profile");
+  const natalMeta = document.getElementById("natal-meta");
+  const fullNameInput = document.getElementById("profile-fullname");
+  const errFullName = document.getElementById("err-fullname");
+  const birthLockNotice = document.getElementById("birth-lock-notice");
   const btnProfile = document.getElementById("btn-profile");
   const closeProfile = document.getElementById("close-profile");
   const profileForm = document.getElementById("profile-form");
@@ -2080,6 +2061,8 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
   let unsubscribeDreams = null;
   let hasLoadedRemoteOnce = false;
   let birthDataLocked = false;
+  let birthEditCount = 0;      // cambios usados después del primer guardado
+  let savedFullName = "";
   let currentFullNatalChart = null;
   let currentBirthMeta = null;
   let savedNatalReportHtml = "";
@@ -2096,7 +2079,8 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
           city: currentBirthMeta.city || "",
           lat: currentBirthMeta.lat,
           lon: currentBirthMeta.lon,
-          timezone: currentBirthMeta.timezone || "UTC"
+          timezone: currentBirthMeta.timezone || "UTC",
+          fullName: savedFullName
         }
       : {
           dob: dobInput.value || "",
@@ -2104,7 +2088,8 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
           city: cityInput.value || "",
           lat: verifiedLocation?.lat,
           lon: verifiedLocation?.lon,
-          timezone: verifiedLocation?.timezone || "UTC"
+          timezone: verifiedLocation?.timezone || "UTC",
+          fullName: savedFullName
         };
     if (typeof window.render === "function") {
       window.render();
@@ -2310,7 +2295,7 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
       astroPdfActions.style.display = hasAnyAstro ? "flex" : "none";
     }
     const remainingCooldown = getQuotaCooldownRemainingMs();
-    const shouldShowRetry = Boolean(birthDataLocked && hasSavedBirthCoordinates() && (![sun, moon, asc].some(v => v && v !== "N/D") || hadError));
+    const shouldShowRetry = Boolean(hasSavedBirthCoordinates() && (![sun, moon, asc].some(v => v && v !== "N/D") || hadError));
     if (astroRetryActions) {
       astroRetryActions.style.display = shouldShowRetry ? "flex" : "none";
     }
@@ -2334,29 +2319,40 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
       `. Tus datos de nacimiento ya están guardados y el enfriamiento evita reintentos hasta el <strong>${escapeHtml(unlockTxt)}</strong>.`;
   }
 
+  function hasSavedBirthMeta() {
+    const m = currentBirthMeta;
+    return Boolean(m && m.dob && m.tob && m.city && typeof m.lat === "number" && typeof m.lon === "number");
+  }
+
   function applyBirthLockState(locked) {
     birthDataLocked = Boolean(locked);
-    dobInput.disabled = birthDataLocked;
-    tobInput.disabled = birthDataLocked;
-    cityInput.disabled = birthDataLocked;
+    const hasSaved = hasSavedBirthMeta();
+    const left = Math.max(0, BIRTH_MAX_EDITS - birthEditCount);
+    [fullNameInput, dobInput, tobInput, cityInput].forEach((el) => { el.disabled = birthDataLocked; });
     btnSaveProfile.disabled = birthDataLocked;
     btnSaveProfile.style.display = birthDataLocked ? "none" : "inline-block";
+    btnSaveProfile.textContent = hasSaved ? "Guardar cambios" : "Guardar datos";
+
     if (birthDataLocked) {
       suggestionsBox.classList.remove("open");
-      profileIntro.textContent = "Tus datos de nacimiento están guardados y bloqueados en tu perfil.";
+      profileIntro.textContent = "Tus datos están guardados y bloqueados en tu perfil.";
+      birthLockNotice.innerHTML = 'Usaste los ' + BIRTH_MAX_EDITS + ' cambios disponibles, por eso tus datos quedaron <strong>bloqueados para prevenir errores</strong>. Si necesitas corregir algo, escribe a <a href="mailto:redlantecc@gmail.com">redlantecc@gmail.com</a> desde el correo de tu cuenta.';
       const curSun = window.DreamSaverProfile?.sun || "N/D";
       const curMoon = window.DreamSaverProfile?.moon || "N/D";
       const curAsc = window.DreamSaverProfile?.asc || "N/D";
       const hasAstro = [curSun, curMoon, curAsc].some(v => v && v !== "N/D") || Boolean(savedNatalReportHtml);
       if (!hasAstro && getQuotaCooldownRemainingMs() > 0) {
         renderQuotaLimitNotice();
-      } else if (!hasAstro && astroResults.textContent.includes("Configura tus datos de nacimiento más abajo")) {
+      } else if (!hasAstro && astroResults.textContent.includes("Completa tus datos de nacimiento en tu perfil")) {
         astroResults.innerHTML = "Tus datos de nacimiento están guardados, pero aún no se ha registrado una carta astral completa en tu perfil.";
       }
       syncAstroActionVisibility(curSun, curMoon, curAsc, Boolean(savedNatalReportHtml), getQuotaCooldownRemainingMs() > 0);
+    } else if (hasSaved) {
+      profileIntro.textContent = "Puedes corregir tus datos mientras te queden cambios disponibles.";
+      birthLockNotice.innerHTML = '<strong>Cambios disponibles: ' + left + ' de ' + BIRTH_MAX_EDITS + '.</strong> Cada vez que modifiques un dato y guardes, se descuenta un cambio. Al agotarse, tus datos se bloquean para prevenir errores.';
     } else {
-      profileIntro.textContent = "Completa tus datos de nacimiento. Escribe tu ciudad y selecciónala de la lista para validar sus coordenadas automáticamente.";
-      if (astroRetryActions) astroRetryActions.style.display = "none";
+      profileIntro.textContent = "Completa tus datos una sola vez. Escribe tu ciudad y selecciónala de la lista para validar sus coordenadas automáticamente.";
+      birthLockNotice.innerHTML = '<strong>Revisa bien antes de guardar:</strong> después del primer guardado podrás corregir tus datos hasta ' + BIRTH_MAX_EDITS + ' veces. Luego se bloquean para prevenir errores.';
     }
   }
 
@@ -2995,12 +2991,12 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
 
   function buildPrintableNatalReportHtml() {
     const chart = currentFullNatalChart || buildFullNatalDetails(null, "N/D", "N/D", "N/D");
-    const dobVal = dobInput.value || currentBirthMeta?.dob || "No registrada";
-    const tobVal = tobInput.value || currentBirthMeta?.tob || "No registrada";
-    const cityVal = cityInput.value || currentBirthMeta?.city || "No registrada";
-    const latVal = verifiedLocation?.lat ?? currentBirthMeta?.lat;
-    const lonVal = verifiedLocation?.lon ?? currentBirthMeta?.lon;
-    const tzVal = verifiedLocation?.timezone || currentBirthMeta?.timezone || "UTC";
+    const dobVal = currentBirthMeta?.dob || dobInput.value || "No registrada";
+    const tobVal = currentBirthMeta?.tob || tobInput.value || "No registrada";
+    const cityVal = currentBirthMeta?.city || cityInput.value || "No registrada";
+    const latVal = currentBirthMeta?.lat ?? verifiedLocation?.lat;
+    const lonVal = currentBirthMeta?.lon ?? verifiedLocation?.lon;
+    const tzVal = currentBirthMeta?.timezone || verifiedLocation?.timezone || "UTC";
     const userEmail = auth.currentUser?.email || "";
 
     let birthDateObj = null;
@@ -3351,7 +3347,7 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     if (remainingCooldown > 0) {
       renderQuotaLimitNotice();
       syncAstroActionVisibility("N/D", "N/D", "N/D", Boolean(savedNatalReportHtml), true);
-      profileSaved.textContent = "Enfriamiento de 24 h activo. Disponible aprox. " + formatQuotaUnlockTime(quotaState.reachedAt) + ".";
+      astroPdfStatus.textContent = "Enfriamiento de 24 h activo. Disponible aprox. " + formatQuotaUnlockTime(quotaState.reachedAt) + ".";
       return;
     }
 
@@ -3368,7 +3364,7 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     }
 
     if (btnRetryAstro) btnRetryAstro.disabled = true;
-    profileSaved.textContent = "Reintentando cálculo de carta astral con tus datos guardados...";
+    astroPdfStatus.textContent = "Reintentando cálculo de carta astral con tus datos guardados...";
     const coords = { lat, lon, timezone, label: city };
     const astroData = await fetchNatalChartOnce(dob, tob, coords);
 
@@ -3384,16 +3380,16 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
           astroData.asc,
           astroData.rawBody || null,
           finalReportHtml,
-          { birthDataLocked: true }
+          {}
         );
-        profileSaved.textContent = "Carta astral recuperada y guardada en tu perfil.";
+        astroPdfStatus.textContent = "Carta astral recuperada y guardada en tu perfil.";
       } catch (err) {
         console.error("Error guardando carta recuperada:", err);
-        profileSaved.textContent = "Carta calculada en esta sesión, pero no se pudo guardar en la nube.";
+        astroPdfStatus.textContent = "Carta calculada en esta sesión, pero no se pudo guardar en la nube.";
       }
     } else {
       syncAstroActionVisibility("N/D", "N/D", "N/D", Boolean(savedNatalReportHtml), true);
-      profileSaved.textContent = getQuotaCooldownRemainingMs() > 0
+      astroPdfStatus.textContent = getQuotaCooldownRemainingMs() > 0
         ? "Límite diario registrado. Enfriamiento activo hasta " + formatQuotaUnlockTime(quotaState.reachedAt) + "."
         : "No se pudo completar el cálculo en este momento.";
     }
@@ -3591,19 +3587,43 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     togglePasswordBtn.setAttribute("aria-pressed", String(isHidden));
   });
 
-  function toggleSidebar(open) {
-    sidebar.classList.toggle("open", open);
-    overlay.classList.toggle("open", open);
-    document.body.style.overflow = open ? "hidden" : "";
-    if (!open) {
-      suggestionsBox.classList.remove("open");
-      if (hdOverlay) hdOverlay.classList.remove("open");
-    }
+  function toggleProfile(open) {
+    profileOverlay.classList.toggle("open", open);
+    if (!open) suggestionsBox.classList.remove("open");
   }
 
-  btnProfile.addEventListener("click", () => toggleSidebar(true));
-  closeProfile.addEventListener("click", () => toggleSidebar(false));
-  overlay.addEventListener("click", () => toggleSidebar(false));
+  function closeAllModals() {
+    toggleProfile(false);
+    natalOverlay.classList.remove("open");
+    if (hdOverlay) hdOverlay.classList.remove("open");
+    const numOv = document.getElementById("num-overlay");
+    if (numOv) numOv.classList.remove("open");
+  }
+
+  btnProfile.addEventListener("click", () => toggleProfile(true));
+  closeProfile.addEventListener("click", () => toggleProfile(false));
+  profileOverlay.addEventListener("click", (ev) => { if (ev.target === profileOverlay) toggleProfile(false); });
+
+  btnOpenNatal.addEventListener("click", () => {
+    const has = hasSavedBirthMeta();
+    natalGoProfileRow.style.display = has ? "none" : "flex";
+    natalMeta.textContent = has
+      ? "Base: " + currentBirthMeta.dob + " · " + currentBirthMeta.tob + " · " + currentBirthMeta.city
+      : "Aún no hay datos de nacimiento guardados.";
+    natalOverlay.classList.add("open");
+  });
+  btnCloseNatal.addEventListener("click", () => natalOverlay.classList.remove("open"));
+  natalOverlay.addEventListener("click", (ev) => { if (ev.target === natalOverlay) natalOverlay.classList.remove("open"); });
+  btnNatalGoProfile.addEventListener("click", () => {
+    natalOverlay.classList.remove("open");
+    toggleProfile(true);
+  });
+  document.addEventListener("keydown", (ev) => {
+    if (ev.key !== "Escape") return;
+    if (profileOverlay.classList.contains("open")) toggleProfile(false);
+    else if (natalOverlay.classList.contains("open")) natalOverlay.classList.remove("open");
+    else if (hdOverlay && hdOverlay.classList.contains("open")) hdOverlay.classList.remove("open");
+  });
 
   async function searchOpenMeteoCities(queryText) {
     if (birthDataLocked) return [];
@@ -3717,9 +3737,16 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
 
   async function validateProfileForm() {
     let isValid = true;
+    setFieldError(errFullName, "");
     setFieldError(errDob, "");
     setFieldError(errTob, "");
     setFieldError(errCity, "");
+
+    const fullName = fullNameInput.value.replace(/\s+/g, " ").trim();
+    if (!/^\p{L}[\p{L}'’.\- ]{2,119}$/u.test(fullName) || fullName.split(" ").length < 2) {
+      setFieldError(errFullName, "Escribe tu nombre completo (nombres y apellidos), solo con letras.");
+      isValid = false;
+    }
 
     const dob = dobInput.value.trim();
     const tob = tobInput.value.trim();
@@ -3789,7 +3816,7 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
       }
     }
 
-    return isValid ? { dob, tob, location: verifiedLocation } : null;
+    return isValid ? { fullName, dob, tob, location: verifiedLocation } : null;
   }
 
   function extractAscendant(bodyData, planets) {
@@ -3869,6 +3896,11 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     const lon = typeof snapData.lon === "number" ? snapData.lon : cached?.lon;
     const timezone = snapData.timezone || cached?.timezone || "UTC";
 
+    savedFullName = String(snapData.fullName || cached?.fullName || "").trim();
+    fullNameInput.value = savedFullName;
+    birthEditCount = Math.max(0, Math.min(BIRTH_MAX_EDITS,
+      Math.max(Number(snapData.birthEditCount) || 0, Number(cached?.birthEditCount) || 0)));
+
     dobInput.value = dob;
     tobInput.value = tob;
     cityInput.value = city;
@@ -3896,11 +3928,8 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
       clearQuotaReached(uid); // borra el bloqueo heredado de la época en que se usaba la API
     }
 
-    const isLocked = Boolean(
-      snapData.birthDataLocked ||
-      cached?.birthDataLocked ||
-      (dob && tob && city && typeof lat === "number" && typeof lon === "number")
-    );
+    const hasSavedBirth = Boolean(dob && tob && city && typeof lat === "number" && typeof lon === "number");
+    const isLocked = hasSavedBirth && birthEditCount >= BIRTH_MAX_EDITS;
 
     const rawBody = cached?.rawBody || null;
     const storedReportHtml = cached?.natalReportHtml || "";
@@ -3909,13 +3938,11 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     const asc = snapData.asc || cached?.asc || "N/D";
     const hasValidAstro = [sun, moon, asc].some(v => v && v !== "N/D");
 
-    if (isLocked) {
-      applyBirthLockState(true);
-    }
+    applyBirthLockState(isLocked);
 
     if (hasValidAstro || storedReportHtml) {
       renderAstrologyCard(sun, moon, asc, rawBody, storedReportHtml);
-    } else if (isLocked && dob && tob && typeof lat === "number" && typeof lon === "number") {
+    } else if (hasSavedBirth) {
       // Datos guardados pero sin carta: se calcula automáticamente en este dispositivo.
       syncAstroActionVisibility("N/D", "N/D", "N/D", false, false);
       retrySavedBirthChart();
@@ -3925,6 +3952,8 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
   }
 
   async function loadUserProfile(user, forceRemote = false) {
+    birthEditCount = 0;
+    savedFullName = "";
     applyBirthLockState(false);
     savedNatalReportHtml = "";
     quotaState = { exceeded: false, reachedAt: null, message: "" };
@@ -3956,7 +3985,8 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
           lat: typeof data.lat === "number" ? data.lat : cached?.lat,
           lon: typeof data.lon === "number" ? data.lon : cached?.lon,
           timezone: data.timezone || cached?.timezone || "UTC",
-          birthDataLocked: Boolean(data.birthDataLocked || (data.dob && data.tob && typeof data.lat === "number" && typeof data.lon === "number")),
+          fullName: data.fullName || cached?.fullName || "",
+          birthEditCount: Math.max(Number(data.birthEditCount) || 0, Number(cached?.birthEditCount) || 0),
           sun: normalizeSign(data.sun || cached?.sun || "N/D"),
           moon: normalizeSign(data.moon || cached?.moon || "N/D"),
           asc: normalizeSign(data.asc || cached?.asc || "N/D"),
@@ -3976,7 +4006,7 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
   profileForm.addEventListener("submit", async (ev) => {
     ev.preventDefault();
     if (birthDataLocked) {
-      profileSaved.textContent = "Los datos de nacimiento están bloqueados. Contacta a redlantecc@gmail.com si necesitas cambios.";
+      profileSaved.textContent = "Tus datos están bloqueados. Escribe a redlantecc@gmail.com si necesitas un cambio justificado.";
       return;
     }
     const user = auth.currentUser;
@@ -3992,7 +4022,51 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
       return;
     }
 
-    const { dob, tob, location } = validated;
+    const { fullName, dob, tob, location } = validated;
+    const hadSaved = hasSavedBirthMeta();
+    const prevMeta = currentBirthMeta;
+    const prevName = savedFullName;
+    const prev = prevMeta || {};
+    const birthChanged = !hadSaved || prev.dob !== dob || prev.tob !== tob ||
+      prev.city !== location.label || prev.lat !== location.lat || prev.lon !== location.lon;
+    const nameChanged = fullName !== prevName;
+
+    if (hadSaved && !birthChanged && !nameChanged) {
+      profileSaved.textContent = "No hay cambios para guardar.";
+      btnSaveProfile.disabled = false;
+      return;
+    }
+
+    // Solo cuenta como "cambio" corregir algo ya guardado (agregar el nombre por primera vez no gasta uno).
+    const consumesEdit = hadSaved && (birthChanged || (nameChanged && Boolean(prevName)));
+
+    // Se revisa el contador guardado en la cuenta para que no se pueda esquivar desde otro dispositivo.
+    let currentCount = birthEditCount;
+    try {
+      const remote = await getDoc(doc(db, "users", user.uid));
+      if (remote.exists()) {
+        const rc = Number(remote.data().birthEditCount);
+        if (Number.isFinite(rc)) currentCount = Math.max(currentCount, rc);
+      }
+    } catch (err) {
+      console.error("No se pudo verificar el contador de cambios:", err);
+    }
+
+    if (hadSaved && currentCount >= BIRTH_MAX_EDITS) {
+      birthEditCount = BIRTH_MAX_EDITS;
+      applyBirthLockState(true);
+      profileSaved.textContent = "Ya usaste todos los cambios disponibles; tus datos están bloqueados.";
+      return;
+    }
+
+    const newCount = currentCount + (consumesEdit ? 1 : 0);
+    if (consumesEdit && newCount >= BIRTH_MAX_EDITS &&
+        !window.confirm("Este es tu último cambio disponible. Al guardarlo, tus datos quedarán bloqueados. ¿Confirmas que son correctos?")) {
+      profileSaved.textContent = "Guardado cancelado. Puedes seguir revisando tus datos.";
+      btnSaveProfile.disabled = false;
+      return;
+    }
+
     currentBirthMeta = {
       dob,
       tob,
@@ -4001,31 +4075,40 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
       lon: location.lon,
       timezone: location.timezone
     };
+    savedFullName = fullName;
     syncActiveBirthForHd();
 
-    profileSaved.textContent = "Consultando servicio astrológico una sola vez y guardando en tu perfil...";
-    const astroData = await fetchNatalChartOnce(dob, tob, location);
+    profileSaved.textContent = birthChanged
+      ? "Calculando tu carta natal y guardando en tu perfil..."
+      : "Guardando en tu perfil...";
+    const astroData = (birthChanged || !savedNatalReportHtml)
+      ? await fetchNatalChartOnce(dob, tob, location)
+      : null;
 
     try {
       const payload = {
         email: user.email,
+        fullName,
         dob,
         tob,
         city: location.label,
         lat: location.lat,
         lon: location.lon,
         timezone: location.timezone,
-        birthDataLocked: true,
+        birthEditCount: newCount,
+        birthDataLocked: newCount >= BIRTH_MAX_EDITS,
         updatedAt: new Date().toISOString()
       };
       const cachePatch = {
+        fullName,
         dob,
         tob,
         city: location.label,
         lat: location.lat,
         lon: location.lon,
         timezone: location.timezone,
-        birthDataLocked: true
+        birthEditCount: newCount,
+        birthDataLocked: newCount >= BIRTH_MAX_EDITS
       };
 
       if (astroData) {
@@ -4046,16 +4129,31 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
           astroQuotaReachedAt: null,
           astroLastErrorMsg: ""
         });
+      } else if (birthChanged) {
+        // Los datos cambiaron pero el cálculo falló: no se deja una carta antigua asociada a datos nuevos.
+        payload.sun = ""; payload.moon = ""; payload.asc = "";
+        Object.assign(cachePatch, { sun: "", moon: "", asc: "", rawBody: null, natalReportHtml: "" });
+        savedNatalReportHtml = "";
+        currentFullNatalChart = null;
+        window.DreamSaverProfile = null;
       }
 
-      updateLocalAstroCache(user.uid, cachePatch);
       await setDoc(doc(db, "users", user.uid), payload, { merge: true });
-      applyBirthLockState(true);
-      profileSaved.textContent = astroData
-        ? "Carta astral guardada en tu perfil y en caché local."
-        : "Perfil guardado. Si hubo límite o error de API, puedes reintentar más tarde sin volver a ingresar tus datos.";
+      updateLocalAstroCache(user.uid, cachePatch);
+      birthEditCount = newCount;
+      applyBirthLockState(newCount >= BIRTH_MAX_EDITS);
+      if (astroData) {
+        profileSaved.textContent = "Datos guardados. Tu carta natal ya está lista en el botón «Carta Natal».";
+      } else if (birthChanged) {
+        profileSaved.textContent = "Datos guardados. No se pudo calcular la carta ahora; puedes reintentar desde «Carta Natal».";
+      } else {
+        profileSaved.textContent = "Datos guardados.";
+      }
     } catch (err) {
-      profileSaved.textContent = "Error al guardar el perfil.";
+      currentBirthMeta = prevMeta;
+      savedFullName = prevName;
+      syncActiveBirthForHd();
+      profileSaved.textContent = "No se pudo guardar en tu cuenta. Revisa tu conexión e inténtalo de nuevo.";
       console.error(err);
     } finally {
       if (!birthDataLocked) btnSaveProfile.disabled = false;
@@ -4066,7 +4164,7 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     if (user) {
       authCard.style.display = "none";
       appContent.style.display = "block";
-      userDisplay.textContent = user.email;
+      profileEmail.textContent = user.email;
       if (typeof window.DreamSaverSetUser === "function") window.DreamSaverSetUser(user.uid);
       loadUserProfile(user, false);
       subscribeUserDreams(user);
@@ -4076,23 +4174,28 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
         unsubscribeDreams = null;
       }
       quotaState = { exceeded: false, reachedAt: null, message: "" };
+      birthEditCount = 0;
+      savedFullName = "";
       applyBirthLockState(false);
+      fullNameInput.value = "";
       dobInput.value = "";
       tobInput.value = "";
       cityInput.value = "";
       setLocationState(null, "Ubicación sin verificar", "");
-      astroResults.textContent = "Configura tus datos de nacimiento más abajo para calcular tu carta astral.";
+      astroResults.textContent = ASTRO_EMPTY_MSG;
       astroChart.innerHTML = "";
       authCard.style.display = "block";
       appContent.style.display = "none";
-      userDisplay.textContent = "";
+      profileEmail.textContent = "";
+      profileSaved.textContent = "";
       window.DreamSaverProfile = null;
       savedNatalReportHtml = "";
       currentFullNatalChart = null;
       currentBirthMeta = null;
       syncActiveBirthForHd();
+      applyBirthLockState(false);
       if (typeof window.DreamSaverClearLocal === "function") window.DreamSaverClearLocal();
-      toggleSidebar(false);
+      closeAllModals();
     }
   });
 
@@ -4558,8 +4661,7 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     window.interpretDreamWithChart = function(text, chart, entryTimestamp) {
       var res = origInterpret(text, chart, entryTimestamp);
       var birth = window.DreamSaverActiveBirth || null;
-      var savedName = "";
-      try { savedName = localStorage.getItem("dreamsaver:num_name") || ""; } catch(_){}
+      var savedName = (birth && birth.fullName) || "";
       var num = computeNumerologyFull(birth && birth.dob, savedName, new Date(entryTimestamp || Date.now()));
       var extra = [];
       if (num.hasDob) {
@@ -4591,15 +4693,14 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     var birth = window.DreamSaverActiveBirth || {};
     var dobEl = document.getElementById("profile-dob");
     var dob = birth.dob || (dobEl ? dobEl.value : "");
-    var nameInput = document.getElementById("num-full-name");
-    var fullName = nameInput ? nameInput.value.trim() : "";
+    var fullName = String(birth.fullName || "").trim();
 
     var data = computeNumerologyFull(dob, fullName, new Date());
     var metaEl = document.getElementById("num-birth-meta");
     if (metaEl) {
       metaEl.textContent = data.hasDob
-        ? ("Fecha base: " + dob + (fullName ? " · Nombre: " + fullName : " · Agrega tu nombre arriba para desbloquear Expresión, Alma y Dones del Nombre"))
-        : "Guarda tu fecha de nacimiento en el Perfil Astral para obtener tu mapa numerológico completo.";
+        ? ("Fecha base: " + dob + (fullName ? " · Nombre: " + fullName : " · Agrega tu nombre completo en tu perfil (ícono de usuario) para desbloquear Expresión, Alma y Dones del Nombre"))
+        : "Guarda tu fecha de nacimiento y tu nombre en tu perfil (ícono de usuario) para obtener tu mapa numerológico completo.";
     }
 
     // 1. Tarjetas centrales
@@ -4726,15 +4827,8 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
   var btnOpenNum = document.getElementById("btn-open-num");
   var numOverlay = document.getElementById("num-overlay");
   var btnCloseNum = document.getElementById("btn-close-num");
-  var btnRecalcNum = document.getElementById("btn-recalc-num");
-  var numNameInput = document.getElementById("num-full-name");
-
-  if (numNameInput) {
-    try {
-      var savedN = localStorage.getItem("dreamsaver:num_name");
-      if (savedN) numNameInput.value = savedN;
-    } catch(_){}
-  }
+  // El nombre ya no se guarda en el dispositivo: viene del perfil de cada cuenta.
+  try { localStorage.removeItem("dreamsaver:num_name"); } catch(_){}
 
   if (btnOpenNum && numOverlay) {
     btnOpenNum.addEventListener("click", function(){
@@ -4752,48 +4846,11 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
       if (ev.target === numOverlay) numOverlay.classList.remove("open");
     });
   }
-  if (btnRecalcNum) {
-    btnRecalcNum.addEventListener("click", function(){
-      if (numNameInput) {
-        try { localStorage.setItem("dreamsaver:num_name", numNameInput.value.trim()); } catch(_){}
-      }
-      renderNumerologyModal();
-      if (typeof window.render === "function") window.render();
-    });
-  }
   document.addEventListener("keydown", function(ev){
     if (ev.key === "Escape" && numOverlay && numOverlay.classList.contains("open")) {
       numOverlay.classList.remove("open");
     }
   });
-})();
-</script>
-
-<script>
-/* Navegación: pantalla principal ↔ registro de sueños */
-(function(){
-  var home = document.getElementById("home-view");
-  var dreams = document.getElementById("view-dreams");
-  var app = document.getElementById("app-content");
-  if (!home || !dreams) return;
-  function show(view, fromPop){
-    var d = view === "dreams";
-    home.style.display = d ? "none" : "";
-    dreams.style.display = d ? "" : "none";
-    if (d && !fromPop) { try { history.pushState({view:"dreams"}, ""); } catch(_){} }
-    try { window.scrollTo({top:0}); } catch(_){ window.scrollTo(0,0); }
-  }
-  var t = document.getElementById("tile-dreams"), b = document.getElementById("btn-back-home");
-  if (t) t.addEventListener("click", function(){ show("dreams"); });
-  if (b) b.addEventListener("click", function(){
-    if (history.state && history.state.view === "dreams") { history.back(); } else { show("home", true); }
-  });
-  window.addEventListener("popstate", function(){ show("home", true); });
-  /* Al cerrar sesión (la app se oculta) se vuelve a la pantalla principal */
-  if (app && window.MutationObserver) {
-    new MutationObserver(function(){ if (app.style.display === "none") show("home", true); })
-      .observe(app, {attributes:true, attributeFilter:["style"]});
-  }
 })();
 </script>
 </body>
