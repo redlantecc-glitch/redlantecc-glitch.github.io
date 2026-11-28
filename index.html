@@ -2277,6 +2277,86 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     { num: 12, name: "Casa XII · Inconsciente y Sueños", focus: "Mundo onírico, retiro interior, memoria kármica, empatía y disolución del ego." }
   ];
 
+  const SIGN_DATA_ES = {
+    "Aries": { element: "Fuego", modality: "Cardinal", rulers: "Marte (trad.) / Plutón (mod.)", keywords: "impulso, valentía, iniciativa, independencia", essence: "energía de pionero: actúa primero y reflexiona después; necesita retos, acción directa y libertad", dreams: "sueños con desafíos, competencia, choques, arranques y ganas de iniciar algo" },
+    "Tauro": { element: "Tierra", modality: "Fijo", rulers: "Venus", keywords: "estabilidad, disfrute sensorial, paciencia, seguridad material", essence: "busca seguridad material y placer sensorial; avanza despacio pero es muy persistente", dreams: "escenas de abundancia, naturaleza, confort, dinero o pérdida de posesiones" },
+    "Géminis": { element: "Aire", modality: "Mutable", rulers: "Mercurio", keywords: "curiosidad, comunicación, versatilidad, juego verbal", essence: "mente rápida y curiosa: aprende por preguntar y necesita variedad mental", dreams: "fragmentos de conversación, mensajes, viajes cortos y decisiones de información" },
+    "Cáncer": { element: "Agua", modality: "Cardinal", rulers: "Luna", keywords: "cuidado, memoria emocional, hogar, protección", essence: "antena afectiva muy fina: su mundo interior se construye en refugios y vínculos", dreams: "sueños de hogar, ancestros, mareas emocionales, memoria y refugio" },
+    "Leo": { element: "Fuego", modality: "Fijo", rulers: "Sol", keywords: "creatividad, brillo, generosidad, presencia", essence: "necesita escenario y reconocimiento: crea con el corazón y lidera con ejemplo", dreams: "teatro, aplausos, protagonismo, figuras de autoridad y creatividad desbordada" },
+    "Virgo": { element: "Tierra", modality: "Mutable", rulers: "Mercurio (trad.) / Marte y Neptuno (mod.)", keywords: "análisis, servicio, método, discernimiento", essence: "perfecciona y ordena: su talento es distinguir lo útil de lo superfluo", dreams: "listas de detalles, cuerpos, rituales de limpieza y diagnósticos" },
+    "Libra": { element: "Aire", modality: "Cardinal", rulers: "Venus", keywords: "equilibrio, diplomacia, estética, relación", essence: "busca el justo medio: negocia, armoniza y se define en relación con el otro", dreams: "escenarios de negociación, parejas, arte y balances entre opciones" },
+    "Escorpio": { element: "Agua", modality: "Fijo", rulers: "Marte (trad.) / Plutón (mod.)", keywords: "intensidad, transformación, poder, verdad oculta", essence: "penetra lo profundo: transforma las crisis en fuerza y no tolera las falsedades", dreams: "muerte, renacimiento, secretos, intimidad, poder y revelaciones" },
+    "Sagitario": { element: "Fuego", modality: "Mutable", rulers: "Júpiter", keywords: "expansión, filosofía, aventura, optimismo", essence: "busca el sentido de la vida: viaja, estudia y amplía horizontes", dreams: "viajes, maestros, doctrinas, promesas y expansión del mundo" },
+    "Capricornio": { element: "Tierra", modality: "Cardinal", rulers: "Saturno", keywords: "disciplina, ambición, estructura, responsabilidad", essence: "construye legado paso a paso: necesita metas, jerarquía y reconocimiento del esfuerzo", dreams: "escenarios de ascenso, obstáculos, jefes, montañas y premios demorados" },
+    "Acuario": { element: "Aire", modality: "Fijo", rulers: "Saturno (trad.) / Urano (mod.)", keywords: "innovación, comunidad, libertad, originalidad", essence: "piensa en el futuro y en el grupo: rompe moldes y necesita aire libre", dreams: "tecnología, grupos, cambios súbitos, ideas colectivas y futuro" },
+    "Piscis": { element: "Agua", modality: "Mutable", rulers: "Júpiter (trad.) / Neptuno (mod.)", keywords: "compasión, intuición, arte, trascendencia", essence: "porosidad emocional y espiritual: ve el mundo por símbolos y se disuelve en lo colectivo", dreams: "el signo onírico por excelencia: agua, símbolos, seres imposibles y puentes entre mundos" }
+  };
+
+  const HOUSE_DETAIL_ES = {
+    1: { meaning: "El modo en que te presentas al mundo y cómo vives tu identidad física y psicológica: es la cara que muestras y el filtro con que inicia toda experiencia. Aquí se juega tu autoimagen, tu cuerpo y tu forma de aterrizar cada día.", questions: "¿Cómo me veo a mí y cómo me ven los demás? ¿Qué me da y me quita energía en mi cuerpo?", dreams: "tu propia imagen, tu cuerpo, primeras impresiones y arranques de la jornada" },
+    2: { meaning: "Tu relación con tu valor propio y con los recursos: dinero, talentos materiales y lo que consideras que vales. Aquí aprendes a sostener tu vida con tus propios medios.", questions: "¿Qué me hace sentir valioso o valiosa? ¿Cómo genero, gasto y cuido mis recursos?", dreams: "dinero, posesiones, habilidades, autoestima material y límites" },
+    3: { meaning: "Comunicación cotidiana, aprendizaje cercano, hermanos y entorno inmediato: el taller de tu mente, donde piensas, cuentas y te desplazas por el mundo.", questions: "¿Cómo aprendo, hablo y escribo? ¿Qué información me falta en mi día a día?", dreams: "conversaciones, textos, hermanos, vecinos, trayectos y tropiezos verbales" },
+    4: { meaning: "Raíz y refugio: hogar, familia de origen, memoria y la base emocional sobre la que te sostienes. Su cúspide (IC) es el fondo de tu cielo.", questions: "¿De dónde vengo y qué necesito para sentirme en casa? ¿Qué herencias o heridas emocionales estoy ordenando?", dreams: "casa, abuelos, raíces, tesoros enterrados y refugio emocional" },
+    5: { meaning: "Escenario de creación y gozo: talento artístico, romance, hijos, juego y autoexpresión libre. Es la casa del corazón sin disfraz.", questions: "¿Qué me hace nacer la alegría? ¿Cómo me expreso y me atrevo?", dreams: "fiestas, creación, amor libre, hijos, arte y juego" },
+    6: { meaning: "Rutinas, salud, trabajo diario y servicio: el campo donde tu vida se construye gesto a gesto y se entrena la constancia.", questions: "¿Cuáles son mis hábitos y cómo cuido mi cuerpo? ¿Qué trabajo me nutre y cuál me agota?", dreams: "hábitos, males menores, tareas, animales de servicio y disciplina" },
+    7: { meaning: "El espejo de los otros: vínculos comprometidos, pareja, socios y lo que el otro devuelve de ti. Su cúspide (Descendente) señala qué buscas fuera de ti.", questions: "¿Qué busco en la pareja? ¿Qué acepto y qué no en una alianza?", dreams: "parejas, confrontaciones, contratos y la cara oculta del otro" },
+    8: { meaning: "Zona de transformación: recursos compartidos, intimidad profunda, crisis, muerte y renacimiento. Aquí lo que se entrega vuelve transformado.", questions: "¿Qué puedo soltar para regenerarme? ¿Cómo manejo lo que es de los otros?", dreams: "oscuridad, poder, herencias, secretos, muerte simbólica y resurrección" },
+    9: { meaning: "Horizonte: filosofía, estudios superiores, viajes largos, otras culturas y tu mapa de sentido. Es el campo que amplía el mundo que habitas.", questions: "¿Qué creencias me sostienen? ¿Hacia dónde quiero ampliar mi mapa?", dreams: "viajes, maestros, doctrinas, fronteras y descubrimiento" },
+    10: { meaning: "Tu techo visible: vocación pública, logros, reputación, autoridad y el legado que el mundo ve. Su cúspide (MC) es tu meta.", questions: "¿Qué quiero ser y qué dejar hecho? ¿Qué logros me reconocen?", dreams: "escenarios públicos, jefes, premios, ascensos y caídas visibles" },
+    11: { meaning: "Redes, amistades, proyectos de futuro y esperanza colectiva: el campo de la comunidad y los ideales que compartes.", questions: "¿Quiénes son mis aliados? ¿Qué futuro quiero construir con otros?", dreams: "grupos, amigos, promesas, futuro y sueños colectivos" },
+    12: { meaning: "Lo invisible: inconsciente, sueños, retiro, empatía, deudas kármicas y disolución del ego. Es el mar que sostiene y, a veces, te atrapa.", questions: "¿Qué evito sentir? ¿Qué me pide retiro y sanación?", dreams: "el reino del sueño: aguas profundas, soledad, santuarios, adicciones y desvelos" }
+  };
+
+  const PLANET_MEANINGS_ES = {
+    sun: { core: "Centro de identidad y propósito: cómo brillas, lideras y afirmas tu esencia ante la vida.", retro: "tiempo de revisar la autoridad propia, el reconocimiento y el corazón de lo que haces" },
+    moon: { core: "Necesidades emocionales, memoria afectiva y clima interior de cada día: tu refugio, tu instinto y el lenguaje de tus sueños.", retro: "memoria emocional intensificada, nostalgia y resurgencia de afectos del pasado" },
+    mercury: { core: "Tu forma de pensar, comunicar y aprender: estilo mental, habilidades verbales y manera de resolver.", retro: "revisión de mensajes, acuerdos y tecnología; pausas que piden reordenar ideas" },
+    venus: { core: "Afecto, gusto, valores y forma de amar: señala dónde te gusta vivir y qué te reconforta.", retro: "revisión de vínculos, deudas afectivas y de valores; reconciliaciones" },
+    mars: { core: "Impulso, deseo, energía y forma de pelear por lo que quieres: el motor de acción de la carta.", retro: "energía hacia dentro: revisar agresiones, frenar y reenfocar el deseo" },
+    jupiter: { core: "Creencias, expansión, suerte y crecimiento: indica dónde te excedes y dónde te florece.", retro: "contener el exceso; revisar creencias, promesas y seguros" },
+    saturn: { core: "Responsabilidad, límites, tiempo y lealtad: el maestro que ordena, disciplina y te deja construir lo durable.", retro: "cargas de estructura: revisar autoridad, trabajo, límites y madurez" },
+    uranus: { core: "Libertad, invención, cambio súbito y originalidad: rompe la rutina y electrifica lo colectivo.", retro: "revisar la relación con la libertad, la tecnología y los cambios" },
+    neptune: { core: "Imaginación, compasión, ilusión y trascendencia: difumina el límite entre tú y el mundo; es el planeta de los sueños.", retro: "despertar de la ilusión: revisar adicciones, sueños, arte y límites" },
+    pluto: { core: "Poder, transformación profunda, muerte y renacimiento: convierte en fuerza lo que lo atraviesa.", retro: "soltar poder, control y secretos; purificación interna" },
+    northnode: { core: "Dirección evolutiva de la carta: la lección que elegiste aprender en esta vida; su casa señala el campo de acción del crecimiento.", retro: "" },
+    southnode: { core: "Talento heredado y zona de comodidad: lo que ya sabes hacer y que conviene dejar de automatizar para crecer.", retro: "" },
+    lilith: { core: "Lo reprimido: deseo propio, sombra, ferocidad y libertad no negociable; también memoria de heridas no dichas.", retro: "" },
+    chiron: { core: "La herida que se convierte en don: tu mayor vulnerabilidad es también tu mayor capacidad de sanar a otros.", retro: "" },
+    mc: { core: "Medio Cielo: la meta pública que el mundo ve; el techo de la carta.", retro: "" }
+  };
+
+  const ASPECT_MEANINGS_ES = {
+    "Conjunción": "Fusiona la energía de ambos cuerpos: intensifica lo que comparten y crea un rasgo muy marcado de la personalidad.",
+    "Sextil": "Oportunidad latente: flujo suave que se activa cuando lo trabajas; talento de bajo consumo.",
+    "Cuadratura": "Fricción generativa: el roce pide acción y adaptación; donde hay cuadratura hay energía para construir si se asume.",
+    "Trígono": "Flujo armónico: don natural que circula fácil; conviene no caer en la comodidad de sobreusarlo.",
+    "Oposición": "Dos polos en tensión buscándose: lo que uno vive, el otro lo exige; el aprendizaje está en integrar ambos lados.",
+    "Quincuncio": "Ajuste continuo: dos zonas de la vida que se adaptan entre sí; pide flexibilidad y revisión periódica.",
+    "Semicuadratura": "Tensión leve y repetida: afinación de detalles y pequeñas fricciones que se resuelven con práctica.",
+    "Quinquilla": "Armonía inspirada: belleza, arte y flujo de ideas estéticas.",
+    "Contraparte": "Sincronía sutil: afinación de la relación entre ambos cuerpos con el tiempo."
+  };
+
+  const ELEMENT_THEMES_ES = {
+    "Fuego": "impulso, iniciativa, calor y acción: la vitalidad que enciende el resto de la carta",
+    "Tierra": "estabilidad, método, cuerpo y materia: lo que hace real y duradero todo lo demás",
+    "Aire": "mente, comunicación, ideas y vínculos: el aire que conecta, transmite y da forma a los pensamientos",
+    "Agua": "emoción, memoria afectiva, intuición y mundo onírico: el clima interior de la carta"
+  };
+
+  const MODALITY_THEMES_ES = {
+    "Cardinal": "energía de inicio: arranca proyectos, toma decisiones y abre ciclos",
+    "Fijo": "energía de sostenimiento: fija, sostiene y resiste el cambio",
+    "Mutable": "energía de adaptación: transita, transforma y cierra ciclos"
+  };
+
+  const AXIS_DATA_ES = {
+    1: "Eje Identidad–Pareja: de tu forma de mostrarte al mundo (Casa I) a lo que buscas y aceptas en el vínculo (Casa VII). La lección es equilibrar lo que ofreces con lo que requieres del otro.",
+    2: "Eje Recursos–Transformación: de tu valor y dinero propio (Casa II) a los recursos compartidos, la intimidad y la crisis (Casa VIII). Lo que aportas decide lo que te atreves a soltar.",
+    3: "Eje Mente–Hábitos: de tu comunicación y aprendizaje cercano (Casa III) a tu trabajo diario y salud (Casa VI). Lo que aprendes es lo que puedes practicar.",
+    4: "Eje Raíces–Meta: de tu refugio y familia (Casa IV) a tu vocación y logro público (Casa X). La carrera visible es la respuesta a lo que te sostiene por dentro."
+  };
+
   function parseHouseSignAndDegree(rawHouse, idx, ascSignName) {
     if (typeof rawHouse === "string") {
       return { house: idx + 1, sign: normalizeSign(rawHouse), degree: null };
@@ -2425,6 +2505,160 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     `;
   }
 
+  function signDataOf(sign) {
+    return SIGN_DATA_ES[sign] || null;
+  }
+
+  function aspectMeaningOf(type) {
+    if (!type || type === "N/D") return "Vínculo planetario que modula la relación entre ambos cuerpos en la carta.";
+    const key = String(type).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+    const aliases = {
+      conjuncion: "Conjunción", conj: "Conjunción",
+      oposicion: "Oposición",
+      cuadratura: "Cuadratura", cuadrado: "Cuadratura", square: "Cuadratura",
+      trigono: "Trígono",
+      sextil: "Sextil",
+      quincuncio: "Quincuncio", semiquincuncio: "Quincuncio",
+      semicuadratura: "Semicuadratura", semi: "Semicuadratura",
+      quinquilla: "Quinquilla",
+      contraparte: "Contraparte"
+    };
+    return ASPECT_MEANINGS_ES[aliases[key]] || ASPECT_MEANINGS_ES[String(type)] || "Vínculo planetario que modula la relación entre ambos cuerpos en la carta.";
+  }
+
+  function planetsOfHouse(chart, houseNum) {
+    return (chart.planets || []).filter(p => Number(p.house) === houseNum);
+  }
+
+  function buildHouseCardsHtml(chart) {
+    const cards = HOUSE_AREAS_ES.map(h => {
+      const cusp = (chart.houses || []).find(x => x.num === h.num);
+      const sign = cusp ? cusp.sign : "N/D";
+      const data = signDataOf(sign);
+      const inHouse = planetsOfHouse(chart, h.num);
+      const detail = HOUSE_DETAIL_ES[h.num] || {};
+      const degTxt = cusp && typeof cusp.degree === "number" ? " " + cusp.degree.toFixed(1) + "°" : "";
+      const planetTxt = inHouse.length
+        ? inHouse.map(p => `${p.label} (${p.sign}${p.retro ? ", retrógrado" : ""})`).join(" · ")
+        : null;
+      return `
+      <div class="house-card">
+        <h3>Casa ${h.num} · ${escapeHtml(h.name)}</h3>
+        <p class="soft">Cúspide: <span class="badge">${escapeHtml(sign)}${escapeHtml(degTxt)}</span>${data ? ` Regente: <span class="badge">${escapeHtml(data.rulers)}</span>` : ""}</p>
+        <p><strong>Planetas:</strong> ${planetTxt ? escapeHtml(planetTxt) : "Ninguno natal (casa vacía): se activa cuando la visitan tránsitos o su regente."}</p>
+        <p>${escapeHtml(detail.meaning || h.focus)}</p>
+        <p class="soft"><strong>Preguntas clave:</strong> ${escapeHtml(detail.questions || h.focus)}</p>
+        <p class="soft"><strong>Clave onírica:</strong> ${escapeHtml(detail.dreams || "Observa esta área en tus sueños: suelen repetirse sus símbolos.")}</p>
+      </div>`;
+    }).join("");
+    return `<div class="house-cards">${cards}</div>`;
+  }
+
+  function buildEmptyHousesHtml(chart) {
+    const empties = HOUSE_AREAS_ES.filter(h => planetsOfHouse(chart, h.num).length === 0).map(h => h.num);
+    let html = "";
+    if (!empties.length) {
+      html = `<p class="note">Todas las casas de tu carta natal tienen al menos un planeta: la energía está repartida por el mapa completo.</p>`;
+    } else {
+      html = `<p class="note"><strong>Casas vacías:</strong> ${empties.join(", ")} — áreas sin planeta natal permanente: se activan por tránsitos, su regente o el signo de su cúspide. Es terreno fértil para observar con atención cuando aparezcan.</p>`;
+    }
+    const unplaced = (chart.planets || []).filter(p => !p.house).length;
+    if (unplaced) html += `<p class="note">Nota: ${unplaced} planeta(s) no trajeron casa asignada en este cálculo; las casas marcadas vacías podrían no estarlo realmente.</p>`;
+    return html;
+  }
+
+  function buildAxesHtml(chart) {
+    const rows = [1, 2, 3, 4].map(n => {
+      const a = (chart.houses || []).find(h => h.num === n);
+      const b = (chart.houses || []).find(h => h.num === n + 6);
+      const ax = AXIS_DATA_ES[n];
+      if (!a || !b || !ax) return "";
+      return `<div class="axis-row">
+        <div class="axis-head"><strong>Eje ${n}–${n + 6}</strong><span class="badge">${escapeHtml(a.sign)} ↔ ${escapeHtml(b.sign)}</span></div>
+        <p>${escapeHtml(ax)}</p>
+      </div>`;
+    }).join("");
+    return rows || `<p class="note">Los ejes natales no están disponibles con los datos de la carta actual.</p>`;
+  }
+
+  function buildPlanetInterpretationHtml(chart) {
+    const blocks = (chart.planets || []).map(p => {
+      const data = PLANET_MEANINGS_ES[p.key] || {};
+      const sign = signDataOf(p.sign);
+      const houseTxt = p.house ? `Su casa natal es la ${p.house}.` : "Sin casa asignada en este cálculo.";
+      const retroTxt = p.retro && data.retro ? ` Al estar retrógrado: ${data.retro}.` : "";
+      const signBlock = sign ? `En <strong>${escapeHtml(p.sign)}</strong> (${escapeHtml(sign.element)} ${escapeHtml(sign.modality)}): ${escapeHtml(sign.essence)}. <strong>Palabras clave del signo:</strong> ${escapeHtml(sign.keywords)}. <strong>Clave onírica del signo:</strong> ${escapeHtml(sign.dreams)}.` : "";
+      return `<div class="planet-block">
+        <h3>${escapeHtml(p.label)}${p.retro ? " · Retrógrado" : ""}</h3>
+        <p>${escapeHtml(data.core || "Punto astrológico de la carta.")}</p>
+        ${signBlock ? `<p>${signBlock}</p>` : ""}
+        <p class="soft">${houseTxt}${escapeHtml(retroTxt)}</p>
+      </div>`;
+    }).join("");
+    return blocks ? `<div class="planet-blocks">${blocks}</div>` : `<p class="note">No hay posiciones planetarias disponibles en este cálculo.</p>`;
+  }
+
+  function buildSensitivePointsHtml(chart) {
+    const POINT_KEYS = ["northnode", "southnode", "meannode", "truenode", "lilith", "chiron"];
+    const pts = (chart.planets || []).filter(p => POINT_KEYS.includes(p.key));
+    if (!pts.length) return "";
+    const cards = pts.map(p => {
+      const data = PLANET_MEANINGS_ES[p.key] || {};
+      const sign = signDataOf(p.sign);
+      return `<div class="point-card">
+        <h3>${escapeHtml(p.label)}${p.retro ? " (retrógrado)" : ""}</h3>
+        <p><span class="badge">${escapeHtml(p.sign || "N/D")}</span>${p.house ? ` <span class="badge">Casa ${p.house}</span>` : ""}</p>
+        <p>${escapeHtml(data.core || "")}</p>
+        ${sign ? `<p class="soft"><strong>Clave onírica:</strong> ${escapeHtml(sign.dreams)}</p>` : ""}
+      </div>`;
+    }).join("");
+    return `<h2>Puntos Sensibles de la Carta</h2><div class="point-cards">${cards}</div>`;
+  }
+
+  function buildAspectsInterpretedHtml(chart) {
+    const aspects = (chart.aspects || []).slice(0, 14);
+    if (!aspects.length) return "";
+    const rows = aspects.map(a => {
+      const p1 = a.p1 || a.planet1 || a.from || "—";
+      const p2 = a.p2 || a.planet2 || a.to || "—";
+      const type = a.type || a.aspect || a.name || "—";
+      const orb = typeof a.orb === "number" ? a.orb.toFixed(2) + "°" : "—";
+      return `<tr>
+        <td>${escapeHtml(p1)}</td>
+        <td><strong>${escapeHtml(type)}</strong></td>
+        <td>${escapeHtml(p2)}</td>
+        <td>${escapeHtml(orb)}</td>
+        <td class="soft">${escapeHtml(aspectMeaningOf(type))}</td>
+      </tr>`;
+    }).join("");
+    return `<h2>Aspectos Planetarios con Interpretación</h2>
+      <p class="note">Los aspectos son los ángulos entre los cuerpos: puntos de encuentro donde la energía se combina, estira o libera. Se ordenan por orbe (precisión), de menor a mayor.</p>
+      <table>
+        <thead><tr><th>Planeta 1</th><th>Aspecto</th><th>Planeta 2</th><th>Orbe</th><th>Qué significa</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>`;
+  }
+
+  function buildSynthesisHtml(elemCounts, modCounts) {
+    const elNames = Object.keys(ELEMENT_THEMES_ES);
+    const modNames = Object.keys(MODALITY_THEMES_ES);
+    const topEl = elNames.reduce((a, b) => (elemCounts[b] > elemCounts[a] ? b : a));
+    const topMod = modNames.reduce((a, b) => (modCounts[b] > modCounts[a] ? b : a));
+    const elLine = elNames.map(n => `${n} (${elemCounts[n]})`).join(" · ");
+    const modLine = modNames.map(n => `${n} (${modCounts[n]})`).join(" · ");
+    const dreamSynth = {
+      "Agua": "Con predominancia de Agua, tus sueños tienden a ser vívidos, simbólicos y cargados de emoción: el registro de DreamSaver es aquí tu mejor instrumento de observación.",
+      "Fuego": "Con predominancia de Fuego, los sueños suelen llegar como escenas de acción, arranques y retos: registra la primera imagen al despertar, es la chispa del tema.",
+      "Tierra": "Con predominancia de Tierra, los sueños trabajan lo práctico: dinero, cuerpo, casas y proyectos; presta atención a los detalles concretos que se repiten.",
+      "Aire": "Con predominancia de Aire, los sueños se expresan en conversaciones, mensajes, ideas y redes de personajes: anota palabras, nombres y conversaciones que reaparecen."
+    };
+    return `<div class="synthesis-box">
+      <p><strong>Elemento dominante: ${topEl}</strong> — ${ELEMENT_THEMES_ES[topEl]}.<br>Distribución natal: ${elLine}.</p>
+      <p><strong>Modalidad dominante: ${topMod}</strong> — ${MODALITY_THEMES_ES[topMod]}.<br>Distribución natal: ${modLine}.</p>
+      <p class="soft"><strong>Lectura onírica de la síntesis:</strong> ${dreamSynth[topEl] || "Observa qué ámbitos de la carta se repiten en tus sueños y qué casas piden más atención."}</p>
+    </div>`;
+  }
+
   function buildPrintableNatalReportHtml() {
     const chart = currentFullNatalChart || buildFullNatalDetails(null, "N/D", "N/D", "N/D");
     const dobVal = dobInput.value || currentBirthMeta?.dob || "No registrada";
@@ -2496,20 +2730,13 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
       </tr>`;
     }).join("");
 
-    const aspectsSection = chart.aspects && chart.aspects.length ? `
-      <h2>Aspectos Planetarios Principales</h2>
-      <table>
-        <thead><tr><th>Planeta 1</th><th>Aspecto</th><th>Planeta 2</th><th>Orbe</th></tr></thead>
-        <tbody>
-          ${chart.aspects.map(a => `<tr>
-            <td>${escapeHtml(a.p1 || a.planet1 || a.from || "—")}</td>
-            <td><strong>${escapeHtml(a.type || a.aspect || a.name || "—")}</strong></td>
-            <td>${escapeHtml(a.p2 || a.planet2 || a.to || "—")}</td>
-            <td>${typeof a.orb === "number" ? a.orb.toFixed(2) + "°" : "—"}</td>
-          </tr>`).join("")}
-        </tbody>
-      </table>
-    ` : "";
+    const houseCardsHtml = buildHouseCardsHtml(chart);
+    const emptyHousesHtml = buildEmptyHousesHtml(chart);
+    const axesHtml = buildAxesHtml(chart);
+    const planetInterpHtml = buildPlanetInterpretationHtml(chart);
+    const sensitivePointsHtml = buildSensitivePointsHtml(chart);
+    const aspectsInterpretedHtml = buildAspectsInterpretedHtml(chart);
+    const synthesisHtml = buildSynthesisHtml(elemCounts, modCounts);
 
     const momentHtml = `
       <div class="moment-box">
@@ -2601,6 +2828,43 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     margin-top: 20px; padding-top: 10px; border-top: 1px solid #dfd5f0;
     font-family: system-ui, sans-serif; font-size: 8pt; color: #62557d; text-align: center;
   }
+  .note { font-family: system-ui, sans-serif; font-size: 8.6pt; color: #62557d; margin: 4px 0 10px; }
+  .soft { color: #62557d; }
+  .house-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 6px 0 14px; }
+  .house-card {
+    border: 1px solid #dfd5f0; border-left: 3.5px solid #6b3fa0; border-radius: 6px;
+    padding: 8px 10px; background: #faf8fe; page-break-inside: avoid;
+    font-family: system-ui, sans-serif; font-size: 8.4pt;
+  }
+  .house-card h3 { font-size: 9.5pt; margin: 0 0 4px; color: #4e2a7a; }
+  .house-card p { margin: 3px 0; }
+  .point-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 6px 0 14px; }
+  .point-card {
+    border: 1px solid #dfd5f0; border-radius: 6px; padding: 8px 10px; background: #faf8fe;
+    page-break-inside: avoid; font-family: system-ui, sans-serif; font-size: 8.4pt;
+  }
+  .point-card h3 { font-size: 9.5pt; margin: 0 0 4px; color: #4e2a7a; }
+  .point-card p { margin: 3px 0; }
+  .planet-blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 6px 0 14px; }
+  .planet-block {
+    border: 1px solid #dfd5f0; border-radius: 6px; padding: 8px 10px; background: #faf8fe;
+    page-break-inside: avoid; font-family: system-ui, sans-serif; font-size: 8.4pt;
+  }
+  .planet-block h3 { font-size: 9.5pt; margin: 0 0 4px; color: #4e2a7a; }
+  .planet-block p { margin: 3px 0; }
+  .axis-row {
+    border-left: 3.5px solid #6b3fa0; background: #faf8fe; border-radius: 6px;
+    padding: 8px 10px; margin-bottom: 8px; page-break-inside: avoid; font-size: 9pt;
+    font-family: system-ui, sans-serif;
+  }
+  .axis-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 3px; }
+  .axis-row p { margin: 2px 0 0; }
+  .synthesis-box {
+    background: #f4effb; border: 1px solid #d5c7ed; border-radius: 8px;
+    padding: 11px 14px; margin: 14px 0; font-size: 9.2pt; page-break-inside: avoid;
+    font-family: system-ui, sans-serif;
+  }
+  .synthesis-box p { margin: 5px 0; }
   @media print {
     body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
@@ -2653,15 +2917,28 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     <tbody>${planetsRows}</tbody>
   </table>
 
-  <h2>Las 12 Casas Astrológicas</h2>
+  <h2>Las 12 Casas Astrológicas · Significado Completo</h2>
   <table>
     <thead>
       <tr><th style="width:24%">Casa</th><th style="width:22%">Signo en Cúspide</th><th>Área de Experiencia y Simbolismo</th></tr>
     </thead>
     <tbody>${housesRows}</tbody>
   </table>
+  ${houseCardsHtml}
+  ${emptyHousesHtml}
 
-  ${aspectsSection}
+  <h2>Ejes Natales Principales</h2>
+  ${axesHtml}
+
+  <h2>Interpretación Planetaria Detallada</h2>
+  ${planetInterpHtml}
+
+  ${sensitivePointsHtml}
+
+  ${aspectsInterpretedHtml}
+
+  <h2>Síntesis Elemental y de Modalidades</h2>
+  ${synthesisHtml}
 
   <div class="footer">
     <strong>✦ DreamSaver</strong> · Documento generado para reflexión personal y seguimiento onírico. Contacto: redlantecc@gmail.com
