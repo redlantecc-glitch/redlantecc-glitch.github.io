@@ -1,0 +1,320 @@
+{
+  "meta": {
+    "titulo": "Biodescodificación DreamSaver",
+    "version": "2.0-piloto",
+    "generado": "2026-11-28",
+    "autoria": "Texto original de DreamSaver (Redlantec). No reproduce texto de terceros.",
+    "aviso": "Este contenido es una herramienta de autoconocimiento y reflexión simbólica. No es diagnóstico ni tratamiento médico y no reemplaza la consulta con un profesional de la salud. Ante cualquier síntoma, consulta a tu médico.",
+    "formato": {
+      "resumen": "Qué es, en lenguaje simple",
+      "lectura": "Lectura simbólica desde la biodescodificación",
+      "emociones": "Emociones o vivencias que suelen asociarse",
+      "preguntas": "Preguntas para reflexionar o escribir en el diario",
+      "afirmacion": "Frase para trabajar el cambio de mirada",
+      "relacionados": "ids de otras fichas"
+    }
+  },
+  "entradas": [
+    {
+      "id": "acne",
+      "titulo": "ACNÉ",
+      "letra": "A",
+      "resumen": "Inflamación de las glándulas sebáceas y folículos de la piel, frecuente en la adolescencia, que aparece sobre todo en cara, espalda y pecho.",
+      "lectura": "La piel es la frontera entre yo y el mundo, y el rostro es lo primero que mostramos. El acné se lee como una tensión entre lo que siento que soy y la imagen que creo que los demás esperan de mí. Suele aparecer en etapas de cambio de identidad, cuando todavía no sé bien cómo quiero ser visto.",
+      "emociones": ["Vergüenza de mostrarse", "Miedo al juicio ajeno", "Desvalorización de la propia imagen", "Deseo de mantener distancia"],
+      "preguntas": [
+        "¿En qué situaciones siento que no quiero que me vean tal como soy?",
+        "¿A quién intento agradar o de quién temo el rechazo?",
+        "¿Qué parte de mí estoy aprendiendo a aceptar en este momento?"
+      ],
+      "afirmacion": "Me muestro como soy. Mi valor no depende de la mirada de los demás.",
+      "relacionados": ["piel-epidermis"]
+    },
+    {
+      "id": "ansiedad-angustia",
+      "titulo": "ANSIEDAD / ANGUSTIA",
+      "letra": "A",
+      "resumen": "Estado de inquietud, tensión y alerta constante, a menudo con síntomas físicos como opresión en el pecho, respiración rápida o nudo en el estómago.",
+      "lectura": "La ansiedad es el cuerpo preparándose para un peligro que todavía no llega. Simbólicamente habla de una mente que vive adelantada al presente, intentando controlar lo que no puede controlar. Suele aparecer cuando siento que el suelo se mueve y no confío en mis propios recursos para enfrentarlo.",
+      "emociones": ["Miedo a lo que vendrá", "Necesidad de control", "Sensación de amenaza difusa", "Desconfianza en la vida"],
+      "preguntas": [
+        "¿Qué escenario futuro me repito una y otra vez?",
+        "¿Qué intento controlar que en realidad no depende de mí?",
+        "¿Qué recursos tengo hoy, aquí, que estoy olvidando?"
+      ],
+      "afirmacion": "Estoy a salvo en este momento. Confío en mi capacidad de responder a lo que venga.",
+      "relacionados": ["insomnio", "estomago"]
+    },
+    {
+      "id": "asma",
+      "titulo": "ASMA",
+      "letra": "A",
+      "resumen": "Enfermedad respiratoria en la que los bronquios se estrechan e inflaman, provocando falta de aire, tos y silbidos al respirar.",
+      "lectura": "Respirar es tomar la vida y soltarla. En el asma el aire entra pero cuesta dejarlo salir, como si hubiera algo que retengo. Se asocia a sentirse sofocado por un entorno o una relación, a no tener espacio propio, o a reprimir el llanto y las ganas de expresar lo que siento.",
+      "emociones": ["Sensación de ahogo en una relación", "Falta de espacio propio", "Llanto contenido", "Miedo a la separación"],
+      "preguntas": [
+        "¿Dónde o con quién siento que me falta el aire?",
+        "¿Qué me gustaría decir y no me permito?",
+        "¿Tengo un espacio que sea realmente mío?"
+      ],
+      "afirmacion": "Tengo derecho a mi propio espacio. Respiro con libertad y expreso lo que siento.",
+      "relacionados": ["ansiedad-angustia", "garganta"]
+    },
+    {
+      "id": "cefaleas",
+      "titulo": "CEFALEAS (dolor de cabeza)",
+      "letra": "C",
+      "resumen": "Dolor en cualquier zona de la cabeza. Puede ser tensional, por esfuerzo, por falta de sueño o asociado a otras condiciones.",
+      "lectura": "La cabeza es el centro del pensamiento y de las decisiones. El dolor de cabeza suele leerse como exceso de mente: darle vueltas a un problema, exigirse demasiado o querer resolverlo todo pensando. También puede señalar una autocrítica fuerte, el sentir que \"no estoy a la altura\".",
+      "emociones": ["Exceso de exigencia", "Autocrítica", "Preocupación constante", "Presión por rendir"],
+      "preguntas": [
+        "¿Qué asunto no dejo de pensar estos días?",
+        "¿Me estoy exigiendo más de lo que puedo dar?",
+        "¿Qué pasaría si me permitiera no tener todas las respuestas ahora?"
+      ],
+      "afirmacion": "Me permito descansar la mente. Hago lo mejor que puedo y eso es suficiente.",
+      "relacionados": ["migranas", "cuello"]
+    },
+    {
+      "id": "migranas",
+      "titulo": "MIGRAÑAS",
+      "letra": "M",
+      "resumen": "Dolor de cabeza intenso, a menudo en un solo lado, que puede venir con náuseas, sensibilidad a la luz y al ruido.",
+      "lectura": "La migraña obliga a detenerse, a oscurecer el cuarto y desconectarse. Simbólicamente se relaciona con el perfeccionismo y la presión intelectual, y con situaciones en que siento que debo rendir sin descanso. Puede ser la forma en que el cuerpo pone un límite que la persona no se atreve a poner.",
+      "emociones": ["Perfeccionismo", "Sobrecarga mental", "Dificultad para decir que no", "Presión por cumplir expectativas"],
+      "preguntas": [
+        "¿En qué ámbito siento que nunca es suficiente lo que hago?",
+        "¿Qué límite necesito poner y no he puesto?",
+        "¿Qué sucede justo antes de que llegue una crisis?"
+      ],
+      "afirmacion": "Pongo límites con amor. Puedo detenerme antes de que mi cuerpo tenga que hacerlo por mí.",
+      "relacionados": ["cefaleas"]
+    },
+    {
+      "id": "estrenimiento",
+      "titulo": "ESTREÑIMIENTO",
+      "letra": "E",
+      "resumen": "Dificultad para evacuar o evacuaciones poco frecuentes, con heces duras.",
+      "lectura": "El intestino grueso es donde termina la digestión y se suelta lo que ya no sirve. El estreñimiento se lee como dificultad para soltar: ideas, objetos, relaciones o situaciones del pasado. También puede hablar de miedo a perder, de querer guardar por si acaso.",
+      "emociones": ["Apego al pasado", "Miedo a la carencia", "Necesidad de control", "Dificultad para soltar"],
+      "preguntas": [
+        "¿Qué estoy reteniendo que ya cumplió su ciclo?",
+        "¿Qué temo que pase si lo suelto?",
+        "¿Hay algo que guardo por obligación y no por deseo?"
+      ],
+      "afirmacion": "Suelto lo que ya no necesito. Confío en que la vida me trae lo nuevo.",
+      "relacionados": ["colon"]
+    },
+    {
+      "id": "gastritis",
+      "titulo": "GASTRITIS",
+      "letra": "G",
+      "resumen": "Inflamación de la mucosa del estómago, que causa ardor, dolor o sensación de pesadez.",
+      "lectura": "El estómago recibe y procesa lo que entra. La gastritis, con su ardor, se asocia a situaciones que \"no puedo digerir\" y que me generan rabia o irritación sostenida. Suele vincularse a conflictos con personas cercanas, en la familia o el trabajo, que se tragan en vez de expresarse.",
+      "emociones": ["Rabia contenida", "Irritación con alguien cercano", "Sentir injusticia", "Tragarse lo que molesta"],
+      "preguntas": [
+        "¿Qué situación me cuesta aceptar o digerir?",
+        "¿Con quién siento rabia que no he expresado?",
+        "¿Qué necesitaría decir para quedarme en paz?"
+      ],
+      "afirmacion": "Expreso lo que me molesta con calma. Elijo qué acepto y qué no.",
+      "relacionados": ["estomago", "higado"]
+    },
+    {
+      "id": "hipertension-arterial",
+      "titulo": "HIPERTENSIÓN ARTERIAL",
+      "letra": "H",
+      "resumen": "Presión de la sangre en las arterias elevada de forma sostenida. Muchas veces no da síntomas y requiere control médico.",
+      "lectura": "La sangre simboliza la vida y la familia, y la presión es la fuerza con que circula. La hipertensión se lee como vivir bajo tensión constante, cargando con responsabilidades propias y ajenas. También se asocia a querer mantener unido al clan o sostener a todos.",
+      "emociones": ["Sobrerresponsabilidad", "Tensión acumulada", "Conflictos familiares no resueltos", "Necesidad de sostener a otros"],
+      "preguntas": [
+        "¿Qué cargas llevo que no me corresponden?",
+        "¿Siento que si yo suelto, todo se desarma?",
+        "¿Qué me haría sentir más liviano en mi día a día?"
+      ],
+      "afirmacion": "Suelto lo que no me corresponde cargar. Cada persona es responsable de su camino.",
+      "relacionados": ["ansiedad-angustia"]
+    },
+    {
+      "id": "insomnio",
+      "titulo": "INSOMNIO",
+      "letra": "I",
+      "resumen": "Dificultad para conciliar el sueño, mantenerlo o despertar demasiado temprano sin poder volver a dormir.",
+      "lectura": "Dormir es soltar el control y entregarse. El insomnio se relaciona con no poder bajar la guardia: preocupaciones, deudas pendientes o una sensación de peligro que mantiene la mente vigilante. A veces se asocia a duelos o a recuerdos que aparecen en el silencio de la noche.",
+      "emociones": ["Estado de alerta", "Preocupación", "Miedo a soltar el control", "Duelo no procesado"],
+      "preguntas": [
+        "¿En qué pienso cuando no puedo dormir?",
+        "¿Hay algo pendiente que me mantiene vigilante?",
+        "¿Qué necesitaría para sentirme seguro y descansar?"
+      ],
+      "afirmacion": "Suelto el día con gratitud. La noche es para descansar y estoy a salvo.",
+      "relacionados": ["ansiedad-angustia", "depresion"]
+    },
+    {
+      "id": "diabetes",
+      "titulo": "DIABETES",
+      "letra": "D",
+      "resumen": "Alteración en la forma en que el cuerpo regula el azúcar en la sangre, por falta de insulina o por resistencia a ella. Requiere seguimiento médico.",
+      "lectura": "El azúcar representa la dulzura y el placer de vivir. La diabetes se lee como una dificultad para recibir esa dulzura: la persona da mucho afecto pero le cuesta aceptarlo, o siente que la vida le quitó lo dulce. También se asocia a resistirse a algo que ocurre y no se puede cambiar.",
+      "emociones": ["Falta de dulzura en la vida", "Dificultad para recibir afecto", "Tristeza profunda", "Resistencia a una situación"],
+      "preguntas": [
+        "¿Me permito disfrutar y recibir cariño?",
+        "¿Qué situación vivo como amarga?",
+        "¿Qué pequeños placeres he dejado de lado?"
+      ],
+      "afirmacion": "Me abro a recibir la dulzura de la vida. Merezco disfrutar.",
+      "relacionados": ["obesidad-y-sobrepeso"]
+    },
+    {
+      "id": "tiroides",
+      "titulo": "TIROIDES",
+      "letra": "T",
+      "resumen": "Glándula en la base del cuello que regula el ritmo del metabolismo. Puede trabajar de más (hipertiroidismo) o de menos (hipotiroidismo).",
+      "lectura": "La tiroides marca el ritmo con que vivo. Simbólicamente se asocia al tiempo: sentir que debo apurarme porque no llego, o al contrario, que ya no tiene sentido intentarlo. Al estar en el cuello, también se vincula a lo que expreso o callo para cumplir con los demás.",
+      "emociones": ["Sentir que el tiempo no alcanza", "Urgencia por actuar", "Resignación", "Callar para encajar"],
+      "preguntas": [
+        "¿Vivo con sensación de urgencia o de resignación?",
+        "¿A qué ritmo siento que debo vivir y a qué ritmo quiero vivir?",
+        "¿Qué no digo para no incomodar?"
+      ],
+      "afirmacion": "Vivo a mi propio ritmo. Tengo el tiempo que necesito.",
+      "relacionados": ["garganta", "cuello"]
+    },
+    {
+      "id": "rodilla",
+      "titulo": "RODILLA",
+      "letra": "R",
+      "resumen": "Articulación que une muslo y pierna. Permite flexionar, avanzar y adaptarse al terreno.",
+      "lectura": "La rodilla es la articulación que se dobla, y por eso se asocia a la flexibilidad y a la sumisión. Las molestias en la rodilla se leen como un conflicto entre ceder y mantenerse firme: tener que doblegarme ante alguien, o negarme a aceptar otro punto de vista.",
+      "emociones": ["Sentirse obligado a ceder", "Orgullo", "Rigidez", "Dificultad para aceptar la autoridad"],
+      "preguntas": [
+        "¿Ante quién o qué siento que tengo que agacharme?",
+        "¿Dónde me estoy mostrando inflexible?",
+        "¿Puedo ceder sin sentir que me pierdo?"
+      ],
+      "afirmacion": "Soy flexible sin perderme. Avanzo con firmeza y apertura.",
+      "relacionados": ["ciatica"]
+    },
+    {
+      "id": "garganta",
+      "titulo": "GARGANTA",
+      "letra": "G",
+      "resumen": "Zona que conecta boca con esófago y tráquea. Por ella pasan el alimento, el aire y la voz.",
+      "lectura": "La garganta es el canal de la expresión. Sus molestias se leen como palabras atrapadas: algo que quiero decir y me trago, o algo que dije y lamento. También puede asociarse a querer atrapar algo (una oportunidad, una persona) o a tener que tragarme una situación que no acepto.",
+      "emociones": ["Palabras no dichas", "Miedo a expresarse", "Tragarse algo injusto", "Frustración"],
+      "preguntas": [
+        "¿Qué necesito decir y a quién?",
+        "¿Qué me estoy tragando por evitar un conflicto?",
+        "¿Cómo puedo expresarlo de forma que me sienta en paz?"
+      ],
+      "afirmacion": "Mi voz importa. Me expreso con claridad y respeto.",
+      "relacionados": ["tiroides", "asma"]
+    },
+    {
+      "id": "depresion",
+      "titulo": "DEPRESIÓN",
+      "letra": "D",
+      "resumen": "Estado prolongado de tristeza, falta de energía y pérdida de interés. Es una condición de salud que requiere acompañamiento profesional.",
+      "lectura": "La depresión puede leerse como una retirada de la energía vital, como si una parte de mí ya no quisiera participar. Suele asociarse a pérdidas no lloradas, a un sentido de vida que se desdibujó, o a una rabia tan reprimida que se vuelve contra uno mismo.",
+      "emociones": ["Pérdida de sentido", "Duelo no resuelto", "Desvalorización", "Rabia dirigida hacia uno mismo"],
+      "preguntas": [
+        "¿Qué perdí que todavía no he podido despedir?",
+        "¿Qué me daba sentido antes y qué me lo da hoy?",
+        "¿A quién puedo pedir ayuda en este momento?"
+      ],
+      "afirmacion": "Me doy permiso para sentir y pedir ayuda. Paso a paso, vuelvo a mí.",
+      "relacionados": ["insomnio"],
+      "nota_especial": "Si sientes que no puedes con esto o tienes pensamientos de hacerte daño, busca ayuda profesional o una línea de apoyo de tu país de inmediato."
+    },
+    {
+      "id": "gripe",
+      "titulo": "GRIPE",
+      "letra": "G",
+      "resumen": "Infección viral respiratoria con fiebre, dolor muscular, cansancio y congestión.",
+      "lectura": "La gripe obliga a parar unos días. Simbólicamente se asocia a un cansancio acumulado y a la necesidad de un descanso que no me doy. También puede aparecer tras un periodo de tensión, como la forma del cuerpo de decir \"basta, necesito tiempo para mí\".",
+      "emociones": ["Agotamiento", "Necesidad de descanso", "Sentirse invadido por el entorno", "Saturación"],
+      "preguntas": [
+        "¿Cuándo fue la última vez que descansé de verdad?",
+        "¿Qué situación me tiene saturado?",
+        "¿Cómo puedo cuidarme antes de llegar al límite?"
+      ],
+      "afirmacion": "Me doy el descanso que necesito. Cuidarme es una prioridad.",
+      "relacionados": ["garganta"]
+    },
+    {
+      "id": "higado",
+      "titulo": "HÍGADO",
+      "letra": "H",
+      "resumen": "Órgano grande que filtra la sangre, almacena energía y ayuda a digerir las grasas.",
+      "lectura": "El hígado filtra y guarda reservas. Por eso se asocia a la ira y al miedo a la carencia: a que me falte lo necesario para vivir. También se vincula a juicios y críticas, a filtrar todo con desconfianza, y a rabia que se acumula sin salir.",
+      "emociones": ["Ira acumulada", "Miedo a que falte lo esencial", "Crítica y juicio", "Resentimiento"],
+      "preguntas": [
+        "¿Qué me da rabia y no he expresado?",
+        "¿Tengo miedo de que me falte algo importante?",
+        "¿Desde dónde juzgo a los demás o a mí mismo?"
+      ],
+      "afirmacion": "Libero la ira de forma sana. Confío en que tengo lo que necesito.",
+      "relacionados": ["gastritis", "estomago"]
+    },
+    {
+      "id": "estomago",
+      "titulo": "ESTÓMAGO",
+      "letra": "E",
+      "resumen": "Órgano que recibe el alimento y comienza a descomponerlo con jugos digestivos.",
+      "lectura": "El estómago es donde recibo y empiezo a procesar lo nuevo. Sus molestias se leen como dificultad para aceptar algo: una noticia, una persona, un cambio. Se asocia a frases como \"no lo trago\" o \"me cayó pesado\".",
+      "emociones": ["Resistencia a lo nuevo", "Miedo al cambio", "Contrariedad", "Preocupación"],
+      "preguntas": [
+        "¿Qué noticia o situación no termino de aceptar?",
+        "¿Qué cambio me asusta?",
+        "¿Qué necesitaría para recibirlo con más calma?"
+      ],
+      "afirmacion": "Recibo lo nuevo con confianza. Asimilo la vida a mi ritmo.",
+      "relacionados": ["gastritis", "higado", "ansiedad-angustia"]
+    },
+    {
+      "id": "cuello",
+      "titulo": "CUELLO",
+      "letra": "C",
+      "resumen": "Une la cabeza con el tronco. Permite girar, mirar hacia los lados y hacia atrás.",
+      "lectura": "El cuello une lo que pienso (cabeza) con lo que siento y hago (cuerpo). La rigidez de cuello se lee como inflexibilidad: no querer mirar hacia otro lado ni considerar otros puntos de vista. También se asocia a la tensión de querer controlar todo lo que pasa alrededor.",
+      "emociones": ["Terquedad", "Necesidad de controlar", "Desconexión entre mente y emoción", "No querer ver algo"],
+      "preguntas": [
+        "¿Qué no quiero mirar o considerar?",
+        "¿Estoy en conflicto entre lo que pienso y lo que siento?",
+        "¿Qué pasaría si me abriera a otra mirada?"
+      ],
+      "afirmacion": "Me abro a nuevas perspectivas. Mente y corazón trabajan juntos.",
+      "relacionados": ["cefaleas", "hombros", "tiroides"]
+    },
+    {
+      "id": "hombros",
+      "titulo": "HOMBROS",
+      "letra": "H",
+      "resumen": "Articulaciones que unen brazos y tronco. Permiten abrazar, cargar y alcanzar.",
+      "lectura": "Los hombros cargan. Sus dolores se leen como el peso de responsabilidades excesivas o de cargas que no me corresponden. También se vinculan a la capacidad de abrazar y de actuar: sentir que no puedo hacer lo que quiero hacer, o que cargo con la vida de otros.",
+      "emociones": ["Sobrecarga", "Sentirse responsable de todos", "Impotencia para actuar", "Falta de apoyo"],
+      "preguntas": [
+        "¿Qué peso llevo que podría compartir o soltar?",
+        "¿Quién me ayuda a cargar?",
+        "¿Qué quiero hacer y siento que no puedo?"
+      ],
+      "afirmacion": "Comparto mis cargas. Hago lo que me corresponde con alegría.",
+      "relacionados": ["cuello", "hipertension-arterial"]
+    },
+    {
+      "id": "ciatica",
+      "titulo": "CIÁTICA",
+      "letra": "C",
+      "resumen": "Dolor que recorre el nervio ciático, desde la zona lumbar o glúteo hacia la pierna.",
+      "lectura": "El nervio ciático lleva el impulso hacia las piernas, que nos permiten avanzar. La ciática se asocia a miedo o inseguridad frente al futuro, sobre todo en temas de dinero y estabilidad. También puede hablar de una dirección de vida que no se siente propia, o de avanzar con dudas.",
+      "emociones": ["Inseguridad económica", "Miedo al futuro", "Dudas sobre el camino", "Sentirse sin apoyo"],
+      "preguntas": [
+        "¿Qué me preocupa del futuro, especialmente en lo material?",
+        "¿Estoy avanzando en la dirección que realmente quiero?",
+        "¿Dónde siento que me falta respaldo?"
+      ],
+      "afirmacion": "Avanzo con confianza. La vida me sostiene en mi camino.",
+      "relacionados": ["rodilla"]
+    }
+  ]
+}
