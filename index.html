@@ -284,6 +284,12 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
 .hd-modal.modal-narrow{max-width:540px}
 .fld .hint{display:block;font-size:12px;color:var(--mute);margin-top:2px}
 .profile-email{word-break:break-all;color:var(--ink)}
+
+/* Fase lunar: arriba en PC; en celular y tablet va al final de la pantalla */
+#app-content:not([style*="none"]){display:flex!important;flex-direction:column}
+@media (max-width:959px){
+  #app-content .lunar-card{order:5;margin-top:6px}
+}
 </style>
 </head>
 <body>
