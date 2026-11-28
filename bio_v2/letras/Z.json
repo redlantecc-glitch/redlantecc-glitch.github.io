@@ -1,0 +1,23 @@
+[
+  {
+    "id": "zumbidos",
+    "titulo": "ZUMBIDOS",
+    "letra": "Z",
+    "resumen": "Sensación de oír pitidos o ruidos en el oído sin que exista un sonido externo.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "idea": "Ver Acúfenos."
+      }
+    ],
+    "preguntas": [
+      "¿Qué ruido interior me cuesta acallar?",
+      "¿Qué no quiero escuchar en este momento?"
+    ],
+    "afirmacion": "Escucho mi silencio interior con calma.",
+    "relacionados": [
+      "acufenos",
+      "oido"
+    ]
+  }
+]

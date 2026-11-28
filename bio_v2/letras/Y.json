@@ -1,0 +1,63 @@
+[
+  {
+    "id": "yaciente",
+    "titulo": "YACIENTE",
+    "letra": "Y",
+    "resumen": "En biodescodificación, persona que carga inconscientemente con la memoria de un familiar fallecido antes de que ella fuera concebida, como si viviera en su lugar.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "sentir": [
+          "No vivo mi vida",
+          "Siento que somos dos dentro de mí",
+          "Estoy desplomado, no me puedo mover",
+          "Soy como un muerto en vida"
+        ],
+        "idea": "Describe señales típicas: una tristeza de fondo sin causa aparente; sentir que no se tiene derecho al placer tras un drama familiar (por ejemplo, con bruxismo); hablar en tono bajo; no haber conocido al difunto, que murió antes de la concepción; tendencia a la inmovilidad al dormir, sobre todo en la siesta, con las manos cruzadas sobre el pecho o a lo largo del cuerpo, aunque algunos no paran de moverse; gusto por el negro o, al revés, por mucho blanco; música triste o que habla de muerte; ciertas profesiones (medicina, forense, piloto, azafata, actor, fisioterapia, danza, yoga, partería), sin que la relación funcione al revés; y nombres repetidos del difunto o terminados en 'el' como Ángel, Gabriel o Rafael. En las fechas, se consideran nacer en la fecha de muerte del difunto (al menos un año después), nacer en su fecha de concepción (tres meses después) o ser concebido en su fecha de muerte (tres meses antes). Se plantea que, cuando muere alguien, la familia 'hace dos' para reparar: uno lo orgánico y otro lo psicológico; uno será doble por fecha de nacimiento y el otro yaciente por fecha de defunción, y si se nace justo en la fecha de la muerte, la reparación recae en él. Suele rastrearse en la tercera y cuarta generación (abuelos y bisabuelos). Enfermedades asociadas: esclerosis en placas (vista como muy ligada a lo transgeneracional y al yaciente), Parkinson (querer y no querer moverse), poliartritis reumatoide, obesidad ligada a los proyectos de vida, enfermedades respiratorias incapacitantes (bronquitis crónica, asma, insuficiencia respiratoria), vientre hinchado con muchos gases, bruxismo (no permitirse el placer), diabetes (necesitar mucho azúcar para mover al muerto que se lleva dentro), hiperactividad infantil (memorias de incesto y yaciente), apnea del sueño, sonambulismo (el 'otro' que nos lleva de paseo) y enfermedades mentales."
+      }
+    ],
+    "preguntas": [
+      "¿Llevo el nombre de algún familiar que murió antes de que yo naciera?",
+      "¿Siento una tristeza de fondo que no sé explicar?",
+      "¿Me permito disfrutar de mi propia vida?"
+    ],
+    "afirmacion": "Honro a quienes me precedieron y vivo mi propia vida.",
+    "relacionados": [
+      "esclerosis-en-placa",
+      "parkinson",
+      "bruxismo-dientes",
+      "diabetes",
+      "apnea-del-sueno",
+      "obesidad-y-sobrepeso",
+      "bronquitis-cronica",
+      "asma"
+    ]
+  },
+  {
+    "id": "yeyuno-intestino-delgado-superior",
+    "titulo": "YEYUNO (intestino delgado superior)",
+    "letra": "Y",
+    "resumen": "Tramo central del intestino delgado, donde se absorbe gran parte de los nutrientes.",
+    "etapa": "1ª etapa (supervivencia)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "No poder digerir la presa: una contrariedad indigesta que a menudo se acompaña de miedo a morir de hambre.",
+        "sentir": [
+          "No puedo digerir lo que pasó",
+          "Tengo miedo de que me falte lo necesario"
+        ]
+      }
+    ],
+    "preguntas": [
+      "¿Qué situación no logro digerir?",
+      "¿Temo que me falte el sustento?"
+    ],
+    "afirmacion": "Asimilo lo que vivo y confío en tener lo necesario.",
+    "relacionados": [
+      "intestino-delgado",
+      "ileon-intestino-delgado-inferior",
+      "duodeno-excepto-bulbo"
+    ]
+  }
+]

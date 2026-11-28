@@ -1,0 +1,2120 @@
+[
+  {
+    "id": "el-paladar",
+    "titulo": "PALADAR",
+    "letra": "P",
+    "resumen": "Techo de la boca: una parte dura y ósea por delante y una parte blanda (el velo) hacia la garganta.",
+    "etapa": "1ª etapa (supervivencia)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Quedar separado del bocado que ya se tenía casi asegurado (trabajo, casa, pareja) o temer que nos lo quiten.",
+        "sentir": [
+          "Está fuera y quiero atraparlo",
+          "Ya lo tengo en la boca y no quiero que me lo quiten",
+          "Tengo miedo de que me separen de lo mío"
+        ],
+        "idea": "La imagen es la de un pájaro al que otro le arrebata la semilla del pico cuando aún no la ha tragado. Se cita el caso de un hombre que ganó la lotería y perdió el boleto cuando ya se veía con el dinero. El primer 'bocado' es el pecho materno: un destete prematuro puede dejar fascinación por los pechos. Distingue zonas: el paladar óseo habla de desvalorización por no ser capaz de atrapar el bocado; la hendidura del paladar, de no poder tomarlo porque es demasiado grande; el velo del paladar se liga a los ronquidos, pidiendo socorro si ocurren al inspirar o queriendo alejar un peligro si ocurren al espirar."
+      }
+    ],
+    "preguntas": [
+      "¿Qué tenía casi en mis manos y sentí que me lo arrebataron?",
+      "¿Temo perder algo que considero mío?",
+      "¿Hay algo que deseo y siento demasiado grande para mí?"
+    ],
+    "afirmacion": "Confío en que lo que es para mí llega y se queda conmigo.",
+    "relacionados": [
+      "boca",
+      "el-ronquido",
+      "pechos"
+    ]
+  },
+  {
+    "id": "pancreas",
+    "titulo": "PÁNCREAS",
+    "letra": "P",
+    "resumen": "Glándula situada detrás del estómago que produce jugos digestivos muy potentes y hormonas como la insulina y el glucagón.",
+    "etapa": "1ª etapa (supervivencia) y 4ª etapa (relación)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Ignominia: haber recibido (o hecho) algo innoble, una gran mala jugada, a menudo en la familia y ligada a herencias reales o simbólicas. En la 4ª etapa, resistencia: oponerse y defenderse de alguien o algo, con miedo o asco angustiado.",
+        "sentir": [
+          "Me han hecho algo innoble",
+          "Siempre quiero tener dulzura",
+          "Me tragué un bocado enorme y no lo puedo digerir"
+        ],
+        "idea": "Como fabrica las enzimas más fuertes del cuerpo, se asocia a un bocado enorme atascado que no se logra digerir. Si el colon se vincula a una 'porquería', el páncreas la multiplicaría por cien. Ejemplos: una mujer que debe cancelar unas vacaciones que ya vivía con ilusión porque su madre sufre un accidente; un cáncer de páncreas que surge cuando un amigo lo abandona, programado por haber sido dejado en un orfanato a los 9 años. Los canales pancreáticos se ligan a algo inaceptable en el marco social. Perdonar y asimilar se considera sanador, recordando las fases del duelo y de la digestión. Ver también Glucagón."
+      },
+      {
+        "fuente": "martel",
+        "idea": "Lo relaciona con la alegría que vive dentro de uno."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Lo ve como símbolo de la dulzura de la vida. En la pancreatitis señala rechazo, enojo y frustración porque la vida parece haber perdido su dulzura. Propone reconocer la propia vida como dulce y crear uno mismo alegría y dulzura desde la aceptación de sí."
+      }
+    ],
+    "preguntas": [
+      "¿Qué situación viví como una injusticia innoble?",
+      "¿Hay una historia de herencia en mi familia que no he digerido?",
+      "¿Dónde siento que perdí la dulzura de la vida?"
+    ],
+    "afirmacion": "Elijo asimilar lo vivido y crear dulzura en mi vida.",
+    "relacionados": [
+      "diabetes",
+      "cancer-de-pancreas",
+      "conductos-intrapancreaticos",
+      "el-duelo",
+      "colon"
+    ]
+  },
+  {
+    "id": "paperas-parotiditis",
+    "titulo": "PAPERAS (parotiditis)",
+    "letra": "P",
+    "resumen": "Infección viral contagiosa que inflama las glándulas salivales parótidas, típica de la infancia, aunque puede afectar otras glándulas.",
+    "etapa": "4ª etapa (relación)",
+    "enfoques": [
+      {
+        "fuente": "bourbeau",
+        "conflicto": "Sentirse escupido, sobre todo en sentido psicológico, por alguien que impide tener lo que se quiere, que reprocha o que ignora.",
+        "idea": "El niño guarda deseos ocultos de escupir a esa persona pero se reprime y se hace el sordo, y esa tensión acumulada inflama la glándula. En un adulto indica que una situación actual le recuerda una herida de la infancia y que sigue actuando como aquel niño. Sugiere notar que solo se deja escupir quien lo permite, afirmarse y dejar de sentirse inferior, reconocer que el otro también tiene miedo, tenerle compasión y contarle lo que le pasa."
+      }
+    ],
+    "preguntas": [
+      "¿Quién me hace sentir despreciado o ignorado?",
+      "¿Qué me gustaría decirle que estoy reprimiendo?",
+      "¿Qué situación actual me recuerda una herida de niño?"
+    ],
+    "afirmacion": "Me afirmo con calma y me doy el valor que merezco.",
+    "relacionados": [
+      "parotida",
+      "glandulas-salivares",
+      "enfermedades-infantiles"
+    ]
+  },
+  {
+    "id": "papiloma-humano",
+    "titulo": "PAPILOMA HUMANO",
+    "letra": "P",
+    "resumen": "Virus de transmisión sexual muy común, relacionado con la mayoría de los cánceres de cuello uterino.",
+    "etapa": "1ª etapa (supervivencia)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Separación unida a suciedad. También imposibilidad de tener relaciones sexuales o pérdida de territorio (4ª etapa).",
+        "idea": "Se recuerda que el virus se entiende siempre como parte de la curación. Se cita a una joven operada cuya cicatriz no cerraba: al preguntarle qué herida tenía abierta, contó que su novio le había sido infiel con prostitutas, algo que vivió como separación y suciedad y que nunca había compartido."
+      }
+    ],
+    "preguntas": [
+      "¿Viví una separación que además sentí como algo sucio?",
+      "¿Qué herida emocional sigo sin cerrar?",
+      "¿Hay algo que nunca le he contado a nadie?"
+    ],
+    "afirmacion": "Me permito sanar lo que me hirió y recuperar mi limpieza interior.",
+    "relacionados": [
+      "cuello-del-utero",
+      "virus",
+      "verrugas"
+    ],
+    "nota_especial": "El virus del papiloma humano puede requerir controles médicos periódicos. Mantén tus revisiones ginecológicas o urológicas y consulta a un profesional de la salud."
+  },
+  {
+    "id": "paralisis",
+    "titulo": "PARÁLISIS",
+    "letra": "P",
+    "resumen": "Pérdida o interrupción de la capacidad de mover o sentir una parte del cuerpo.",
+    "etapa": "4ª etapa (relación)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Contrariedad u oposición en el movimiento. Conflicto motor: el córtex impone un deseo que no se puede realizar. También falta de iniciativa o no encontrar salida ni desenlace.",
+        "sentir": [
+          "No sé adónde ir, estoy paralizado",
+          "No puedo huir ni encontrar salida",
+          "No sé por dónde tomarlo",
+          "No puedo sujetar ni empujar",
+          "No puedo evitarlo"
+        ],
+        "idea": "Según la zona: las piernas hablan de no poder huir, seguir o encontrar salida; brazos y manos, de no poder sujetar o empujar; espalda y hombros, de no poder evitar algo. En una persona diestra, la pierna derecha se liga al andar y la izquierda a proteger a los hijos. La parálisis infantil se asocia a miedo a quedar prisionero; la del esófago, a querer tragar sin poder; el espasmo facial, a una expresión emocional obligada."
+      },
+      {
+        "fuente": "martel",
+        "idea": "La relaciona a menudo con la huida, ante un miedo que paraliza."
+      },
+      {
+        "fuente": "hay",
+        "idea": "La vincula al miedo y al terror, a querer huir de una situación o persona y a la resistencia. En la parálisis agitante señala pensamientos que paralizan y estancamiento. Propone sentirse parte de la vida, capaz en toda situación, y permitirse pensar con libertad."
+      },
+      {
+        "fuente": "bourbeau",
+        "conflicto": "Vivir una situación demasiado difícil de la que se quiere escapar, o evitar a una persona concreta.",
+        "idea": "La parálisis se vuelve un medio para recibir ayuda y que otro se haga cargo, sin tener que enfrentar solo lo indeseado. Señala que nadie más que uno mismo se limita, que huir no hace desaparecer el problema y que la solución siempre está junto al problema cuando se deja de mirar solo este. Sugiere creer en el propio poder creador para vivir plenamente la experiencia."
+      }
+    ],
+    "preguntas": [
+      "¿De qué situación o persona quisiera escapar?",
+      "¿Qué deseo siento que no puedo realizar?",
+      "¿Estoy esperando que otro enfrente por mí lo que me toca?"
+    ],
+    "afirmacion": "Soy capaz de enfrentar lo que vivo y encuentro mi propia salida.",
+    "relacionados": [
+      "piernas",
+      "brazo",
+      "parkinson",
+      "hemiplegia-accidente-vascular-cerebral",
+      "poliomelitis"
+    ]
+  },
+  {
+    "id": "paralisis-cerebral",
+    "titulo": "PARÁLISIS CEREBRAL",
+    "letra": "P",
+    "resumen": "Grupo de trastornos del desarrollo del movimiento y la postura, debidos a alteraciones en el cerebro del feto o del niño pequeño, que a menudo se acompañan de dificultades sensoriales, de comunicación o de aprendizaje.",
+    "enfoques": [
+      {
+        "fuente": "hay",
+        "idea": "La relaciona con la necesidad de unir a la familia en un acto de amor. Propone contribuir a una vida familiar unida, amorosa y en paz."
+      }
+    ],
+    "preguntas": [
+      "¿Qué une a nuestra familia alrededor de esta experiencia?",
+      "¿Cómo podemos cuidarnos todos con más amor y paz?"
+    ],
+    "afirmacion": "Nuestra familia se une en el amor y la paz.",
+    "relacionados": [
+      "paralisis",
+      "malformacion"
+    ]
+  },
+  {
+    "id": "paranoia",
+    "titulo": "PARANOIA",
+    "letra": "P",
+    "resumen": "Trastorno en que la persona vive con desconfianza intensa y la idea persistente de que otros quieren dañarla.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Un gran sentimiento de inferioridad.",
+        "sentir": [
+          "Me persiguen",
+          "Todo lo que hago termina en fracaso"
+        ],
+        "idea": "Ese sentimiento vuelve a la persona muy susceptible y agresiva, con ideas de persecución, sensación de víctima y experiencias vividas como fracasos continuos. Suele haber un ambiente familiar con gran carencia afectiva y poco desarrollo social. El sentido biológico sería huir de una realidad emocional insoportable para evitar sus peligros."
+      }
+    ],
+    "preguntas": [
+      "¿Dónde me siento inferior a los demás?",
+      "¿Qué carencia afectiva viví en mi familia?"
+    ],
+    "afirmacion": "Me trato con valor y aprendo a sentirme a salvo.",
+    "relacionados": [
+      "psiquiatricos-problemas",
+      "desvalorizacion"
+    ],
+    "nota_especial": "La paranoia es un problema de salud mental que necesita atención especializada. Si te identificas con esto, busca el apoyo de un psiquiatra o psicólogo."
+  },
+  {
+    "id": "parasitos",
+    "titulo": "PARÁSITOS",
+    "letra": "P",
+    "resumen": "Organismos que viven a costa de otro ser vivo, de forma temporal o permanente, sin llegar a destruirlo.",
+    "enfoques": [
+      {
+        "fuente": "hay",
+        "idea": "Lo vincula a entregar el propio poder a otras personas. Propone recuperar ese poder con amor y apartar toda interferencia."
+      },
+      {
+        "fuente": "bourbeau",
+        "idea": "Recuerda que llamamos parásito a quien vive a costa de otro pudiendo valerse por sí mismo: quien los tiene se deja invadir por los demás, sobre todo por sus pensamientos y su manera de vivir. Los niños los tienen a menudo porque se dejan invadir por el mundo adulto y se esfuerzan en no ser ellos mismos para ser queridos. También aparecen con frecuencia en viajes. Cuantos más, más se da importancia a detalles que ocupan demasiado espacio. Sugiere notar que nadie invade sin permiso, que no hace falta ser otro para ser amado y no dejar entrar creencias inútiles, igual que no se deja entrar a cualquiera en casa."
+      }
+    ],
+    "preguntas": [
+      "¿A quién le he entregado mi poder?",
+      "¿Me esfuerzo en ser otra persona para que me quieran?",
+      "¿Qué pensamientos ajenos ocupan demasiado espacio en mí?"
+    ],
+    "afirmacion": "Recupero mi espacio y mi poder con amor.",
+    "relacionados": [
+      "piojos",
+      "teniasis",
+      "hongos"
+    ]
+  },
+  {
+    "id": "paratiroides",
+    "titulo": "PARATIROIDES",
+    "letra": "P",
+    "resumen": "Pequeñas glándulas situadas detrás de la tiroides que producen la hormona paratiroidea, encargada de equilibrar el calcio y el fósforo para los huesos y músculos.",
+    "etapa": "1ª etapa (supervivencia) y 4ª etapa (relación)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "No hacer lo suficiente o no hacerlo lo bastante rápido para atrapar o escupir el bocado; no poder tragar. En la 4ª etapa se liga al territorio.",
+        "sentir": [
+          "No sé qué hacer para atrapar el bocado",
+          "No puedo escupírselo en la cara",
+          "Quiero soltarme de esto rápido",
+          "Quiero construirme",
+          "Mis padres me quieren someter",
+          "No encuentro el equilibrio entre mis padres y yo"
+        ],
+        "idea": "Comparte el conflicto de la tiroides, ligado al tiempo y al ritmo del metabolismo. Distingue conflictos de urgencia y de paciencia. Urgencia (hipertiroidismo): necesitar que el tiempo vaya más rápido; por ejemplo, una mujer que encuentra muerto a su abuelo y siente la urgencia de alejarse; se asocia a profesiones de emergencia. Paciencia (hipotiroidismo): querer que el tiempo pase lento, como quien se entera de que a su madre le queda poco de vida o quien lleva mal envejecer. El calcio se vincula a la idea de construirse."
+      }
+    ],
+    "preguntas": [
+      "¿Siento que no hago lo suficiente o no llego a tiempo?",
+      "¿Quiero que el tiempo corra o que se detenga?",
+      "¿Cómo está el equilibrio entre lo que quieren mis padres y lo que quiero yo?"
+    ],
+    "afirmacion": "Vivo a mi propio ritmo y hago lo que puedo con confianza.",
+    "relacionados": [
+      "tiroides",
+      "hipertiroidismo",
+      "hipotiroidismo",
+      "fisiologia-del-calcio-ca",
+      "hipercalcemia",
+      "hipocalcemia"
+    ]
+  },
+  {
+    "id": "parenquima-renal",
+    "titulo": "PARÉNQUIMA RENAL",
+    "letra": "P",
+    "resumen": "Tejido que hace el trabajo del riñón, formado por la corteza y las pirámides renales, donde están alrededor de un millón de nefronas que filtran la sangre.",
+    "etapa": "3ª etapa (movimiento, valoración)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Problemas existenciales, como el miedo a ser despedido: situaciones no muy intensas en sí, pero repetidas.",
+        "sentir": [
+          "¿Esto está bien o está mal?"
+        ],
+        "idea": "Todo problema de riñón se considera ligado a los líquidos, por ejemplo haber estado a punto de ahogarse o la rotura de cañerías que causa destrozos en casa."
+      }
+    ],
+    "preguntas": [
+      "¿Qué preocupación pequeña pero constante me desgasta?",
+      "¿Viví alguna experiencia difícil relacionada con el agua o los líquidos?",
+      "¿Me cuesta decidir si algo está bien o mal?"
+    ],
+    "afirmacion": "Encuentro estabilidad y confío en mi lugar en la vida.",
+    "relacionados": [
+      "rinon",
+      "insuficiencia-renal",
+      "nefritis"
+    ]
+  },
+  {
+    "id": "parkinson",
+    "titulo": "PARKINSON",
+    "letra": "P",
+    "resumen": "Enfermedad neurodegenerativa crónica, también llamada parálisis agitante, en la que se pierden neuronas que regulan el movimiento; además del temblor y la rigidez, puede afectar la cognición, la expresión emocional y funciones automáticas del cuerpo.",
+    "etapa": "4ª etapa (relación)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Miedo a terminar, a soltar, a concluir. Personas que quieren controlarlo todo y no pueden. Conflicto de futuro (miedo a dejar de vivir) que lleva a no terminar las cosas; miedo a los juicios, que frena el movimiento. Retener a alguien o algo aunque sea inútil.",
+        "sentir": [
+          "Quiero actuar pero no me dejan",
+          "Quiero actuar y no sé dónde",
+          "No quiero concluir, no quiero acabar"
+        ],
+        "idea": "Se describe como iniciar el gesto sin llegar a completarlo. Se considera una crisis épica en fase de curación y se sugiere buscar un yaciente (alguien de la familia cuyo destino se repite)."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Lo asocia al miedo y a un fuerte deseo de controlarlo todo y a todos. Propone relajarse sabiéndose a salvo y confiar en que la vida apoya."
+      },
+      {
+        "fuente": "bourbeau",
+        "conflicto": "Miedo a no poder retener a alguien o algo; por eso empezaría en las manos.",
+        "idea": "Describe a una persona rígida que durante años se ha contenido para ocultar sensibilidad, vulnerabilidad, ansiedad y temores, sobre todo al dudar. Su gran deseo era controlarlo todo y la enfermedad le muestra que llegó al límite; el sistema nervioso se cansó de sostener esa tensión. Al avanzar lentamente, ve una oportunidad de revertir el proceso. Sugiere confiar más en la vida y en la gente, aceptar los resultados propios y ajenos, darse permiso para no ser perfecto, dudar y equivocarse, y aceptar que tener miedo es humano."
+      }
+    ],
+    "preguntas": [
+      "¿Qué o a quién intento retener aunque ya no tenga sentido?",
+      "¿Qué me cuesta terminar o soltar?",
+      "¿Me permito ser imperfecto, dudar y tener miedo?"
+    ],
+    "afirmacion": "Suelto el control y confío en que la vida me sostiene.",
+    "relacionados": [
+      "paralisis",
+      "crisis-epica",
+      "yaciente",
+      "nistagmus-parkinson-ocular",
+      "mano"
+    ]
+  },
+  {
+    "id": "parotida",
+    "titulo": "PARÓTIDA",
+    "letra": "P",
+    "resumen": "La glándula salival más grande, situada a cada lado de la cara, delante de la oreja y detrás de la mandíbula; produce la mayor parte de la saliva acuosa.",
+    "etapa": "4ª etapa (relación)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "En el conducto excretor (salivación): no poder comer o no tener derecho a hacerlo (ensalivar); no poder atrapar la presa, es decir, el objetivo.",
+        "sentir": [
+          "No tengo derecho a comer",
+          "No consigo atrapar lo que quiero"
+        ],
+        "idea": "Ver también Paperas."
+      }
+    ],
+    "preguntas": [
+      "¿Siento que no tengo derecho a disfrutar de lo que me nutre?",
+      "¿Qué objetivo siento que no logro alcanzar?"
+    ],
+    "afirmacion": "Me doy permiso para recibir y alcanzar lo que me nutre.",
+    "relacionados": [
+      "paperas-parotiditis",
+      "parotideo",
+      "glandulas-salivares",
+      "glandulas-sublinguales-y-parotidas"
+    ]
+  },
+  {
+    "id": "parotideo",
+    "titulo": "PAROTÍDEO",
+    "letra": "P",
+    "resumen": "Relativo a la parótida; aquí se refiere a su porción acinar, la que fabrica la saliva.",
+    "etapa": "1ª etapa (supervivencia)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "En la porción acinar: no poder atrapar la presa, el objetivo.",
+        "idea": "Ver Parótida."
+      }
+    ],
+    "preguntas": [
+      "¿Qué presa u objetivo siento que se me escapa?",
+      "¿Qué necesito para sentirme capaz de alcanzarlo?"
+    ],
+    "afirmacion": "Me siento capaz de alcanzar lo que necesito.",
+    "relacionados": [
+      "parotida"
+    ]
+  },
+  {
+    "id": "parpado",
+    "titulo": "PÁRPADO",
+    "letra": "P",
+    "resumen": "Pliegue de piel y músculo que cubre y protege el ojo y permite cerrarlo para descansar.",
+    "etapa": "4ª etapa (relación)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Conflicto de motricidad relacionado con los hijos, con los cercanos y con la propia identidad.",
+        "sentir": [
+          "¡Es mi hijo!",
+          "No puedo ver sin ser visto"
+        ]
+      },
+      {
+        "fuente": "bourbeau",
+        "idea": "El dolor en el párpado indica que uno no se protege bien de las agresiones externas y se deja influir mucho por lo que ve; quizá no se da permiso para cerrar los ojos y descansar porque quiere verlo todo. Si está irritado, sugiere notar que lo que irrita es la propia percepción y no el hecho en sí, retirarse a descansar cuando algo no se tolera, y luego afirmarse y pedir sin querer controlar ni esperar que los demás accedan. Le vendría bien ser más tolerante."
+      }
+    ],
+    "preguntas": [
+      "¿Me permito cerrar los ojos y descansar?",
+      "¿Qué estoy viendo que me afecta demasiado?",
+      "¿Me cuesta mirar sin sentirme observado?"
+    ],
+    "afirmacion": "Me protejo con suavidad y me permito descansar.",
+    "relacionados": [
+      "ojos",
+      "orzuelo"
+    ]
+  },
+  {
+    "id": "partes-ano-vejiga-vagina-pene-prostata",
+    "titulo": "PARTES: ANO, VEJIGA, VAGINA, PENE, PRÓSTATA",
+    "letra": "P",
+    "resumen": "Reflexión general sobre los problemas de las zonas íntimas y de eliminación: ano, vejiga, vagina, pene y próstata.",
+    "enfoques": [
+      {
+        "fuente": "hay",
+        "idea": "Agrupa los problemas de ano, vejiga, vagina, pene y próstata en una misma dimensión: nacerían de creencias falsas sobre lo 'correcto' o 'decente' del cuerpo y sus funciones. Señala que nadie piensa que los ojos o el hígado sean sucios, y que el ano es tan valioso como el oído, porque sin él no podríamos soltar lo que no necesitamos. Cada parte del cuerpo es natural, perfecta y bella. Invita a relacionarse con estos órganos con aprecio y a preguntarse quién nos enseñó a rechazar una parte de nosotros, pues considera que muchas personas cargan con una culpa sexual aprendida en la infancia. Aclara que no promueve una sexualidad sin límites, sino liberarse de normas sin sentido: quien se ama y se respeta tiende a tratarse bien y a tratar bien a los demás, mientras que el rechazo hacia uno mismo lleva al maltrato. Pide que la educación no se limite a lo mecánico y ayude a vivir el cuerpo con alegría. Atribuye la mayoría de los problemas de vejiga a la irritación, a menudo con la pareja, en relación con la propia condición de mujer u hombre; las mujeres los sufrirían más por tender a ocultar sus agravios. La vaginitis indicaría una herida afectiva causada por la pareja."
+      }
+    ],
+    "preguntas": [
+      "¿Qué me enseñaron sobre mi cuerpo y mi sexualidad?",
+      "¿Hay alguna parte de mi cuerpo que rechazo o juzgo como sucia?",
+      "¿Qué me irrita o me hiere en mi relación de pareja?"
+    ],
+    "afirmacion": "Cada parte de mi cuerpo es natural y la trato con respeto y cariño.",
+    "relacionados": [
+      "ano",
+      "vejiga",
+      "vagina",
+      "vaginitis",
+      "pene",
+      "prostata",
+      "genitales"
+    ]
+  },
+  {
+    "id": "pat-hormonal",
+    "titulo": "PAT HORMONAL",
+    "letra": "P",
+    "resumen": "Concepto de la biodescodificación que describe el 'empate' o balanceo hormonal: cuando un hemisferio cerebral se sobrecarga, la persona bascula hacia la polaridad del otro.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "idea": "'Pat' alude a tablas, a un empate: cuando un hemisferio está muy cargado se bloquea y la persona pasa al otro. Ocurre en todos los conflictos de territorio. Se diferencia de la Polaridad en que esta es rápida y dura minutos, mientras el Pat requiere una carga conflictiva acumulada y puede durar años (por ejemplo, ante un padre castrador). Su sentido biológico es proteger la vida, lo que se vería en las enfermedades mentales; puede haber 'pats' de distinto grado, un 'equilibrio en el desequilibrio'. Ejemplo: un hombre con una pérdida de territorio previa vive otra; pasa a la polaridad femenina y siente frustración. Si se añade desvalorización, aparece una depresión; se cita a un joven con un padre muy agresivo y tres neumotórax, que se deprimió al no ser aceptado por los padres de su novia. Una enfermedad orgánica al final de una depresión indicaría que el conflicto se resolvió. Tipos. Naturales: infancia, enfermedad, vejez, menopausia y embarazo. Artificiales: hormonas externas (la píldora), antihormonas (tratamientos contra el cáncer), traumatismos craneales e intoxicaciones o drogas. Se bascula ante un conflicto importante con mucho estrés (frente al padre o al jefe; una niña a la que no le crecen los pechos porque su padre solo quería varones; un viudo que asume tareas consideradas femeninas; una abuela que, en un incendio, saca fuerzas para sacar a sus nietos) o ante una patología, cuando un relé de un hemisferio se carga y se pasa al otro. Bajo estrés, la mujer potencia su sensibilidad femenina y el hombre la masculina; en el ciclo menstrual la mujer pasaría de una sensibilidad femenina a una más masculina. Las personas zurdas tendrían menos carga hormonal, lo que amortigua los impactos; los hombres zurdos serían más sensibles y las mujeres zurdas más masculinas. La píldora masculinizaría el carácter y la testosterona inyectada daría más músculo pero menos virilidad interior."
+      }
+    ],
+    "preguntas": [
+      "¿Ante qué situaciones siento que cambio mi forma de ser para sobrevivir?",
+      "¿Qué conflicto de territorio arrastro desde hace tiempo?",
+      "¿Cómo equilibro hoy mi lado femenino y mi lado masculino?"
+    ],
+    "afirmacion": "Encuentro mi equilibrio interior, aun en medio de los cambios.",
+    "relacionados": [
+      "polaridad",
+      "bascula-hormonal",
+      "hemisferios-y-cuerpo",
+      "laterlidad",
+      "depresion",
+      "neumotorax",
+      "menopausia"
+    ]
+  },
+  {
+    "id": "pecho",
+    "titulo": "PECHO",
+    "letra": "P",
+    "resumen": "Parte delantera del tórax, entre el cuello y el abdomen, que protege el corazón y los pulmones.",
+    "enfoques": [
+      {
+        "fuente": "bourbeau",
+        "conflicto": "El pecho simboliza la familia.",
+        "idea": "El dolor puede surgir del deseo no cumplido de acurrucarse en el pecho de uno de los padres, o de evitar que alguien se acurruque en el propio. También en quien 'saca pecho' creyéndose indispensable en la familia y queriendo demasiado para los demás. Todo dolor señala culpa y acusación, hacia uno o hacia otro, por ejemplo por no cuidar bien de algún familiar. Sugiere amarse más, aceptarse con defectos, debilidades y límites, y no depender de los demás para ser feliz."
+      }
+    ],
+    "preguntas": [
+      "¿Extraño un abrazo de mi padre o de mi madre?",
+      "¿Me creo indispensable en mi familia?",
+      "¿A quién acuso, o me acuso, de no cuidar bien a alguien?"
+    ],
+    "afirmacion": "Me acepto como soy y mi felicidad nace de mí.",
+    "relacionados": [
+      "pechos",
+      "mamas",
+      "costillas",
+      "esternon"
+    ]
+  },
+  {
+    "id": "pechos",
+    "titulo": "PECHOS",
+    "letra": "P",
+    "resumen": "Las mamas, glándulas que en la mujer producen leche y que simbolizan la crianza y el cuidado.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "idea": "Ver Mamas."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Los relaciona con el principio de la maternidad: sus problemas suelen indicar que nos excedemos en el papel de madre con una persona, un lugar, una cosa o una experiencia. Parte de ese papel es dejar crecer a los hijos, saber cuándo soltar las riendas y no sobreproteger, porque quien sobreprotege no prepara al otro para su propia experiencia y una actitud dominante puede quitarle coraje. En el cáncer añade un resentimiento profundo. Propone soltar el miedo y confiar en la sabiduría de la vida que habita en cada uno."
+      }
+    ],
+    "preguntas": [
+      "¿A quién estoy sobreprotegiendo?",
+      "¿Me cuesta dejar que los demás vivan su propia experiencia?",
+      "¿Qué resentimiento guardo en mi papel de cuidadora?"
+    ],
+    "afirmacion": "Cuido con amor y confío en que los demás pueden crecer por sí mismos.",
+    "relacionados": [
+      "mamas",
+      "pecho",
+      "la-prolactina",
+      "terapia-en-el-cancer-de-mama"
+    ]
+  },
+  {
+    "id": "pelo",
+    "titulo": "PELO",
+    "letra": "P",
+    "resumen": "Fibras que crecen desde los folículos del cuero cabelludo y de la piel.",
+    "enfoques": [
+      {
+        "fuente": "hay",
+        "idea": "Lo asocia a la fuerza. Cuando estamos tensos y asustados formamos una especie de 'bandas de acero' que suben desde los hombros hasta la cabeza y a veces rodean los ojos. Esa tensión en el cuero cabelludo presiona los folículos, que no pueden respirar, y el pelo cae; si no se relaja, el pelo nuevo no logra salir y aparece la calvicie. Observa que la calvicie femenina habría aumentado con las tensiones del mundo laboral. Recuerda que la tensión no es fortaleza sino debilidad, y que la verdadera fuerza es estar relajado, centrado y sereno. Propone relajar a menudo el cuerpo y también el cuero cabelludo."
+      }
+    ],
+    "preguntas": [
+      "¿Dónde confundo estar tenso con ser fuerte?",
+      "¿Qué miedo mantiene apretados mis hombros y mi cabeza?",
+      "¿Me doy momentos para relajarme de verdad?"
+    ],
+    "afirmacion": "Mi fuerza nace de la calma y la serenidad.",
+    "relacionados": [
+      "cabello",
+      "alopecia",
+      "canas",
+      "caspa",
+      "hombros"
+    ]
+  },
+  {
+    "id": "pelvis",
+    "titulo": "PELVIS",
+    "letra": "P",
+    "resumen": "Anillo óseo de la parte baja del tronco, formado por los huesos de la cadera, el sacro y el cóccix, que aloja la vejiga, el final del intestino y los órganos genitales internos.",
+    "etapa": "3ª etapa (movimiento, valoración)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Desvalorización sexual, a nivel de creencias. También no poder acoger de forma satisfactoria a un recién nacido (o a otra persona). En menor medida, conflicto de dirección.",
+        "sentir": [
+          "Me desvalorizo por no hacer bien mi trabajo",
+          "¿Voy a lograrlo?",
+          "¿Qué dirección debo tomar?",
+          "Hubiera querido que se abriera un poco más"
+        ],
+        "idea": "Simboliza el acto sexual y la reproducción; la desvalorización aquí suele ir unida a conflictos de próstata y útero. Describe cinco conflictos: la fabricación de hijos (abortos, malformaciones), que da tumores en la pelvis cuando se vive en primera persona; la casa, pues la primera casa es el útero; los nietos, por identificación, cuando un hijo no puede tenerlos y uno los 'fabrica' en su lugar; la sexualidad fuera de la norma (gran diferencia de edad o una pareja que sigue deseando intimidad durante una enfermedad, como en metástasis óseas en la pelvis tras un cáncer de mama); y la competencia sexual, con dudas de si se podrá cumplir o hacer feliz a la pareja. Se añade el conflicto de dirección y el de los partos difíciles. Pubalgias, cruralgias y problemas de sacro y cóccix se relacionan con temas sexuales."
+      }
+    ],
+    "preguntas": [
+      "¿Cómo me valoro en mi sexualidad?",
+      "¿Siento que no pude acoger bien a alguien que llegó a mi vida?",
+      "¿Dudo de la dirección que estoy tomando?"
+    ],
+    "afirmacion": "Me valoro en mi intimidad y elijo mi rumbo con confianza.",
+    "relacionados": [
+      "cadera",
+      "sacro",
+      "coccix",
+      "pubalgias",
+      "cruralgias-lumbares",
+      "prostata",
+      "utero"
+    ]
+  },
+  {
+    "id": "pelvis-renal",
+    "titulo": "PELVIS RENAL",
+    "letra": "P",
+    "resumen": "Parte ensanchada en forma de embudo donde confluyen los cálices del riñón y que conduce la orina hacia el uréter.",
+    "etapa": "4ª etapa (relación)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "En la úlcera carcinomatosa: no poder marcar los límites, similar al conflicto de identidad. Conflicto de marcaje territorial.",
+        "sentir": [
+          "No sé a qué opinión atenerme"
+        ]
+      }
+    ],
+    "preguntas": [
+      "¿Dónde me cuesta marcar mis límites?",
+      "¿Me siento perdido entre opiniones distintas?"
+    ],
+    "afirmacion": "Marco mis límites con claridad y sé dónde estoy.",
+    "relacionados": [
+      "rinon",
+      "ureter",
+      "marcaje-de-territorio-tipos"
+    ]
+  },
+  {
+    "id": "pene",
+    "titulo": "PENE",
+    "letra": "P",
+    "resumen": "Órgano genital externo masculino, que interviene en la micción y en la relación sexual.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "sentir": [
+          "Mi abuelo era un abusador"
+        ],
+        "idea": "En los problemas de la piel del pene se cita como vivencia una historia familiar de abuso sexual por parte de un abuelo."
+      },
+      {
+        "fuente": "bourbeau",
+        "idea": "Los problemas que impiden el acto sexual muestran que el hombre lo desea pero se bloquea sin darse cuenta, por culpa, por algún miedo o por no creer merecer placer, no solo en lo sexual. Como la energía sexual crea vida, también simboliza la capacidad de crear la propia vida, y puede indicar miedo o culpa por vivirla a su manera. Sugiere darse permiso para disfrutar, dejar de alimentar miedos y culpas, revisar lo aprendido sobre la sexualidad, vivirla como expresión de amor, apreciarse más y usar su poder creador en todas las áreas."
+      }
+    ],
+    "preguntas": [
+      "¿Siento que merezco disfrutar de la vida?",
+      "¿Qué culpas o miedos aprendí sobre la sexualidad?",
+      "¿Me permito crear mi vida a mi manera?"
+    ],
+    "afirmacion": "Me permito sentir placer y crear mi vida con libertad.",
+    "relacionados": [
+      "impotencia",
+      "eyaculacion-precoz",
+      "genitales",
+      "partes-ano-vejiga-vagina-pene-prostata"
+    ]
+  },
+  {
+    "id": "perdon-verdadero",
+    "titulo": "PERDÓN VERDADERO",
+    "letra": "P",
+    "resumen": "Proceso en etapas para soltar el resentimiento y la culpa, hacia otros o hacia uno mismo.",
+    "enfoques": [
+      {
+        "fuente": "bourbeau",
+        "idea": "Plantea siete etapas. 1) Reconocer las emociones, a menudo varias, y la acusación que uno se hace o hace al otro. 2) Asumir la responsabilidad: siempre se puede elegir responder desde el amor o desde el miedo; preguntarse a qué se teme, incluso el miedo a ser acusado de tener miedo. 3) Aceptar al otro y soltar: ponerse en su lugar, sentir su intención y notar que probablemente se acusa y nos acusa de lo mismo, con el mismo miedo. 4) Perdonarse, la etapa más importante: darse permiso para tener miedos, creencias, debilidades y límites, aceptándose como uno es ahora, sabiendo que es temporal. 5) Desear expresar el perdón: imaginarse pidiendo perdón por haber juzgado o condenado; se está listo cuando la idea trae alegría y alivio. 6) Ir a ver a la persona, contarle lo vivido y pedirle perdón por el juicio y el resentimiento, mencionando que se la perdonó solo si lo pregunta. 7) Vincularlo con una figura de autoridad del pasado (padre, madre, abuelos, maestros), por lo general del mismo sexo, y repetir el proceso con ella. Si la emoción es hacia uno mismo, se hacen las etapas 1, 2, 4 y 7. Cada etapa puede llevar un día o un año; lo esencial es la sinceridad. La resistencia a la sexta etapa ('¿por qué pedir perdón si fue él quien me ofendió?') viene del ego, mientras el corazón busca la paz y la compasión. No se es responsable de la reacción del otro, solo de la propia; si al otro le cuesta recibirlo, es porque no logra perdonarse. Perdonar no es aprobar la ofensa, sino ver con el corazón lo que pasaba dentro del otro, y eso permite darse a uno mismo el derecho de ser humano."
+      }
+    ],
+    "preguntas": [
+      "¿De qué me acuso, o a quién acuso, y qué siento al hacerlo?",
+      "¿Puedo darme permiso para haber tenido miedo y límites?",
+      "¿Qué figura de autoridad de mi pasado se parece a esta situación?"
+    ],
+    "afirmacion": "Me perdono y elijo mirar al otro con los ojos del corazón.",
+    "relacionados": [
+      "culpa",
+      "remordimiento",
+      "tecnica-de-lisa-bourbeau"
+    ]
+  },
+  {
+    "id": "perforacion",
+    "titulo": "PERFORACIÓN",
+    "letra": "P",
+    "resumen": "Apertura anormal que atraviesa la pared de un órgano o tejido.",
+    "enfoques": [
+      {
+        "fuente": "bourbeau",
+        "conflicto": "Sentirse atravesado por una situación, un incidente o una persona, con la impresión de que alguien quiere arrancarle un pedazo de sí.",
+        "idea": "Sugiere mirar la realidad con otros ojos y comprobar con los demás si lo que se cree es cierto. Suele ser alguien muy sensible que se toma las cosas y a las personas demasiado en serio. Señala que no son los otros quienes invaden, sino uno quien se deja invadir, y que al cambiar la manera de pensar se descubre que los demás no tienen por qué tener las intenciones que se les atribuyen."
+      }
+    ],
+    "preguntas": [
+      "¿Quién siento que me quiere quitar una parte de mí?",
+      "¿He comprobado si mis suposiciones sobre los demás son ciertas?",
+      "¿Me tomo las cosas demasiado en serio?"
+    ],
+    "afirmacion": "Protejo mi espacio y miro a los demás con más confianza.",
+    "relacionados": [
+      "ulcera",
+      "ulcera-peptica"
+    ]
+  },
+  {
+    "id": "el-pericardio-pericarditis",
+    "titulo": "PERICARDIO. Pericarditis",
+    "letra": "P",
+    "resumen": "Bolsa de dos capas que envuelve y protege el corazón, con un líquido lubricante entre ellas que reduce el roce, frena infecciones y limita el movimiento excesivo. La pericarditis es su inflamación.",
+    "etapa": "2ª etapa (protección)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Miedo por el propio corazón o por el de otro, a menudo por identificación. El corazón también simboliza la casa, el territorio (4ª etapa): sentir atacado el propio hogar.",
+        "sentir": [
+          "Tengo que proteger mi corazón",
+          "Tengo que proteger su corazón",
+          "Mi territorio está siendo agredido"
+        ],
+        "idea": "Ante un ataque vivido en lo cardiovascular, el cuerpo puede engrosar, estrechar o llenar de líquido el pericardio, o generar un tumor (mesotelioma), todo para proteger el corazón. En la pericarditis el corazón no puede expandirse, con fatiga y falta de aire, y puede vivirse como que un familiar no se va de casa. Ejemplos: un abuelo o un padre con un problema cardíaco cuyo corazón se quiere proteger (identificación irracional); un joven al que deja su novia, vivida como 'mi corazón' (simbólico)."
+      }
+    ],
+    "preguntas": [
+      "¿De quién siento que debo proteger el corazón?",
+      "¿Siento atacado mi hogar o mi territorio?",
+      "¿Hay alguien en casa cuya presencia me oprime?"
+    ],
+    "afirmacion": "Mi corazón está a salvo y puede latir con libertad.",
+    "relacionados": [
+      "corazon",
+      "endocardio-corazon",
+      "angina-de-pecho"
+    ]
+  },
+  {
+    "id": "periodontitis-piorrea",
+    "titulo": "PERIODONTITIS (piorrea)",
+    "letra": "P",
+    "resumen": "Infección crónica de los tejidos que sostienen los dientes; suele empezar como gingivitis y, sin tratamiento, va destruyendo la encía y el hueso hasta que el diente pierde su soporte.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Enojo por no ser capaz de tomar decisiones."
+      },
+      {
+        "fuente": "hay",
+        "idea": "La asocia a no poder sostener las propias decisiones, a la indiferencia ante la vida y al enojo por la indecisión. Propone verse como alguien decidido, perseverar, apoyarse con amor y confiar en que las propias decisiones son las adecuadas."
+      }
+    ],
+    "preguntas": [
+      "¿Qué decisión llevo tiempo postergando?",
+      "¿Me enojo conmigo por no lograr decidirme?",
+      "¿Sostengo lo que decido o me echo atrás?"
+    ],
+    "afirmacion": "Decido con confianza y me apoyo en lo que elijo.",
+    "relacionados": [
+      "gingivitis",
+      "encias-sangrantes",
+      "dientes",
+      "hueso-dental"
+    ]
+  },
+  {
+    "id": "periostio",
+    "titulo": "PERIOSTIO",
+    "letra": "P",
+    "resumen": "Membrana fibrosa y muy irrigada que recubre el hueso por fuera, salvo en las articulaciones y donde se insertan tendones y ligamentos.",
+    "etapa": "3ª etapa (movimiento, valoración)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Separación vivida con brutalidad. Se sitúa en la infancia, entre los 3 y los 14 años, en relación con contactos impuestos, no deseados y dolorosos, incluidos los abusos.",
+        "sentir": [
+          "Quiero separarme",
+          "Me toca y no quiero",
+          "No quiero que toquen mi estructura"
+        ],
+        "idea": "De origen ectodérmico, se relaciona con el sistema nervioso y la piel. Si rascarse alivia, se trataría de un conflicto de separación; si hay ganas de arrancarse la piel, de un conflicto de agresión."
+      }
+    ],
+    "preguntas": [
+      "¿Viví de niño algún contacto que no quería?",
+      "¿Hay alguien de quien necesito separarme?",
+      "¿Qué necesito para sentirme seguro en mi cuerpo?"
+    ],
+    "afirmacion": "Mi cuerpo me pertenece y merezco sentirme a salvo.",
+    "relacionados": [
+      "huesos",
+      "perone",
+      "piel-epidermis"
+    ],
+    "nota_especial": "Si viviste contactos o abusos no deseados, no estás solo y no fue tu culpa. Busca el acompañamiento de un psicólogo o de un servicio especializado en atención a víctimas."
+  },
+  {
+    "id": "el-peritoneo",
+    "titulo": "PERITONEO",
+    "letra": "P",
+    "resumen": "Membrana de dos capas que recubre la mayoría de los órganos del abdomen, con un líquido entre ellas; participa en la defensa, la lubricación, el transporte de sustancias y la coagulación.",
+    "etapa": "2ª etapa (protección)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Miedo o pánico por lo que ocurre dentro del vientre: un ataque a la integridad de lo más íntimo o la amenaza de un mal que avanza por dentro.",
+        "sentir": [
+          "Quiero proteger mi vientre",
+          "Quiero proteger a mi bebé",
+          "Tengo miedo de tener un cáncer"
+        ],
+        "idea": "El sentido biológico es engrosar las capas o llenar de líquido la zona amenazada para protegerla, según el órgano en juego. Las afecciones incluyen infecciones, tumores (mesotelioma) y acumulación de líquido. Ejemplos: un hombre apuñalado en el lado izquierdo del vientre que desarrolla masa en toda esa mitad, pues su agresor era diestro; un padre hospitalizado por peritonitis tras la agresión sufrida por su pareja embarazada, por querer proteger al bebé; alguien que hace una peritonitis por identificación cuando un familiar se hiere en el vientre; una niña operada de apendicitis sin explicaciones que teme que le metan algo por la herida; un hombre que, tras un cáncer, cree tener metástasis 'en algún lugar del vientre' y desarrolla tumores por todo el peritoneo. La ascitis se considera curación, aunque no siempre en fase de reposo."
+      }
+    ],
+    "preguntas": [
+      "¿Siento miedo por algo que pasa dentro de mí?",
+      "¿A quién quiero proteger como si estuviera en mi vientre?",
+      "¿Qué me explicaron, o no, sobre lo que le ocurrió a mi cuerpo?"
+    ],
+    "afirmacion": "Mi interior está protegido y me siento a salvo.",
+    "relacionados": [
+      "peritonitis",
+      "ascitis",
+      "el-pericardio-pericarditis",
+      "la-pleura",
+      "epiplon-mayor"
+    ]
+  },
+  {
+    "id": "peritonitis",
+    "titulo": "PERITONITIS",
+    "letra": "P",
+    "resumen": "Inflamación del peritoneo, la membrana que envuelve los órganos del abdomen; es una urgencia médica.",
+    "etapa": "2ª etapa (protección)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "sentir": [
+          "Quiero proteger mi vientre"
+        ],
+        "idea": "En la ascitis (agua en el abdomen), el conflicto puede seguir activo: no siempre es fase de curación."
+      },
+      {
+        "fuente": "bourbeau",
+        "conflicto": "Ira reprimida y culpa: una situación vivida como agresión.",
+        "idea": "Describe a alguien que se lo guarda todo, sobre todo el enojo, y que por rigidez se impide sentir; quiere creer que todo se arreglará, mostrarse valiente y ni siquiera reconocer su miedo. Su ira y su culpa se vuelven contra sí porque cree que no puede cambiar algo intolerable. Sugiere ser más tolerante consigo, aceptar sus límites, dejar de creer que mostrar miedo es debilidad, mostrar su vulnerabilidad y no exigirse ser alguien que todo lo puede, para así recibir ayuda."
+      }
+    ],
+    "preguntas": [
+      "¿Qué enojo me estoy guardando?",
+      "¿Me permito mostrar que tengo miedo?",
+      "¿Me exijo ser fuerte todo el tiempo?"
+    ],
+    "afirmacion": "Acepto mis límites y me permito pedir ayuda.",
+    "relacionados": [
+      "el-peritoneo",
+      "ascitis"
+    ]
+  },
+  {
+    "id": "perone",
+    "titulo": "PERONÉ",
+    "letra": "P",
+    "resumen": "Hueso largo y delgado situado en la parte externa de la pierna, junto a la tibia.",
+    "etapa": "3ª etapa (movimiento, valoración)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "No poder irse a hacer la propia vida, a menudo por una madre posesiva. Debatirse entre dos hogares.",
+        "idea": "En francés se juega con 'père erroné' (padre equivocado), vinculándolo al padre. Los golpes en la espinilla que tardan en sanar remiten al periostio y pueden relacionarse con haber sufrido contactos no deseados o con lamentar haberlos impuesto a otros."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Ve la espinilla como símbolo del estilo de vida; sus problemas hablan de ideales rotos. Propone vivir con amor y alegría según los propios ideales más altos."
+      }
+    ],
+    "preguntas": [
+      "¿Qué me impide salir a hacer mi propia vida?",
+      "¿Me siento dividido entre dos hogares?",
+      "¿Qué ideal siento que se rompió?"
+    ],
+    "afirmacion": "Avanzo hacia mi propia vida fiel a mis ideales.",
+    "relacionados": [
+      "tibia",
+      "periostio",
+      "piernas"
+    ]
+  },
+  {
+    "id": "pesadez-de-estomago",
+    "titulo": "PESADEZ DE ESTÓMAGO",
+    "letra": "P",
+    "resumen": "Sensación de estómago lleno o digestión lenta después de comer.",
+    "etapa": "1ª etapa (supervivencia)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "sentir": [
+          "Esto es demasiado grande para digerirlo"
+        ]
+      }
+    ],
+    "preguntas": [
+      "¿Qué situación me cuesta digerir?",
+      "¿Estoy cargando con algo demasiado grande?"
+    ],
+    "afirmacion": "Digiero la vida paso a paso, a mi ritmo.",
+    "relacionados": [
+      "estomago",
+      "indigestion"
+    ]
+  },
+  {
+    "id": "picaduras-de-mosquito",
+    "titulo": "PICADURAS DE MOSQUITO",
+    "letra": "P",
+    "resumen": "Pequeñas ronchas que pican, causadas por la reacción de la piel a la saliva del mosquito.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Ataque a la integridad en un contexto de separación."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Las relaciona con la culpa por cosas pequeñas. Propone liberarse de toda irritación."
+      }
+    ],
+    "preguntas": [
+      "¿Por qué pequeñas cosas me siento culpable?",
+      "¿Qué me irrita en medio de una separación?"
+    ],
+    "afirmacion": "Suelto las pequeñas culpas y vivo en calma.",
+    "relacionados": [
+      "prurito-irritacion-picor-comezon",
+      "piel-epidermis"
+    ]
+  },
+  {
+    "id": "piel-rugosa",
+    "titulo": "PIEL RUGOSA",
+    "letra": "P",
+    "resumen": "Piel áspera al tacto, con textura irregular.",
+    "etapa": "2ª etapa (protección)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Conflicto de contacto: no necesito contacto y pongo distancia. Suele darse en personas mayores e indica rudeza.",
+        "sentir": [
+          "No voy a ser amable para que me quieran",
+          "Acéptenme como soy",
+          "Estoy harto de ustedes y no voy a cambiar"
+        ]
+      }
+    ],
+    "preguntas": [
+      "¿De quién quiero tomar distancia?",
+      "¿Siento que tengo que cambiar para que me quieran?"
+    ],
+    "afirmacion": "Me acepto como soy y elijo los contactos que me hacen bien.",
+    "relacionados": [
+      "piel-epidermis",
+      "piel-seca"
+    ]
+  },
+  {
+    "id": "piel-seca",
+    "titulo": "PIEL SECA",
+    "letra": "P",
+    "resumen": "Piel con poca hidratación, tirante o descamada.",
+    "etapa": "2ª etapa (protección)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "La soledad de la vejez: los hijos se van de casa, hay poco contacto, muere la pareja.",
+        "idea": "Hay falta de agua, y el agua simboliza las referencias."
+      }
+    ],
+    "preguntas": [
+      "¿Me siento solo o con poco contacto con los míos?",
+      "¿Qué referencias he perdido en mi vida?"
+    ],
+    "afirmacion": "Me abro a nuevos vínculos que me nutren.",
+    "relacionados": [
+      "piel-rugosa",
+      "piel-epidermis",
+      "vejez"
+    ]
+  },
+  {
+    "id": "piel-epidermis",
+    "titulo": "PIEL. Epidermis",
+    "letra": "P",
+    "resumen": "Capa más externa de la piel, la que está en contacto directo con el mundo.",
+    "etapa": "4ª etapa (relación)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Separación: pérdida del contacto corporal con la madre, la familia, el grupo o los amigos.",
+        "sentir": [
+          "Me falta el contacto",
+          "Me separaron de los míos"
+        ],
+        "idea": "En el mundo animal, perder el contacto con el grupo suele ser mortal, por eso es un conflicto muy importante. El ser humano necesita sentir contacto para estructurarse bien. Los problemas de piel se asocian también a miedo, angustia, sensación de amenaza y nerviosismo; al ser el órgano más grande, es una gran superficie donde se proyectan procesos psicosomáticos."
+      }
+    ],
+    "preguntas": [
+      "¿De quién me siento separado?",
+      "¿Recibo el contacto y el cariño físico que necesito?",
+      "¿Qué me hace sentir amenazado?"
+    ],
+    "afirmacion": "Me permito dar y recibir contacto con ternura.",
+    "relacionados": [
+      "la-piel-la-dermis",
+      "piel-hipodermis",
+      "eczema-en-la-piel",
+      "psoriasis"
+    ]
+  },
+  {
+    "id": "piel-hipodermis",
+    "titulo": "PIEL. Hipodermis",
+    "letra": "P",
+    "resumen": "Capa más profunda de la piel, formada sobre todo por tejido graso, que aísla y amortigua.",
+    "etapa": "3ª etapa (movimiento, valoración)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Desvalorización estética de uno mismo respecto a una parte del cuerpo que se juzga fea.",
+        "sentir": [
+          "Solo cuento conmigo mismo, desconfío de los demás",
+          "Quiero proteger mi feminidad como mamá",
+          "Quiero proteger a mi hijo",
+          "Debo ser fuerte para cargar con el otro, con papá"
+        ],
+        "idea": "Según la manifestación: la retención de agua remite al riñón; la grasa, a un abandono físico en el que el azúcar se transforma en grasa; las cartucheras, a proteger la feminidad como madre; la grasa en el vientre, a proteger a un hijo; el sobrepeso en los hombros, a tener que ser fuerte para cargar con otro; el lipoma, a una desvalorización estética local y sobreprotección. La piel, por su tamaño, es una gran superficie de proyección de miedos, angustias y nervios."
+      }
+    ],
+    "preguntas": [
+      "¿Qué parte de mi cuerpo juzgo con dureza?",
+      "¿Siento que solo puedo contar conmigo?",
+      "¿A quién siento que debo proteger o cargar?"
+    ],
+    "afirmacion": "Miro mi cuerpo con aprecio y me siento acompañado.",
+    "relacionados": [
+      "grasa",
+      "cartucheras",
+      "lipoma",
+      "rinon",
+      "tejido-adiposo",
+      "obesidad-y-sobrepeso"
+    ]
+  },
+  {
+    "id": "la-piel-la-dermis",
+    "titulo": "PIEL. Dermis",
+    "letra": "P",
+    "resumen": "Capa intermedia de la piel, entre la epidermis y la hipodermis, donde están vasos, nervios y fibras que le dan resistencia. Aquí se recoge también la visión general de la piel.",
+    "etapa": "2ª etapa (protección)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Separación (contacto deseado). Conflicto con el padre, ligado a la protección (melanocitos, queratina, protección solar). Sentirse manchado o sucio, atacado en la integridad, arrancado o extraído; pérdida de integridad física, por ejemplo tras una amputación.",
+        "sentir": [
+          "No quiero que el otro se aferre a mí",
+          "Me siento atacado y desprotegido",
+          "Si me tocan existo, si no me tocan no existo"
+        ],
+        "idea": "La piel tiene tres capas: epidermis (4ª etapa), dermis (2ª etapa, se forma desde el tercer mes de embarazo) e hipodermis (3ª etapa). La función arcaica de la dermis es proteger ante ataques a la integridad y la dignidad, despojo, deshonra o falta de apoyo; hoy suele ser más mental que físico, como insultos o descalificaciones. Su función psicológica es el contacto: seguridad, protección y, sobre todo, pertenencia al clan, porque quien nos toca nos dice que le pertenecemos, como la madre que abraza al recién nacido. Se afirma que todas las enfermedades de la piel son enfermedades de amor. También es conflicto de límites: los niños necesitan límites para sentirse protegidos, como en un experimento escolar en que, al quitar la valla del patio, todos los niños se agruparon en el centro; la valla equivale a la piel. Manifestaciones: el enrojecimiento habla de ataque a la integridad o pudor; la frialdad, de separación y falta de calor humano; la transpiración, de no querer que el otro se aferre; las erupciones, de problemas de contacto, roce y relación, estrés y miedo. Importa la zona: cabeza (padre, lo mental), párpado (algo que no se quería ver), boca (el beso), oído (lo que no quiero o quisiera oír), nariz (lo sexual o lo que huele mal), pecho (pareja, hijos, espacio vital y libertad), cara (lo estético), codo (trabajo o falta de abrazos) y mano (padre, habilidad, trabajo). Ver también Ictiosis e Impétigo."
+      },
+      {
+        "fuente": "martel",
+        "idea": "Relaciona a menudo las enfermedades de la piel con sentir que falta el contacto, físico o de otro tipo, para recibir el amor que se necesita."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Ve la piel como protectora de la individualidad y órgano de los sentidos. Sus problemas hablan de angustia, miedo, repugnancia antigua escondida y sensación de amenaza: temer que otros tengan poder sobre nosotros, sentirse 'despellejado' o con los nervios a flor de piel, y miedo a salir lastimado. Propone protegerse con pensamientos de paz y alegría, perdonar y soltar el pasado, y nutrirse aprobándose a sí mismo muchas veces al día para recuperar el propio poder."
+      },
+      {
+        "fuente": "bourbeau",
+        "idea": "Relaciona la piel con cómo uno se valora frente al exterior: es la imagen que se tiene de sí, y basta describir la propia piel para conocerla. Todo problema de piel se vincula a la vergüenza de uno mismo, a dar demasiada importancia a lo que piensan los demás, a no permitirse ser uno mismo y a rechazarse con facilidad; es alguien muy sensible, que se deja 'tocar' demasiado y se siente herido en su integridad. Si hay pus, no se soporta a alguien o algo y el problema sirve para alejarse; un problema grave puede volver a la persona 'intocable' y servir de excusa para aislarse, deseando 'mudar de piel'. El rencor y enojo tras intentar acercarse a alguien sin éxito se asocia al cáncer de piel. Si solo afecta la superficie, como el vitíligo, se vive con dificultad una separación o pérdida de comunicación como rechazo o ruptura definitiva, en alguien que quiere salvar a los demás, sobre todo del otro sexo. Cuanto más visible y molesto, más urgente revisar las creencias sobre uno. Sugiere anotar las propias cualidades y sumar una cada día, darse derecho a tener debilidades, límites y miedos, tomar decisiones para 'salvar el pellejo' sin culparse, y recordar que el valor viene del corazón y no de lo exterior."
+      }
+    ],
+    "preguntas": [
+      "¿Qué contacto o cariño me está faltando?",
+      "¿Me siento atacado o descalificado por alguien?",
+      "¿Qué imagen tengo de mí y cuánto me pesa lo que piensan los demás?"
+    ],
+    "afirmacion": "Me acepto en mi piel y me permito dar y recibir cariño.",
+    "relacionados": [
+      "piel-epidermis",
+      "piel-hipodermis",
+      "dermis",
+      "ictiosis",
+      "impetigo",
+      "vitiligo",
+      "melanoma",
+      "eczema-en-la-piel",
+      "psoriasis"
+    ]
+  },
+  {
+    "id": "piernas",
+    "titulo": "PIERNAS",
+    "letra": "P",
+    "resumen": "Extremidades inferiores que sostienen el cuerpo y nos permiten caminar, correr y avanzar.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "idea": "Ver Retención de líquidos en piernas."
+      },
+      {
+        "fuente": "martel",
+        "idea": "Las relaciona con la capacidad de avanzar en la vida, de ir hacia el cambio y las experiencias nuevas."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Son lo que nos lleva hacia delante; sus problemas indican miedo al futuro, deseo de no moverse o negarse a seguir en cierta dirección, como reflejan tantas expresiones populares sobre andar, arrastrarse o quedarse paralizado. Propone avanzar con confianza y alegría, seguro de que el futuro está bien."
+      },
+      {
+        "fuente": "bourbeau",
+        "idea": "El dolor de pierna se relaciona con cómo se enfrenta el futuro y la capacidad de impulsarse: miedo a arriesgarse a algo nuevo o a actuar hacia la meta, quizá con un trabajo o con la pareja. Si duele al moverse, indica que se reflexiona demasiado antes de avanzar por miedo, y eso impide vivir experiencias necesarias; sugiere confiar más en uno y en la vida para pasar a la acción. Si duele en reposo, es alguien que quiere ir demasiado rápido y hacer mucho, que no se permite parar para prepararse; sugiere dejar de creer que descansar es ser perezoso o ingrato."
+      }
+    ],
+    "preguntas": [
+      "¿Qué paso hacia el futuro me da miedo dar?",
+      "¿Estoy pensando demasiado antes de actuar?",
+      "¿Me permito detenerme y descansar?"
+    ],
+    "afirmacion": "Avanzo con confianza hacia lo nuevo, a mi ritmo.",
+    "relacionados": [
+      "retencion-de-liquidos-en-piernas",
+      "rodilla",
+      "muslos",
+      "pies",
+      "piernas-pesadas"
+    ]
+  },
+  {
+    "id": "piernas-circulacion-de-retorno",
+    "titulo": "PIERNAS. Circulación de retorno",
+    "letra": "P",
+    "resumen": "Retorno de la sangre desde las piernas hacia el corazón a través de las venas; cuando falla, aparecen hinchazón, pesadez o várices.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "sentir": [
+          "Ir al trabajo se me hace cuesta arriba"
+        ]
+      },
+      {
+        "fuente": "hay",
+        "idea": "Ve la circulación como la capacidad de sentir y expresar las emociones de forma positiva. Propone dejar circular el amor y la alegría por todo el propio mundo."
+      }
+    ],
+    "preguntas": [
+      "¿Qué parte de mi rutina se me hace cuesta arriba?",
+      "¿Expreso lo que siento o lo dejo estancado?"
+    ],
+    "afirmacion": "Dejo fluir el amor y la alegría en todo lo que hago.",
+    "relacionados": [
+      "las-varices",
+      "venas",
+      "piernas"
+    ]
+  },
+  {
+    "id": "piernas-pesadas",
+    "titulo": "PIERNAS PESADAS",
+    "letra": "P",
+    "resumen": "Sensación de cansancio y peso en las piernas, a menudo por mala circulación de retorno.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Llevar una carga demasiado pesada.",
+        "sentir": [
+          "Lo que cargo es demasiado pesado"
+        ]
+      }
+    ],
+    "preguntas": [
+      "¿Qué carga llevo que no me corresponde?",
+      "¿Qué podría soltar o compartir con otros?"
+    ],
+    "afirmacion": "Suelto lo que no me toca y camino más liviano.",
+    "relacionados": [
+      "piernas",
+      "piernas-circulacion-de-retorno",
+      "las-varices"
+    ]
+  },
+  {
+    "id": "pies",
+    "titulo": "PIES",
+    "letra": "P",
+    "resumen": "Base del cuerpo que nos sostiene, nos da equilibrio y nos pone en contacto con el suelo al caminar.",
+    "etapa": "3ª etapa (movimiento, valoración)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "En general, conflictos relacionados con la madre, real o simbólica (la que protege, como la seguridad social o las ayudas del Estado). También desvalorización por no poder correr, bailar o mantener el equilibrio.",
+        "idea": "Se resume que la madre representa protección y el padre, permiso."
+      },
+      {
+        "fuente": "martel",
+        "idea": "Los asocia a la dirección que tomamos (o a quedarse en el mismo sitio) y a la comprensión de uno mismo y de la vida: pasado, presente y futuro."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Representan la comprensión de uno mismo, de la vida y de los demás; sus problemas hablan de temor al futuro y a no avanzar. Observa que muchos ancianos arrastran los pies como si se negaran a moverse, mientras los niños los mueven con alegría. Otra lectura del mismo bloque los liga a un conflicto con la dirección que llevamos, falta de estabilidad y seguridad, y sugiere reflexión, autoestima y confianza. Propone una comprensión clara, disposición a cambiar con los tiempos y avanzar seguro y con alegría."
+      },
+      {
+        "fuente": "bourbeau",
+        "idea": "Los pies son el medio para avanzar: sus problemas indican que no se encuentran los medios para hacerlo, por miedo, por dejarse frenar o sentirse frenado, por no tener clara la dirección o sentir que se está estancado. Puede ser alguien que quisiera huir y no está bien arraigado en la realidad, o que teme que lo 'pongan de patitas en la calle'. Si duelen más en reposo, no se permite descansar y se valora sobre todo por lo que hace. Como la tierra simboliza a la madre, sugiere arraigarse en el aquí y ahora, confiar más en la vida y en la intuición, tomar los medios para avanzar, no dejarse 'pisar' por nadie y sentirse sostenido."
+      }
+    ],
+    "preguntas": [
+      "¿Siento que tengo clara la dirección de mi vida?",
+      "¿Cómo es mi relación con mi madre o con quien me protege?",
+      "¿Me dejo frenar o pisar por otros?"
+    ],
+    "afirmacion": "Piso firme en el presente y avanzo con alegría.",
+    "relacionados": [
+      "pies-planos",
+      "pies-huecos-o-cavos",
+      "pies-frios",
+      "pies-calientes",
+      "pies-de-atleta",
+      "dedos-de-los-pies",
+      "talon",
+      "tobillo"
+    ]
+  },
+  {
+    "id": "pies-calientes",
+    "titulo": "PIES CALIENTES",
+    "letra": "P",
+    "resumen": "Sensación de calor o ardor en los pies.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "sentir": [
+          "Me hubiera gustado una madre más dulce, cálida y amorosa"
+        ],
+        "idea": "El calor es el arquetipo de la dulzura y el bienestar."
+      }
+    ],
+    "preguntas": [
+      "¿Qué calidez me faltó de mi madre?",
+      "¿Cómo puedo darme hoy esa dulzura?"
+    ],
+    "afirmacion": "Me doy la calidez y la dulzura que necesito.",
+    "relacionados": [
+      "pies",
+      "pies-frios"
+    ]
+  },
+  {
+    "id": "pies-de-atleta",
+    "titulo": "PIE DE ATLETA",
+    "letra": "P",
+    "resumen": "Infección por hongos de la piel de los pies, sobre todo entre los dedos, con picor y descamación.",
+    "enfoques": [
+      {
+        "fuente": "hay",
+        "idea": "Lo relaciona con la frustración por no ser aceptado y la incapacidad de avanzar. Propone aprobarse, darse permiso para avanzar y sentirse a salvo al hacerlo."
+      }
+    ],
+    "preguntas": [
+      "¿Dónde siento que no me aceptan?",
+      "¿Qué me impide dar el siguiente paso?"
+    ],
+    "afirmacion": "Me acepto y me permito avanzar con seguridad.",
+    "relacionados": [
+      "pies",
+      "hongos",
+      "micosis"
+    ]
+  },
+  {
+    "id": "pies-frios",
+    "titulo": "PIES FRÍOS",
+    "letra": "P",
+    "resumen": "Sensación habitual de frío en los pies, a menudo por circulación lenta.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "sentir": [
+          "Mi madre es fría",
+          "No quiero tocarla, su contacto me desestabiliza"
+        ]
+      }
+    ],
+    "preguntas": [
+      "¿Cómo viví el contacto con mi madre?",
+      "¿Qué me desestabiliza en esa relación?"
+    ],
+    "afirmacion": "Encuentro mi propio calor y mi estabilidad.",
+    "relacionados": [
+      "pies",
+      "pies-calientes",
+      "extremidades-frias"
+    ]
+  },
+  {
+    "id": "pies-huecos-o-cavos",
+    "titulo": "PIES HUECOS O CAVOS",
+    "letra": "P",
+    "resumen": "Pies con el arco plantar más alto de lo normal, que apoyan sobre todo en el talón y la parte delantera.",
+    "etapa": "3ª etapa (movimiento, valoración)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Conflicto con la madre, real o simbólica (por ejemplo, ayudas estatales): búsqueda de autonomía respecto a ella.",
+        "sentir": [
+          "Me resisto al agobio de mi madre",
+          "Quiero separarme de mi madre"
+        ]
+      }
+    ],
+    "preguntas": [
+      "¿Me siento agobiado por mi madre o por quien me protege?",
+      "¿Qué necesito para ganar autonomía?"
+    ],
+    "afirmacion": "Tomo mi autonomía con respeto y libertad.",
+    "relacionados": [
+      "pies",
+      "pies-planos"
+    ]
+  },
+  {
+    "id": "pies-planos",
+    "titulo": "PIES PLANOS",
+    "letra": "P",
+    "resumen": "Pies con el arco plantar bajo o ausente, de modo que casi toda la planta toca el suelo; en la infancia es normal hasta los 4 a 7 años.",
+    "etapa": "3ª etapa (movimiento, valoración)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Búsqueda del afecto de la madre: de niño, no querer separarse de ella.",
+        "sentir": [
+          "Me impide despegarme y me clava al suelo",
+          "Mi madre me aplasta"
+        ],
+        "idea": "Plantea dos posibilidades: el niño no quiere separarse de su madre y necesita fusionarse con ella, o la madre le impide irse y lo 'pega' al suelo."
+      }
+    ],
+    "preguntas": [
+      "¿Me cuesta separarme de mi madre?",
+      "¿Siento que algo me retiene y no me deja despegar?"
+    ],
+    "afirmacion": "Me separo con amor y camino por mí mismo.",
+    "relacionados": [
+      "pies",
+      "pies-huecos-o-cavos"
+    ]
+  },
+  {
+    "id": "pineal-glandula",
+    "titulo": "PINEAL (glándula)",
+    "letra": "P",
+    "resumen": "Pequeña glándula del centro del cerebro, también llamada epífisis, que produce melatonina a partir de la serotonina y regula los ciclos de sueño y vigilia según la luz que recibe por vía de la retina.",
+    "enfoques": [
+      {
+        "fuente": "bourbeau",
+        "idea": "La relaciona con personas que tienen dones de percepción sutil pero temen usarlos, quizá por una mala experiencia de juventud (o, según ella, de una vida anterior). Sugiere usarlos con amor y respeto para ayudar a otros, sin aprovecharse ni enorgullecerse, darse permiso para ver más allá de lo común y no dejar que el pasado bloquee el presente. También puede aparecer en quien fuerza demasiado esos dones; en ese caso aconseja detenerse, darse tiempo y dejar que se desarrollen solos con amor."
+      }
+    ],
+    "preguntas": [
+      "¿Hay alguna capacidad mía que me da miedo usar?",
+      "¿Estoy forzando algo que necesita su tiempo?",
+      "¿Cómo están mis ritmos de sueño y descanso?"
+    ],
+    "afirmacion": "Uso mis dones con amor y a su debido tiempo.",
+    "relacionados": [
+      "hipofisis",
+      "hipotalamo",
+      "insomnio"
+    ]
+  },
+  {
+    "id": "piojos",
+    "titulo": "PIOJOS",
+    "letra": "P",
+    "resumen": "Pequeños insectos parásitos que viven en el cuero cabelludo, frecuentes en niños en edad escolar.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "sentir": [
+          "Tengo que entrar en contacto con mi cabeza"
+        ],
+        "idea": "Se señala que aparecen a menudo en la etapa en que el niño está aprendiendo a leer."
+      }
+    ],
+    "preguntas": [
+      "¿Qué aprendizaje me está exigiendo mucho?",
+      "¿Cómo acompaño a mi hijo en esta etapa escolar?"
+    ],
+    "afirmacion": "Aprendo a mi ritmo y con confianza.",
+    "relacionados": [
+      "parasitos",
+      "cabello"
+    ]
+  },
+  {
+    "id": "pituitaria",
+    "titulo": "PITUITARIA",
+    "letra": "P",
+    "resumen": "Otro nombre de la hipófisis, la glándula de la base del cerebro que regula muchas otras glándulas.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "idea": "Ver Hipófisis."
+      }
+    ],
+    "preguntas": [
+      "¿Qué área de mi vida necesita más regulación y equilibrio?",
+      "¿Siento que tengo el control de mi propio rumbo?"
+    ],
+    "afirmacion": "Encuentro mi equilibrio desde el centro.",
+    "relacionados": [
+      "hipofisis"
+    ]
+  },
+  {
+    "id": "pityriasis-versicolor",
+    "titulo": "PITYRIASIS VERSICOLOR",
+    "letra": "P",
+    "resumen": "Infección superficial y crónica de la piel por hongos del género Malassezia, que produce manchas más claras o más oscuras, normalmente sin otros síntomas.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Ataque a la integridad (en la hiperpigmentación) junto con un conflicto de separación en fase de curación."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Sobre la tiña, señala dejar que otros interfieran e influyan, con sensación de no valer y de impureza. Propone aprobarse y reconocer que nadie tiene poder sobre uno."
+      }
+    ],
+    "preguntas": [
+      "¿Quién está influyendo demasiado en mi vida?",
+      "¿De quién me separé y estoy sanando?",
+      "¿Me siento poco valioso o impuro?"
+    ],
+    "afirmacion": "Soy libre y valioso tal como soy.",
+    "relacionados": [
+      "hongos",
+      "micosis",
+      "piel-epidermis",
+      "la-piel-la-dermis"
+    ]
+  },
+  {
+    "id": "plaquetas",
+    "titulo": "PLAQUETAS",
+    "letra": "P",
+    "resumen": "Fragmentos de células derivados de los megacariocitos de la médula ósea, que circulan en la sangre y son clave para la coagulación.",
+    "etapa": "3ª etapa (movimiento, valoración)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Cohesión en la familia: una herida abierta o una 'pérdida de sangre' en el clan.",
+        "sentir": [
+          "Mi familia se deshace",
+          "De lo que más me arrepiento es de no haber terminado los estudios",
+          "Mi ex pareja me desangra"
+        ],
+        "idea": "'Mi familia se deshace' se comparte con el bazo. Con pocas plaquetas (plaquetopenia): no poder pegarse a la familia, sentirse apartado o inepto para pelear. Con exceso de plaquetas: cohesión en el clan, sentir que la familia desangra o tener una herida abierta."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Sobre la coagulación, señala una obstrucción de la alegría de vivir. Propone despertar a una nueva vida interior, abrirse y fluir con libertad."
+      }
+    ],
+    "preguntas": [
+      "¿Siento que mi familia se está deshaciendo?",
+      "¿Hay una herida abierta en mi clan?",
+      "¿Me siento apartado de los míos?"
+    ],
+    "afirmacion": "Cuido mis lazos y dejo que la alegría de vivir fluya.",
+    "relacionados": [
+      "plaquetopenia",
+      "hiperplaquetosis",
+      "trombocitosis",
+      "coagulacion-sanguinea",
+      "bazo",
+      "sangre"
+    ]
+  },
+  {
+    "id": "plaquetopenia",
+    "titulo": "PLAQUETOPENIA",
+    "letra": "P",
+    "resumen": "Disminución del número de plaquetas en la sangre, lo que facilita sangrados y moretones.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "sentir": [
+          "No puedo pegarme a esta familia",
+          "Estoy apartado de esta familia",
+          "Soy inepto para pelear"
+        ]
+      }
+    ],
+    "preguntas": [
+      "¿Me siento fuera de mi familia?",
+      "¿Siento que no tengo fuerzas para defenderme?"
+    ],
+    "afirmacion": "Tengo mi lugar entre los míos y sé defenderme.",
+    "relacionados": [
+      "plaquetas",
+      "coagulacion-sanguinea"
+    ]
+  },
+  {
+    "id": "la-pleura",
+    "titulo": "PLEURA",
+    "letra": "P",
+    "resumen": "Membrana de dos capas que envuelve los pulmones, con un líquido entre ellas que mantiene la presión necesaria para que el pulmón no colapse.",
+    "etapa": "2ª etapa (protección)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Conflicto de nido o drama interiorizado: velar y llorar a un muerto. Necesidad de proteger los pulmones, el 'bocado de aire' sin el cual se muere; miedo por el propio tórax o el de alguien.",
+        "sentir": [
+          "Quiero proteger mis pulmones",
+          "Pongo líquido para que lo vital fluya",
+          "Necesito mis propios referentes y valores"
+        ],
+        "idea": "Para proteger, el cuerpo engrosa la pleura o pone líquido entre sus capas; el tumor propio es el mesotelioma. En el derrame pleural el contenido orienta: líquido (hidrotórax) son los referentes; aire (neumotórax), el espacio, sentirse agobiado; sangre (hemotórax), la familia; grasa (quilotórax), las reservas. Comparte relé cerebral con el peritoneo porque antes eran una sola capa, separada luego por el diafragma, y protege todo el tórax, por lo que también puede reaccionar al miedo por los pechos o a una metástasis torácica. Ejemplos: un paciente al que le hablan de una mancha a la derecha de la radiografía hace una pleuritis en el pulmón derecho, aunque la mancha estaba en el izquierdo; un joven con tres neumotórax que volvió a casa para proteger a su madre de un padre agresivo, como prometió a su abuelo; una mujer con tres pleuritis graves, cada una tras cursos que no llegaron a término por culpa del formador, que deseaba que todo fuera fluido y sin roces entre la gente."
+      }
+    ],
+    "preguntas": [
+      "¿Tengo miedo por mi pecho o el de alguien querido?",
+      "¿Hay un duelo que velo en silencio?",
+      "¿Necesito que todo fluya sin roces a mi alrededor?"
+    ],
+    "afirmacion": "Respiro con tranquilidad y permito que la vida fluya.",
+    "relacionados": [
+      "pulmones",
+      "neumotorax",
+      "el-peritoneo",
+      "el-pericardio-pericarditis",
+      "cancer-de-pulmon"
+    ]
+  },
+  {
+    "id": "polaridad",
+    "titulo": "POLARIDAD",
+    "letra": "P",
+    "resumen": "Concepto de la biodescodificación sobre la polaridad masculina y femenina, regulada por las hormonas, que influye en cómo se viven los conflictos.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "idea": "Aquí actúan directamente las hormonas. Se indica que el cerebro derecho controla el lado derecho del cuerpo y el izquierdo el izquierdo. A la polaridad femenina se atribuyen la prioridad de lo verbal, la orientación en el tiempo, la cooperación, lo concreto, un tacto y un olfato mucho más finos, los movimientos de precisión, la grasa y la protección, la escucha y una mejor percepción de los colores. A la masculina, la acción y la competencia, la orientación en el espacio, lo abstracto, la vista, el deseo y la conquista, la tenacidad, la resistencia, la cicatrización y la búsqueda de soluciones. La testosterona activaría el deseo, la agresividad y la fuerza muscular, la barba y la calvicie, y la atracción por proteger; los estrógenos, la precisión, la grasa corporal, el oído y los colores, y la atracción por una figura fuerte y experimentada. Se añade que las mujeres expresan más las emociones, pero el hombre sería más emotivo. Ver también Pat hormonal."
+      }
+    ],
+    "preguntas": [
+      "¿Qué rasgos de mi lado femenino y masculino uso más?",
+      "¿Cómo cambio mi forma de reaccionar cuando estoy bajo estrés?"
+    ],
+    "afirmacion": "Integro y valoro mis dos polaridades.",
+    "relacionados": [
+      "pat-hormonal",
+      "hemisferios-y-cuerpo",
+      "laterlidad",
+      "bascula-hormonal"
+    ]
+  },
+  {
+    "id": "poliartritis-reumatoide",
+    "titulo": "POLIARTRITIS REUMATOIDE",
+    "letra": "P",
+    "resumen": "Enfermedad autoinmune que inflama de forma crónica muchas articulaciones y puede deformarlas y limitar su movimiento.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Suele ser multifactorial.",
+        "idea": "Se recomienda buscar un yaciente, es decir, un antepasado cuya historia se esté repitiendo."
+      }
+    ],
+    "preguntas": [
+      "¿Hay alguien en mi familia cuya historia siento que repito?",
+      "¿Qué varias cargas se suman hoy en mi vida?"
+    ],
+    "afirmacion": "Honro mi historia familiar y elijo mi propio camino.",
+    "relacionados": [
+      "artritis",
+      "articulaciones",
+      "yaciente",
+      "enfermedades-autoinmunes",
+      "reuma"
+    ]
+  },
+  {
+    "id": "poliglobulia",
+    "titulo": "POLIGLOBULIA",
+    "letra": "P",
+    "resumen": "Exceso de glóbulos rojos en la sangre, lo contrario de la anemia.",
+    "etapa": "3ª etapa (movimiento, valoración)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Haber vivido situaciones de ahogo. También muertes en la familia ante las que hay que hacerse fuerte, o miedo a morir por falta de glóbulos rojos, por ejemplo si un ser querido murió por una hemorragia.",
+        "sentir": [
+          "Debo fortalecerme",
+          "Me falta el aire"
+        ]
+      }
+    ],
+    "preguntas": [
+      "¿Viví alguna situación de ahogo?",
+      "¿Hay una muerte en mi familia que me obligó a hacerme fuerte?"
+    ],
+    "afirmacion": "Estoy a salvo y puedo respirar con calma.",
+    "relacionados": [
+      "globulos-rojos",
+      "anemia",
+      "sangre",
+      "asfixia"
+    ]
+  },
+  {
+    "id": "poliomelitis",
+    "titulo": "POLIOMIELITIS",
+    "letra": "P",
+    "resumen": "Enfermedad contagiosa causada por el poliovirus, también llamada parálisis infantil, que afecta el sistema nervioso, sobre todo en niños; hoy se previene con vacunas.",
+    "enfoques": [
+      {
+        "fuente": "hay",
+        "idea": "La relaciona con celos que paralizan y el deseo de detener a alguien. Propone confiar en que hay suficiente para todos y crear el propio bien y libertad con pensamientos de amor."
+      }
+    ],
+    "preguntas": [
+      "¿Siento celos que me paralizan?",
+      "¿A quién quisiera frenar?"
+    ],
+    "afirmacion": "Hay suficiente para todos y avanzo en libertad.",
+    "relacionados": [
+      "paralisis",
+      "virus",
+      "medula-espinal"
+    ]
+  },
+  {
+    "id": "polipos-colitis",
+    "titulo": "PÓLIPOS, COLITIS",
+    "letra": "P",
+    "resumen": "La colitis es una inflamación del colon y el recto con úlceras en su pared, diarrea a veces con sangre y dolor abdominal; los pólipos son pequeños crecimientos en esa mucosa.",
+    "etapa": "1ª etapa (supervivencia)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Una mala jugada o acción sucia; hay que averiguar su intensidad.",
+        "idea": "Un pólipo correspondería a una pequeña acción sucia, y una poliposis a muchas. Todo lo relacionado con el colon se vive en clave de supervivencia."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Lo asocia a la inseguridad y a la facilidad para dejar ir lo que ya está superado. Propone sentirse parte del ritmo y el fluir perfectos de la vida."
+      }
+    ],
+    "preguntas": [
+      "¿Qué mala jugada no he podido soltar?",
+      "¿Qué ya superado sigo reteniendo?"
+    ],
+    "afirmacion": "Suelto lo que ya pasó y fluyo con la vida.",
+    "relacionados": [
+      "colitis",
+      "colon",
+      "colon-polipos",
+      "poliposis",
+      "recto"
+    ]
+  },
+  {
+    "id": "poliposis",
+    "titulo": "POLIPOSIS",
+    "letra": "P",
+    "resumen": "Presencia de muchos pólipos en el colon o el recto: crecimientos del tejido glandular, en general benignos y sin síntomas, que pueden causar sangrado rectal indoloro.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Persona que ha vivido muchas malas jugadas o acciones sucias.",
+        "idea": "Ver Colon."
+      }
+    ],
+    "preguntas": [
+      "¿Siento que me han hecho muchas pequeñas malas jugadas?",
+      "¿Qué necesito soltar para quedarme en paz?"
+    ],
+    "afirmacion": "Libero lo que me ensució y me quedo con lo que me nutre.",
+    "relacionados": [
+      "colon",
+      "colon-polipos",
+      "polipos-colitis"
+    ],
+    "nota_especial": "Los pólipos de colon deben controlarse médicamente porque algunos pueden evolucionar. Sigue las revisiones que indique tu médico."
+  },
+  {
+    "id": "presbicia-vista-cansada",
+    "titulo": "PRESBICIA (vista cansada)",
+    "letra": "P",
+    "resumen": "Pérdida gradual de la capacidad de enfocar de cerca, por la rigidez del cristalino con la edad; suele aparecer hacia los 45 años.",
+    "etapa": "4ª etapa (relación)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "El peligro está lejos, en el tiempo o en el espacio: miedo al futuro y aprensión por uno o por los suyos. Miedo por la nuca o persecución, miedo a un acontecimiento próximo, a la vejez o a la muerte que llegará.",
+        "sentir": [
+          "¿Qué me va a pasar ahora que voy a...?",
+          "No quiero ver lo que tengo delante",
+          "Me niego a acomodarme"
+        ],
+        "idea": "Es una patología del cristalino. El ojo derecho memoriza, compara y mira a los amigos: es el del reconocimiento y la afectividad. El izquierdo sigue el movimiento y mira a los enemigos: es el de la defensa y el peligro."
+      },
+      {
+        "fuente": "bourbeau",
+        "idea": "Juega con el doble sentido de 'acomodación': enfocar el ojo y adaptarse a personas y circunstancias. Quien tiene presbicia tendría dificultad para adaptarse a lo que pasa a su alrededor: verse envejecer en el espejo, sentirse menos deseable, o mirar su situación familiar o laboral. Indica que se deja molestar demasiado por lo que ve cerca. Sugiere dejar de creer que con la edad disminuyen las capacidades, pues aunque el cuerpo se desgaste se gana fuerza emocional y mental con la madurez; poner menos atención en lo físico para ver el propio valor y adaptarse con más facilidad."
+      }
+    ],
+    "preguntas": [
+      "¿Qué me preocupa del futuro que se acerca?",
+      "¿Qué me cuesta mirar de mi situación actual?",
+      "¿Cómo vivo el paso de los años?"
+    ],
+    "afirmacion": "Me adapto con sabiduría y veo el valor que he ganado con los años.",
+    "relacionados": [
+      "ojos",
+      "cristalino",
+      "hipermetropia",
+      "vejez"
+    ]
+  },
+  {
+    "id": "problemas-respiratorios",
+    "titulo": "PROBLEMAS RESPIRATORIOS",
+    "letra": "P",
+    "resumen": "Dificultades para respirar con normalidad, de origen muy variado.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Temores: resistencia a dar, compartir o entregarse; miedo a tomar y asimilar; aferrarse a uno mismo y resistirse a soltar y fluir.",
+        "sentir": [
+          "No merezco la vida",
+          "Lo que me rodea me irrita profundamente"
+        ],
+        "idea": "Se señala también una actitud de sentirse poco merecedor de la vida, obstruyéndola, y de irritación profunda por el ambiente. Como camino se proponen la seguridad en uno mismo, la confianza en la vida y la apertura, cultivando paz y armonía dentro y fuera."
+      }
+    ],
+    "preguntas": [
+      "¿Me cuesta dar o recibir?",
+      "¿Siento que merezco la vida plenamente?",
+      "¿Qué de mi entorno me irrita?"
+    ],
+    "afirmacion": "Me abro a la vida y la respiro con confianza.",
+    "relacionados": [
+      "pulmones",
+      "asma",
+      "bronquios",
+      "ahogos"
+    ]
+  },
+  {
+    "id": "la-prolactina",
+    "titulo": "PROLACTINA",
+    "letra": "P",
+    "resumen": "Hormona producida por la parte anterior de la hipófisis que estimula la producción de leche en las mamas y la síntesis de progesterona.",
+    "etapa": "1ª etapa (supervivencia)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "No ser capaz de alimentar a los suyos, posiblemente con una carga que viene de generaciones anteriores.",
+        "sentir": [
+          "No puedo alimentar a los míos"
+        ]
+      }
+    ],
+    "preguntas": [
+      "¿Siento que no puedo nutrir o sostener a mi familia?",
+      "¿Hubo en mi linaje historias de hambre o de no poder alimentar a los hijos?"
+    ],
+    "afirmacion": "Tengo lo necesario para nutrir y cuidar a los míos.",
+    "relacionados": [
+      "hipofisis",
+      "adenohipofisis",
+      "mamas",
+      "pechos"
+    ]
+  },
+  {
+    "id": "prostata",
+    "titulo": "PRÓSTATA",
+    "letra": "P",
+    "resumen": "Glándula masculina situada bajo la vejiga que produce parte del líquido seminal, el cual protege y nutre a los espermatozoides.",
+    "etapa": "1ª etapa (supervivencia)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Conflicto arcaico (proyecta sobre la vértebra L3): pérdida en la familia; proteger a los nietos como si un depredador fuera a devorarlos; sentir que hay que ser más competente con una pareja más joven o vivir una sexualidad fuera de la norma (gran diferencia de edad); historias de 'castración', cuando la pareja impone sus condiciones en la intimidad; dramas de hijos, pareja o nietos, como accidentes, enfermedades o muertes.",
+        "sentir": [
+          "Quiero tener relaciones y no puedo",
+          "Quiero nietos",
+          "Mi pareja es más joven y no sé si estaré a la altura",
+          "Mis hijos no tienen niños"
+        ],
+        "idea": "Se la llama 'la protectora' y actúa como directora de orquesta que mantiene en marcha la reproducción en el hombre mayor; tiene tejidos de 1ª y 3ª etapa. Se compara con el cáncer de útero tras la menopausia: en la evolución, la persona ya es abuelo o abuela. Ejemplos: un hombre que se traumatiza cuando su mujer da a luz en el coche camino del hospital, entre sangre y líquidos; un terapeuta que siente deseo por una paciente y lo vive como algo sucio. Ante problemas de próstata o útero se sugiere preguntar: ¿qué es lo que piensas siempre, desde que te levantas hasta que te acuestas?"
+      },
+      {
+        "fuente": "hay",
+        "idea": "La ve como símbolo del principio masculino. Señala temores que debilitan la masculinidad, renuncia, presión y culpa sexual y la creencia en el envejecimiento: la idea de que al envejecer se es menos hombre, que se acentúa a menudo con la jubilación, sintiéndose inútil. En la impotencia añade miedo y a veces despecho hacia una pareja anterior; en la frigidez, miedo o creencia de que está mal disfrutar del cuerpo, autorrechazo o una pareja poco sensible. Otra lectura del mismo bloque la liga a insatisfacción y frustración sexual, y sugiere cambiar la mirada sobre el amor y cultivar la autoestima. Propone aceptar y disfrutar la propia masculinidad, aprobarse, asumir el propio poder y sentirse joven de espíritu."
+      },
+      {
+        "fuente": "bourbeau",
+        "idea": "La relaciona con el centro de energía sacro, el poder de crear. Sus problemas, más frecuentes después de los 50, muestran que molesta una situación de impotencia que no se puede controlar, con cansancio de la vida; la baja de la libido sería reflejo de esa impotencia interior. Recuerda que no se puede controlar todo y que a veces la vida nos obliga a soltar para crear algo mejor. Sugiere reconectar con el propio poder creador, dejar de creer que envejecer resta capacidad, usar la fuerza emocional y mental ganada con los años y permitir que los más jóvenes ayuden en lo físico, entendiendo que delegar es sabiduría, no pérdida de valor."
+      }
+    ],
+    "preguntas": [
+      "¿Qué situación me hace sentir impotente?",
+      "¿Creo que al envejecer valgo menos?",
+      "¿Qué pienso todo el día, desde que me levanto hasta que me acuesto?"
+    ],
+    "afirmacion": "Con los años gano sabiduría y sigo creando mi vida.",
+    "relacionados": [
+      "impotencia",
+      "frigidez",
+      "vertebras-lumbares",
+      "utero",
+      "partes-ano-vejiga-vagina-pene-prostata",
+      "vesicula-seminal"
+    ],
+    "nota_especial": "Los cambios en la próstata pueden requerir controles médicos periódicos. Consulta a tu urólogo y sigue sus indicaciones."
+  },
+  {
+    "id": "prurito-irritacion-picor-comezon",
+    "titulo": "PRURITO (irritación, picor, comezón)",
+    "letra": "P",
+    "resumen": "Sensación en la piel que provoca la necesidad de rascarse.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Separación del placer y falta de contacto con las emociones. Se considera crisis épica de un conflicto de separación. Con bilirrubina alta en sangre, separación vivida con rencor e injusticia.",
+        "sentir": [
+          "Me separaron de lo que me daba placer"
+        ],
+        "idea": "El prurito, la irritación o el ardor también pueden relacionarse con temas de sexualidad y agresividad."
+      },
+      {
+        "fuente": "martel",
+        "idea": "Lo vincula a menudo con la impaciencia, la inseguridad o el disgusto con uno mismo."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Lo asocia a deseos que van contra la propia inclinación, insatisfacción, remordimiento y ganas de irse o escapar. Propone estar en paz donde se está y aceptar el propio bien, confiando en que las necesidades serán cubiertas."
+      },
+      {
+        "fuente": "bourbeau",
+        "conflicto": "Envidiar mucho algo sin permitirse ese sentimiento, o sentirse bloqueado por alguien o por las circunstancias, lo que trae preocupación, impaciencia y exasperación.",
+        "idea": "El lugar del picor indica el área donde uno se siente bloqueado o envidioso, según la utilidad de esa parte del cuerpo. Como la piel se liga a la personalidad, se rechaza reconocer esa envidia por miedo a herir o al qué dirán. Sugiere comprobar si el deseo es realista o un capricho: si es capricho, reconocerlo, soltarlo y no querer controlarlo todo; si es realista, enfrentar los miedos, pedir y pasar a la acción."
+      }
+    ],
+    "preguntas": [
+      "¿De qué placer me siento separado?",
+      "¿Qué deseo o envidia no me permito reconocer?",
+      "¿De qué situación quisiera escapar?"
+    ],
+    "afirmacion": "Reconozco lo que deseo y me permito ir por ello con calma.",
+    "relacionados": [
+      "piel-epidermis",
+      "crisis-epica",
+      "picaduras-de-mosquito",
+      "eczema-en-la-piel",
+      "urticaria"
+    ]
+  },
+  {
+    "id": "psicosis-funcionales",
+    "titulo": "PSICOSIS FUNCIONALES",
+    "letra": "P",
+    "resumen": "Trastornos mentales graves en los que se pierde el contacto con la realidad, sin una lesión física que los explique.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Constelación (conflictos activos en ambos hemisferios) propia de la esquizofrenia y la psicosis maníaco-depresiva."
+      }
+    ],
+    "preguntas": [
+      "¿Qué conflictos simultáneos estoy cargando?",
+      "¿Con quién puedo buscar apoyo profesional?"
+    ],
+    "afirmacion": "Me permito recibir ayuda y cuidar mi mente con amor.",
+    "relacionados": [
+      "esquizofrenia",
+      "psicosis-maniaco-depresiva",
+      "psiquiatricos-problemas"
+    ],
+    "nota_especial": "Las psicosis son trastornos graves de salud mental. Si te identificas con esto, busca de inmediato la ayuda de un psiquiatra o un servicio de salud mental."
+  },
+  {
+    "id": "psicosis-maniaco-depresiva",
+    "titulo": "PSICOSIS MANÍACO-DEPRESIVA",
+    "letra": "P",
+    "resumen": "Trastorno del estado de ánimo, hoy llamado trastorno bipolar, en el que se alternan fases de euforia o agitación con fases de depresión.",
+    "etapa": "4ª etapa (relación)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Constelación combinada con una gran masa conflictiva. En niños psicóticos, se describe un padre que 'no pinta nada' y una madre que 'pinta demasiado'.",
+        "idea": "Se recomienda mirar el árbol genealógico. Los niños psicóticos habrían recibido traumas ancestrales y parecen tener la misión de reparar sin descanso el pasado familiar; una historia transmitida con una explicación falsa causaría estragos en los descendientes. Lo que cuentan parece incomprensible, pero si se escucha en serio, exploran el pasado familiar que los formó. Sus padres suelen ser fieles pero sin voz sobre el hijo, mientras la madre decide todo; para el niño, el padre es como un hermano mayor. Un terapeuta relata sentir un sueño irresistible al atender a estos consultantes. En general, la psicosis se da en quien vive un gran impacto emocional y quiere desconectarse de la realidad, a veces refugiándose en el alcohol o las drogas, con poca asertividad y conductas aprendidas en el clan. Se observa también que en las adicciones suele haber una madre sobreprotectora y sumisa y un padre agresivo o afectivamente distante."
+      },
+      {
+        "fuente": "bourbeau",
+        "idea": "La relaciona con haber perdido el contacto con el propio YO SOY. Observa ira hacia el progenitor del sexo opuesto, por no haber sido reconocido desde niño tal como se era, e intentos de ser otra persona para lograrlo; la psicosis llegaría cuando se alcanza el límite mental de no ser uno mismo. Señala que la persona suele rechazar la ayuda y responsabilizar a otros, sobre todo del sexo opuesto. Sugiere asumir que solo uno puede reconectar con lo que es, que nunca es tarde para liberarse del sufrimiento de la infancia, y propone el perdón verdadero como camino."
+      }
+    ],
+    "preguntas": [
+      "¿Qué historias de mi familia nunca se contaron con claridad?",
+      "¿Siento que tuve que ser otro para que me reconocieran?",
+      "¿Estoy dispuesto a aceptar ayuda?"
+    ],
+    "afirmacion": "Me permito ser quien soy y recibir el apoyo que necesito.",
+    "relacionados": [
+      "depresion-y-mania",
+      "psicosis-funcionales",
+      "esquizofrenia",
+      "adicciones",
+      "perdon-verdadero",
+      "psiquiatricos-problemas"
+    ],
+    "nota_especial": "El trastorno bipolar y las psicosis requieren diagnóstico y tratamiento médico. Si te identificas con esto, consulta con un psiquiatra; si tienes pensamientos de hacerte daño, busca ayuda urgente."
+  },
+  {
+    "id": "psiquiatricos-problemas",
+    "titulo": "PSIQUIÁTRICOS (problemas)",
+    "letra": "P",
+    "resumen": "Trastornos de salud mental que afectan el pensamiento, las emociones o la conducta.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Haber querido huir de la vida con ira y desesperación.",
+        "sentir": [
+          "Quiero escapar de la vida"
+        ],
+        "idea": "Como actitud a cultivar se propone reconocerse parte de la vida y de la salud, aceptar la vida tal como viene, enfrentarla y disfrutarla."
+      }
+    ],
+    "preguntas": [
+      "¿De qué siento que quiero huir?",
+      "¿Qué ira o desesperación llevo dentro?",
+      "¿Quién puede acompañarme en este momento?"
+    ],
+    "afirmacion": "Acepto la vida tal como viene y me permito recibir ayuda.",
+    "relacionados": [
+      "psicosis-funcionales",
+      "psicosis-maniaco-depresiva",
+      "esquizofrenia",
+      "paranoia",
+      "depresion",
+      "neurosis"
+    ],
+    "nota_especial": "Los problemas de salud mental requieren acompañamiento profesional. Si sientes deseos de escapar de la vida o de hacerte daño, busca ayuda urgente con un profesional o una línea de atención en crisis."
+  },
+  {
+    "id": "psoriasis",
+    "titulo": "PSORIASIS",
+    "letra": "P",
+    "resumen": "Enfermedad crónica de la piel en la que las células se renuevan demasiado rápido y forman placas rojizas cubiertas de escamas.",
+    "etapa": "4ª etapa (relación)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Separación, también de uno mismo (de la propia integridad), sumada a un contacto obligado y la necesidad de protegerse. Falta de la protección paterna (o de la madre si cumplía esa función).",
+        "sentir": [
+          "Me agreden",
+          "Estoy separado de alguien",
+          "Para que no me agredan más, me separo",
+          "¡Papá, necesito que me abraces!"
+        ],
+        "idea": "Para que aparezcan las placas hacen falta al menos dos conflictos distintos, uno activo y otro en curación: un doble sentir de agresión y separación, a veces respecto a dos personas cercanas. La piel se vuelve una coraza; detrás de toda defensa hay miedo a ser herido, y cuanto más dura la coraza, más sensibilidad y miedo esconde. Como en la epidermis, perder el contacto es vital para los animales. Se vincula al padre, por eso mejoraría al sol; el Dr. Salomon sostiene que siempre es un conflicto con el padre."
+      },
+      {
+        "fuente": "hay",
+        "idea": "La relaciona con el miedo a ser herido, la disminución de la capacidad de sentir y no querer hacerse cargo de los propios sentimientos. Propone abrirse a las alegrías de la vida, sentirse merecedor de lo mejor y aprobarse."
+      }
+    ],
+    "preguntas": [
+      "¿De quién me alejé para que no me volviera a herir?",
+      "¿Qué abrazo o protección de mi padre me faltó?",
+      "¿Qué siento detrás de mi coraza?"
+    ],
+    "afirmacion": "Puedo cuidarme sin cerrarme y abrirme al cariño con seguridad.",
+    "relacionados": [
+      "piel-epidermis",
+      "la-piel-la-dermis",
+      "eczema-en-la-piel"
+    ]
+  },
+  {
+    "id": "pubalgias",
+    "titulo": "PUBALGIAS",
+    "letra": "P",
+    "resumen": "Dolor en la zona del pubis y la ingle, frecuente en deportistas.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Cuestiones sexuales y desvalorización estética, por ejemplo al estar desnudo o al compararse con otros.",
+        "sentir": [
+          "No me gusta cómo me veo desnudo",
+          "Me comparo y salgo perdiendo"
+        ]
+      }
+    ],
+    "preguntas": [
+      "¿Cómo me siento con mi cuerpo desnudo?",
+      "¿Con quién me comparo en lo íntimo?"
+    ],
+    "afirmacion": "Acepto mi cuerpo y mi intimidad con cariño.",
+    "relacionados": [
+      "pubis",
+      "pelvis",
+      "cruralgias-lumbares"
+    ]
+  },
+  {
+    "id": "pubis",
+    "titulo": "PUBIS",
+    "letra": "P",
+    "resumen": "Parte delantera del hueso de la cadera, que forma la zona frontal de la pelvis sobre los genitales.",
+    "etapa": "3ª etapa (movimiento, valoración)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Desvalorización sexual.",
+        "sentir": [
+          "No soy competente en lo sexual",
+          "Soy mala pareja en la intimidad"
+        ]
+      },
+      {
+        "fuente": "hay",
+        "idea": "Lo ve como protección de los órganos genitales. Propone vivir la sexualidad con seguridad."
+      }
+    ],
+    "preguntas": [
+      "¿Cómo me valoro en mi vida íntima?",
+      "¿Me siento seguro en mi sexualidad?"
+    ],
+    "afirmacion": "Mi sexualidad es segura y me valoro en ella.",
+    "relacionados": [
+      "pelvis",
+      "pubalgias",
+      "cadera"
+    ]
+  },
+  {
+    "id": "pulmones",
+    "titulo": "PULMONES",
+    "letra": "P",
+    "resumen": "Órganos de la respiración que toman el oxígeno del aire y eliminan el dióxido de carbono.",
+    "etapa": "1ª etapa (supervivencia) y 4ª etapa (relación)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Miedo a la muerte, miedo arcaico a ahogarse, miedo visceral cuando desaparece la razón de vivir. Miedo a perderse como territorio propio.",
+        "sentir": [
+          "Tengo miedo de morir asfixiado",
+          "Palabras hirientes invaden mi espacio"
+        ],
+        "idea": "El sentido biológico es transformar el oxígeno (vida) en dióxido de carbono (muerte). En los alvéolos, miedo a morir por asfixia; en los bronquios, un obstáculo simbólico que eliminar, peleas e invasión del territorio. Al respirar todos compartimos el mismo aire, y aunque queramos encerrarnos, la respiración nos mantiene unidos: representa contacto, relación y comunicación. Se asocian aflicción, depresión, miedo a inspirar la vida y sentir que no se merece vivir plenamente. La neumonía, a heridas emocionales que no se dejan cicatrizar, cansancio de vivir y enojo; la tisis, a la tristeza. Las imágenes orientan: una mancha, miedo a que otro muera; muchas manchas como globos sueltos, miedo por uno mismo; manchas cada vez más pequeñas de arriba abajo, miedo a sufrir al morir; micronódulos en el pulmón izquierdo, necesitar territorio para los hijos, como una mujer cuyo marido no aceptaba a los hijos de su pareja anterior. Ver también Alvéolos y Bronquios."
+      },
+      {
+        "fuente": "martel",
+        "idea": "Vincula las enfermedades pulmonares con poder tomar el espacio vital, el 'aire' necesario para sentirse libre y vivir: necesidad de espacio y autonomía, ligada al sentimiento de estar vivo."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Representan la capacidad de recibir, comprender e inspirar la vida; sus problemas hablan de depresión, aflicción, miedo a inspirar la vida y sentir que no se tiene derecho a vivir plenamente ni a ocupar espacio. En la asfixia señala temor, desconfianza en la vida y quedarse detenido en la infancia. Observa que muchas mujeres respiraban de forma superficial cuando se les negaba su espacio, y celebra que hoy ocupen su lugar y respiren a fondo. Propone inspirar la vida en equilibrio, sentirse a salvo y digno de amor, y elegir vivir libre y plenamente."
+      },
+      {
+        "fuente": "bourbeau",
+        "idea": "Los relaciona con el deseo y la capacidad de vivir bien: todo problema indica que duele vivir en ese momento, con tristeza, desánimo o desesperación, o sentirse asfixiado por una situación o persona, sin espacio para moverse. También el miedo a morir o a ver morir, sufrir o ver sufrir. Quien piensa que estaría mejor muerto pierde sus deseos, el combustible emocional; quien teme morir también teme 'morir' a algo y no se permite lo nuevo. Cuanto más grave, más urgente el mensaje. Sugiere volver a desear, apreciar la vida, ver su lado bueno en lugar de dramatizar, retomar la vida social y practicar a diario respiraciones profundas al aire libre."
+      }
+    ],
+    "preguntas": [
+      "¿Me duele vivir en este momento?",
+      "¿Qué situación o persona me ahoga?",
+      "¿Me doy permiso para ocupar mi espacio y vivir plenamente?"
+    ],
+    "afirmacion": "Respiro la vida a pleno pulmón y ocupo mi espacio con alegría.",
+    "relacionados": [
+      "alveolos-pulmonares",
+      "bronquios",
+      "la-pleura",
+      "neumonia",
+      "tuberculosis",
+      "asfixia",
+      "hiperventilacion",
+      "problemas-respiratorios",
+      "cancer-de-pulmon"
+    ],
+    "nota_especial": "Si sientes que estarías mejor muerto o que ya no quieres vivir, no estás solo: busca ayuda inmediata con un profesional de salud mental o una línea de atención en crisis. Ante problemas respiratorios, consulta también a tu médico."
+  },
+  {
+    "id": "punta-de-los-pies-caminar",
+    "titulo": "PUNTA DE LOS PIES (caminar de)",
+    "letra": "P",
+    "resumen": "Tendencia a caminar apoyando solo la parte delantera del pie, sin bajar el talón.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Un problema serio con la madre.",
+        "sentir": [
+          "No quiero ver a mi madre",
+          "No quiero tocar a mi madre"
+        ]
+      }
+    ],
+    "preguntas": [
+      "¿Cómo es el contacto con mi madre?",
+      "¿Qué evito en esa relación?"
+    ],
+    "afirmacion": "Encuentro mi propio apoyo y piso la tierra con confianza.",
+    "relacionados": [
+      "pies",
+      "talon"
+    ]
+  }
+]

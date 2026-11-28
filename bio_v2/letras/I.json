@@ -1,0 +1,588 @@
+[
+  {
+    "id": "ictiosis",
+    "titulo": "ICTIOSIS",
+    "letra": "I",
+    "resumen": "Sequedad permanente de la piel, que se descama como si formara escamas.",
+    "enfoques": [
+      {
+        "fuente": "bourbeau",
+        "idea": "Si aparece muy pronto en la vida, plantea que podría venir de una vida anterior. Toda piel seca se asocia a una actitud demasiado severa y poco suave. Como la piel muestra la personalidad que dejamos ver, indica que la persona no quiere exponer su vulnerabilidad, su lado blando. Sugiere permitirse ser más amable con uno mismo y con los demás, dejar de sostener una imagen que obliga a controlarse todo el tiempo, y observar a alguien admirado que se atreve a mostrar su dulzura sin engañarse ni engañar: así uno se vuelve menos rígido y más vivo."
+      }
+    ],
+    "preguntas": [
+      "¿Qué parte vulnerable de mí escondo?",
+      "¿Soy demasiado severo conmigo o con los demás?",
+      "¿Qué imagen me obligo a sostener?"
+    ],
+    "afirmacion": "Me permito mostrar mi dulzura y ser amable conmigo.",
+    "relacionados": [
+      "piel-seca",
+      "piel-epidermis"
+    ]
+  },
+  {
+    "id": "ictus-derrame-cerebral",
+    "titulo": "ICTUS (derrame cerebral)",
+    "letra": "I",
+    "resumen": "Apoplejía: interrupción brusca del riego en una zona del cerebro. Puede ser isquémico, cuando una arteria se tapona, o hemorrágico, cuando un vaso se rompe.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Mucha preocupación familiar."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Lo relaciona con rendirse y a la vez resistirse, con preferir morir antes que cambiar y con rechazar la vida. Propone aceptar que la vida es cambio, adaptarse a lo nuevo y acoger el pasado, el presente y el futuro."
+      }
+    ],
+    "preguntas": [
+      "¿Qué preocupación familiar me pesa tanto?",
+      "¿A qué cambio me estoy resistiendo con todas mis fuerzas?"
+    ],
+    "afirmacion": "Acepto los cambios de la vida y me adapto con calma.",
+    "relacionados": [
+      "accidente-cerebrovascular",
+      "hemiplegia-accidente-vascular-cerebral",
+      "isquemia-cerebral",
+      "embolias",
+      "aneurisma"
+    ],
+    "nota_especial": "El ictus es una emergencia médica: ante síntomas como pérdida de fuerza, de habla o de visión repentinas, acude de inmediato a urgencias."
+  },
+  {
+    "id": "ileon-intestino-delgado-inferior",
+    "titulo": "ÍLEON (Intestino delgado inferior)",
+    "letra": "I",
+    "resumen": "Último tramo del intestino delgado, antes del grueso. Su inflamación se llama ileítis o enteritis regional.",
+    "etapa": "1ª etapa (supervivencia)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "No poder digerir la presa: una contrariedad indigesta, generalmente unida al miedo a morir de hambre en sentido amplio.",
+        "idea": "Resume el caso de una peluquera que tuvo que cerrar su local varias veces y luego para siempre porque sus mejores ayudantes se fueron a la competencia pese a su oposición, con una gran pérdida económica."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Para la ileítis señala miedo, inquietud y sentirse incapaz. Propone amarse y aprobarse, reconocer que se hace lo mejor posible y encontrar paz."
+      }
+    ],
+    "preguntas": [
+      "¿Qué contrariedad no logro digerir?",
+      "¿Temo que me falte lo necesario para vivir?",
+      "¿Me siento incapaz frente a algo?"
+    ],
+    "afirmacion": "Hago lo mejor que puedo y confío en que tendré lo necesario.",
+    "relacionados": [
+      "intestino-delgado",
+      "crohn-enfermedad-de",
+      "yeyuno-intestino-delgado-superior"
+    ]
+  },
+  {
+    "id": "impaciencia",
+    "titulo": "IMPACIENCIA",
+    "letra": "I",
+    "resumen": "Dificultad para esperar, con sensación de urgencia constante.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "sentir": [
+          "Quiero hacerlo mejor y rápido para recuperar el tiempo"
+        ],
+        "idea": "Ver Tiroides."
+      }
+    ],
+    "preguntas": [
+      "¿Qué tiempo siento que perdí y quiero recuperar?",
+      "¿Por qué me exijo hacerlo todo mejor y más rápido?"
+    ],
+    "afirmacion": "Cada cosa tiene su tiempo y yo confío en el mío.",
+    "relacionados": [
+      "tiroides",
+      "hipertiroidismo"
+    ]
+  },
+  {
+    "id": "impetigo",
+    "titulo": "IMPÉTIGO",
+    "letra": "I",
+    "resumen": "Infección bacteriana superficial de la piel, contagiosa, con costras amarillentas; frecuente en niños.",
+    "enfoques": [
+      {
+        "fuente": "bourbeau",
+        "idea": "Afecta sobre todo a quien no se deja tocar afectivamente por los demás: se protege por miedo a que influyan demasiado en él y se vuelve rígido para no sentir. Sugiere dejar de protegerse, darse permiso para necesitar a otros, entender que abrirse es mejor que cerrarse y que la sensibilidad no es debilidad ni impide defenderse cuando haga falta."
+      }
+    ],
+    "preguntas": [
+      "¿Me cuesta dejarme tocar afectivamente?",
+      "¿Temo que los demás influyan demasiado en mí?",
+      "¿Creo que ser sensible es ser débil?"
+    ],
+    "afirmacion": "Me permito necesitar a otros y sentir sin miedo.",
+    "relacionados": [
+      "piel-epidermis",
+      "infeccion",
+      "bacterias"
+    ]
+  },
+  {
+    "id": "impotencia",
+    "titulo": "IMPOTENCIA",
+    "letra": "I",
+    "resumen": "Dificultad para lograr o mantener la erección (disfunción eréctil).",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "sentir": [
+          "No quiero darle placer",
+          "No estoy a la altura"
+        ],
+        "idea": "Suele acompañarse de una afección de la hipófisis relacionada con la prolactina (LTH). Ver también Vesícula seminal."
+      },
+      {
+        "fuente": "hay",
+        "idea": "La asocia a presión, tensión y culpa en lo sexual, a las convenciones sociales, al despecho hacia una pareja anterior y al miedo a la madre. Propone permitir que la propia energía sexual fluya con fuerza, facilidad y alegría."
+      },
+      {
+        "fuente": "bourbeau",
+        "idea": "Recuerda que todo hombre puede vivirla en algún momento, porque la erección es frágil, y que no debe tomarse como tragedia ni ridiculizarse. Invita a buscar en qué situación el hombre se sintió impotente y qué ocurrió antes. Si se repite con la misma mujer, puede ser que ella haya pasado a ocupar el lugar de madre, que él no quiera 'manchar' a quien ama, o un modo inconsciente de castigar a la pareja. El mensaje sería que la creencia de ser impotente ante una situación le hace daño; a veces surge por querer demasiado para otro, y conviene dejar que cada uno resuelva lo suyo. Si viene de una mala experiencia previa, sugiere dejar de creer que se repetirá; y si se usa para castigar, notar que el castigo recae en uno mismo y bloquea la energía creativa."
+      }
+    ],
+    "preguntas": [
+      "¿En qué situación de mi vida me siento impotente?",
+      "¿Siento presión, culpa o miedo en mi intimidad?",
+      "¿Hay enojo o despecho hacia mi pareja, actual o anterior?"
+    ],
+    "afirmacion": "Me libero de la presión y vivo mi intimidad con confianza.",
+    "relacionados": [
+      "vesicula-seminal",
+      "hipofisis",
+      "la-prolactina",
+      "eyaculacion-precoz",
+      "pene"
+    ],
+    "nota_especial": "La disfunción eréctil puede tener causas médicas (circulatorias, hormonales, por medicamentos). Conviene consultarla con un profesional de la salud."
+  },
+  {
+    "id": "incontinencia",
+    "titulo": "INCONTINENCIA",
+    "letra": "I",
+    "resumen": "Pérdida involuntaria de orina (o, en algunos casos, de heces).",
+    "enfoques": [
+      {
+        "fuente": "martel",
+        "idea": "La relaciona a menudo con el deseo de controlarlo todo en la vida."
+      },
+      {
+        "fuente": "hay",
+        "idea": "La vincula a un desborde emocional tras años de reprimir las emociones. Propone estar dispuesto a sentir y reconocer que es bueno y seguro expresarlas. Para la micción frecuente señala la falta de expresión de sentimientos negativos como odio, resentimiento, inconformidad, insatisfacción o irritación, ligados a la relación con los demás, y propone sacarlos a la luz y enfrentar los miedos."
+      }
+    ],
+    "preguntas": [
+      "¿Qué emociones llevo años conteniendo?",
+      "¿Intento controlarlo todo?",
+      "¿Qué resentimiento hacia alguien no he expresado?"
+    ],
+    "afirmacion": "Me permito sentir y expresar lo que llevo dentro.",
+    "relacionados": [
+      "vejiga",
+      "miccion-frecuentes",
+      "enuresis",
+      "encopresis"
+    ]
+  },
+  {
+    "id": "indigestion",
+    "titulo": "INDIGESTIÓN",
+    "letra": "I",
+    "resumen": "Malestar en la parte alta del abdomen después de comer, con pesadez, ardor o náuseas.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "idea": "La asocia a un miedo visceral, terror y angustia, y a la tendencia a quejarse de todo."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Señala miedo visceral, terror, angustia, quejas y refunfuños. Propone digerir las experiencias nuevas con paz y alegría."
+      }
+    ],
+    "preguntas": [
+      "¿Qué situación me produce un miedo visceral?",
+      "¿De qué me estoy quejando constantemente?"
+    ],
+    "afirmacion": "Digiero cada experiencia nueva con calma y alegría.",
+    "relacionados": [
+      "estomago",
+      "pesadez-de-estomago",
+      "acidez-de-estomago",
+      "nauseas"
+    ]
+  },
+  {
+    "id": "infarto-arterias",
+    "titulo": "INFARTO (Arterias)",
+    "letra": "I",
+    "resumen": "Muerte de una parte de un tejido, como el músculo del corazón, porque la arteria que lo alimenta se obstruye.",
+    "etapa": "4ª etapa (relación)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Conflictos de territorio y desvalorización respecto a la eficacia del propio corazón.",
+        "sentir": [
+          "No logro que mi corazón sea lo bastante fuerte",
+          "He perdido mi empresa",
+          "He perdido a mi mujer"
+        ],
+        "idea": "Los dos últimos sentires valen cuando la empresa o la pareja se viven como territorio. Lo considera una respuesta de tipo masculino, ligada al cerebro derecho; en la versión femenina correspondería a una angina de pecho o un enfisema. Recuerda que el corazón es la casa y aconseja buscar siempre el lado afectivo y el profesional."
+      },
+      {
+        "fuente": "martel",
+        "idea": "Lo vincula a menudo con el amor que la persona necesita aceptar y recibir más."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Lo atribuye a haber sacado toda la alegría del corazón en favor del dinero o la posición. Propone devolver la alegría al centro del corazón y expresar amor a todos."
+      }
+    ],
+    "preguntas": [
+      "¿He perdido, o temo perder, algo que siento como mi territorio?",
+      "¿Sacrifiqué la alegría por el dinero o el éxito?",
+      "¿Me permito recibir amor?"
+    ],
+    "afirmacion": "Devuelvo la alegría a mi corazón y me abro a recibir amor.",
+    "relacionados": [
+      "corazon",
+      "arterias",
+      "angina-de-pecho",
+      "venas-coronarias",
+      "enfisema-pulmonar"
+    ],
+    "nota_especial": "El infarto es una emergencia médica. Ante dolor de pecho intenso o falta de aire, busca atención urgente."
+  },
+  {
+    "id": "infeccion",
+    "titulo": "INFECCIÓN",
+    "letra": "I",
+    "resumen": "Entrada y multiplicación de microbios (bacterias, virus, hongos) en el cuerpo, que responde con sus defensas: hinchazón, enrojecimiento, dolor y fiebre.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Enfado, irritación, rabia y fastidio. Un conflicto mental que no se mira y termina expresándose en el cuerpo.",
+        "idea": "Desarrolla una analogía entre mente, cuerpo y sociedad: conflicto, inflamación y guerra. La mente vive en tensión entre dos polos y siempre debe elegir; si la persona no reconoce sus conflictos, estos pasan al cuerpo como inflamación. Describe fases paralelas: el estímulo (los gérmenes entran según la predisposición del cuerpo, como un problema que atraviesa nuestras defensas psíquicas), la exudación (hinchazón y tensión, como cuando un problema ocupa todos los pensamientos), la reacción defensiva (anticuerpos y células que rodean al invasor), la fiebre (todo el organismo se moviliza y acelera sus defensas) y la resolución, que deja pus y una inmunidad reforzada, igual que la mente sale de cada conflicto superado más consciente y valiente. También puede ganar el invasor. Si nadie vence, aparece la infección crónica: un compromiso que roba energía y deja a la persona cansada y apática, equivalente psíquico de la indecisión que no se atreve a elegir. Sostiene que toda decisión libera energía, que las enfermedades infantiles suelen dar un salto en el desarrollo del niño y que la enfermedad nos obliga a ser sinceros. Concluye que quien tiende a inflamarse suele rehuir los conflictos, y propone preguntarse qué conflicto no veo, cuál evito y cuál me niego a reconocer, leyendo el simbolismo de la parte afectada."
+      },
+      {
+        "fuente": "martel",
+        "idea": "Las relaciona a menudo con la frustración frente a distintos aspectos de la vida."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Las asocia a irritación, enfado y fastidio, y propone elegir la paz y la armonía. Para las enfermedades infecciosas en general describe la furia por la falta de amor y una desesperanza que destruye; propone sentirse unido al cosmos, autosuficiente y capaz de manejar la propia vida más allá de los límites, inspirado por lo divino."
+      },
+      {
+        "fuente": "bourbeau",
+        "idea": "Toda infección señala fragilidad en el área que representa la parte afectada: la persona se deja invadir por pensamientos, palabras o gestos ajenos que le hacen daño y no reconoce su fuerza ni su capacidad de afirmarse. También aparece en el pesimista que dice '¿qué más da?' y no lucha, o en quien se acusa de ser repugnante o innoble. Sugiere no dejarse agredir, notar que el miedo a la agresión atrae situaciones que parecen agresivas (y que quizás no lo son para el otro), reconectar con la fuerza interior, dejar de creer que hay que mostrarse frágil para recibir amor y revisar con justicia esa mala imagen de uno mismo."
+      }
+    ],
+    "preguntas": [
+      "¿Qué conflicto hay en mi vida que no estoy viendo?",
+      "¿Qué decisión estoy postergando por miedo a perder algo?",
+      "¿Dejo que los demás me invadan con sus palabras o actitudes?"
+    ],
+    "afirmacion": "Miro mis conflictos de frente y elijo con valentía.",
+    "relacionados": [
+      "inflamacion",
+      "itis",
+      "infecciones-viricas",
+      "fiebre-calor-sofocos",
+      "enfermedades-infantiles",
+      "polaridad",
+      "sistema-inmunitario"
+    ],
+    "nota_especial": "Las infecciones pueden ser graves. Sigue siempre las indicaciones médicas sobre antibióticos y control de la fiebre; este enfoque es solo complementario."
+  },
+  {
+    "id": "infecciones-viricas",
+    "titulo": "INFECCIONES VÍRICAS",
+    "letra": "I",
+    "resumen": "Infecciones causadas por virus, como la gripe, el herpes o el resfriado.",
+    "enfoques": [
+      {
+        "fuente": "hay",
+        "idea": "Las relaciona con falta de alegría y con amargura, y propone dejar que la alegría fluya con amor. Para las enfermedades infecciosas en general habla de furia por la falta de amor y de desesperanza, y propone sentirse unido al cosmos, autosuficiente e inspirado por lo divino."
+      },
+      {
+        "fuente": "bourbeau",
+        "idea": "Cuando un virus enferma, la persona se ha dejado invadir por una 'forma-pensamiento' que ella misma creó y que le impide ser ella misma. Esa brecha se abre cuando se guarda rencor o ira, y el virus aparece para hacerla consciente de que ese sentimiento la enferma. Invita a ver qué parte del cuerpo invadió y para qué sirve, para encontrar el área de ese resentimiento. Propone hablarle a esa forma-pensamiento como a otra persona que insiste en mantener el rencor, y explicarle que ya no se quiere sostenerlo y se prefiere aprender a perdonar. Aunque el perdón no sea posible todavía, la intención ya cuenta, y al ser consciente de esa invasión el cuerpo deja de necesitar avisar."
+      }
+    ],
+    "preguntas": [
+      "¿Hacia quién guardo rencor o ira?",
+      "¿Qué parte del cuerpo se afectó y qué me dice su función?",
+      "¿Dónde perdí la alegría?"
+    ],
+    "afirmacion": "Elijo soltar el rencor y dejar entrar la alegría.",
+    "relacionados": [
+      "virus",
+      "infeccion",
+      "gripe",
+      "herpes",
+      "perdon-verdadero"
+    ]
+  },
+  {
+    "id": "inflamacion",
+    "titulo": "INFLAMACIÓN",
+    "letra": "I",
+    "resumen": "Respuesta del cuerpo ante una lesión o infección, con calor, enrojecimiento, hinchazón y dolor.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Cólera, ira, irritación, rabia y pensamientos inflamados, junto con miedo. Puede corresponder a una etapa de duelo."
+      },
+      {
+        "fuente": "hay",
+        "idea": "La relaciona con el temor, la ira y los pensamientos inflamados, y propone una mente pacífica, serena y centrada. Para abscesos, quemaduras, cortes, fiebres, llagas y todas las 'itis' señala una cólera que se expresa en el cuerpo: por más que se reprima, el enojo busca salida. Asegura que tememos que nuestra ira destruya nuestro mundo, pero basta con reconocer 'estoy enfadado por esto'. Si no se puede decir a quien corresponde, sugiere descargarla de forma inofensiva, por ejemplo golpeando la cama, gritando dentro del auto cerrado o haciendo deporte. Advierte que las personas con inclinación espiritual suelen creer que no deberían enojarse, y que, mientras no se llegue a dejar de culpar a otros, es más sano reconocer lo que se siente."
+      }
+    ],
+    "preguntas": [
+      "¿Qué me tiene enojado y no he reconocido?",
+      "¿Creo que no debería enfadarme?",
+      "¿Cómo puedo descargar mi rabia sin dañar a nadie?"
+    ],
+    "afirmacion": "Reconozco mi enojo, lo libero sin dañar y vuelvo a la calma.",
+    "relacionados": [
+      "itis",
+      "infeccion",
+      "absceso",
+      "quemaduras",
+      "fiebre-calor-sofocos",
+      "el-duelo"
+    ]
+  },
+  {
+    "id": "insomnio",
+    "titulo": "INSOMNIO",
+    "letra": "I",
+    "resumen": "Dificultad para dormirse, mantener el sueño o despertar demasiado temprano.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Necesidad de velar a un muerto, real o simbólico.",
+        "sentir": [
+          "No pude velar a mi muerto"
+        ],
+        "idea": "También se asocia a miedo, culpa, pensamientos negativos y falta de confianza en la vida, junto con resistencia a sentir lo que no nos agrada."
+      },
+      {
+        "fuente": "martel",
+        "idea": "Lo vincula a quedarse enganchado en alguna forma de culpa."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Lo atribuye al miedo, la culpa y la desconfianza en el proceso de la vida. Propone despedir el día con amor, confiando en que el mañana se resolverá solo."
+      }
+    ],
+    "preguntas": [
+      "¿Hay una pérdida, real o simbólica, que no pude despedir?",
+      "¿De qué me siento culpable estos días?",
+      "¿Qué tendría que confiar para poder soltar el día?"
+    ],
+    "afirmacion": "Despido el día en paz. Mañana se ocupará de sí mismo.",
+    "relacionados": [
+      "ansiedad-angustia",
+      "depresion"
+    ]
+  },
+  {
+    "id": "insuficiencia-renal",
+    "titulo": "INSUFICIENCIA RENAL",
+    "letra": "I",
+    "resumen": "Los riñones dejan de filtrar bien las toxinas y los desechos de la sangre.",
+    "etapa": "1ª etapa (supervivencia)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Pequeñas situaciones conflictivas que se repiten con insistencia, lo que se llama conversión repetitiva mínima (CRM).",
+        "sentir": [
+          "No me ocupo de mí y he perdido todo el tiempo"
+        ],
+        "idea": "La CRM es la transformación de una emoción en síntoma a fuerza de pequeños conflictos acumulados con los años, como una estalactita: dudar cada día si algo es bueno o malo para uno va dañando el riñón poco a poco. No nace de un choque puntual, por eso no se busca 'desde cuándo' (algo válido para toda enfermedad crónica). La pregunta clave es si cada día se vive el dilema de si algo es bueno o malo para uno. La CRM también puede rastrearse en el árbol familiar. Resume el caso de una mujer casada con un hombre que sentía que no era para ella."
+      }
+    ],
+    "preguntas": [
+      "¿Qué dilema repito cada día sobre si algo es bueno o malo para mí?",
+      "¿En qué he dejado de ocuparme de mí?",
+      "¿Qué situación pequeña pero constante me desgasta?"
+    ],
+    "afirmacion": "Elijo con claridad lo que es bueno para mí y me cuido cada día.",
+    "relacionados": [
+      "rinon",
+      "conversion-repetitiva-inima-c-r-m",
+      "nefritis",
+      "parenquima-renal"
+    ],
+    "nota_especial": "La insuficiencia renal es una condición médica seria que necesita seguimiento especializado. Este enfoque es solo complementario."
+  },
+  {
+    "id": "intestino-delgado",
+    "titulo": "INTESTINO DELGADO",
+    "letra": "I",
+    "resumen": "Tramo largo del intestino que absorbe lo que el cuerpo necesita de los alimentos y deja pasar el resto al intestino grueso para ser eliminado.",
+    "etapa": "1ª etapa (supervivencia), 3ª etapa (movimiento, valoración) y 4ª etapa (relación)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Absorber y asimilar.",
+        "sentir": [
+          "No puedo asimilar este pedazo",
+          "Me tragué la situación, pero no logro asimilarla"
+        ],
+        "idea": "Distingue tejidos. En el músculo liso o la necrosis (3ª etapa), la incapacidad de hacer avanzar el bolo alimenticio y de digerir, como en el íleo paralítico. En la úlcera de tipo canceroso (4ª etapa), un conflicto de identidad: no saber adónde ir ni cuál es el propio sitio, qué postura o decisión tomar; el texto lo matiza según la lateralidad y la situación hormonal (diestros, zurdos, mujeres posmenopáusicas). Ver también Íleon."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Lo vincula con la asimilación, la absorción y la eliminación fácil de lo que sobra, y con el temor a soltar lo viejo que ya no sirve. Propone asimilar con facilidad lo que se necesita saber, liberar el pasado con alegría y acoger lo nuevo."
+      },
+      {
+        "fuente": "bourbeau",
+        "idea": "Sus problemas muestran dificultad para retener y absorber lo bueno de lo que se vive cada día. La persona se aferra a los detalles en vez de mirar el conjunto: si una parte no le conviene, tiende a rechazarlo todo, y teme que le falte lo necesario por cualquier pequeñez. Sugiere nutrirse de pensamientos buenos en lugar de miedos y desvalorización, dejar de creer en la escasez, cultivar la fe en lo divino en uno y en un universo que cuida de todo lo que vive, y soltar lo viejo para dar lugar a lo nuevo."
+      }
+    ],
+    "preguntas": [
+      "¿Qué situación me tragué y no logro asimilar?",
+      "¿Rechazo todo por un detalle que no me gusta?",
+      "¿Sé cuál es mi lugar y qué decisión quiero tomar?"
+    ],
+    "afirmacion": "Tomo lo bueno de cada experiencia y suelto el resto con confianza.",
+    "relacionados": [
+      "ileon-intestino-delgado-inferior",
+      "yeyuno-intestino-delgado-superior",
+      "intestino-grueso",
+      "duodeno-excepto-bulbo"
+    ],
+    "nota_especial": "Se mencionan úlceras de tipo canceroso. Cualquier síntoma intestinal persistente requiere evaluación médica."
+  },
+  {
+    "id": "intestino-grueso",
+    "titulo": "INTESTINO GRUESO",
+    "letra": "I",
+    "resumen": "Parte final del intestino, que incluye el colon y el recto. Absorbe agua y forma y elimina las heces.",
+    "etapa": "1ª etapa (supervivencia)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Una mala jugada o acción sucia que cuesta digerir.",
+        "idea": "Resume el caso de un hombre que tenía un negocio con un familiar y descubrió que este había puesto toda la empresa a su nombre. En la fase de estrés el intestino generó más células para 'digerir' la mala jugada; al mes el familiar dio marcha atrás, el conflicto se resolvió y en la fase de reparación aparecieron sangrado y el diagnóstico de cáncer. Desde este enfoque, el tumor se interpreta como parte de la respuesta del cuerpo al conflicto. Ver Cáncer de colon."
+      },
+      {
+        "fuente": "martel",
+        "idea": "Asocia los intestinos, y sobre todo el colon, a la capacidad de soltar y dejar ir lo inútil, y de dejar fluir los acontecimientos de la vida."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Lo vincula con la asimilación, la absorción y la eliminación de lo que sobra, y con el temor a soltar lo viejo. Propone liberar el pasado con alegría y acoger lo nuevo."
+      },
+      {
+        "fuente": "bourbeau",
+        "idea": "Sus problemas aparecen en quien no logra deshacerse de ideas o creencias viejas que ya no necesita (estreñimiento) o en quien rechaza demasiado rápido pensamientos que podrían ayudarle (diarrea), a menudo tras contrariedades fuertes imposibles de digerir. Sugiere nutrirse de pensamientos buenos y no de miedos, dejar de creer en la escasez, confiar en un universo que cuida de todo lo que vive y soltar lo viejo para dar paso a lo nuevo."
+      }
+    ],
+    "preguntas": [
+      "¿Qué mala jugada me cuesta digerir?",
+      "¿Qué creencia vieja me cuesta soltar?",
+      "¿Dejo fluir los acontecimientos o me aferro a ellos?"
+    ],
+    "afirmacion": "Suelto con confianza lo que ya no necesito y dejo fluir mi vida.",
+    "relacionados": [
+      "colon",
+      "cancer-de-colon",
+      "recto",
+      "estrenimiento",
+      "diarrea",
+      "vagotonia",
+      "simpaticotonia"
+    ],
+    "nota_especial": "Un sangrado intestinal o un diagnóstico de cáncer requieren siempre evaluación y tratamiento médico. Este enfoque no reemplaza la atención profesional."
+  },
+  {
+    "id": "isquemia-cerebral",
+    "titulo": "ISQUEMIA CEREBRAL",
+    "letra": "I",
+    "resumen": "Disminución del flujo de sangre al cerebro por debajo de lo necesario para que funcione y se mantenga sano.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Pérdida del territorio intelectual.",
+        "sentir": [
+          "Dejo de luchar",
+          "Ya no busco una solución"
+        ]
+      }
+    ],
+    "preguntas": [
+      "¿En qué ámbito de ideas o conocimiento siento que perdí mi lugar?",
+      "¿Dónde he dejado de buscar soluciones?"
+    ],
+    "afirmacion": "Mi mente tiene su lugar y sigo encontrando caminos.",
+    "relacionados": [
+      "ictus-derrame-cerebral",
+      "accidente-cerebrovascular",
+      "arterias"
+    ],
+    "nota_especial": "La isquemia cerebral es una urgencia médica; ante síntomas neurológicos repentinos acude de inmediato a un servicio de salud."
+  },
+  {
+    "id": "isquiotibiales",
+    "titulo": "ISQUIOTIBIALES",
+    "letra": "I",
+    "resumen": "Músculos de la parte posterior del muslo, esenciales para subir escaleras, levantarse o impulsarse.",
+    "etapa": "3ª etapa (movimiento, valoración)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "sentir": [
+          "No lograré superar esta situación",
+          "Nunca conseguiré esta marca"
+        ],
+        "idea": "El segundo sentir es típico en deportistas."
+      }
+    ],
+    "preguntas": [
+      "¿Qué situación siento que no podré superar?",
+      "¿Qué meta me parece inalcanzable?"
+    ],
+    "afirmacion": "Avanzo paso a paso y supero lo que se me presenta.",
+    "relacionados": [
+      "muslos",
+      "musculos",
+      "piernas"
+    ]
+  },
+  {
+    "id": "itis",
+    "titulo": "ITIS",
+    "letra": "I",
+    "resumen": "Terminación médica que indica inflamación (por ejemplo, gastritis, bronquitis, artritis).",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "idea": "La asocia a cólera e ira no expresadas."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Señala ira y frustración por las situaciones que se ven en la propia vida. Propone estar dispuesto a cambiar las actitudes críticas y amarse y aprobarse."
+      }
+    ],
+    "preguntas": [
+      "¿Qué enojo no he expresado?",
+      "¿Qué me frustra de lo que veo en mi vida?"
+    ],
+    "afirmacion": "Suelto la crítica y expreso mi enojo con respeto.",
+    "relacionados": [
+      "inflamacion",
+      "infeccion",
+      "critica"
+    ]
+  }
+]

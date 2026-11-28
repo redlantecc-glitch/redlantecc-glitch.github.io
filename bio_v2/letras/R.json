@@ -1,0 +1,735 @@
+[
+  {
+    "id": "rabia",
+    "titulo": "RABIA",
+    "letra": "R",
+    "resumen": "Enfermedad viral grave del sistema nervioso que se transmite por la mordedura de un animal infectado. Requiere atención médica urgente.",
+    "enfoques": [
+      {
+        "fuente": "hay",
+        "idea": "La relaciona con una ira que se convierte en procesos que hierven, queman e infectan el cuerpo, y con la creencia de que la violencia es la respuesta. Propone dejar que la paz llene y rodee a la persona."
+      },
+      {
+        "fuente": "bourbeau",
+        "conflicto": "Una rabia interior acumulada desde hace tiempo, tras un incidente muy molesto o incluso paralizante.",
+        "sentir": [
+          "No me permito enojarme",
+          "Ya no puedo seguir controlándome"
+        ],
+        "idea": "Quien es mordido por un animal rabioso habría reprimido tanto su rabia que terminó paralizado para funcionar en su día a día. Suele tratarse de alguien muy controlado, que aprendió de niño que enojarse estaba mal, y que guarda dolor y rencor hacia una persona que siente agresiva. El mensaje sería urgente: permitirse vivir esa rabia y no cargarla en soledad. Sugiere tenerse compasión, darse derecho a sufrir y trabajar el perdón hacia el otro y hacia uno mismo."
+      }
+    ],
+    "preguntas": [
+      "¿Qué rabia llevo tiempo guardando sin expresar?",
+      "¿Aprendí de niño que enojarme no estaba permitido?",
+      "¿Hacia quién siento rencor y a quién necesito perdonar?"
+    ],
+    "afirmacion": "Me permito sentir mi enojo y lo dejo transformarse en paz.",
+    "relacionados": [
+      "mordeduras",
+      "perdon-verdadero"
+    ]
+  },
+  {
+    "id": "radio",
+    "titulo": "RADIO",
+    "letra": "R",
+    "resumen": "Uno de los dos huesos del antebrazo, situado del lado del pulgar.",
+    "etapa": "3ª etapa (movimiento, valoración)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Desvalorización ligada al propio radio de acción: todo lo que está al alcance de la mano, como la casa, el trabajo, la familia o los estudios. Se altera el perímetro de seguridad alrededor de uno mismo.",
+        "sentir": [
+          "Doy lo que no quiero dar",
+          "No debo dar demasiado"
+        ]
+      }
+    ],
+    "preguntas": [
+      "¿Estoy dando algo que en realidad no quiero dar?",
+      "¿Siento que mi radio de acción en casa o en el trabajo se ha desbordado?"
+    ],
+    "afirmacion": "Doy desde la libertad y cuido mi espacio personal.",
+    "relacionados": [
+      "huesos",
+      "brazo"
+    ]
+  },
+  {
+    "id": "rampa",
+    "titulo": "RAMPA (calambre)",
+    "letra": "R",
+    "resumen": "Contracción muscular involuntaria y dolorosa, también llamada calambre.",
+    "enfoques": [
+      {
+        "fuente": "martel",
+        "idea": "La vincula con frecuencia a la tensión frente a una acción ya emprendida o que está por emprenderse."
+      }
+    ],
+    "preguntas": [
+      "¿Qué acción me genera tensión?",
+      "¿Hay algo que debo hacer y me resisto a dar el paso?"
+    ],
+    "afirmacion": "Actúo con soltura y confío en mis pasos.",
+    "relacionados": [
+      "calambres",
+      "musculos"
+    ]
+  },
+  {
+    "id": "raquis-dorsal-y-lumbar",
+    "titulo": "RAQUIS (dorsal y lumbar)",
+    "letra": "R",
+    "resumen": "Raquis es otro nombre de la columna vertebral, el eje que sostiene el cuerpo; aquí se refiere a sus tramos dorsal y lumbar.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Desvalorización.",
+        "sentir": [
+          "No puedo cargar con nada más",
+          "Soy el pilar de mi familia: sin mí todo se cae",
+          "Me siento incompetente en el trabajo"
+        ],
+        "idea": "Distingue tramos: la zona dorsal tiene un matiz afectivo y se relaciona con las costillas; la lumbar representa los cimientos, lo que nos mantiene erguidos, el pilar de la personalidad. En el hombre, la desvalorización suele vivirse como incompetencia laboral. Ver también Columna vertebral."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Lo asocia a una desnutrición emocional, con falta de amor y de seguridad. Propone sentirse a salvo y nutrido por el amor de la vida."
+      }
+    ],
+    "preguntas": [
+      "¿Siento que todo depende de mí?",
+      "¿Me siento valorado en lo que hago?",
+      "¿Recibo el amor y la seguridad que necesito?"
+    ],
+    "afirmacion": "Me sostengo con firmeza y me permito ser sostenido.",
+    "relacionados": [
+      "columna-vertebral",
+      "costillas",
+      "vertebras-dorsales",
+      "vertebras-lumbares"
+    ]
+  },
+  {
+    "id": "raquitismo",
+    "titulo": "RAQUITISMO",
+    "letra": "R",
+    "resumen": "Trastorno del crecimiento de los huesos en la infancia, debido sobre todo a la falta de vitamina D.",
+    "enfoques": [
+      {
+        "fuente": "bourbeau",
+        "conflicto": "Carencia afectiva en el bebé, aunque sus padres sí lo atiendan.",
+        "sentir": [
+          "Si sigo pequeño, me cuidarán más"
+        ],
+        "idea": "El niño frenaría su crecimiento con la esperanza de seguir recibiendo cuidados. Además de darle la vitamina D, sugiere a los padres hablarle como a un adulto, ya que los bebés captan el lenguaje de forma intuitiva: explicarle que con el tiempo deberá ganar autonomía, que depender de los demás para ser querido le traerá decepción, y que quienes lo cuidan lo hacen lo mejor que pueden dentro de sus límites."
+      }
+    ],
+    "preguntas": [
+      "¿Cómo le hablo a mi hijo sobre crecer y ser autónomo?",
+      "¿Qué carencia afectiva podría estar sintiendo, aunque lo cuide?"
+    ],
+    "afirmacion": "Crecer es seguro; el amor me acompaña mientras gano autonomía.",
+    "relacionados": [
+      "huesos"
+    ]
+  },
+  {
+    "id": "rayos-x",
+    "titulo": "RAYOS X",
+    "letra": "R",
+    "resumen": "Radiación que se usa en medicina para obtener imágenes del interior del cuerpo.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "idea": "Se relacionan simbólicamente con el padre, como algo que viene del cielo."
+      }
+    ],
+    "preguntas": [
+      "¿Cómo es hoy mi relación con mi padre?",
+      "¿Qué siento que me llega desde arriba, desde la autoridad?"
+    ],
+    "afirmacion": "Recibo con paz lo que me llega de mi padre.",
+    "relacionados": []
+  },
+  {
+    "id": "recto",
+    "titulo": "RECTO",
+    "letra": "R",
+    "resumen": "Tramo final del intestino grueso, donde se acumulan las heces antes de ser expulsadas.",
+    "etapa": "1ª etapa (supervivencia); úlcera carcinomatosa: 4ª etapa (relación)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "No querer soltar una mala jugada o algo muy desagradable; no poder expulsar 'el pedazo'. Querer eliminar impurezas o algo podrido. En lo femenino, marcaje de territorio y conflictos de identidad. Conviene mirar la relación con la madre.",
+        "sentir": [
+          "No quiero perdonar",
+          "He perdido mi lugar en el territorio",
+          "Lo que me hicieron es demasiado, es repugnante",
+          "No me siento reconocido",
+          "Siento que no estoy en mi casa",
+          "No puedo mostrar quién soy"
+        ],
+        "idea": "Todo ya se tragó, digirió y asimiló: solo falta soltar, y se acompaña a la persona a eliminar lo que le hace daño, como una última toma de conciencia. Suelen ser asuntos muy antiguos. La palabra clave es 'mi sitio': ¿sé cuál es mi lugar? Las hemorroides externas corresponden al 4º nivel y las internas al 1º; las embarazadas pueden tenerlas al preguntarse sin saberlo cuál será su lugar cuando llegue el bebé. El tenesmo es la sensación de tener heces sin que las haya. En la úlcera carcinomatosa (4ª etapa) el conflicto es pérdida de identidad en el territorio, vivida en femenino, con el sentir 'no sé adónde ir ni qué posición tomar'; afectaría a mujeres diestras y hombres zurdos, y en hombres diestros o mujeres zurdas (también tras la menopausia) aparecería en constelación. En clave masculina se vincula a rencor, ira o injusticia dentro del territorio."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Lo asocia a rabia y frustración. Propone confiar en el proceso de la vida y dar lugar solo a la acción buena y recta."
+      }
+    ],
+    "preguntas": [
+      "¿Qué situación antigua me cuesta soltar?",
+      "¿Sé cuál es mi lugar en mi familia o en mi espacio?",
+      "¿Qué me resisto a perdonar?"
+    ],
+    "afirmacion": "Suelto lo que ya no me sirve y ocupo mi lugar con tranquilidad.",
+    "relacionados": [
+      "ano",
+      "hemorroides",
+      "colon",
+      "intestino-grueso"
+    ]
+  },
+  {
+    "id": "regurgitacion",
+    "titulo": "REGURGITACIÓN",
+    "letra": "R",
+    "resumen": "Retorno a la boca, sin esfuerzo, de lo que había en el esófago o el estómago.",
+    "enfoques": [
+      {
+        "fuente": "bourbeau",
+        "conflicto": "Rechazo hacia algo que se acaba de ver o escuchar alrededor.",
+        "idea": "En general solo indica que el cuerpo no necesitaba lo que se le dio. Cuando expresa rechazo hacia lo que ocurre fuera, invita a revisar el miedo al rechazo que ese incidente despertó, muy probablemente ligado a la madre, ya que el alimento la representa. Sugiere preguntarse si ese temor sigue siendo real hoy."
+      }
+    ],
+    "preguntas": [
+      "¿Qué acabo de ver u oír que no quiero aceptar?",
+      "¿Siento miedo a ser rechazado, quizá por mi madre?",
+      "¿Ese miedo sigue siendo real hoy?"
+    ],
+    "afirmacion": "Acepto lo que me nutre y dejo ir lo que no necesito, sin miedo.",
+    "relacionados": [
+      "vomitos",
+      "esofago",
+      "estomago"
+    ]
+  },
+  {
+    "id": "relacion-parte-sentido",
+    "titulo": "RELACIÓN PARTE-SENTIDO",
+    "letra": "R",
+    "resumen": "Tabla que asocia cada parte del cuerpo con su significado simbólico principal.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "idea": "Propone estas correspondencias: aparato genital, sexualidad; boca, apertura y atrapar el bocado; cabello, libertad, poder y padre; corazón, capacidad afectiva, emotividad y hogar; dientes, agresividad, vitalidad y morder; encías, confianza; espalda, rectitud y valores; estómago, sensibilidad, aceptación y digerir; extremidades, agilidad, flexibilidad, actividad y límites; garganta, angustia, atrapar y soltar; hígado, valores morales, ideología, vínculos y hambre ancestral; huesos, firmeza, disciplina y valoración; intestino delgado, reflexión, análisis y digestión; intestino grueso, inconsciente, avaricia y absorción; manos, aprehensión, manejo, trabajo y padre; matriz, entrega y hogar; músculos, movilidad, flexibilidad, actividad y potencia; nariz, energía, orgullo y sexualidad; oídos, obediencia y lo que se escucha; ojos, entendimiento y lo que se ve; pene, energía; piel, aislamiento, normas, contacto y delicadeza; pies, comprensión, firmeza, arraigo, modestia y madre; pulmones, contacto, comunicación, libertad y vida; riñones, compañerismo, territorio y líquidos; rodilla, modestia y sumisión; sangre, vitalidad y familia; uñas, agresividad; vejiga, distensión y marcaje de territorio; vesícula, ira y agresividad."
+      }
+    ],
+    "preguntas": [
+      "¿Qué parte de mi cuerpo me está llamando la atención?",
+      "¿Qué significado de esa parte resuena con lo que vivo?"
+    ],
+    "afirmacion": "Escucho a mi cuerpo como un lenguaje que me habla de mí.",
+    "relacionados": [
+      "boca",
+      "corazon",
+      "estomago",
+      "higado",
+      "huesos",
+      "piel-epidermis",
+      "pies",
+      "pulmones",
+      "rinon",
+      "rodilla",
+      "sangre",
+      "vejiga"
+    ]
+  },
+  {
+    "id": "remordimiento",
+    "titulo": "REMORDIMIENTO",
+    "letra": "R",
+    "resumen": "Malestar persistente por algo que se hizo o se dejó de hacer.",
+    "etapa": "3ª etapa (movimiento, valoración)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "idea": "Ver Suprarrenales."
+      }
+    ],
+    "preguntas": [
+      "¿Qué me reprocho una y otra vez?",
+      "¿Qué necesitaría para hacer las paces con ese hecho?"
+    ],
+    "afirmacion": "Aprendo de lo vivido y me libero del reproche.",
+    "relacionados": [
+      "suprarrenales",
+      "culpa"
+    ]
+  },
+  {
+    "id": "resfriado",
+    "titulo": "RESFRIADO",
+    "letra": "R",
+    "resumen": "Infección leve de nariz y garganta, con congestión, estornudos y mucosidad.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Inquietud vivida como una intrusión.",
+        "sentir": [
+          "Algo huele mal",
+          "Hay amenazas en el aire",
+          "Algo me disgusta o estoy frío con alguien",
+          "Quiero alejarme de ese olor y estar conmigo"
+        ],
+        "idea": "Ver Catarro. Gripes, catarros y resfriados suelen aparecer cuando una situación 'nos ha hinchado las narices' y genera enfado; ese malestar, como cualquier disgusto, debilita las defensas. Se añade otra lectura: un conflicto crónico que sale a la superficie, una forma de purificarse de lo ingerido y respirado, y una invitación a descansar. Hablaría de emociones por eliminar y de choque entre lo que pensamos y sentimos; se sugiere relajación profunda, meditación y transformar esos sentimientos."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Lo vincula a que pasan demasiadas cosas a la vez, a la confusión y el desorden mental, a pequeños agravios y a creer que 'toca' resfriarse varias veces cada invierno. Propone permitir que la mente se relaje y encuentre claridad y armonía."
+      }
+    ],
+    "preguntas": [
+      "¿Qué situación me tiene harto o enfadado?",
+      "¿Estoy viviendo demasiadas cosas a la vez?",
+      "¿Hay algo entre lo que pienso y lo que siento que no encaja?"
+    ],
+    "afirmacion": "Me doy permiso para descansar y recuperar la calma.",
+    "relacionados": [
+      "catarro",
+      "gripe",
+      "senos-nasales"
+    ]
+  },
+  {
+    "id": "retencion-de-liquidos-en-piernas",
+    "titulo": "RETENCIÓN DE LÍQUIDOS EN PIERNAS",
+    "letra": "R",
+    "resumen": "Acumulación de líquido en las piernas que produce hinchazón y sensación de pesadez.",
+    "etapa": "3ª etapa (movimiento, valoración)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "sentir": [
+          "No me ocupo de mí y he perdido el tiempo"
+        ],
+        "idea": "Ver Riñón. Se observa en personas a las que les cuesta tomar decisiones y que no terminan de pisar el suelo."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Invita a preguntarse qué se teme perder. Propone soltar con gusto y alegría."
+      }
+    ],
+    "preguntas": [
+      "¿Qué decisión estoy postergando?",
+      "¿Qué tengo miedo de perder?",
+      "¿Me estoy ocupando de mí?"
+    ],
+    "afirmacion": "Tomo decisiones con los pies en la tierra y suelto con confianza.",
+    "relacionados": [
+      "rinon",
+      "piernas",
+      "edemas-hinchazon",
+      "sobrepeso-por-liquidos"
+    ]
+  },
+  {
+    "id": "retina",
+    "titulo": "RETINA",
+    "letra": "R",
+    "resumen": "Capa interna del ojo que capta la luz y transforma las imágenes en señales para el cerebro.",
+    "etapa": "4ª etapa (relación)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Miedo por la espalda: sentir que nos atacan por detrás. En el desprendimiento, un estrés intenso ligado a una imagen: haber visto algo espantoso o temer lo que pueda caernos encima.",
+        "sentir": [
+          "Me atacan por detrás",
+          "No quiero que se me quede grabado lo que vi",
+          "No veo a mi familia"
+        ],
+        "idea": "La retina 'imprime' lo que vemos; en el desprendimiento se busca no fijar una imagen que asusta."
+      }
+    ],
+    "preguntas": [
+      "¿Qué vi que no quiero recordar?",
+      "¿Siento que algo o alguien me amenaza por la espalda?"
+    ],
+    "afirmacion": "Miro la vida con calma y suelto las imágenes que me asustan.",
+    "relacionados": [
+      "ojos",
+      "retinitis",
+      "retinopatia-macular"
+    ]
+  },
+  {
+    "id": "retinitis",
+    "titulo": "RETINITIS",
+    "letra": "R",
+    "resumen": "Inflamación o degeneración de la retina que afecta la visión.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Una visión desagradable, una imagen 'manchada'; por ejemplo, ver al padre o a la madre con otra persona."
+      }
+    ],
+    "preguntas": [
+      "¿Qué imagen me resultó dolorosa de ver?",
+      "¿Qué escena de mi familia me cuesta aceptar?"
+    ],
+    "afirmacion": "Acepto lo que vi y elijo mirar con paz.",
+    "relacionados": [
+      "retina",
+      "ojos"
+    ]
+  },
+  {
+    "id": "retinopatia-macular",
+    "titulo": "RETINOPATÍA MACULAR",
+    "letra": "R",
+    "resumen": "Afección de la mácula, la zona central de la retina responsable de la visión detallada.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Ver morir a un familiar; dejar de ver para siempre, de forma irreversible, a alguien o algo importante.",
+        "sentir": [
+          "Ojo izquierdo: no me gusta la imagen que doy",
+          "Ojo derecho: no me gusta la imagen que doy a los demás"
+        ]
+      }
+    ],
+    "preguntas": [
+      "¿A quién dejé de ver para siempre?",
+      "¿Cómo me siento con la imagen que doy?"
+    ],
+    "afirmacion": "Guardo en mi corazón a quienes ya no veo y me miro con aceptación.",
+    "relacionados": [
+      "retina",
+      "ojos"
+    ]
+  },
+  {
+    "id": "reuma",
+    "titulo": "REUMA",
+    "letra": "R",
+    "resumen": "Término general para trastornos que afectan articulaciones, huesos y otros tejidos como el corazón, los riñones, la piel o los pulmones; la especialidad que los estudia es la reumatología.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "idea": "Ver Dolor en reumatología."
+      },
+      {
+        "fuente": "martel",
+        "idea": "Lo relaciona con frecuencia con la crítica, ya sea hacia uno mismo o hacia los demás."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Lo asocia a sentirse víctima, falta de amor, amargura crónica y resentimiento. Propone asumir que uno crea sus experiencias y que el amor y la aprobación, propios y ajenos, las mejoran."
+      }
+    ],
+    "preguntas": [
+      "¿A quién critico, empezando por mí?",
+      "¿Qué amargura vengo arrastrando?",
+      "¿En qué me siento víctima?"
+    ],
+    "afirmacion": "Me trato con amor y miro a los demás con más comprensión.",
+    "relacionados": [
+      "dolor-en-reumatologia",
+      "articulaciones",
+      "critica"
+    ]
+  },
+  {
+    "id": "rinitis",
+    "titulo": "RINITIS",
+    "letra": "R",
+    "resumen": "Inflamación de la mucosa de la nariz, con goteo, estornudos, picor, congestión o secreción hacia la garganta. Puede ser alérgica (estacional o todo el año) o no alérgica (infecciosa, vasomotora o por medicamentos).",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Separación vivida con sensación de gran peligro y anticipación negativa de los problemas."
+      }
+    ],
+    "preguntas": [
+      "¿De quién o de qué me siento separado?",
+      "¿Estoy anticipando problemas que aún no llegan?"
+    ],
+    "afirmacion": "Respiro el presente con confianza.",
+    "relacionados": [
+      "alergias",
+      "resfriado",
+      "senos-nasales"
+    ]
+  },
+  {
+    "id": "rinofaringitis-en-el-bebe",
+    "titulo": "RINOFARINGITIS (en el bebé)",
+    "letra": "R",
+    "resumen": "Infección de nariz y garganta, también llamada infección respiratoria alta; dura de tres a siete días, aunque la mucosidad y la tos pueden tardar más en irse.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Separación del pecho de la madre."
+      }
+    ],
+    "preguntas": [
+      "¿Cómo vivió mi bebé el destete o la separación de mí?",
+      "¿Qué cambios recientes alejaron al bebé de mi cuerpo?"
+    ],
+    "afirmacion": "Mi bebé se siente acompañado aunque estemos separados.",
+    "relacionados": [
+      "faringe",
+      "nasofaringe",
+      "resfriado"
+    ]
+  },
+  {
+    "id": "rinon",
+    "titulo": "RIÑÓN",
+    "letra": "R",
+    "resumen": "Órganos que filtran la sangre, eliminan desechos y regulan el volumen y el equilibrio de los líquidos del cuerpo.",
+    "etapa": "1ª etapa (supervivencia), 3ª etapa (movimiento, valoración) y 4ª etapa (relación)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Pérdida de referencias y miedo a perder. Conflictos existenciales, de líquidos y de convivencia con los demás.",
+        "sentir": [
+          "¿Esto es bueno o malo para mí?",
+          "Tengo que elegir entre lo bueno y lo malo",
+          "Ya no valgo nada",
+          "No puedo estar en mi territorio",
+          "¿Qué hago yo aquí? ¿Para qué sirvo?",
+          "Tengo que luchar por existir"
+        ],
+        "idea": "Los riñones serían la sede de la convivencia y la comunicación con el prójimo. Distingue zonas: túbulos colectores (1ª etapa), conflicto existencial de quien lo ha perdido todo, como un refugiado; parénquima (3ª etapa), conflicto con agua o líquidos (casi ahogarse, una inundación en casa) y de derrumbe con desvalorización; úlcera carcinomatosa (4ª etapa), no poder delimitar por dentro el territorio, como no saber a qué opinión adherirse; cáliz, marcar un territorio lejano o futuro; glomérulo, decidir qué conviene. Hamer separa el órgano (3º nivel) de los colectores (1º); este enfoque los trata juntos. Quien emigra puede sumar conflicto de arraigo y existencial. La insuficiencia renal crónica se ve como una 'conversión repetitiva mínima': preguntarse cada día si algo es bueno o malo para uno; la frase clave es '¿es vital para mí preocuparme por esto?'. Líquido equivale a dinero, con una clave familiar real o simbólica. Los cálculos serían poner un muro: alguien ocupa mi territorio y no puedo delimitarlo, o me prohíbo algo; por ejemplo, vivir en casa de los suegros. Retención de líquidos y cólico nefrítico remiten al derrumbe; el cólico sería un obstáculo para no perder dinero. En el alcoholismo aparecería la búsqueda de referencias y de amor en los lazos de sangre. También el doble mandato: un padre quiere un niño y la madre una niña, y la persona no puede satisfacer a ambos. Resume los temas: dinero o líquidos reales, reconocimiento familiar, elegir entre bueno y malo, miedo existencial, peligro de muerte y derrumbe de referencias. Ejemplos clínicos: un hombre con cólico cada vez que pagaba la pensión a su exesposa; una joven que sintió que el suelo se abría cuando su padre anunció la separación; una mujer con enfermedad renal crónica tras morir su padre, que 'lo era todo'; la arenilla en adultos indicaría una programación infantil; una mujer con sobrepeso que se sentía en peligro diario por la violencia verbal de su marido; y otra con grandes edemas en las piernas tras el engaño de su marido, que sentía que ya no valía nada."
+      },
+      {
+        "fuente": "martel",
+        "idea": "Considera los riñones la sede del miedo."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Asocia los problemas renales a crítica, decepción, fracaso, vergüenza y reacciones infantiles; propone confiar en que cada experiencia trae un bien y sentirse seguro al crecer. Los cálculos renales serían terrones de enfado no disuelto, y propone disolver con facilidad los problemas pasados. El cólico del lactante hablaría de canales de alegría obstruidos y miedo a aceptarla, y propone abrirse a recibir. Las nefropatías se vincularían a sentirse un niño incapaz que no hace nada bien, con confusión; propone aprobarse y reconocerse capaz."
+      },
+      {
+        "fuente": "bourbeau",
+        "conflicto": "Desequilibrio emocional y falta de discernimiento para decidir según las propias necesidades.",
+        "sentir": [
+          "No soy capaz",
+          "La vida es injusta conmigo",
+          "Me ocupo de todos menos de mí"
+        ],
+        "idea": "Así como el riñón equilibra los líquidos, su afección señala desequilibrio emocional. Sería una persona muy emotiva que se preocupa mucho por los demás, se siente incapaz o impotente, percibe injusticia ante lo difícil y se deja influir por creencias ajenas, sin distinguir lo que le conviene. Tiende a idealizar personas o situaciones, se frustra cuando no se cumplen sus expectativas, critica con facilidad y puede acabar viviéndose como víctima. Cuanto más grave el problema, más urgente el mensaje de reconectar con su poder interior: dejar de compararse, usar mejor su sensibilidad y ver a las personas como son, sin ideales imaginarios, para que baje la sensación de injusticia. Sobre los cálculos en general, los relaciona con pensamientos de agresividad, descontento, envidia o celos guardados en secreto durante mucho tiempo, más frecuentes en personas rígidas; sugiere calcular menos y actuar según los propios deseos."
+      }
+    ],
+    "preguntas": [
+      "¿Qué me hace sentir que he perdido mis referencias?",
+      "¿Me pregunto todo el tiempo si algo es bueno o malo para mí?",
+      "¿Qué preocupación por dinero o por mi lugar me está desgastando?"
+    ],
+    "afirmacion": "Confío en mi capacidad para elegir lo que es bueno para mí.",
+    "relacionados": [
+      "el-rinon-el-canal-colector",
+      "calculos",
+      "colico-nefritico",
+      "nefritis",
+      "sistema-urinario",
+      "retencion-de-liquidos-en-piernas",
+      "edemas-hinchazon",
+      "alcoholismo"
+    ]
+  },
+  {
+    "id": "el-rinon-el-canal-colector",
+    "titulo": "RIÑÓN (canal colector)",
+    "letra": "R",
+    "resumen": "Conductos del riñón que recogen la orina ya filtrada y la llevan hacia la pelvis renal.",
+    "etapa": "1ª etapa (supervivencia)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Miedo y sensación de estar en un medio hostil; haberlo perdido todo, quedarse frente a la nada, la quiebra, la lucha por existir y la inquietud por el futuro.",
+        "sentir": [
+          "Estoy en peligro de vida o muerte",
+          "Todo se puede derrumbar de un día para otro",
+          "Estoy fuera de mi elemento"
+        ],
+        "idea": "Según Jean Guillaume, también hay conflictos de líquidos, como el miedo a ahogarse, y de pérdida de referencias (la guarida; el padre es la primera referencia). Los túbulos colectores forman parte de la nefrona; la idea central del riñón es 'tomo lo bueno y expulso lo malo', por lo que se explora '¿es bueno o malo para mí?'. Líquido equivale a dinero, y se plantea '¿es vital para mí dañar mi riñón por dinero?'. También influyen líquidos reales: un transportista volcó su camión de leche y su riñón 'cerró' la salida de líquidos. En la medicina china el riñón se liga al miedo existencial, a sentirse solo en un mundo hostil. Se relaciona además con saldar cargas de los ancestros. La frase de trabajo es '¿es vital para mí preocuparme por esto?'."
+      }
+    ],
+    "preguntas": [
+      "¿Siento que lo he perdido todo o que puedo perderlo?",
+      "¿Es vital para mí preocuparme por esto?",
+      "¿Qué carga de mis ancestros sigo llevando?"
+    ],
+    "afirmacion": "Estoy a salvo y encuentro nuevas referencias en mí.",
+    "relacionados": [
+      "rinon",
+      "sistema-urinario"
+    ]
+  },
+  {
+    "id": "rodilla",
+    "titulo": "RODILLA",
+    "letra": "R",
+    "resumen": "Articulación que une muslo y pierna. Permite flexionar, arrodillarse y adaptarse al terreno al avanzar.",
+    "etapa": "3ª etapa (movimiento, valoración)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Desvalorización con sumisión: estar sometido y no querer ceder.",
+        "sentir": [
+          "Estoy sometido y no quiero ceder"
+        ],
+        "idea": "Reúne los cuatro puntos de la desvalorización: evaluación, resultado obligatorio, falta de respeto y dirección. Suele remitir a la adolescencia. Conviene observar gestos habituales de la persona, como subir escaleras o saltar."
+      },
+      {
+        "fuente": "martel",
+        "idea": "Las asocia a la flexibilidad, el amor propio, el orgullo y la testarudez."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Representan el orgullo y el ego: dificultad para inclinarse, obstinación y miedo a cambiar mientras se avanza. Explica que tardan en sanar porque está en juego el propio yo. Sugiere preguntarse ante qué nos negamos a inclinarnos y ser flexibles como un sauce."
+      },
+      {
+        "fuente": "bourbeau",
+        "idea": "Indican falta de flexibilidad frente al porvenir en una persona orgullosa o terca que no acepta consejos. Aclara que ceder no es someterse, y que la rigidez puede venir del miedo a parecerse a los padres."
+      }
+    ],
+    "preguntas": [
+      "¿Ante quién o qué me niego a inclinarme?",
+      "¿Qué consejo estoy rechazando por orgullo?",
+      "¿Confundo ceder con someterme?"
+    ],
+    "afirmacion": "Puedo ser flexible sin perderme. Avanzo con humildad y firmeza.",
+    "relacionados": [
+      "ciatica",
+      "cuello"
+    ]
+  },
+  {
+    "id": "rodilla-artrosis",
+    "titulo": "RODILLA (artrosis)",
+    "letra": "R",
+    "resumen": "Desgaste del cartílago de la rodilla que produce dolor, rigidez y, a veces, derrame de líquido.",
+    "etapa": "3ª etapa (movimiento, valoración)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Sumisión, a menudo ligada a la adolescencia, cuando la autoridad pesa más. Falta de respeto hacia lo esencial de uno mismo.",
+        "sentir": [
+          "No puedo hacer lo que quiero",
+          "No quiero someterme a la ley del padre",
+          "Acepto someterme, pero con más suavidad",
+          "No tengo protección"
+        ],
+        "idea": "El derrame en la membrana sinovial indicaría que 'doblamos las rodillas'. La cápsula articular, que protege, añade el sentir de no estar protegido. Reúne cuatro conflictos: desvalorización por el resultado que se espera, sumisión, adolescencia y dirección (elecciones profesionales, sentimentales o sexuales en lo emocional). La lateralidad se mira al final: la rodilla derecha diría 'quise irme y no pude'; la izquierda, 'me fui y me arrepiento'. Las mesetas tibiales simbolizan la justicia, el 'puedo o no puedo'. Se recomienda aplicar los ciclos celulares memorizados, sobre todo en cánceres."
+      }
+    ],
+    "preguntas": [
+      "¿Ante quién siento que tengo que doblegarme?",
+      "¿Hay una partida que deseé y no hice, o que hice y lamento?",
+      "¿Me estoy respetando en lo fundamental?"
+    ],
+    "afirmacion": "Me respeto y elijo mi dirección con libertad.",
+    "relacionados": [
+      "rodilla",
+      "artrosis",
+      "artrosis-rodilla",
+      "meseta-tibial-rodilla",
+      "rotula"
+    ]
+  },
+  {
+    "id": "el-ronquido",
+    "titulo": "RONQUIDO",
+    "letra": "R",
+    "resumen": "Respiración ruidosa por la nariz y la garganta mientras se duerme.",
+    "etapa": "4ª etapa (relación)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "idea": "Sería una forma de marcar el territorio. Roncar al inspirar diría 'ven, ven'; roncar al espirar, 'vete, vete'."
+      },
+      {
+        "fuente": "martel",
+        "idea": "Lo relaciona a menudo con aferrarse a viejas ideas, actitudes o bienes materiales que convendría soltar."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Lo asocia a una negativa obstinada a abandonar viejos patrones mentales. Propone soltar lo que no sea amor y alegría y avanzar hacia lo nuevo."
+      },
+      {
+        "fuente": "bourbeau",
+        "conflicto": "Haber querido hacerse oír durante el día y haberse reprimido.",
+        "sentir": [
+          "No me escuchan lo suficiente",
+          "No me atrevo a hablar por miedo al rechazo"
+        ],
+        "idea": "Durante el sueño liberamos lo vivido despiertos; quien ronca recuperaría de noche el ruido que no hizo de día. Si calla por miedo al rechazo, acaba viviéndolo, porque el ronquido aleja a los demás. Sugiere ver qué molesta más: si es alejar a otros, reconocer que es uno quien se rechaza; si es el ruido, darse derecho a pedir atención y considerarse importante. También puede reflejar la propia dificultad para escuchar: escuchar a los demás hará que ellos escuchen."
+      }
+    ],
+    "preguntas": [
+      "¿Qué me callé hoy que quería decir?",
+      "¿A qué idea o cosa me aferro que debería soltar?",
+      "¿Escucho de verdad a los demás?"
+    ],
+    "afirmacion": "Me expreso con libertad y escucho con apertura.",
+    "relacionados": [
+      "nariz-senos-paranasales",
+      "garganta",
+      "insomnio"
+    ]
+  },
+  {
+    "id": "rosacea-uni-o-bilateral",
+    "titulo": "ROSÁCEA (uni o bilateral)",
+    "letra": "R",
+    "resumen": "Afección de la piel de la cara con enrojecimiento central, vasos visibles, granitos, ardor o picor y, en casos avanzados, engrosamiento de la nariz. Es más frecuente en pieles muy claras.",
+    "etapa": "2ª etapa (protección)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Sentirse manchado o desfigurado; un ataque a la propia integridad.",
+        "sentir": [
+          "Me han ensuciado",
+          "Me siento desfigurado"
+        ],
+        "idea": "Ver Corion cutáneo. El mancillamiento puede ser real o figurado, como tras una amputación de mama o al recibir insultos humillantes."
+      }
+    ],
+    "preguntas": [
+      "¿En qué situación me sentí humillado o manchado?",
+      "¿Siento que algo atentó contra mi imagen o mi integridad?"
+    ],
+    "afirmacion": "Mi valor permanece intacto, más allá de lo que digan o pase.",
+    "relacionados": [
+      "corion-cutaneo",
+      "cara",
+      "manchas-rojas-en-la-piel"
+    ]
+  },
+  {
+    "id": "rotula",
+    "titulo": "RÓTULA",
+    "letra": "R",
+    "resumen": "Hueso pequeño y plano situado delante de la rodilla, que la protege y ayuda a extenderla.",
+    "etapa": "3ª etapa (movimiento, valoración)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Ligado a los proyectos y la dirección que se toma en lo profesional, afectivo o de otro tipo.",
+        "idea": "Se considera el hueso del futuro. No plantea un problema particular salvo cuando se rompe."
+      }
+    ],
+    "preguntas": [
+      "¿Qué proyecto de futuro me inquieta?",
+      "¿Hacia dónde quiero dirigir mi vida?"
+    ],
+    "afirmacion": "Avanzo con confianza hacia mis proyectos.",
+    "relacionados": [
+      "rodilla"
+    ]
+  }
+]
