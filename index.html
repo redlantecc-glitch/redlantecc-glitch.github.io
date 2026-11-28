@@ -53,7 +53,10 @@ button:disabled{opacity:.55;cursor:not-allowed}
 .stats b{color:var(--ink);font-size:20px;font-family:"Newsreader",Georgia,serif}
 .note{font-size:13px;color:var(--mute);margin:6px 0 0;line-height:1.42}
 .auth-title{font:600 clamp(24px,6.2vw,28px)/1.2 "Newsreader",Georgia,serif;margin:6px 0 8px}
-.auth-invite{font:italic 400 16px/1.55 "Newsreader",Georgia,serif;color:var(--ink);margin:0 0 16px}
+.auth-rotator{display:flex;align-items:center;min-height:4.65em;margin:0 0 16px;font:italic 400 16px/1.55 "Newsreader",Georgia,serif;color:var(--ink);transition:opacity .65s ease,transform .65s ease}
+.auth-rotator.is-fading{opacity:0;transform:translateY(3px)}
+.auth-honest{font-size:12.5px;color:var(--mute);text-align:center;margin:14px 0 0;font-style:italic}
+@media (prefers-reduced-motion:reduce){.auth-rotator{transition:none}.auth-rotator.is-fading{transform:none}}
 .auth-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:0;padding-top:12px;border-top:1px solid var(--line)}
 .lock-notice{margin-top:12px;padding:10px 12px;border-radius:10px;background:color-mix(in srgb,var(--accent) 8%,var(--bg));border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line));font-size:12.5px;color:var(--mute);line-height:1.45}
 .lock-notice a{color:var(--accent);text-decoration:none;font-weight:500}
@@ -440,9 +443,9 @@ body {
 <canvas id="ds-vortex-canvas" aria-hidden="true"></canvas>
 <main>
   <section class="card" id="auth-card">
-    <div class="brand-badge">✦ DreamSaver</div>
+    <div class="brand-badge">✦ DreamSaver · Portal de autoconocimiento</div>
     <h2 class="auth-title">El portal se abre para ti</h2>
-    <p class="auth-invite">Cada alma llega a la Tierra con un mapa escondido. Este portal existe para ayudarte a leerlo: un santuario de autoconocimiento donde tu historia interior encuentra voz. Cruza el umbral.</p>
+    <p id="auth-quote" class="auth-rotator">«Cada alma llega a la Tierra con un mapa escondido. Este portal existe para ayudarte a leerlo.»</p>
     <p class="auth-label">Accede o crea tu cuenta</p>
     <div class="fld">
       Correo electrónico
@@ -461,6 +464,7 @@ body {
       <button class="b" id="btn-reset" type="button">Olvidé mi contraseña</button>
     </div>
     <div id="auth-error" class="auth-err" style="display:none;"></div>
+    <p class="auth-honest">Un lugar honesto para observar tu mundo interior. No predecimos el futuro.</p>
     <p class="privacy-note">
       <strong>Privacidad y propiedad:</strong> Tus sueños se guardan en tu cuenta y no se comparten. Tu carta astral se calcula en tu propio dispositivo: la fecha, hora y lugar de nacimiento no se envían a ningún servicio de astrología y quedan guardados en tu perfil; solo la búsqueda de ciudades usa Open-Meteo.
     </p>
@@ -5885,6 +5889,36 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
 
   resize();
   start();
+})();
+</script>
+<script>
+/* Umbral del portal: frases contemplativas que rotan en la pantalla de acceso */
+(function () {
+  var el = document.getElementById("auth-quote");
+  var card = document.getElementById("auth-card");
+  if (!el || !card) return;
+  var quotes = [
+    "Cada alma llega a la Tierra con un mapa escondido. Este portal existe para ayudarte a leerlo.",
+    "Cada despertar trae señales de tu mundo interior que suelen desvanecerse en minutos.",
+    "El mismo cielo que contemplas afuera guarda claves sobre tu propia naturaleza.",
+    "Lo que sueñas de noche y lo que vives de día forman parte de una misma conversación.",
+    "Un refugio silencioso para detener el ruido y volver a escuchar lo que tu alma intenta mostrarte.",
+    "Tus sueños, tus ciclos y el instante en que naciste hablan un mismo idioma: el tuyo.",
+    "No buscamos predecir tu futuro, sino iluminar los mapas con los que ya caminas.",
+    "Observar tus propios patrones es el primer paso para habitarte con mayor claridad.",
+    "Hay respuestas que no están afuera; esperan en tus ciclos, en tu energía y en tu historia.",
+    "Cruza el umbral. Tu espacio interior te espera."
+  ];
+  var idx = 0;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function show(i) { el.textContent = "\u00ab" + quotes[i] + "\u00bb"; }
+  setInterval(function () {
+    if (document.hidden || card.offsetParent === null) return; // pestaña oculta o sesión ya iniciada
+    idx = (idx + 1) % quotes.length;
+    if (reduce) { show(idx); return; }
+    el.classList.add("is-fading");
+    setTimeout(function () { show(idx); el.classList.remove("is-fading"); }, 650);
+  }, 7500);
 })();
 </script>
 </body>
