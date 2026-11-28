@@ -5,6 +5,11 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>DreamSaver · Perfil astral</title>
+<meta name="description" content="DreamSaver: diario de sueños, carta natal, diseño humano, numerología y biodescodificación en un solo perfil.">
+<meta name="theme-color" content="#f4effb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#120b21" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap">
 <style>
 :root{--bg:#f4effb;--surface:#ffffff;--ink:#1f1733;--mute:#62557d;--line:#dfd5f0;--accent:#6b3fa0;--accent-ink:#ffffff;--rec:#b8336a;--ok:#2d7a5e}
@@ -395,6 +400,15 @@ body {
   background: transparent !important;
 }
 
+/* En celular/tablet las tarjetas ocupan todo el ancho y tapaban el vórtice: se vuelven levemente translúcidas */
+@media (max-width: 959px) {
+  .card, .tile {
+    background: color-mix(in srgb, var(--surface) 84%, transparent);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+  }
+}
+
 .ds-text-box {
   display: inline-block;
   padding: 0.25rem 0.65rem;
@@ -417,11 +431,6 @@ body {
   border-color: rgba(196, 181, 253, 0.16);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  #ds-vortex-canvas {
-    display: none;
-  }
-}
 </style>
 </head>
 <body>
@@ -932,7 +941,8 @@ function setUI(){ rec.classList.toggle("on",listening); rec.setAttribute("aria-p
 function startRec(){
   if(!SR){ status.textContent="Este navegador no tiene dictado por voz. En el celular, toca el cuadro de texto y usa el micrófono del teclado."; return; }
   touch();
-  r=new SR(); r.lang="es-CL"; r.continuous=true; r.interimResults=true;
+  /* En Chrome Android el modo continuo repite frases ya reconocidas; ahí se usa una frase por sesión y onend reinicia */
+  r=new SR(); r.lang="es-CL"; r.continuous=!/Android/i.test(navigator.userAgent); r.interimResults=true;
   base=txt.value.trim(); if(base) base+=" ";
   r.onresult=function(e){ var f="",i2=""; for(var i=0;i<e.results.length;i++){ var x=e.results[i]; if(x.isFinal) f+=x[0].transcript; else i2+=x[0].transcript; } txt.value=base+f+i2; };
   r.onerror=function(e){ if(e.error==="not-allowed"||e.error==="service-not-allowed"){ listening=false; status.textContent="Sin permiso de micrófono. Actívalo en el navegador y vuelve a intentar."; setUI(); } };
@@ -3301,7 +3311,7 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
 <meta charset="utf-8">
 <title>Carta Natal Completa · DreamSaver</title>
 <style>
-  @page { size: A4; margin: 14mm 14mm; }
+  @page { size: letter; margin: 16mm 15mm 18mm; }
   * { box-sizing: border-box; }
   body {
     margin: 0; padding: 0;
@@ -3625,46 +3635,106 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
 
   if (btnDownloadNatalPdf) {
     btnDownloadNatalPdf.addEventListener("click", () => {
-      if (!savedNatalReportHtml) {
-        savedNatalReportHtml = buildPrintableNatalReportHtml();
+      /* Se reconstruye con los datos actuales para que los informes guardados con estilos antiguos también salgan bien */
+      let reportHtml = "";
+      if (currentFullNatalChart || !savedNatalReportHtml) {
+        try { reportHtml = buildPrintableNatalReportHtml(); } catch (err) { console.error("No se pudo generar el informe:", err); }
+      }
+      if (reportHtml && reportHtml !== savedNatalReportHtml) {
+        savedNatalReportHtml = reportHtml;
         if (auth.currentUser) {
           updateLocalAstroCache(auth.currentUser.uid, { natalReportHtml: savedNatalReportHtml });
         }
       }
-      if (!savedNatalReportHtml) return;
-      if (astroPdfStatus) astroPdfStatus.textContent = "Preparando documento PDF de tu carta natal...";
-      const reportHtml = savedNatalReportHtml;
-      const printWin = window.open("", "_blank", "width=920,height=780");
-      if (!printWin) {
-        const iframe = document.createElement("iframe");
-        iframe.style.position = "fixed";
-        iframe.style.right = "0";
-        iframe.style.bottom = "0";
-        iframe.style.width = "0";
-        iframe.style.height = "0";
-        iframe.style.border = "0";
-        document.body.appendChild(iframe);
-        const docFrame = iframe.contentWindow.document;
-        docFrame.open();
-        docFrame.write(reportHtml);
-        docFrame.close();
-        setTimeout(() => {
-          iframe.contentWindow.focus();
-          iframe.contentWindow.print();
-          if (astroPdfStatus) astroPdfStatus.textContent = "Selecciona «Guardar como PDF» en el diálogo de impresión.";
-          setTimeout(() => iframe.remove(), 4000);
-        }, 300);
-        return;
-      }
-      printWin.document.open();
-      printWin.document.write(reportHtml);
-      printWin.document.close();
-      printWin.focus();
-      setTimeout(() => {
-        printWin.print();
-        if (astroPdfStatus) astroPdfStatus.textContent = "Listo: selecciona «Guardar como PDF» para descargar el archivo.";
-      }, 300);
+      reportHtml = reportHtml || savedNatalReportHtml;
+      if (!reportHtml) return;
+      openNatalReportPreview(reportHtml);
     });
+  }
+
+  /* Hoja de estilo de impresión que se inyecta en cualquier informe (nuevo o guardado):
+     tamaño carta, márgenes, cortes de página sin recortar contenido y vista previa en pantalla. */
+  const NATAL_PRINT_FIX_CSS = `
+  @page { size: letter; margin: 16mm 15mm 18mm; }
+  html { background: #e9e4f2; }
+  body { overflow-wrap: break-word; }
+  p, li { orphans: 3; widows: 3; }
+  h2, h3 { break-after: avoid; page-break-after: avoid; }
+  thead { display: table-header-group; }
+  tr, .triad-item, .purpose-row, .purpose-summary, .axis-row, .house-card, .point-card, .planet-block { break-inside: avoid; page-break-inside: avoid; }
+  .purpose-box, .synthesis-box, .moment-box { break-inside: auto; page-break-inside: auto; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  td { overflow-wrap: anywhere; }
+  svg { max-width: 100%; height: auto; }
+  .wheel-col svg { break-inside: avoid; }
+  .ds-print-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 10; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    padding: 10px 16px; background: #2a1a47; color: #fff; font: 14px/1.3 system-ui, -apple-system, "Segoe UI", sans-serif; box-shadow: 0 2px 12px rgba(0,0,0,.25); }
+  .ds-print-bar span { flex: 1 1 220px; min-width: 0; opacity: .9; }
+  .ds-print-bar button { font: inherit; font-weight: 600; border-radius: 9px; padding: 9px 16px; cursor: pointer; border: 1px solid #a77bfa; }
+  .ds-print-bar .ds-go { background: #a77bfa; color: #140929; }
+  .ds-print-bar .ds-close { background: transparent; color: #fff; }
+  @media screen {
+    body { width: 100%; max-width: 8.5in; min-height: 11in; margin: 76px auto 32px; padding: 16mm 15mm 18mm; background: #fff; box-shadow: 0 6px 28px rgba(40,20,80,.18); }
+  }
+  @media screen and (max-width: 8.6in) {
+    body { margin: 112px 0 0; min-height: 0; padding: 18px 14px 28px; box-shadow: none; }
+    .header { flex-direction: column; align-items: flex-start; }
+    .top-section, .wheel-col, .triad-col { display: block; width: auto; padding: 0; }
+    .wheel-col { margin-bottom: 12px; }
+    .house-cards, .point-cards, .planet-blocks { grid-template-columns: 1fr; }
+    .birth-grid, .birth-row, .birth-cell { display: block; }
+    table { display: block; overflow-x: auto; }
+  }
+  @media print {
+    html, body { background: #fff; }
+    body { margin: 0; padding: 0; max-width: none; min-height: 0; box-shadow: none; }
+    .ds-print-bar { display: none !important; }
+  }`;
+
+  const NATAL_PRINT_BAR_HTML =
+    '<div class="ds-print-bar" role="toolbar" aria-label="Vista previa del informe">' +
+    '<span>Vista previa · tamaño carta (Letter). Revisa el informe y luego imprime o elige «Guardar como PDF».</span>' +
+    '<button type="button" class="ds-go" onclick="window.print()">Imprimir / Guardar PDF</button>' +
+    '<button type="button" class="ds-close" onclick="if(window.frameElement){var o=window.frameElement.closest(\'.ds-report-overlay\');if(o){o.remove();document.documentElement.style.overflow=\'\';}else{window.frameElement.remove();}}else{window.close();}">Cerrar</button>' +
+    '</div>';
+
+  function prepareNatalReportForPreview(html) {
+    let out = String(html || "");
+    out = out.replace(/<script[\s\S]*?<\/script>/gi, "");
+    const headExtra = '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+      '<style id="ds-print-fix">' + NATAL_PRINT_FIX_CSS + '</style>';
+    out = /<\/head>/i.test(out) ? out.replace(/<\/head>/i, headExtra + "</head>") : headExtra + out;
+    out = /<body[^>]*>/i.test(out) ? out.replace(/<body[^>]*>/i, (m) => m + NATAL_PRINT_BAR_HTML) : NATAL_PRINT_BAR_HTML + out;
+    return out;
+  }
+
+  function openNatalReportPreview(reportHtml) {
+    const previewHtml = prepareNatalReportForPreview(reportHtml);
+    const win = window.open("", "_blank");
+    if (win) {
+      win.document.open();
+      win.document.write(previewHtml);
+      win.document.close();
+      try { win.focus(); } catch (_) {}
+      if (astroPdfStatus) astroPdfStatus.textContent = "Vista previa abierta en otra pestaña. Usa «Imprimir / Guardar PDF» cuando estés listo.";
+      return;
+    }
+    /* Ventanas emergentes bloqueadas: la vista previa se muestra dentro de la app */
+    const overlay = document.createElement("div");
+    overlay.className = "ds-report-overlay";
+    overlay.setAttribute("role", "dialog");
+    overlay.setAttribute("aria-label", "Vista previa de la carta natal");
+    overlay.style.cssText = "position:fixed;inset:0;z-index:2000;background:#e9e4f2";
+    const iframe = document.createElement("iframe");
+    iframe.title = "Vista previa de la carta natal";
+    iframe.style.cssText = "width:100%;height:100%;border:0;display:block;background:#e9e4f2";
+    overlay.appendChild(iframe);
+    document.body.appendChild(overlay);
+    document.documentElement.style.overflow = "hidden";
+    const d = iframe.contentWindow.document;
+    d.open();
+    d.write(previewHtml);
+    d.close();
+    if (astroPdfStatus) astroPdfStatus.textContent = "Vista previa abierta. Usa «Imprimir / Guardar PDF» cuando estés listo.";
   }
 
   function dreamsColRef(uid) {
@@ -5634,14 +5704,17 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
   if (!ctx) return;
 
   const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-  if (reducedMotionQuery.matches) return;
 
-  const STAR_COUNT = 150;
+  const STAR_COUNT = window.innerWidth < 720 ? 190 : 150;
   const MAX_DEPTH = 900;
   let w = 0, h = 0, cx = 0, cy = 0, dpr = 1;
   let stars = [];
   let rafId = null;
   let lastTime = 0;
+  /* Escala del vórtice según el viewport: el diseño original se calibró para ~1280×800.
+     En celulares (ancho ~400 px) sin esta escala casi todas las estrellas caían fuera
+     de la pantalla y se reciclaban al instante, por lo que el vórtice no se notaba. */
+  let kx = 1, ky = 0.82, alphaBoost = 1;
 
   function isDark() {
     const t = document.documentElement.getAttribute("data-theme");
@@ -5667,6 +5740,9 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     h = window.innerHeight;
     cx = w * 0.5;
     cy = h * 0.45;
+    kx = Math.min(1.4, Math.max(0.3, w / 1280));
+    ky = Math.min(1.4, Math.max(0.3, h / 800)) * 0.82;
+    alphaBoost = w < 720 ? 1.35 : 1;
     canvas.width = Math.floor(w * dpr);
     canvas.height = Math.floor(h * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -5700,10 +5776,29 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     const vortexAngle = star.angle + (MAX_DEPTH - star.z) * 0.0021;
     const r = star.spread * scale;
     return {
-      x: cx + Math.cos(vortexAngle) * r,
-      y: cy + Math.sin(vortexAngle) * r * 0.82,
+      x: cx + Math.cos(vortexAngle) * r * kx,
+      y: cy + Math.sin(vortexAngle) * r * ky,
       scale
     };
+  }
+
+  /* Movimiento reducido (muchos Android lo activan con "Ahorro de batería" o "Quitar animaciones"):
+     en vez de ocultar el vórtice se dibuja una vez, estático. */
+  function drawStatic() {
+    const dark = isDark();
+    drawAtmosphere(dark);
+    for (const s of stars) {
+      const c = project(s);
+      if (c.x < 0 || c.x > w || c.y < 0 || c.y > h) continue;
+      const depth = 1 - s.z / MAX_DEPTH;
+      const alpha = Math.min(1, Math.min(1, Math.max(0.08, depth * 1.1)) * (dark ? 0.88 : 0.45) * alphaBoost);
+      ctx.fillStyle = s.purple
+        ? (dark ? `rgba(196, 181, 253, ${alpha})` : `rgba(109, 40, 217, ${alpha})`)
+        : (dark ? `rgba(248, 250, 252, ${alpha})` : `rgba(88, 28, 135, ${alpha * 0.72})`);
+      ctx.beginPath();
+      ctx.arc(c.x, c.y, Math.min(3, Math.max(0.5, s.size * c.scale * 0.65)), 0, Math.PI * 2);
+      ctx.fill();
+    }
   }
 
   function frame(now) {
@@ -5736,7 +5831,7 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
       }
 
       const depth = 1 - s.z / MAX_DEPTH;
-      const alpha = Math.min(1, Math.max(0.08, depth * 1.1)) * (dark ? 0.88 : 0.45);
+      const alpha = Math.min(1, Math.min(1, Math.max(0.08, depth * 1.1)) * (dark ? 0.88 : 0.45) * alphaBoost);
       const r = Math.min(3, Math.max(0.5, s.size * curr.scale * 0.65));
 
       const color = s.purple
@@ -5760,26 +5855,29 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
   }
 
   function start() {
-    if (reducedMotionQuery.matches) return;
+    if (reducedMotionQuery.matches) { drawStatic(); return; }
     if (rafId !== null) cancelAnimationFrame(rafId);
     lastTime = 0;
     rafId = requestAnimationFrame(frame);
   }
 
-  window.addEventListener("resize", resize);
+  window.addEventListener("resize", () => { resize(); if (reducedMotionQuery.matches) drawStatic(); });
   document.addEventListener("visibilitychange", () => {
     if (!document.hidden) start();
   });
-  reducedMotionQuery.addEventListener("change", (e) => {
-    if (e.matches && rafId !== null) {
-      cancelAnimationFrame(rafId);
+  const onMotionPrefChange = (e) => {
+    if (e.matches) {
+      if (rafId !== null) cancelAnimationFrame(rafId);
       rafId = null;
-      ctx.clearRect(0, 0, w, h);
-    } else if (!e.matches) {
+      drawStatic();
+    } else {
       resize();
       start();
     }
-  });
+  };
+  /* Safari iOS < 14 no tiene addEventListener en MediaQueryList: el error detenía todo el script */
+  if (typeof reducedMotionQuery.addEventListener === "function") reducedMotionQuery.addEventListener("change", onMotionPrefChange);
+  else if (typeof reducedMotionQuery.addListener === "function") reducedMotionQuery.addListener(onMotionPrefChange);
 
   resize();
   start();
