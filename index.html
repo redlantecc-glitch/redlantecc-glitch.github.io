@@ -251,8 +251,24 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
   .stats span{background:var(--bg);padding:8px 4px;border-radius:10px;border:1px solid var(--line);font-size:12px}
   .stats b{display:block;font-size:19px;line-height:1.15;margin-bottom:2px}
   .sidebar{width:100vw;border-left:0}
-  .hd-modal{padding:14px;border-radius:14px}
+  .hd-modal,.num-modal{padding:14px;border-radius:14px}
 }
+/* Numerología Integral */
+.num-overlay{position:fixed;inset:0;background:rgba(12,6,26,0.68);display:none;z-index:1250;padding:14px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.num-overlay.open{display:flex;align-items:flex-start;justify-content:center}
+.num-modal{width:100%;max-width:860px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;margin:auto;box-shadow:0 18px 48px rgba(10,4,24,.35)}
+.num-grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:10px;margin-bottom:14px}
+.num-card{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px}
+.num-card small{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--mute);margin-bottom:3px}
+.num-big{font:700 28px/1.1 "Newsreader",Georgia,serif;color:var(--accent);margin:2px 0 4px}
+.num-badge-master{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:999px;background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);margin-left:6px;vertical-align:middle}
+.num-section{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px}
+.num-section h3{margin:0 0 8px;font:600 17px/1.25 "Newsreader",Georgia,serif;color:var(--ink)}
+.num-pinnacle-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-top:8px}
+.num-box{background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-size:13.5px;line-height:1.45}
+.num-angel-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.num-angel-pill{background:var(--surface);border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));border-radius:10px;padding:8px 11px;font-size:13px;flex:1 1 200px}
+.num-angel-pill strong{color:var(--accent);font-size:15px;display:block;margin-bottom:2px}
 </style>
 </head>
 <body>
@@ -402,6 +418,9 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
       <div class="row" style="margin-top:10px">
         <button class="b" type="button" id="btn-open-hd" style="width:100%;border-color:color-mix(in srgb,var(--accent) 50%,var(--line));color:var(--accent);font-weight:600">✦ Abrir sección Diseño Humano</button>
       </div>
+      <div class="row" style="margin-top:8px">
+        <button class="b" type="button" id="btn-open-num" style="width:100%;border-color:color-mix(in srgb,var(--ok) 50%,var(--line));color:var(--ok);font-weight:600">✦ Abrir Mapa Numerológico Integral</button>
+      </div>
     </div>
 
     <div class="birth-section-box">
@@ -451,7 +470,6 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
       </div>
       <button class="b" type="button" id="btn-close-hd">Volver al perfil</button>
     </div>
-
     <div id="hd-body">
       <div class="hd-grid-4" id="hd-summary-grid"></div>
 
@@ -496,6 +514,63 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
       </section>
 
       <p class="note"><strong>Recordatorio:</strong> Esta lectura es una guía simbólica y de autoconocimiento; no sustituye orientación médica, psicológica ni profesional.</p>
+    </div>
+  </div>
+</div>
+
+<div class="num-overlay" id="num-overlay" role="dialog" aria-modal="true" aria-labelledby="num-modal-title">
+  <div class="num-modal">
+    <div class="hd-head">
+      <div>
+        <div class="brand-badge">✦ Numerología Pitagórica y Angelical</div>
+        <h2 id="num-modal-title">Tu código numérico, dones, caminos y sincronías</h2>
+        <p class="note" id="num-birth-meta">Calculado localmente con tu fecha de nacimiento y nombre.</p>
+      </div>
+      <button class="b" type="button" id="btn-close-num">Volver al perfil</button>
+    </div>
+
+    <div class="num-section" style="padding:11px 14px">
+      <div class="fld" style="margin:0">
+        Nombre completo de nacimiento (opcional, activa Expresión, Alma, Personalidad y Dones del Nombre)
+        <div class="pw-wrap" style="margin-top:6px">
+          <input type="text" id="num-full-name" placeholder="Ej. Nombre(s) y Apellidos tal como aparecen en tu partida">
+          <button class="b p" type="button" id="btn-recalc-num">Actualizar</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="num-body">
+      <div class="num-grid-4" id="num-core-grid"></div>
+
+      <section class="num-section">
+        <h3>Caminos, Propósito de Vida y Misión del Alma</h3>
+        <div id="num-purpose-box" style="font-size:13.5px;line-height:1.52"></div>
+      </section>
+
+      <section class="num-section">
+        <h3>Dones Naturales, Lecciones Kármicas y Talento Oculto</h3>
+        <div id="num-gifts-box" style="font-size:13.5px;line-height:1.52"></div>
+      </section>
+
+      <section class="num-section">
+        <h3>Frecuencia Angelical, Guías y Horas Espejo</h3>
+        <div id="num-angel-box" style="font-size:13.5px;line-height:1.52"></div>
+      </section>
+
+      <section class="num-section">
+        <h3>Sincronías Activas y Vibración del Día</h3>
+        <div id="num-sync-box" style="font-size:13.5px;line-height:1.52"></div>
+      </section>
+
+      <section class="num-section">
+        <h3>Lenguaje Onírico Numérico y Cruce con tu Diario</h3>
+        <div id="num-dreams-box" style="font-size:13.5px;line-height:1.52"></div>
+      </section>
+
+      <section class="num-section">
+        <h3>4 Pináculos de Vida y Desafíos Evolutivos</h3>
+        <div class="num-pinnacle-grid" id="num-pinnacles-grid"></div>
+      </section>
     </div>
   </div>
 </div>
@@ -4036,6 +4111,615 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
       console.error("Error al cerrar sesión", err);
     }
   });
+</script>
+  <script>
+(function(){
+  var PYTHAGOREAN = {
+    A:1, J:1, S:1,
+    B:2, K:2, T:2,
+    C:3, L:3, U:3,
+    D:4, M:4, V:4,
+    E:5, N:5, "Ñ":5, W:5,
+    F:6, O:6, X:6,
+    G:7, P:7, Y:7,
+    H:8, Q:8, Z:8,
+    I:9, R:9
+  };
+  var VOWELS = { A:true, E:true, I:true, O:true, U:true };
+  var MASTERS = { 11:true, 22:true, 33:true, 44:true };
+  var KARMIC = {
+    13: "13/4 · Transformación a través del enfoque, la constancia y el orden frente a la dispersión.",
+    14: "14/5 · Aprendizaje de libertad con templanza, adaptabilidad y dominio de los impulsos.",
+    16: "16/7 · Renacimiento del ego hacia una sabiduría interior auténtica y humilde.",
+    19: "19/1 · Liderazgo con servicio: aprender a recibir apoyo y soltar el individualismo rígido."
+  };
+
+  var ARCHETYPES = {
+    1: {
+      title: "El Pionero · Liderazgo y Origen",
+      path: "Camino de autonomía, iniciativa propia, innovación y valentía para abrir rutas nuevas donde nadie ha caminado.",
+      purpose: "Desarrollar confianza en tu propio criterio, iniciar proyectos originales y liderar desde la autenticidad sin esperar aprobación externa.",
+      gifts: "Voluntad creativa, rapidez mental, independencia, coraje ejecutivo y capacidad de arrancar desde cero.",
+      shadow: "Impaciencia, aislamiento o necesidad excesiva de tener el control.",
+      angel: {
+        seq: "111 · 101 · 11:11",
+        archangel: "Arcángel Miguel y Haniel (impulso de nuevo comienzo)",
+        msg: "Tus pensamientos están abriendo un portal inmediato. Mantén tu intención enfocada en lo que deseas crear, no en lo que temes."
+      },
+      dream: "En el plano onírico anuncia inicios de ciclo, puertas que se abren, decisiones en solitario, caminos despejados o la necesidad de afirmar tu identidad frente a figuras de autoridad."
+    },
+    2: {
+      title: "El Diplomático · Intuición y Vínculo",
+      path: "Camino de cooperación, sensibilidad empática, escucha profunda y armonización de opuestos.",
+      purpose: "Construir puentes entre personas, cultivar paciencia emocional y honrar tu radar intuitivo sin diluirse en los demás.",
+      gifts: "Empatía magnética, tacto relacional, percepción sutil, capacidad mediadora y memoria emocional.",
+      shadow: "Duda crónica, hipersensibilidad al rechazo o postergarte por agradar.",
+      angel: {
+        seq: "222 · 202 · 12:21",
+        archangel: "Arcángel Chamuel y Gabriel (armonía y mensajes)",
+        msg: "Todo se está alineando detrás de escena. Confía en los tiempos de gestación y mantén la paz en tus vínculos."
+      },
+      dream: "En los sueños habla de espejos relacionales, parejas, dualidades (dos caminos, dos personajes), reconciliaciones y mensajes emocionales que piden ser escuchados."
+    },
+    3: {
+      title: "El Creador · Expresión y Alegría",
+      path: "Camino de comunicación inspirada, arte, palabra viva, entusiasmo y expansión social.",
+      purpose: "Dar voz a tu mundo interior mediante la palabra, el arte o la enseñanza, elevando el ánimo colectivo con autenticidad.",
+      gifts: "Elocuencia, imaginación fértil, carisma natural, sentido estético y talento para contar historias.",
+      shadow: "Dispersión creativa, superficialidad emocional o callar lo que realmente sientes por mantener la sonrisa.",
+      angel: {
+        seq: "333 · 313 · 03:33",
+        archangel: "Maestros Ascendidos y Arcángel Jofiel (inspiración)",
+        msg: "Estás rodeado de asistencia creativa. Expresa tu verdad, canta, escribe o crea: tu voz tiene eco ahora."
+      },
+      dream: "Simboliza mensajes ocultos en diálogos, música, colores intensos, niños, reuniones o ideas creativas que piden salir a la luz al despertar."
+    },
+    4: {
+      title: "El Arquitecto · Estructura y Legado",
+      path: "Camino de construcción sólida, disciplina consciente, orden material y lealtad a lo que perdura.",
+      purpose: "Anclar ideas abstractas en bases reales, crear sistemas confiables y sostener procesos paso a paso.",
+      gifts: "Resistencia, método, ojo práctico, confiabilidad absoluta y capacidad de materializar proyectos.",
+      shadow: "Rigidez mental, exceso de carga laboral o miedo a salir de lo conocido.",
+      angel: {
+        seq: "444 · 404 · 14:41",
+        archangel: "Arcángel Uriel y los Ángeles de la Tierra (protección y sostén)",
+        msg: "Tus guías sostienen tus cimientos. Sigue paso a paso: tu esfuerzo constante está protegido y dará fruto tangible."
+      },
+      dream: "Aparece como casas en construcción, muros, cimientos, llaves, cajas, planos o revisiones de orden y seguridad en tu vida cotidiana."
+    },
+    5: {
+      title: "El Explorador · Libertad y Cambio",
+      path: "Camino de movimiento, adaptabilidad, aprendizaje experiencial y ruptura de moldes estáticos.",
+      purpose: "Abrazar el cambio como motor de evolución, integrar múltiples experiencias y enseñar libertad con responsabilidad.",
+      gifts: "Versatilidad, magnetismo personal, ingenio rápido, coraje ante lo desconocido y mente abierta.",
+      shadow: "Inquietud constante, dispersión de energía o huir cuando algo pide compromiso profundo.",
+      angel: {
+        seq: "555 · 505 · 15:51",
+        archangel: "Arcángel Raguel y Jeremiel (transición liberadora)",
+        msg: "Se aproxima un giro importante y liberador. Suelta lo viejo sin resistencia; el movimiento te lleva a un escenario más amplio."
+      },
+      dream: "Se manifiesta como viajes, vehículos, vuelos, cambios repentinos de escenario, mudanzas o sensación de cruzar fronteras."
+    },
+    6: {
+      title: "El Guardián · Amor, Hogar y Servicio",
+      path: "Camino de cuidado responsable, armonía familiar, estética sanadora y compromiso ético.",
+      purpose: "Nutrir y sanar espacios y vínculos desde el amor maduro, equilibrando el dar a otros con el autocuidado.",
+      gifts: "Calidez protectora, sentido de justicia afectiva, talento artístico/doméstico y capacidad de contención.",
+      shadow: "Sobreprotección, culpa al poner límites o cargar responsabilidades ajenas.",
+      angel: {
+        seq: "666 · 606 · 16:16",
+        archangel: "Arcángel Rafael y Metatrón (equilibrio cuerpo-espíritu)",
+        msg: "Reequilibra tus pensamientos entre lo material y lo espiritual. Cuida tu cuerpo, tu hogar y tu paz interior."
+      },
+      dream: "Refleja escenas familiares, hogares de infancia, sanación, cuidado de animales o personas, y decisiones sobre límites afectivos."
+    },
+    7: {
+      title: "El Místico · Sabiduría e Introspección",
+      path: "Camino de búsqueda de verdad, análisis profundo, silencio interior y conexión espiritual.",
+      purpose: "Investigar más allá de las apariencias, unir razón e intuición y compartir sabiduría destilada desde la experiencia.",
+      gifts: "Profundidad analítica, percepción psíquica, discernimiento, serenidad en la soledad y mente investigadora.",
+      shadow: "Aislamiento defensivo, escepticismo rígido o desconexión emocional.",
+      angel: {
+        seq: "777 · 707 · 17:17",
+        archangel: "Arcángel Raziel y Zadquiel (revelación y sincronía)",
+        msg: "Vas por la senda correcta de comprensión. Escucha tu intuición y presta atención a las señales oníricas y coincidencias."
+      },
+      dream: "Muy activo en sueños lúcidos, bibliotecas, templos, aguas profundas, enigmas revelados, guías silenciosos o símbolos ancestrales."
+    },
+    8: {
+      title: "El Alquimista · Poder y Materialización",
+      path: "Camino de maestría material, autoridad ética, abundancia consciente y gestión de energía.",
+      purpose: "Dominar el equilibrio entre espíritu y materia, ejercer poder con integridad y generar prosperidad compartida.",
+      gifts: "Visión estratégica, resiliencia ante crisis, capacidad ejecutiva, magnetismo de abundancia y firmeza.",
+      shadow: "Obsesión por el control, dureza emocional o medir tu valía solo por logros externos.",
+      angel: {
+        seq: "888 · 808 · 20:08",
+        archangel: "Arcángel Uriel y Sandalfón (cosecha y flujo infinito)",
+        msg: "Ciclo de cosecha y flujo infinito activo. Lo que sembraste con integridad regresa multiplicado; mantén abierta tu receptividad."
+      },
+      dream: "Simboliza poder personal, decisiones de peso, intercambios, tesoros, montañas o superación de pruebas de autoridad."
+    },
+    9: {
+      title: "El Humanitario · Compasión y Cierre de Ciclos",
+      path: "Camino de visión universal, entrega altruista, arte trascendente y sabiduría integradora.",
+      purpose: "Servir a una causa mayor, transformar heridas pasadas en compasión y cerrar ciclos con gratitud y desapego.",
+      gifts: "Generosidad amplia, carisma inspirador, comprensión del alma humana, sensibilidad artística y visión global.",
+      shadow: "Melancolía por el pasado, dificultad para soltar o sacrificio desmedido.",
+      angel: {
+        seq: "999 · 909 · 21:12",
+        archangel: "Arcángel Azrael y Gabriel (cierre y renacimiento)",
+        msg: "Una etapa se completa para dar paso a tu siguiente nivel de propósito. Suelta con gratitud lo que ya cumplió su ciclo."
+      },
+      dream: "Habla de despedidas simbólicas, finales de etapa, multitudes, viajes lejanos, perdón y encuentros con memorias antiguas."
+    },
+    11: {
+      title: "Maestro Visionario · Canal de Luz e Intuición",
+      path: "Camino maestro de inspiración espiritual, alta sensibilidad psíquica y liderazgo por ejemplo luminoso.",
+      purpose: "Sostener tu sensibilidad como antena de claridad sin abrumarte, inspirando a otros con tu visión y autenticidad.",
+      gifts: "Intuición fulgurante, canalización creativa, magnetismo espiritual, sueños proféticos y percepción adelantada.",
+      shadow: "Ansiedad nerviosa, parálisis por exceso de estímulos o dudar de tus propias percepciones.",
+      angel: {
+        seq: "11:11 · 1111 · 1122",
+        archangel: "Arcángel Metatrón y Gabriel (portal de despertar)",
+        msg: "Portal maestro abierto: tus sueños y sincronías están altamente amplificados. Anota lo que recibes al despertar."
+      },
+      dream: "Frecuencia onírica maestra: sueños vívidos, premonitorios o de guía directa; el subconsciente actúa como antena de alta nitidez."
+    },
+    22: {
+      title: "Maestro Constructor · Arquitectura de lo Trascendente",
+      path: "Camino maestro de materialización a gran escala: unir visión espiritual (11) con ejecución práctica (4).",
+      purpose: "Convertir ideales elevados en estructuras concretas que beneficien a la comunidad y perduren en el tiempo.",
+      gifts: "Visión panorámica, capacidad organizativa monumental, pragmatismo inspirado y liderazgo transformador.",
+      shadow: "Autoexigencia abrumadora o miedo a la magnitud de tus propios proyectos.",
+      angel: {
+        seq: "22:22 · 2222 · 2244",
+        archangel: "Arcángel Metatrón y Uriel (manifestación maestra)",
+        msg: "Tus ideas más ambiciosas tienen respaldo estructural. Da pasos concretos hoy: estás construyendo algo duradero."
+      },
+      dream: "Sueños con ciudades, puentes, grandes estructuras, proyectos colectivos o mapas detallados de algo que estás gestando."
+    },
+    33: {
+      title: "Maestro Guía · Amor Incondicional y Sanación",
+      path: "Camino maestro de servicio compasivo, enseñanza desde el corazón y elevación emocional colectiva.",
+      purpose: "Encarnar coherencia entre lo que sientes, dices y haces, sanando a través de la presencia y la creatividad.",
+      gifts: "Compasión profunda, carisma sanador, creatividad inspiradora y capacidad de contener procesos humanos complejos.",
+      shadow: "Cargar el dolor ajeno como propio o descuidar tus propias necesidades físicas.",
+      angel: {
+        seq: "33:33 · 333 · 13:31",
+        archangel: "Arcángel Rafael y Chamuel (amor maestro)",
+        msg: "La energía del amor maestro acompaña tus pasos. Prioriza primero tu propia armonía para irradiar desde la plenitud."
+      },
+      dream: "Sueños de sanación, luz cálida, enseñanza, protección de otros o mensajes claros sobre el propósito del corazón."
+    },
+    44: {
+      title: "Maestro Alquimista · Dominio de la Materia y el Espíritu",
+      path: "Camino maestro de resiliencia total, gestión de grandes recursos y transformación estructural.",
+      purpose: "Integrar disciplina absoluta con propósito espiritual elevado para sostener proyectos de alto impacto.",
+      gifts: "Fortaleza inquebrantable, visión estratégica superior, temple ante crisis y poder de manifestación.",
+      shadow: "Tensión física por exceso de responsabilidad.",
+      angel: {
+        seq: "44:44 · 444 · 4488",
+        archangel: "Arcángel Miguel y Metatrón (fuerza maestra)",
+        msg: "Respaldo total en el plano material y espiritual. Confía en tu capacidad de sostener y transformar."
+      },
+      dream: "Sueños de gran intensidad simbólica vinculados a arquitectura, transformación profunda y dominio personal."
+    }
+  };
+
+  function stripAccents(str) {
+    return String(str || "")
+      .toUpperCase()
+      .replace(/Ñ/g, "__ENIE__")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/__ENIE__/g, "Ñ");
+  }
+
+  function sumDigits(n) {
+    var s = 0;
+    var str = String(Math.abs(Math.floor(Number(n) || 0)));
+    for (var i = 0; i < str.length; i++) s += Number(str[i]);
+    return s;
+  }
+
+  function reduceNum(n, keepMasters) {
+    var cur = Math.abs(Math.floor(Number(n) || 0));
+    var trace = [cur];
+    var karmicFound = KARMIC[cur] ? cur : null;
+    while (cur > 9 && !(keepMasters && MASTERS[cur])) {
+      cur = sumDigits(cur);
+      trace.push(cur);
+      if (!karmicFound && KARMIC[cur]) karmicFound = cur;
+    }
+    return { value: cur, trace: trace, isMaster: Boolean(MASTERS[cur]), karmic: karmicFound };
+  }
+
+  function analyzeName(fullName) {
+    var clean = stripAccents(fullName).replace(/[^A-ZÑ\s]/g, " ").trim();
+    if (!clean) return null;
+    var words = clean.split(/\s+/).filter(Boolean);
+    var totalAll = 0, totalVowels = 0, totalCons = 0;
+    var freq = {1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0};
+    var firstVowelVal = null;
+    var wordTotals = [];
+
+    words.forEach(function(w){
+      var wSum = 0;
+      for (var i = 0; i < w.length; i++) {
+        var ch = w[i];
+        var val = PYTHAGOREAN[ch];
+        if (!val) continue;
+        freq[val] = (freq[val] || 0) + 1;
+        totalAll += val;
+        wSum += val;
+        if (VOWELS[ch]) {
+          totalVowels += val;
+          if (firstVowelVal === null) firstVowelVal = val;
+        } else {
+          totalCons += val;
+        }
+      }
+      wordTotals.push(reduceNum(wSum, true).value);
+    });
+
+    var missing = [];
+    var dominant = [];
+    var maxF = 0;
+    for (var d = 1; d <= 9; d++) {
+      if ((freq[d] || 0) === 0) missing.push(d);
+      if ((freq[d] || 0) > maxF) maxF = freq[d];
+    }
+    for (var d2 = 1; d2 <= 9; d2++) {
+      if (maxF > 0 && freq[d2] === maxF) dominant.push(d2);
+    }
+
+    return {
+      cleanName: clean,
+      words: words,
+      expression: reduceNum(totalAll, true),
+      soulUrge: reduceNum(totalVowels, true),
+      personality: reduceNum(totalCons, true),
+      hiddenPassion: dominant,
+      karmicLessons: missing,
+      subconsciousSelf: 9 - missing.length,
+      bridgeFirstVowel: firstVowelVal,
+      freq: freq
+    };
+  }
+
+  function computeNumerologyFull(dobStr, fullName, refDateObj) {
+    var hasDob = /^\d{4}-\d{2}-\d{2}$/.test(dobStr || "");
+    var parts = hasDob ? dobStr.split("-").map(Number) : [2000, 1, 1];
+    var y = parts[0], m = parts[1], d = parts[2];
+
+    var mRed = reduceNum(m, true);
+    var dRed = reduceNum(d, true);
+    var yRed = reduceNum(sumDigits(y), true);
+
+    var lifePath = reduceNum(mRed.value + dRed.value + yRed.value, true);
+    var birthday = reduceNum(d, true);
+    var attitude = reduceNum(m + d, true);
+    var generation = reduceNum(sumDigits(y), false);
+
+    // Pináculos y Desafíos
+    var mSimple = reduceNum(m, false).value;
+    var dSimple = reduceNum(d, false).value;
+    var ySimple = reduceNum(sumDigits(y), false).value;
+    var lpSimple = reduceNum(lifePath.value, false).value;
+
+    var p1 = reduceNum(mSimple + dSimple, true);
+    var p2 = reduceNum(dSimple + ySimple, true);
+    var p3 = reduceNum(p1.value + p2.value, true);
+    var p4 = reduceNum(mSimple + ySimple, true);
+
+    var end1 = 36 - lpSimple;
+    var end2 = end1 + 9;
+    var end3 = end2 + 9;
+
+    var c1 = Math.abs(mSimple - dSimple);
+    var c2 = Math.abs(dSimple - ySimple);
+    var c3 = Math.abs(c1 - c2);
+    var c4 = Math.abs(mSimple - ySimple);
+
+    var pinnacles = [
+      { num: 1, val: p1, challenge: c1, ages: "0 a " + end1 + " años" },
+      { num: 2, val: p2, challenge: c2, ages: (end1 + 1) + " a " + end2 + " años" },
+      { num: 3, val: p3, challenge: c3, ages: (end2 + 1) + " a " + end3 + " años" },
+      { num: 4, val: p4, challenge: c4, ages: "Desde los " + (end3 + 1) + " años" }
+    ];
+
+    // Sincronías temporales (Año, Mes y Día Personal)
+    var now = (refDateObj instanceof Date) ? refDateObj : new Date();
+    var curY = now.getFullYear();
+    var curM = now.getMonth() + 1;
+    var curD = now.getDate();
+
+    var universalYear = reduceNum(sumDigits(curY), false);
+    var personalYear = reduceNum(mSimple + dSimple + sumDigits(curY), true);
+    var personalMonth = reduceNum(reduceNum(personalYear.value, false).value + curM, true);
+    var personalDay = reduceNum(reduceNum(personalMonth.value, false).value + curD, true);
+
+    var nameData = analyzeName(fullName);
+    var maturity = nameData
+      ? reduceNum(lifePath.value + nameData.expression.value, true)
+      : null;
+
+    var lpArch = ARCHETYPES[lifePath.value] || ARCHETYPES[lpSimple] || ARCHETYPES[1];
+    var bdArch = ARCHETYPES[birthday.value] || ARCHETYPES[dSimple] || ARCHETYPES[1];
+    var pyArch = ARCHETYPES[personalYear.value] || ARCHETYPES[reduceNum(personalYear.value, false).value] || ARCHETYPES[1];
+    var pdArch = ARCHETYPES[personalDay.value] || ARCHETYPES[reduceNum(personalDay.value, false).value] || ARCHETYPES[1];
+
+    // Secuencias angelicales personalizadas
+    var angelCodes = [
+      { code: lpArch.angel.seq.split("·")[0].trim(), origin: "Camino de Vida " + lifePath.value, guide: lpArch.angel.archangel, msg: lpArch.angel.msg },
+      { code: String(d).padStart(2,"0") + ":" + String(m).padStart(2,"0") + " / " + (String(birthday.value).repeat(3)), origin: "Frecuencia Natal (Día " + d + ")", guide: bdArch.angel.archangel, msg: bdArch.angel.msg },
+      { code: pdArch.angel.seq.split("·")[0].trim(), origin: "Sincronía de Hoy (Día Personal " + personalDay.value + ")", guide: pdArch.angel.archangel, msg: pdArch.angel.msg }
+    ];
+    if (nameData) {
+      var expArch = ARCHETYPES[nameData.expression.value] || ARCHETYPES[reduceNum(nameData.expression.value, false).value];
+      if (expArch) {
+        angelCodes.push({ code: expArch.angel.seq.split("·")[0].trim(), origin: "Vibración del Nombre (" + nameData.expression.value + ")", guide: expArch.angel.archangel, msg: expArch.angel.msg });
+      }
+    }
+
+    return {
+      hasDob: hasDob,
+      dobStr: dobStr || "",
+      lifePath: lifePath,
+      birthday: birthday,
+      attitude: attitude,
+      generation: generation,
+      maturity: maturity,
+      pinnacles: pinnacles,
+      universalYear: universalYear,
+      personalYear: personalYear,
+      personalMonth: personalMonth,
+      personalDay: personalDay,
+      nameData: nameData,
+      lpArch: lpArch,
+      bdArch: bdArch,
+      pyArch: pyArch,
+      pdArch: pdArch,
+      angelCodes: angelCodes
+    };
+  }
+
+  function analyzeDreamNumbers(text, numProfile) {
+    var rawNums = String(text || "").match(/\b\d{1,4}\b/g) || [];
+    var unique = [];
+    rawNums.forEach(function(x){ if (unique.indexOf(x) === -1) unique.push(x); });
+    var notes = [];
+    unique.slice(0, 4).forEach(function(token){
+      var n = Number(token);
+      var red = reduceNum(n, true);
+      var arch = ARCHETYPES[red.value] || ARCHETYPES[reduceNum(red.value, false).value];
+      if (arch) {
+        notes.push("Número " + token + " → vibración " + red.value + " (" + arch.title.split("·")[0].trim() + "): " + arch.angel.msg);
+      }
+    });
+    if (numProfile && numProfile.hasDob) {
+      notes.push("Sintonía personal: tu Camino de Vida " + numProfile.lifePath.value + " y tu Día Personal " + numProfile.personalDay.value + " activan el código angelical " + numProfile.pdArch.angel.seq.split("·")[0].trim() + ".");
+    }
+    return notes;
+  }
+
+  window.DreamSaverComputeNumerology = computeNumerologyFull;
+
+  // Enriquecer lectura simbólica de cada sueño con Numerología y Angelología
+  if (typeof window.interpretDreamWithChart === "function") {
+    var origInterpret = window.interpretDreamWithChart;
+    window.interpretDreamWithChart = function(text, chart, entryTimestamp) {
+      var res = origInterpret(text, chart, entryTimestamp);
+      var birth = window.DreamSaverActiveBirth || null;
+      var savedName = "";
+      try { savedName = localStorage.getItem("dreamsaver:num_name") || ""; } catch(_){}
+      var num = computeNumerologyFull(birth && birth.dob, savedName, new Date(entryTimestamp || Date.now()));
+      var extra = [];
+      if (num.hasDob) {
+        extra.push("Numerología del sueño: Día Personal " + num.personalDay.value + " (Año Personal " + num.personalYear.value + ") · Camino " + num.lifePath.value + " · Código angelical activo " + num.pdArch.angel.seq.split("·")[0].trim() + ".");
+      } else {
+        extra.push("Vibración del día del sueño: Día Universal " + num.personalDay.value + " (" + num.pdArch.title + ").");
+      }
+      var dreamNums = analyzeDreamNumbers(text, num);
+      if (dreamNums.length && (String(text || "").match(/\b\d{1,4}\b/))) {
+        extra.push(dreamNums[0]);
+      }
+      res.summary = res.summary + " " + extra.join(" ");
+      return res;
+    };
+  }
+
+  function escN(s){
+    return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+
+  function formatNumVal(redObj) {
+    if (!redObj) return "—";
+    var badge = redObj.isMaster ? '<span class="num-badge-master">Maestro</span>' : '';
+    var kBadge = redObj.karmic ? '<span class="num-badge-master" style="color:var(--rec);border-color:var(--rec)">Kármico ' + redObj.karmic + '</span>' : '';
+    return redObj.value + badge + kBadge;
+  }
+
+  function renderNumerologyModal() {
+    var birth = window.DreamSaverActiveBirth || {};
+    var dobEl = document.getElementById("profile-dob");
+    var dob = birth.dob || (dobEl ? dobEl.value : "");
+    var nameInput = document.getElementById("num-full-name");
+    var fullName = nameInput ? nameInput.value.trim() : "";
+
+    var data = computeNumerologyFull(dob, fullName, new Date());
+    var metaEl = document.getElementById("num-birth-meta");
+    if (metaEl) {
+      metaEl.textContent = data.hasDob
+        ? ("Fecha base: " + dob + (fullName ? " · Nombre: " + fullName : " · Agrega tu nombre arriba para desbloquear Expresión, Alma y Dones del Nombre"))
+        : "Guarda tu fecha de nacimiento en el Perfil Astral para obtener tu mapa numerológico completo.";
+    }
+
+    // 1. Tarjetas centrales
+    var coreHtml =
+      '<div class="num-card"><small>Camino de Vida</small><div class="num-big">' + formatNumVal(data.lifePath) + '</div><span style="font-size:12px;color:var(--mute)">' + escN(data.lpArch.title) + '</span></div>' +
+      '<div class="num-card"><small>Don de Nacimiento (Día)</small><div class="num-big">' + formatNumVal(data.birthday) + '</div><span style="font-size:12px;color:var(--mute)">' + escN(data.bdArch.title) + '</span></div>' +
+      '<div class="num-card"><small>Número de Actitud</small><div class="num-big">' + formatNumVal(data.attitude) + '</div><span style="font-size:12px;color:var(--mute)">Primera impresión y enfoque ante retos</span></div>' +
+      '<div class="num-card"><small>Año / Día Personal Hoy</small><div class="num-big">' + data.personalYear.value + ' / ' + data.personalDay.value + '</div><span style="font-size:12px;color:var(--mute)">Mes Personal ' + data.personalMonth.value + ' · Año Univ. ' + data.universalYear.value + '</span></div>';
+
+    if (data.nameData) {
+      coreHtml +=
+        '<div class="num-card"><small>Expresión / Destino (Nombre)</small><div class="num-big">' + formatNumVal(data.nameData.expression) + '</div><span style="font-size:12px;color:var(--mute)">' + escN((ARCHETYPES[data.nameData.expression.value] || ARCHETYPES[reduceNum(data.nameData.expression.value,false).value]).title) + '</span></div>' +
+        '<div class="num-card"><small>Deseo del Alma (Vocales)</small><div class="num-big">' + formatNumVal(data.nameData.soulUrge) + '</div><span style="font-size:12px;color:var(--mute)">Motivación íntima y anhelo espiritual</span></div>' +
+        '<div class="num-card"><small>Personalidad (Consonantes)</small><div class="num-big">' + formatNumVal(data.nameData.personality) + '</div><span style="font-size:12px;color:var(--mute)">Proyección externa hacia el mundo</span></div>' +
+        '<div class="num-card"><small>Número de Madurez</small><div class="num-big">' + formatNumVal(data.maturity) + '</div><span style="font-size:12px;color:var(--mute)">Síntesis plena de Vida + Nombre</span></div>';
+    }
+    document.getElementById("num-core-grid").innerHTML = coreHtml;
+
+    // 2. Caminos y Propósito
+    var karmicList = [];
+    [data.lifePath, data.birthday, data.attitude].forEach(function(r){
+      if (r && r.karmic && KARMIC[r.karmic] && karmicList.indexOf(KARMIC[r.karmic]) === -1) karmicList.push(KARMIC[r.karmic]);
+    });
+    if (data.nameData) {
+      [data.nameData.expression, data.nameData.soulUrge, data.nameData.personality].forEach(function(r){
+        if (r && r.karmic && KARMIC[r.karmic] && karmicList.indexOf(KARMIC[r.karmic]) === -1) karmicList.push(KARMIC[r.karmic]);
+      });
+    }
+
+    var purposeHtml =
+      '<p style="margin:0 0 8px"><strong>Camino de Vida ' + data.lifePath.value + ' (' + escN(data.lpArch.title) + '):</strong> ' + escN(data.lpArch.path) + '</p>' +
+      '<p style="margin:0 0 8px"><strong>Propósito Evolutivo:</strong> ' + escN(data.lpArch.purpose) + '</p>' +
+      '<p style="margin:0 0 8px"><strong>Sombra a trascender:</strong> ' + escN(data.lpArch.shadow) + '</p>';
+
+    if (data.nameData) {
+      var soulArch = ARCHETYPES[data.nameData.soulUrge.value] || ARCHETYPES[reduceNum(data.nameData.soulUrge.value, false).value];
+      var expArch = ARCHETYPES[data.nameData.expression.value] || ARCHETYPES[reduceNum(data.nameData.expression.value, false).value];
+      purposeHtml +=
+        '<p style="margin:0 0 8px"><strong>Misión de Expresión (' + data.nameData.expression.value + '):</strong> ' + escN(expArch.purpose) + '</p>' +
+        '<p style="margin:0 0 8px"><strong>Anhelo del Alma (' + data.nameData.soulUrge.value + '):</strong> ' + escN(soulArch.path) + '</p>';
+    }
+    if (karmicList.length) {
+      purposeHtml += '<div class="num-box" style="margin-top:8px;border-color:color-mix(in srgb,var(--rec) 40%,var(--line))"><strong>Contratos / Deudas Kármicas detectadas:</strong><ul style="margin:6px 0 0 18px;padding:0">' +
+        karmicList.map(function(k){ return '<li>' + escN(k) + '</li>'; }).join("") + '</ul></div>';
+    }
+    document.getElementById("num-purpose-box").innerHTML = purposeHtml;
+
+    // 3. Dones y Lecciones
+    var giftsHtml =
+      '<p style="margin:0 0 8px"><strong>Dones del Camino de Vida (' + data.lifePath.value + '):</strong> ' + escN(data.lpArch.gifts) + '</p>' +
+      '<p style="margin:0 0 8px"><strong>Don Especial del Día de Nacimiento (' + data.birthday.value + '):</strong> ' + escN(data.bdArch.gifts) + '</p>';
+    if (data.nameData) {
+      var passionDesc = data.nameData.hiddenPassion.map(function(n){
+        return n + " (" + ARCHETYPES[n].title.split("·")[0].trim() + ")";
+      }).join(", ");
+      var missingDesc = data.nameData.karmicLessons.length
+        ? data.nameData.karmicLessons.map(function(n){ return n + " (" + ARCHETYPES[n].title.split("·")[0].trim() + ")"; }).join(", ")
+        : "Ninguna ausencia: tu nombre contiene todas las frecuencias del 1 al 9.";
+      giftsHtml +=
+        '<p style="margin:0 0 8px"><strong>Pasión Oculta (frecuencia dominante en tu nombre):</strong> ' + escN(passionDesc) + ' — talento magnético que sale de forma espontánea.</p>' +
+        '<p style="margin:0 0 8px"><strong>Lecciones Kármicas del Nombre (números ausentes):</strong> ' + escN(missingDesc) + '</p>' +
+        '<p style="margin:0"><strong>Yo Subconsciente (' + data.nameData.subconsciousSelf + '/9):</strong> indica tu nivel de recursos internos automáticos frente a imprevistos.</p>';
+    }
+    document.getElementById("num-gifts-box").innerHTML = giftsHtml;
+
+    // 4. Relación Angelical
+    document.getElementById("num-angel-box").innerHTML =
+      '<p style="margin:0 0 6px">Estas son tus <strong>frecuencias angelicales y horas espejo resonantes</strong> según tu vibración natal y el ciclo actual:</p>' +
+      '<div class="num-angel-row">' +
+      data.angelCodes.map(function(a){
+        return '<div class="num-angel-pill"><strong>✦ ' + escN(a.code) + '</strong><div style="font-size:11.5px;color:var(--mute);margin-bottom:4px">' + escN(a.origin) + ' · ' + escN(a.guide) + '</div><div>' + escN(a.msg) + '</div></div>';
+      }).join("") +
+      '</div>';
+
+    // 5. Sincronías
+    document.getElementById("num-sync-box").innerHTML =
+      '<p style="margin:0 0 6px"><strong>Año Personal ' + data.personalYear.value + ' (' + escN(data.pyArch.title) + '):</strong> ' + escN(data.pyArch.path) + '</p>' +
+      '<p style="margin:0 0 6px"><strong>Mes Personal ' + data.personalMonth.value + ' y Día Personal ' + data.personalDay.value + ':</strong> Hoy vibra en sintonía con <em>' + escN(data.pdArch.title) + '</em>. ' + escN(data.pdArch.purpose) + '</p>' +
+      '<p style="margin:0;color:var(--mute)"><strong>Señal de sincronía:</strong> Si hoy ves repetido el patrón <strong>' + escN(data.pdArch.angel.seq) + '</strong> o te cruzas con personas/fechas asociadas al <strong>' + data.personalDay.value + '</strong>, confirma que estás alineado con la lección del día.</p>';
+
+    // 6. Onírico y cruce con el diario
+    var allEntries = (typeof window.DreamSaverGetEntries === "function") ? window.DreamSaverGetEntries() : [];
+    var dreamMatches = [];
+    allEntries.slice(0, 15).forEach(function(e){
+      var found = String(e.text || "").match(/\b\d{1,4}\b/g);
+      if (found && found.length) {
+        dreamMatches.push({
+          date: new Date(e.at).toLocaleDateString("es-CL"),
+          nums: found.slice(0, 4).join(", "),
+          snippet: String(e.text || "").slice(0, 90)
+        });
+      }
+    });
+
+    var dreamHtml =
+      '<p style="margin:0 0 8px"><strong>Arquetipo Onírico de tu Camino ' + data.lifePath.value + ':</strong> ' + escN(data.lpArch.dream) + '</p>' +
+      '<p style="margin:0 0 8px"><strong>Clima Onírico de Hoy (Día Personal ' + data.personalDay.value + '):</strong> ' + escN(data.pdArch.dream) + '</p>';
+
+    if (dreamMatches.length) {
+      dreamHtml += '<div class="num-box"><strong>Números detectados en tus últimos sueños registrados (' + dreamMatches.length + '):</strong><ul style="margin:6px 0 0 18px;padding:0">' +
+        dreamMatches.slice(0, 5).map(function(dm){
+          var firstN = Number(dm.nums.split(",")[0]);
+          var r = reduceNum(firstN, true);
+          return '<li><strong>' + escN(dm.date) + '</strong> · Números: <strong>' + escN(dm.nums) + '</strong> (vibración ' + r.value + ') — “' + escN(dm.snippet) + '…”</li>';
+        }).join("") +
+        '</ul></div>';
+    } else {
+      dreamHtml += '<p class="note" style="margin:0">Cuando anotes horas, edades, puertas o cantidades en tus sueños, aparecerán aquí decodificados automáticamente.</p>';
+    }
+    document.getElementById("num-dreams-box").innerHTML = dreamHtml;
+
+    // 7. Pináculos
+    document.getElementById("num-pinnacles-grid").innerHTML = data.pinnacles.map(function(p){
+      var pArch = ARCHETYPES[p.val.value] || ARCHETYPES[reduceNum(p.val.value, false).value];
+      return '<div class="num-box">' +
+        '<div style="font-size:11.5px;color:var(--mute);text-transform:uppercase">Pináculo ' + p.num + ' · ' + escN(p.ages) + '</div>' +
+        '<strong style="font-size:16px">Realización ' + p.val.value + (p.val.isMaster ? ' (Maestro)' : '') + ' · Desafío ' + p.challenge + '</strong>' +
+        '<div style="margin-top:4px;font-size:13px">' + escN(pArch.title) + ': ' + escN(pArch.purpose) + '</div>' +
+      '</div>';
+    }).join("");
+  }
+
+  // Eventos del Modal de Numerología
+  var btnOpenNum = document.getElementById("btn-open-num");
+  var numOverlay = document.getElementById("num-overlay");
+  var btnCloseNum = document.getElementById("btn-close-num");
+  var btnRecalcNum = document.getElementById("btn-recalc-num");
+  var numNameInput = document.getElementById("num-full-name");
+
+  if (numNameInput) {
+    try {
+      var savedN = localStorage.getItem("dreamsaver:num_name");
+      if (savedN) numNameInput.value = savedN;
+    } catch(_){}
+  }
+
+  if (btnOpenNum && numOverlay) {
+    btnOpenNum.addEventListener("click", function(){
+      renderNumerologyModal();
+      numOverlay.classList.add("open");
+    });
+  }
+  if (btnCloseNum && numOverlay) {
+    btnCloseNum.addEventListener("click", function(){
+      numOverlay.classList.remove("open");
+    });
+  }
+  if (numOverlay) {
+    numOverlay.addEventListener("click", function(ev){
+      if (ev.target === numOverlay) numOverlay.classList.remove("open");
+    });
+  }
+  if (btnRecalcNum) {
+    btnRecalcNum.addEventListener("click", function(){
+      if (numNameInput) {
+        try { localStorage.setItem("dreamsaver:num_name", numNameInput.value.trim()); } catch(_){}
+      }
+      renderNumerologyModal();
+      if (typeof window.render === "function") window.render();
+    });
+  }
+  document.addEventListener("keydown", function(ev){
+    if (ev.key === "Escape" && numOverlay && numOverlay.classList.contains("open")) {
+      numOverlay.classList.remove("open");
+    }
+  });
+})();
 </script>
 </body>
 </html>
