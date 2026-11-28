@@ -313,9 +313,58 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
   body:has(.hd-overlay.open) .lunar-card,body:has(.hd-overlay.open) .user-info,
   body:has(.num-overlay.open) .lunar-card,body:has(.num-overlay.open) .user-info{visibility:hidden}
 }
+
+/* Fondo animado de vórtice estelar y cajas de legibilidad (.ds-text-box) */
+html {
+  background: var(--bg);
+}
+
+#ds-vortex-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  display: block;
+}
+
+/* Permite ver el vórtice estelar detrás de la interfaz de DreamSaver */
+body {
+  background: transparent !important;
+}
+
+.ds-text-box {
+  display: inline-block;
+  padding: 0.25rem 0.65rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(139, 92, 246, 0.14);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .ds-text-box {
+    background: rgba(18, 22, 34, 0.78);
+    border-color: rgba(196, 181, 253, 0.16);
+  }
+}
+
+:root[data-theme="dark"] .ds-text-box {
+  background: rgba(18, 22, 34, 0.78);
+  border-color: rgba(196, 181, 253, 0.16);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #ds-vortex-canvas {
+    display: none;
+  }
+}
 </style>
 </head>
 <body>
+<canvas id="ds-vortex-canvas" aria-hidden="true"></canvas>
 <main>
   <section class="card" id="auth-card">
     <div class="brand-badge">✦ DreamSaver</div>
@@ -346,15 +395,15 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
   <div id="app-content" style="display:none;">
     <div class="header-bar">
       <div class="header-brand">
-        <div class="brand-badge">✦ DreamSaver</div>
-        <h1>Perfil astral</h1>
+        <div class="brand-badge ds-text-box">✦ DreamSaver</div>
+        <h1 class="ds-text-box">Perfil astral</h1>
       </div>
       <div class="user-info">
         <div class="user-actions">
-          <button class="b btn-user" id="btn-profile" type="button" aria-label="Mi perfil" title="Mi perfil">
+          <button class="b btn-user ds-text-box" id="btn-profile" type="button" aria-label="Mi perfil" title="Mi perfil">
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
           </button>
-          <button class="b" id="btn-logout" type="button">Cerrar sesión</button>
+          <button class="b ds-text-box" id="btn-logout" type="button">Cerrar sesión</button>
         </div>
       </div>
     </div>
@@ -375,7 +424,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
 
     <!-- Pantalla principal: accesos a cada sección -->
     <div id="home-view">
-      <p class="sub">Elige una sección para explorar tu mapa personal.</p>
+      <p class="sub"><span class="ds-text-box">Elige una sección para explorar tu mapa personal.</span></p>
       <nav class="home-grid" aria-label="Secciones del perfil astral">
         <button type="button" class="tile" id="tile-dreams">
           <span class="tile-icon" aria-hidden="true">☾</span>
@@ -480,8 +529,10 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
   </div>
 
   <footer class="app-footer">
-    <div><strong>✦ DreamSaver</strong> · Tu perfil astral y diario de sueños</div>
-    <div>Contacto y soporte: <a href="mailto:redlantecc@gmail.com">redlantecc@gmail.com</a></div>
+    <div class="ds-text-box">
+      <div><strong>✦ DreamSaver</strong> · Tu perfil astral y diario de sueños</div>
+      <div>Contacto y soporte: <a href="mailto:redlantecc@gmail.com">redlantecc@gmail.com</a></div>
+    </div>
   </footer>
 </main>
 
@@ -4964,6 +5015,166 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     new MutationObserver(function(){ if (app.style.display === "none") show("home", true); })
       .observe(app, {attributes:true, attributeFilter:["style"]});
   }
+})();
+</script>
+
+<script>
+(() => {
+  const canvas = document.getElementById("ds-vortex-canvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (reducedMotionQuery.matches) return;
+
+  const STAR_COUNT = 150;
+  const MAX_DEPTH = 900;
+  let w = 0, h = 0, cx = 0, cy = 0, dpr = 1;
+  let stars = [];
+  let rafId = null;
+  let lastTime = 0;
+
+  function isDark() {
+    const t = document.documentElement.getAttribute("data-theme");
+    if (t === "dark") return true;
+    if (t === "light") return false;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  }
+
+  function makeStar(randomZ = true) {
+    return {
+      angle: Math.random() * Math.PI * 2,
+      spread: Math.pow(Math.random(), 0.65) * 420 + 25,
+      z: randomZ ? Math.random() * MAX_DEPTH + 40 : MAX_DEPTH,
+      size: Math.random() * 1.45 + 0.55,
+      twist: (Math.random() * 0.00032 + 0.00016) * (Math.random() < 0.85 ? 1 : -1),
+      purple: Math.random() < 0.42
+    };
+  }
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = window.innerWidth;
+    h = window.innerHeight;
+    cx = w * 0.5;
+    cy = h * 0.45;
+    canvas.width = Math.floor(w * dpr);
+    canvas.height = Math.floor(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (!stars.length) {
+      stars = Array.from({ length: STAR_COUNT }, () => makeStar(true));
+    }
+  }
+
+  function drawAtmosphere(dark) {
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = dark ? "#120b21" : "#f4effb";
+    ctx.fillRect(0, 0, w, h);
+
+    const radius = Math.max(w, h) * 0.65;
+    const grad = ctx.createRadialGradient(cx, cy, 12, cx, cy, radius);
+    if (dark) {
+      grad.addColorStop(0, "rgba(167, 123, 250, 0.24)");
+      grad.addColorStop(0.5, "rgba(88, 28, 135, 0.14)");
+      grad.addColorStop(1, "rgba(18, 11, 33, 0)");
+    } else {
+      grad.addColorStop(0, "rgba(107, 63, 160, 0.14)");
+      grad.addColorStop(0.55, "rgba(167, 139, 250, 0.07)");
+      grad.addColorStop(1, "rgba(244, 239, 251, 0)");
+    }
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, w, h);
+  }
+
+  function project(star) {
+    const scale = 360 / star.z;
+    const vortexAngle = star.angle + (MAX_DEPTH - star.z) * 0.0021;
+    const r = star.spread * scale;
+    return {
+      x: cx + Math.cos(vortexAngle) * r,
+      y: cy + Math.sin(vortexAngle) * r * 0.82,
+      scale
+    };
+  }
+
+  function frame(now) {
+    if (document.hidden || reducedMotionQuery.matches) {
+      rafId = null;
+      return;
+    }
+    const dt = lastTime ? Math.min(now - lastTime, 50) : 16.67;
+    lastTime = now;
+
+    const dark = isDark();
+    drawAtmosphere(dark);
+
+    const speed = dt * 0.22;
+    for (let i = 0; i < stars.length; i++) {
+      const s = stars[i];
+      const prev = project(s);
+      s.z -= speed;
+      s.angle += s.twist * dt;
+
+      if (s.z <= 25) {
+        stars[i] = makeStar(false);
+        continue;
+      }
+
+      const curr = project(s);
+      if (curr.x < -40 || curr.x > w + 40 || curr.y < -40 || curr.y > h + 40) {
+        stars[i] = makeStar(false);
+        continue;
+      }
+
+      const depth = 1 - s.z / MAX_DEPTH;
+      const alpha = Math.min(1, Math.max(0.08, depth * 1.1)) * (dark ? 0.88 : 0.45);
+      const r = Math.min(3, Math.max(0.5, s.size * curr.scale * 0.65));
+
+      const color = s.purple
+        ? (dark ? `rgba(196, 181, 253, ${alpha})` : `rgba(109, 40, 217, ${alpha})`)
+        : (dark ? `rgba(248, 250, 252, ${alpha})` : `rgba(88, 28, 135, ${alpha * 0.72})`);
+
+      ctx.strokeStyle = color;
+      ctx.fillStyle = color;
+      ctx.lineWidth = Math.max(0.6, r * 0.75);
+      ctx.beginPath();
+      ctx.moveTo(prev.x, prev.y);
+      ctx.lineTo(curr.x, curr.y);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(curr.x, curr.y, r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    rafId = requestAnimationFrame(frame);
+  }
+
+  function start() {
+    if (reducedMotionQuery.matches) return;
+    if (rafId !== null) cancelAnimationFrame(rafId);
+    lastTime = 0;
+    rafId = requestAnimationFrame(frame);
+  }
+
+  window.addEventListener("resize", resize);
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) start();
+  });
+  reducedMotionQuery.addEventListener("change", (e) => {
+    if (e.matches && rafId !== null) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+      ctx.clearRect(0, 0, w, h);
+    } else if (!e.matches) {
+      resize();
+      start();
+    }
+  });
+
+  resize();
+  start();
 })();
 </script>
 </body>
