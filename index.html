@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>DreamSaver · Diario de sueños</title>
+<title>DreamSaver · Perfil astral</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap">
 <style>
 :root{--bg:#f4effb;--surface:#ffffff;--ink:#1f1733;--mute:#62557d;--line:#dfd5f0;--accent:#6b3fa0;--accent-ink:#ffffff;--rec:#b8336a;--ok:#2d7a5e}
@@ -99,7 +99,6 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
   grid-template-columns:minmax(0,1fr);
   grid-template-areas:
     "recorder"
-    "lunar"
     "explorer"
     "list"
     "stats";
@@ -219,7 +218,6 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
     display:grid;
     grid-template-columns:minmax(0,1.15fr) minmax(340px,0.85fr);
     grid-template-areas:
-      "lunar lunar"
       "recorder explorer"
       "list list"
       "stats stats";
@@ -269,6 +267,25 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
 .num-angel-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
 .num-angel-pill{background:var(--surface);border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));border-radius:10px;padding:8px 11px;font-size:13px;flex:1 1 200px}
 .num-angel-pill strong{color:var(--accent);font-size:15px;display:block;margin-bottom:2px}
+/* Pantalla principal: perfil astral */
+.home-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:6px 0 4px}
+.tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;min-height:134px;padding:16px 10px;text-align:center;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 24px rgba(24,12,48,.05);cursor:pointer;font:inherit;transition:transform .15s,border-color .15s,box-shadow .15s}
+.tile:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--accent) 55%,var(--line));box-shadow:0 12px 28px rgba(24,12,48,.1)}
+.tile:active{transform:scale(.98)}
+.tile-icon{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;line-height:1;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,var(--bg));border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line))}
+.tile-title{font:600 16.5px/1.2 "Newsreader",Georgia,serif;color:var(--ink)}
+.tile-sub{font-size:12px;line-height:1.35;color:var(--mute);max-width:15em}
+.tile-num .tile-icon{color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--bg));border-color:color-mix(in srgb,var(--ok) 32%,var(--line))}
+.tile-empty{border-style:dashed;background:transparent;box-shadow:none;cursor:default;opacity:.55;pointer-events:none}
+.view-bar{display:flex;align-items:center;gap:12px;margin:2px 0 10px}
+.view-bar h2{margin:0;font:600 20px/1.2 "Newsreader",Georgia,serif}
+.view-bar .b{flex:none}
+@media (min-width:720px){
+  .home-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:10px}
+  .tile{min-height:156px}
+  .tile-title{font-size:18px}
+}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}.tile:hover{transform:none}}
 </style>
 </head>
 <body>
@@ -276,7 +293,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
   <section class="card" id="auth-card">
     <div class="brand-badge">✦ DreamSaver</div>
     <h2>Iniciar sesión / Crear cuenta</h2>
-    <p class="note">Tu refugio personal para registrar sueños y explorar tu mapa astral.</p>
+    <p class="note">Tu perfil astral personal: carta natal, diseño humano, numerología y diario de sueños.</p>
     <div class="fld">
       Correo electrónico
       <input type="email" id="auth-email" placeholder="tu@email.com" autocomplete="email">
@@ -303,20 +320,69 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
     <div class="header-bar">
       <div class="header-brand">
         <div class="brand-badge">✦ DreamSaver</div>
-        <h1>Diario de sueños</h1>
+        <h1>Perfil astral</h1>
       </div>
       <div class="user-info">
         <span id="user-display" class="note"></span>
         <div class="user-actions">
-          <button class="b" id="btn-profile" type="button">Perfil</button>
           <button class="b" id="btn-logout" type="button">Cerrar sesión</button>
         </div>
       </div>
     </div>
-    <p class="sub">Habla al despertar y el texto se escribe solo. Cada registro guarda fecha, hora y fase lunar para contrastarlo después.</p>
-    <div id="warn"></div>
 
-    <div class="workspace-grid">
+    <section class="card lunar-card" id="lunar-banner" aria-label="Fase lunar actual">
+      <div class="lunar-top">
+        <div class="lunar-main">
+          <div class="lunar-orb" id="lunar-orb" aria-hidden="true"></div>
+          <div>
+            <div class="lunar-title" id="lunar-title">Calculando fase lunar…</div>
+            <div class="lunar-meta" id="lunar-meta">Ciclo sinódico</div>
+          </div>
+        </div>
+        <div class="lunar-pills" id="lunar-pills"></div>
+      </div>
+      <p class="lunar-desc" id="lunar-desc"></p>
+    </section>
+
+    <!-- Pantalla principal: accesos a cada sección -->
+    <div id="home-view">
+      <p class="sub">Elige una sección para explorar tu mapa personal.</p>
+      <nav class="home-grid" aria-label="Secciones del perfil astral">
+        <button type="button" class="tile" id="tile-dreams">
+          <span class="tile-icon" aria-hidden="true">☾</span>
+          <span class="tile-title">Sueños</span>
+          <span class="tile-sub">Diario por voz y calendario lunar</span>
+        </button>
+        <button type="button" class="tile" id="btn-profile">
+          <span class="tile-icon" aria-hidden="true">☉</span>
+          <span class="tile-title">Carta natal</span>
+          <span class="tile-sub">Planetas, casas y datos de nacimiento</span>
+        </button>
+        <button type="button" class="tile" id="btn-open-hd">
+          <span class="tile-icon" aria-hidden="true">◈</span>
+          <span class="tile-title">Diseño humano</span>
+          <span class="tile-sub">Tu mapa energético</span>
+        </button>
+        <button type="button" class="tile tile-num" id="btn-open-num">
+          <span class="tile-icon" aria-hidden="true">∞</span>
+          <span class="tile-title">Numerología</span>
+          <span class="tile-sub">Números, dones y sincronías</span>
+        </button>
+        <div class="tile tile-empty" aria-hidden="true"><span class="tile-sub">Próximamente</span></div>
+        <div class="tile tile-empty" aria-hidden="true"><span class="tile-sub">Próximamente</span></div>
+      </nav>
+    </div>
+
+    <!-- Sección: registro de sueños (mismo contenido de antes) -->
+    <div id="view-dreams" style="display:none;">
+      <div class="view-bar">
+        <button class="b" id="btn-back-home" type="button">← Inicio</button>
+        <h2>Registro de sueños</h2>
+      </div>
+    <p class="sub">Habla al despertar y el texto se escribe solo. Cada registro guarda fecha, hora y fase lunar para contrastarlo después.</p>
+      <div id="warn"></div>
+
+      <div class="workspace-grid">
       <section class="card recorder-card" aria-label="Nuevo registro">
         <div class="rec-wrap">
           <button id="rec" type="button" aria-pressed="false">Grabar</button>
@@ -333,20 +399,6 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
           <button class="b" id="clr" type="button">Limpiar</button>
         </div>
         <p class="note" id="saved" aria-live="polite"></p>
-      </section>
-
-      <section class="card lunar-card" id="lunar-banner" aria-label="Fase lunar actual">
-        <div class="lunar-top">
-          <div class="lunar-main">
-            <div class="lunar-orb" id="lunar-orb" aria-hidden="true"></div>
-            <div>
-              <div class="lunar-title" id="lunar-title">Calculando fase lunar…</div>
-              <div class="lunar-meta" id="lunar-meta">Ciclo sinódico</div>
-            </div>
-          </div>
-          <div class="lunar-pills" id="lunar-pills"></div>
-        </div>
-        <p class="lunar-desc" id="lunar-desc"></p>
       </section>
 
       <section class="card explorer-card" aria-label="Buscar y explorar sueños">
@@ -388,11 +440,12 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
         </div>
         <p class="note">Si pasan más de dos semanas sin que ocurra algo parecido a tu sueño, márcalo como “sin coincidencia”. Llevar ese control te permite distinguir si hubo un patrón real o fue solo casualidad.</p>
       </section>
+      </div>
     </div>
   </div>
 
   <footer class="app-footer">
-    <div><strong>✦ DreamSaver</strong> · Tu diario personal de sueños y exploración astral</div>
+    <div><strong>✦ DreamSaver</strong> · Tu perfil astral y diario de sueños</div>
     <div>Contacto y soporte: <a href="mailto:redlantecc@gmail.com">redlantecc@gmail.com</a></div>
   </footer>
 </main>
@@ -400,7 +453,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
 <div class="overlay" id="sidebar-overlay"></div>
 <div class="sidebar" id="profile-sidebar">
   <div class="sidebar-header">
-    <h2>Tu Perfil Astral</h2>
+    <h2>Tu Carta Natal</h2>
     <button class="b" id="close-profile" type="button">Cerrar</button>
   </div>
   <div class="sidebar-content">
@@ -415,12 +468,6 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
         <button class="b p" type="button" id="btn-download-natal-pdf" style="width:100%">Descargar Carta Natal completa (PDF)</button>
       </div>
       <p class="note" id="astro-pdf-status" aria-live="polite"></p>
-      <div class="row" style="margin-top:10px">
-        <button class="b" type="button" id="btn-open-hd" style="width:100%;border-color:color-mix(in srgb,var(--accent) 50%,var(--line));color:var(--accent);font-weight:600">✦ Abrir sección Diseño Humano</button>
-      </div>
-      <div class="row" style="margin-top:8px">
-        <button class="b" type="button" id="btn-open-num" style="width:100%;border-color:color-mix(in srgb,var(--ok) 50%,var(--line));color:var(--ok);font-weight:600">✦ Abrir Mapa Numerológico Integral</button>
-      </div>
     </div>
 
     <div class="birth-section-box">
@@ -468,7 +515,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
         <h2 id="hd-modal-title">Tu mapa energético en palabras simples</h2>
         <p class="note" id="hd-birth-meta">Calculado localmente desde tu perfil guardado.</p>
       </div>
-      <button class="b" type="button" id="btn-close-hd">Volver al perfil</button>
+      <button class="b" type="button" id="btn-close-hd">Volver al inicio</button>
     </div>
     <div id="hd-body">
       <div class="hd-grid-4" id="hd-summary-grid"></div>
@@ -526,7 +573,7 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
         <h2 id="num-modal-title">Tu código numérico, dones, caminos y sincronías</h2>
         <p class="note" id="num-birth-meta">Calculado localmente con tu fecha de nacimiento y nombre.</p>
       </div>
-      <button class="b" type="button" id="btn-close-num">Volver al perfil</button>
+      <button class="b" type="button" id="btn-close-num">Volver al inicio</button>
     </div>
 
     <div class="num-section" style="padding:11px 14px">
@@ -4719,6 +4766,34 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
       numOverlay.classList.remove("open");
     }
   });
+})();
+</script>
+
+<script>
+/* Navegación: pantalla principal ↔ registro de sueños */
+(function(){
+  var home = document.getElementById("home-view");
+  var dreams = document.getElementById("view-dreams");
+  var app = document.getElementById("app-content");
+  if (!home || !dreams) return;
+  function show(view, fromPop){
+    var d = view === "dreams";
+    home.style.display = d ? "none" : "";
+    dreams.style.display = d ? "" : "none";
+    if (d && !fromPop) { try { history.pushState({view:"dreams"}, ""); } catch(_){} }
+    try { window.scrollTo({top:0}); } catch(_){ window.scrollTo(0,0); }
+  }
+  var t = document.getElementById("tile-dreams"), b = document.getElementById("btn-back-home");
+  if (t) t.addEventListener("click", function(){ show("dreams"); });
+  if (b) b.addEventListener("click", function(){
+    if (history.state && history.state.view === "dreams") { history.back(); } else { show("home", true); }
+  });
+  window.addEventListener("popstate", function(){ show("home", true); });
+  /* Al cerrar sesión (la app se oculta) se vuelve a la pantalla principal */
+  if (app && window.MutationObserver) {
+    new MutationObserver(function(){ if (app.style.display === "none") show("home", true); })
+      .observe(app, {attributes:true, attributeFilter:["style"]});
+  }
 })();
 </script>
 </body>
