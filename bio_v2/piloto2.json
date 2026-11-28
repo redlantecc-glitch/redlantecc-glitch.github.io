@@ -1,0 +1,654 @@
+{
+  "meta": {
+    "titulo": "Biodescodificación DreamSaver",
+    "version": "2.1-piloto",
+    "generado": "2026-11-28",
+    "autoria": "Redacción original de DreamSaver (Redlantec). Cada enfoque resume con palabras propias las ideas del autor indicado, sin reproducir su texto. Las frases entre comillas en 'sentir' son expresiones breves de uso común en biodescodificación.",
+    "aviso": "Este contenido es una herramienta de autoconocimiento y reflexión simbólica. No es diagnóstico ni tratamiento médico y no reemplaza la consulta con un profesional de la salud. Ante cualquier síntoma, consulta a tu médico.",
+    "fuentes": {
+      "bio": "Biodescodificación (enfoque de Hamer, Corbera, Sellam, Flèche y apuntes de formación)",
+      "hay": "Louise L. Hay",
+      "martel": "Jacques Martel",
+      "bourbeau": "Lisa Bourbeau"
+    },
+    "formato": {
+      "resumen": "Qué es, en lenguaje simple (texto propio)",
+      "etapa": "Etapa biológica según la biodescodificación, si aplica",
+      "enfoques": "Lista de {fuente, conflicto, sentir[], idea}: lo que plantea cada autor, parafraseado",
+      "preguntas": "Preguntas para reflexionar inspiradas en los enfoques",
+      "afirmacion": "Frase propia para trabajar el cambio de mirada",
+      "relacionados": "ids de otras fichas"
+    }
+  },
+  "entradas": [
+    {
+      "id": "acne",
+      "titulo": "ACNÉ",
+      "letra": "A",
+      "resumen": "Inflamación de las glándulas sebáceas de la piel, típica de la pubertad, que aparece sobre todo en zonas grasas del rostro, espalda y pecho.",
+      "etapa": "2ª etapa (protección)",
+      "enfoques": [
+        {
+          "fuente": "bio",
+          "conflicto": "Conflicto de identidad y desvalorización estética, el llamado conflicto del espejo. También puede haber un conflicto de suciedad, a veces heredado del padre.",
+          "sentir": ["Me rechazo a mí mismo", "Si crezco tendré más responsabilidades"],
+          "idea": "En el rostro habla del rechazo a la propia imagen. En la parte alta de la espalda y los hombros apunta a falta de apoyo. En la adolescencia se vincula a la atracción y el miedo frente a la sexualidad que despierta, y al deseo de seguir siendo niño."
+        },
+        {
+          "fuente": "martel",
+          "idea": "Lo relaciona con una autoestima baja, con querer mantener a los demás a distancia y con el temor a ser herido."
+        },
+        {
+          "fuente": "hay",
+          "idea": "Lo atribuye a no aceptarse ni gustarse a uno mismo. Propone reconocerse como expresión de la vida y aceptarse tal como se es hoy."
+        },
+        {
+          "fuente": "bourbeau",
+          "idea": "Lo ve como un deseo de no dejarse ver de cerca: una persona sensible, replegada, que aleja a los otros en vez de esconderse. Es frecuente en quien se esfuerza por ser como un padre o madre, o justo lo contrario, para agradar a la familia. Si persiste en la adultez, sugiere revisar qué heridas de la adolescencia siguen activas y qué pasó justo antes del brote."
+        }
+      ],
+      "preguntas": [
+        "¿Me siento a gusto con la imagen que muestro?",
+        "¿Estoy intentando parecerme, o no parecerme, a alguno de mis padres?",
+        "¿Qué ocurrió justo antes de que apareciera o empeorara?"
+      ],
+      "afirmacion": "Me acepto como soy hoy. Puedo dejarme ver sin miedo.",
+      "relacionados": ["piel-epidermis"]
+    },
+    {
+      "id": "ansiedad-angustia",
+      "titulo": "ANSIEDAD / ANGUSTIA",
+      "letra": "A",
+      "resumen": "Estado de inquietud y alerta constante, a veces con síntomas físicos como opresión en el pecho, respiración agitada o nudo en el estómago.",
+      "enfoques": [
+        {
+          "fuente": "bio",
+          "idea": "Se considera la otra cara de la depresión, sostenida por creencias y pensamientos negativos. La mente se proyecta al futuro y deja de habitar el presente. La prisa constante la alimenta."
+        },
+        {
+          "fuente": "martel",
+          "idea": "La vincula a sentirse limitado o restringido, con una sensación marcada de ahogo dentro de una situación."
+        },
+        {
+          "fuente": "hay",
+          "idea": "La atribuye a no confiar en que la vida fluye a nuestro favor. Propone aprobarse a uno mismo y recordar que se está a salvo."
+        },
+        {
+          "fuente": "bourbeau",
+          "idea": "La describe como un miedo sin motivo concreto, esperando un peligro impreciso. La persona tiene una imaginación muy activa, se preocupa sin parar y busca señales que confirmen sus temores. Sugiere notar que es la imaginación la que toma el control, dejar de tener que demostrar algo, confiar en la intuición y dejarse ayudar por los cercanos."
+        }
+      ],
+      "preguntas": [
+        "¿En qué situación siento que me falta el aire o el espacio?",
+        "¿Qué escenarios imagino que probablemente nunca ocurran?",
+        "¿A quién podría permitirle ayudarme?"
+      ],
+      "afirmacion": "Vuelvo al presente. Confío en mi intuición y en el curso de la vida.",
+      "relacionados": ["depresion", "insomnio"]
+    },
+    {
+      "id": "asma",
+      "titulo": "ASMA",
+      "letra": "A",
+      "resumen": "Enfermedad respiratoria en que los bronquios se estrechan e inflaman, con falta de aire, tos y silbidos.",
+      "etapa": "4ª etapa (relación)",
+      "enfoques": [
+        {
+          "fuente": "bio",
+          "conflicto": "Miedo en el territorio: amenaza de invasión, peleas familiares, demasiada gente en la misma casa. También peleas con uno mismo y miedo a que falte el aire.",
+          "sentir": ["Me ahogo", "El ambiente es tóxico", "Quiero y no quiero ocupar el espacio que me rodea"],
+          "idea": "Se estudia como una constelación (dos conflictos activos a la vez). Conviene revisar el transgeneracional y discusiones en el hogar, por ejemplo un padre que grita y una madre que calla. La parte muscular se asocia a impotencia y la mucosa a separación."
+        },
+        {
+          "fuente": "hay",
+          "idea": "Lo describe como un amor que sofoca: no sentirse con derecho a respirar por cuenta propia, con llanto reprimido. Observa que los niños asmáticos suelen cargar con culpas del entorno y sentirse poco valiosos, y que la crisis puede reactivarse en la adultez por memorias de infancia. Propone asumir la propia vida con confianza y elegir la libertad."
+        }
+      ],
+      "preguntas": [
+        "¿En qué relación o lugar siento que no tengo espacio propio?",
+        "¿Qué llanto o qué palabras estoy conteniendo?",
+        "¿Hay tensiones en mi casa que respiro a diario?"
+      ],
+      "afirmacion": "Tengo derecho a mi propio aire. Respiro libre y me hago cargo de mi vida.",
+      "relacionados": ["ansiedad-angustia", "garganta"]
+    },
+    {
+      "id": "cefaleas",
+      "titulo": "CEFALEAS (dolor de cabeza)",
+      "letra": "C",
+      "resumen": "Dolor en cualquier zona de la cabeza. Puede ser tensional, por esfuerzo, falta de sueño u otras causas.",
+      "enfoques": [
+        {
+          "fuente": "bio",
+          "conflicto": "Dejar los problemas de lado. El problema se vive, pero el mecanismo es la negación.",
+          "sentir": ["Tengo problemas, pero no es para tanto", "No vale la pena preocuparse"]
+        },
+        {
+          "fuente": "hay",
+          "idea": "Los dolores de cabeza nacen de desautorizarse a uno mismo. Sugiere preguntarse en qué momento fuimos injustos con nosotros, perdonarnos y soltar el tema."
+        }
+      ],
+      "preguntas": [
+        "¿Qué problema estoy minimizando para no enfrentarlo?",
+        "¿En qué fui duro o injusto conmigo hoy?",
+        "¿Qué pasaría si le diera a esto la importancia que realmente tiene?"
+      ],
+      "afirmacion": "Reconozco lo que me pasa y me trato con justicia.",
+      "relacionados": ["migranas", "cuello"]
+    },
+    {
+      "id": "migranas",
+      "titulo": "MIGRAÑAS",
+      "letra": "M",
+      "resumen": "Dolor de cabeza intenso, a menudo en un solo lado, con náuseas y sensibilidad a la luz y al ruido.",
+      "enfoques": [
+        {
+          "fuente": "bio",
+          "conflicto": "Querer controlarlo todo y encontrar siempre una solución con la mente, sin llegar a decidir.",
+          "sentir": ["Debo encontrar la solución pensando", "No tengo derecho a la felicidad (migraña de fin de semana)", "No estoy a la altura (premenstrual)"],
+          "idea": "Distingue tipos: la de estrés, la que aparece al relajarse el fin de semana y la premenstrual, ligada a desvalorización y a la exigencia de ser eficaz. Puede haber también retención de líquidos asociada al riñón."
+        },
+        {
+          "fuente": "hay",
+          "idea": "La asocia a personas perfeccionistas que se presionan en exceso, con rabia reprimida y aversión a ser manejadas. Propone relajarse en el fluir de la vida y confiar en que nos provee lo necesario."
+        },
+        {
+          "fuente": "bourbeau",
+          "idea": "La conecta con el YO SOY: aparece en quien no se da el derecho de ser lo que quiere, a veces viviendo a la sombra de alguien influyente y sintiéndose culpable por cuestionarlo. Propone preguntarse qué querría SER si todo fuera perfecto, y ver qué creencia lo ha impedido."
+        }
+      ],
+      "preguntas": [
+        "Si todo a mi alrededor fuera ideal, ¿qué querría ser?",
+        "¿A la sombra de quién estoy viviendo?",
+        "¿Qué intento resolver solo con la cabeza en vez de decidir?"
+      ],
+      "afirmacion": "Me doy permiso para ser quien soy, a mi ritmo.",
+      "relacionados": ["cefaleas"]
+    },
+    {
+      "id": "estrenimiento",
+      "titulo": "ESTREÑIMIENTO",
+      "letra": "E",
+      "resumen": "Evacuación difícil o poco frecuente, con heces duras y secas.",
+      "etapa": "1ª etapa (supervivencia)",
+      "enfoques": [
+        {
+          "fuente": "bio",
+          "conflicto": "Retener algo cuando ya se absorbió lo útil. El agua y lo digestivo remiten a la madre y la familia.",
+          "sentir": ["Quiero retener, no quiero soltar", "Busco desesperadamente el amor de mamá", "No quiero que me descubran"],
+          "idea": "Plantea varias lecturas: búsqueda del amor materno, culpa respecto a los hijos o negarse a perdonar, conflicto de identidad o de separación (por ejemplo, aislamiento en el trabajo) y miedo a que algo quede bloqueado, como una casa que no se logra vender."
+        },
+        {
+          "fuente": "martel",
+          "idea": "Lo vincula a querer retener personas o acontecimientos de la vida."
+        },
+        {
+          "fuente": "hay",
+          "idea": "Lo atribuye a no soltar ideas viejas y quedarse en el pasado, a veces con tacañería. Propone liberar el pasado para que entre lo nuevo."
+        },
+        {
+          "fuente": "bourbeau",
+          "idea": "Como el intestino grueso elimina lo que ya no sirve, lo relaciona con no soltar pensamientos viejos. Aparece en quien se contiene de decir o hacer algo por miedo a perder a alguien, en quien guarda cosas por si acaso, o en quien da (tiempo, dinero) por culpa. Sugiere comprobar si realmente se pierde algo al expresarse."
+        }
+      ],
+      "preguntas": [
+        "¿Qué me callo por miedo a perder a alguien?",
+        "¿Qué guardo por si acaso y ya no necesito?",
+        "¿Estoy dando algo por obligación o por culpa?"
+      ],
+      "afirmacion": "Suelto el pasado y hago espacio para lo nuevo.",
+      "relacionados": ["colon"]
+    },
+    {
+      "id": "gastritis",
+      "titulo": "GASTRITIS",
+      "letra": "G",
+      "resumen": "Inflamación de la mucosa del estómago, con ardor, dolor o pesadez.",
+      "etapa": "1ª etapa (supervivencia)",
+      "enfoques": [
+        {
+          "fuente": "bio",
+          "conflicto": "No poder digerir una situación.",
+          "sentir": ["No puedo digerir lo que pasó"],
+          "idea": "Ejemplo típico: alguien que no logra aceptar que dos personas muy cercanas se hicieron pareja. Ver también Estómago."
+        },
+        {
+          "fuente": "hay",
+          "idea": "La asocia a una incertidumbre prolongada y a una sensación fatalista. Propone aprobarse y recordar que se está a salvo."
+        }
+      ],
+      "preguntas": [
+        "¿Qué situación reciente todavía no logro aceptar?",
+        "¿Llevo tiempo viviendo en la incertidumbre?",
+        "¿Qué necesitaría para cerrar este tema?"
+      ],
+      "afirmacion": "Acepto lo que pasó y me doy tiempo para asimilarlo.",
+      "relacionados": ["estomago", "higado"]
+    },
+    {
+      "id": "hipertension-arterial",
+      "titulo": "HIPERTENSIÓN ARTERIAL",
+      "letra": "H",
+      "resumen": "Presión de la sangre en las arterias elevada de forma sostenida. Muchas veces no da síntomas y requiere control médico.",
+      "etapa": "3ª etapa (movimiento, valoración)",
+      "enfoques": [
+        {
+          "fuente": "bio",
+          "conflicto": "Desvalorización respecto a la familia y falta de reconocimiento. Tener más gente en casa de la que se quiere, o tener la energía y no pasar a la acción.",
+          "sentir": ["Quiero que alguien se vaya de mi casa", "No quiero que alguien entre (o se vaya) de mi casa", "No recibo lo que quiero"],
+          "idea": "Distingue la central (manos calientes, el corazón empuja con fuerza para sacar a alguien) de la periférica (manos frías, se cierran las puertas del corazón-casa). En general habla de conflictos viejos que no se enfrentan y de agresividad contenida."
+        },
+        {
+          "fuente": "martel",
+          "idea": "La relaciona con preocupaciones e inquietudes que se arrastran desde hace mucho tiempo."
+        },
+        {
+          "fuente": "hay",
+          "idea": "La atribuye a un problema emocional antiguo sin resolver y a no expresar los sentimientos, viviendo siempre al borde del conflicto. Propone soltar el pasado con alegría y encontrar la paz."
+        },
+        {
+          "fuente": "bourbeau",
+          "idea": "Aparece en personas muy emotivas y sensibles que reviven heridas afectivas y dramatizan, y que se presionan para que todos a su alrededor estén felices. Sugiere pensar en uno mismo y dejar de sentirse responsable de la felicidad ajena."
+        }
+      ],
+      "preguntas": [
+        "¿Hay alguien a quien quisiera fuera, o dentro, de mi casa?",
+        "¿Qué conflicto antiguo sigo sin enfrentar?",
+        "¿Me siento responsable de la felicidad de los demás?"
+      ],
+      "afirmacion": "Cuido de los míos sin cargar con su felicidad. Me permito vivir liviano.",
+      "relacionados": ["hombros", "ansiedad-angustia"]
+    },
+    {
+      "id": "insomnio",
+      "titulo": "INSOMNIO",
+      "letra": "I",
+      "resumen": "Dificultad para dormirse, mantener el sueño o despertar demasiado temprano.",
+      "enfoques": [
+        {
+          "fuente": "bio",
+          "conflicto": "Necesidad de velar a un muerto, real o simbólico.",
+          "sentir": ["No pude velar a mi muerto"],
+          "idea": "También se asocia a miedo, culpa, pensamientos negativos y falta de confianza en la vida, junto con resistencia a sentir lo que no nos agrada."
+        },
+        {
+          "fuente": "martel",
+          "idea": "Lo vincula a quedarse enganchado en alguna forma de culpa."
+        },
+        {
+          "fuente": "hay",
+          "idea": "Lo atribuye al miedo, la culpa y la desconfianza en el proceso de la vida. Propone despedir el día con amor, confiando en que el mañana se resolverá solo."
+        }
+      ],
+      "preguntas": [
+        "¿Hay una pérdida, real o simbólica, que no pude despedir?",
+        "¿De qué me siento culpable estos días?",
+        "¿Qué tendría que confiar para poder soltar el día?"
+      ],
+      "afirmacion": "Despido el día en paz. Mañana se ocupará de sí mismo.",
+      "relacionados": ["ansiedad-angustia", "depresion"]
+    },
+    {
+      "id": "diabetes",
+      "titulo": "DIABETES",
+      "letra": "D",
+      "resumen": "Alteración en la regulación del azúcar en la sangre, por falta de insulina o resistencia a ella. Requiere seguimiento médico.",
+      "etapa": "4ª etapa (relación)",
+      "enfoques": [
+        {
+          "fuente": "bio",
+          "conflicto": "Mala alimentación afectiva. La insulina es la llave que deja entrar el azúcar, símbolo de la dulzura, y la ternura se vive como peligrosa.",
+          "sentir": ["Lo que me dan afectivamente no me gusta", "La ternura es peligrosa para mí", "Debo resistir porque hay un peligro"],
+          "idea": "Se estudia como constelación: en lo masculino predomina la resistencia y en lo femenino el rechazo o asco. El tipo I se asocia a resistirse a que el amor entre; el tipo II a personas hiperactivas que acumulan energía. A menudo aparece una casa o familia dividida y la soledad del corredor de fondo."
+        },
+        {
+          "fuente": "martel",
+          "idea": "La relaciona con una tristeza profunda tras un hecho que dejó rencor hacia la vida."
+        },
+        {
+          "fuente": "hay",
+          "idea": "La atribuye a la nostalgia de lo que pudo ser, a una gran necesidad de control y a la falta de dulzura. Señala un deseo de ser amado junto con la dificultad para dejarse amar. Propone saborear la dulzura del presente y dejar que el amor llegue de todas partes."
+        },
+        {
+          "fuente": "bourbeau",
+          "idea": "Conecta el páncreas con el plexo solar y las emociones. Describe a una persona emotiva y servicial, con muchos deseos para sí y para sus seres queridos y grandes expectativas, que se culpa si no se cumplen. Sugiere soltar el control, reconocer que esos deseos son propios y disfrutar las pequeñas dulzuras de hoy."
+        }
+      ],
+      "preguntas": [
+        "¿Me dejo querer, o solo doy?",
+        "¿Qué dulzura de hoy estoy pasando por alto?",
+        "¿Qué espero de los demás que en realidad deseo para mí?"
+      ],
+      "afirmacion": "Me abro a recibir afecto. Saboreo la dulzura de este momento.",
+      "relacionados": ["obesidad-y-sobrepeso"]
+    },
+    {
+      "id": "tiroides",
+      "titulo": "TIROIDES",
+      "letra": "T",
+      "resumen": "Glándula en forma de mariposa bajo la laringe que regula el ritmo del metabolismo y el crecimiento. Puede trabajar de más (hiper) o de menos (hipo).",
+      "etapa": "1ª etapa (supervivencia) y 4ª etapa (relación)",
+      "enfoques": [
+        {
+          "fuente": "bio",
+          "conflicto": "Es el reloj biológico: conflicto de tiempo y urgencia, con impotencia frente a lo que viene. Sentirse sobrepasado por los acontecimientos.",
+          "sentir": ["No puedo actuar lo bastante rápido", "Me falta tiempo, tengo que hacerlo todo ya", "Quiero que el tiempo pase más lento"],
+          "idea": "El hipertiroidismo pide que el tiempo corra para salir de una situación (frecuente en profesiones de urgencia). El hipotiroidismo pide que el tiempo se detenga, por ejemplo ante la enfermedad de un ser querido o al envejecer. El nódulo frío se asocia a sentirse atado de pies y manos."
+        },
+        {
+          "fuente": "hay",
+          "idea": "La atribuye a la humillación y a sentir que nunca llega el turno de hacer lo que uno desea. Propone trascender viejas limitaciones y expresarse con libertad creativa."
+        },
+        {
+          "fuente": "bourbeau",
+          "idea": "La une al chakra de la garganta, la voluntad y la capacidad de decidir según las propias necesidades. En el hipertiroidismo, la persona se exige demasiado, actúa rápido para ser querida o reconocida y vive como si todo fuera urgente. En el hipotiroidismo, cree que no puede crear su vida ni pedir lo que necesita. Propone recuperar el ritmo natural y el derecho a decir 'yo quiero'."
+        }
+      ],
+      "preguntas": [
+        "¿Vivo con la sensación de que no llego a tiempo?",
+        "¿Hay algo que quisiera que pasara más rápido o más lento?",
+        "¿Cuándo fue la última vez que pedí lo que realmente quería?"
+      ],
+      "afirmacion": "Vivo a mi propio ritmo y me doy permiso para decir lo que quiero.",
+      "relacionados": ["garganta", "cuello"]
+    },
+    {
+      "id": "rodilla",
+      "titulo": "RODILLA",
+      "letra": "R",
+      "resumen": "Articulación que une muslo y pierna. Permite flexionar, arrodillarse y adaptarse al terreno al avanzar.",
+      "etapa": "3ª etapa (movimiento, valoración)",
+      "enfoques": [
+        {
+          "fuente": "bio",
+          "conflicto": "Desvalorización con sumisión: estar sometido y no querer ceder.",
+          "sentir": ["Estoy sometido y no quiero ceder"],
+          "idea": "Reúne los cuatro puntos de la desvalorización: evaluación, resultado obligatorio, falta de respeto y dirección. Suele remitir a la adolescencia. Conviene observar gestos habituales de la persona, como subir escaleras o saltar."
+        },
+        {
+          "fuente": "martel",
+          "idea": "Las asocia a la flexibilidad, el amor propio, el orgullo y la testarudez."
+        },
+        {
+          "fuente": "hay",
+          "idea": "Representan el orgullo y el ego: dificultad para inclinarse, obstinación y miedo a cambiar mientras se avanza. Explica que tardan en sanar porque está en juego el propio yo. Sugiere preguntarse ante qué nos negamos a inclinarnos y ser flexibles como un sauce."
+        },
+        {
+          "fuente": "bourbeau",
+          "idea": "Indican falta de flexibilidad frente al porvenir en una persona orgullosa o terca que no acepta consejos. Aclara que ceder no es someterse, y que la rigidez puede venir del miedo a parecerse a los padres."
+        }
+      ],
+      "preguntas": [
+        "¿Ante quién o qué me niego a inclinarme?",
+        "¿Qué consejo estoy rechazando por orgullo?",
+        "¿Confundo ceder con someterme?"
+      ],
+      "afirmacion": "Puedo ser flexible sin perderme. Avanzo con humildad y firmeza.",
+      "relacionados": ["ciatica", "cuello"]
+    },
+    {
+      "id": "garganta",
+      "titulo": "GARGANTA",
+      "letra": "G",
+      "resumen": "Conducto que une boca, esófago y tráquea. Por ella pasan el alimento, el aire y la voz.",
+      "enfoques": [
+        {
+          "fuente": "bio",
+          "idea": "Ver también Faringe y Laringe. Se relaciona con una realidad que no queremos tragar, con ira reprimida y con sentimientos que no expresamos. El camino es verbalizar las emociones y reafirmar lo que queremos."
+        },
+        {
+          "fuente": "martel",
+          "idea": "Representa la expresión verbal y no verbal, y la creatividad."
+        },
+        {
+          "fuente": "hay",
+          "idea": "Es el canal de la expresión y la creatividad, y nuestra capacidad de defendernos y pedir. El dolor o la irritación hablan de enojo reprimido y de no sentirse capaz de expresarse. El nudo en la garganta, de miedo. Propone darse permiso para hacerse valer y expresarse con alegría."
+        },
+        {
+          "fuente": "bourbeau",
+          "idea": "Lee tres mensajes: si cuesta respirar, cuesta aspirar la vida; si la garganta se cierra, uno se siente forzado o presionado por otro; si duele al tragar, hay alguien o algo que no se logra aceptar, a veces con actitud de víctima. La ubica como paso entre el corazón y la cabeza, centro de la creatividad."
+        }
+      ],
+      "preguntas": [
+        "¿Qué necesito decir y a quién?",
+        "¿Me siento presionado o tomado del cuello por alguien?",
+        "¿Qué situación me cuesta tragar?"
+      ],
+      "afirmacion": "Mi voz tiene valor. Me expreso con libertad y sin culpa.",
+      "relacionados": ["tiroides", "asma"]
+    },
+    {
+      "id": "depresion",
+      "titulo": "DEPRESIÓN",
+      "letra": "D",
+      "resumen": "Estado prolongado de tristeza, falta de energía y pérdida de interés. Es una condición de salud que requiere acompañamiento profesional.",
+      "enfoques": [
+        {
+          "fuente": "bio",
+          "conflicto": "Conflicto de identidad.",
+          "idea": "La agresividad que no se expresa se vuelve hacia dentro, con desesperanza, culpa, baja autoestima y pensamientos negativos repetitivos. También se lee como choque entre lo ideal y lo real: entre quien soy y quien quiero ser."
+        },
+        {
+          "fuente": "martel",
+          "idea": "La relaciona con la necesidad de quitarse presión de encima: una de-presión."
+        },
+        {
+          "fuente": "hay",
+          "idea": "La atribuye a un enojo que uno no se siente con derecho a sentir, y a la desesperanza. Propone ir más allá de los miedos y límites ajenos y crear la propia vida."
+        },
+        {
+          "fuente": "bourbeau",
+          "idea": "La ve como una forma de no sentir más presión afectiva tras llegar al límite. La asocia a heridas de infancia vividas en soledad (rechazo, abandono, humillación, traición o injusticia) y a asuntos pendientes con el progenitor del sexo opuesto. Señala que el camino pasa por aceptar ayuda, comprender y perdonar a ese padre o madre, y luego perdonarse."
+        }
+      ],
+      "preguntas": [
+        "¿Qué enojo no me he permitido sentir?",
+        "¿Qué distancia hay entre quien soy y quien creo que debería ser?",
+        "¿A quién puedo pedir ayuda hoy?"
+      ],
+      "afirmacion": "Me permito sentir y pedir ayuda. Paso a paso vuelvo a mí.",
+      "relacionados": ["ansiedad-angustia", "insomnio"],
+      "nota_especial": "Si sientes que no puedes con esto o tienes pensamientos de hacerte daño, busca ayuda profesional o una línea de apoyo de tu país de inmediato."
+    },
+    {
+      "id": "gripe",
+      "titulo": "GRIPE",
+      "letra": "G",
+      "resumen": "Infección viral respiratoria con fiebre, dolor muscular, cansancio y congestión.",
+      "etapa": "1ª etapa (supervivencia)",
+      "enfoques": [
+        {
+          "fuente": "bio",
+          "conflicto": "Pelea o invasión en el territorio.",
+          "sentir": ["Me invadieron el territorio", "Me cayó un jarro de agua fría"],
+          "idea": "Atención a las reuniones familiares y a los silencios helados. Algo nos ha molestado, ese enojo baja las defensas y termina expresándose en el cuerpo."
+        },
+        {
+          "fuente": "martel",
+          "idea": "La relaciona con ira hacia alguien o algo que tenemos atravesado."
+        },
+        {
+          "fuente": "hay",
+          "idea": "La atribuye a reaccionar ante creencias colectivas negativas y a creer en las estadísticas. También la ve como un conflicto que sube a la superficie y una oportunidad de descansar y depurarse. Propone ponerse por encima de las creencias de grupo."
+        },
+        {
+          "fuente": "bourbeau",
+          "idea": "Es el cuerpo diciendo 'ya no puedo más'. Aparece en quien no logra expresar sus deseos y se siente ahogado por una situación o una persona, y a veces la usa para escapar de ella. Sugiere revisar una posible actitud de víctima y buscar otra forma de hacer lo que hay que hacer."
+        }
+      ],
+      "preguntas": [
+        "¿Quién o qué invadió mi espacio últimamente?",
+        "¿De qué situación me gustaría escapar?",
+        "¿Qué necesito pedir y no he pedido?"
+      ],
+      "afirmacion": "Defiendo mi espacio con calma y me doy el descanso que necesito.",
+      "relacionados": ["garganta"]
+    },
+    {
+      "id": "higado",
+      "titulo": "HÍGADO",
+      "letra": "H",
+      "resumen": "El órgano interno más grande: filtra la sangre, almacena energía y metaboliza. Es el laboratorio del cuerpo.",
+      "etapa": "1ª etapa (supervivencia)",
+      "enfoques": [
+        {
+          "fuente": "bio",
+          "conflicto": "Conflicto de carencia: hambre, dinero y familia (herencias). Miedo a que no alcance para comer.",
+          "sentir": ["Me voy a morir de hambre", "Mi familia me come el hígado"],
+          "idea": "Puede haber memorias transgeneracionales de hambre o de herencias en disputa, o una carencia afectiva importante. Como filtro, también responde a sentirse intoxicado. En francés hígado (foie) suena como fe, por lo que se vincula a conflictos con la espiritualidad."
+        },
+        {
+          "fuente": "martel",
+          "idea": "Lo considera la sede de la crítica."
+        },
+        {
+          "fuente": "hay",
+          "idea": "Lo ve como sede de la rabia y las reacciones primitivas, con hábito de quejarse y justificar las críticas. Propone vivir desde el corazón y buscar el amor en todas partes."
+        },
+        {
+          "fuente": "bourbeau",
+          "idea": "Lo asocia al enojo reprimido y a una actitud depresiva a veces inconsciente. Aparece en quien hace demasiado, se preocupa por todo y teme fallar, en vez de adaptarse a lo que ocurre. Sugiere ponerse en el lugar del otro y soltar la necesidad de tener razón."
+        }
+      ],
+      "preguntas": [
+        "¿Temo que me falte lo esencial, como dinero o comida?",
+        "¿Hay historias de herencias o carencias en mi familia?",
+        "¿A quién critico por dentro?"
+      ],
+      "afirmacion": "Tengo lo que necesito. Elijo comprender en vez de juzgar.",
+      "relacionados": ["gastritis", "estomago"]
+    },
+    {
+      "id": "estomago",
+      "titulo": "ESTÓMAGO",
+      "letra": "E",
+      "resumen": "Órgano que recibe el alimento y comienza a digerirlo con sus jugos.",
+      "etapa": "1ª etapa (supervivencia) y 4ª etapa (relación)",
+      "enfoques": [
+        {
+          "fuente": "bio",
+          "conflicto": "No poder digerir el 'bocado', o que falte. El sentido biológico del aparato digestivo es la aceptación.",
+          "sentir": ["Me tragué el bocado, pero no lo puedo digerir", "No tengo lo que quiero y tengo lo que no quiero", "El enemigo entra en mi territorio"],
+          "idea": "La curvatura mayor se relaciona con contrariedades familiares en torno al alimento o al dinero (por ejemplo, una herencia o una indemnización que no llega). La curvatura menor y la úlcera, con tener que convivir por obligación con personas o situaciones indigestas, como la familia política."
+        },
+        {
+          "fuente": "hay",
+          "idea": "Digiere las ideas y experiencias nuevas. Sus problemas hablan de miedo a lo nuevo y de no saber asimilarlo; la indigestión, de miedo visceral y quejas. Pone como ejemplo cómo nos fuimos acostumbrando a volar en avión. Propone asimilar cada experiencia con calma."
+        },
+        {
+          "fuente": "bourbeau",
+          "idea": "Todo problema de estómago apunta a dificultad para aceptar a una persona o un hecho, con intolerancia a lo que no encaja en los propios planes y un crítico interior fuerte. Sugiere dejar de querer controlarlo todo y confiar en los demás, igual que confiamos en que el estómago sabe digerir."
+        }
+      ],
+      "preguntas": [
+        "¿Qué persona o situación no logro digerir?",
+        "¿Con quién convivo por obligación?",
+        "¿Qué novedad me está costando aceptar?"
+      ],
+      "afirmacion": "Recibo lo nuevo con confianza y lo asimilo a mi ritmo.",
+      "relacionados": ["gastritis", "higado"]
+    },
+    {
+      "id": "cuello",
+      "titulo": "CUELLO",
+      "letra": "C",
+      "resumen": "Une la cabeza con el tronco. Permite girar y ampliar el campo de los sentidos.",
+      "etapa": "3ª etapa (movimiento, valoración)",
+      "enfoques": [
+        {
+          "fuente": "bio",
+          "conflicto": "En la artrosis cervical: desacuerdo entre lo que pienso y lo que hago.",
+          "sentir": ["Pienso una cosa, pero con mis manos hago otra"],
+          "idea": "Es la zona de comunicación entre cuerpo y cabeza. Cada vértebra tiene además su propio simbolismo."
+        },
+        {
+          "fuente": "martel",
+          "idea": "Representa la flexibilidad y la capacidad de ver los distintos lados de una situación."
+        },
+        {
+          "fuente": "hay",
+          "idea": "Habla de flexibilidad mental y de aceptar que otros piensen distinto. Sus problemas aparecen cuando nos atrincheramos en una sola manera de ver las cosas."
+        },
+        {
+          "fuente": "bourbeau",
+          "idea": "Indica inflexibilidad: no querer enfrentar una situación que no se puede controlar y temer ver o escuchar lo que pasa a la espalda, aparentando que no molesta mientras por dentro se sienten muchas emociones."
+        }
+      ],
+      "preguntas": [
+        "¿Hago algo distinto de lo que pienso?",
+        "¿Qué punto de vista me niego a considerar?",
+        "¿Qué está pasando a mi espalda que no quiero mirar?"
+      ],
+      "afirmacion": "Alineo lo que pienso con lo que hago. Me abro a otras miradas.",
+      "relacionados": ["cefaleas", "hombros", "tiroides"]
+    },
+    {
+      "id": "hombros",
+      "titulo": "HOMBROS",
+      "letra": "H",
+      "resumen": "Articulaciones que unen los brazos al tronco. Permiten cargar, abrazar y proteger.",
+      "etapa": "3ª etapa (movimiento, valoración)",
+      "enfoques": [
+        {
+          "fuente": "bio",
+          "conflicto": "Desvalorización en un rol. El derecho (en diestros) se asocia a la pareja o al trabajo; el izquierdo, a ser padre, madre o hijo.",
+          "sentir": ["No soy un buen esposo (o trabajador)", "No protegí lo suficiente a mis hijos", "No me siento respaldado"],
+          "idea": "Es el gesto arcaico de proteger bajo el ala. Según el tejido: tendones hablan de un conflicto presente, cápsula de protección y ligamentos de preocupación por el futuro. La luxación repetida expresa deseo de más libertad. El hombro también es ternura y el lugar donde se lleva el peso de la familia."
+        },
+        {
+          "fuente": "martel",
+          "idea": "Representan la capacidad de llevar cargas y responsabilidades."
+        },
+        {
+          "fuente": "hay",
+          "idea": "Representan la capacidad de llevar las experiencias con alegría; es nuestra actitud la que convierte la vida en carga. Propone elegir vivir las experiencias con amor."
+        },
+        {
+          "fuente": "bourbeau",
+          "idea": "El dolor en la parte alta indica cargar un peso excesivo por querer hacer demasiado por los demás, haciéndose responsable de su felicidad o su éxito. Sugiere revisar compromisos y límites, y cargar solo lo que corresponde para que otros aprendan a hacerse cargo."
+        }
+      ],
+      "preguntas": [
+        "¿Siento que no estoy cumpliendo bien como pareja, padre, madre o trabajador?",
+        "¿Qué cargas llevo que no me corresponden?",
+        "¿Quién me respalda a mí?"
+      ],
+      "afirmacion": "Cargo solo lo que me corresponde, con alegría.",
+      "relacionados": ["cuello", "hipertension-arterial"]
+    },
+    {
+      "id": "ciatica",
+      "titulo": "CIÁTICA",
+      "letra": "C",
+      "resumen": "Dolor que recorre el nervio ciático, desde la zona lumbar o el glúteo hacia la pierna.",
+      "etapa": "3ª etapa (movimiento, valoración)",
+      "enfoques": [
+        {
+          "fuente": "bio",
+          "conflicto": "Miedo a avanzar en la nueva dirección que trae la vida, o tener que doblegarse ante alguien o algo.",
+          "sentir": ["Temo que me falte dinero para cubrir mis necesidades (pierna derecha)", "No puedo darlo todo a quienes amo (pierna izquierda)"],
+          "idea": "Se vincula a las vértebras L4-L5-S1: normas, parientes colaterales y momentos sagrados de la vida. Hay inseguridad ante el porvenir y también rencor o agresividad contenida."
+        },
+        {
+          "fuente": "martel",
+          "idea": "La relaciona con una gran inseguridad respecto a las necesidades básicas: vivienda, alimento y dinero."
+        },
+        {
+          "fuente": "hay",
+          "idea": "La atribuye al temor al dinero y al futuro, y a cierta hipocresía. Propone avanzar hacia el propio bien sintiéndose seguro."
+        },
+        {
+          "fuente": "bourbeau",
+          "idea": "Aparece en quien teme, a menudo sin saberlo, perder sus bienes, incluso teniendo posesiones, y no se reconoce apegado a lo material. Lee la intensidad del dolor como el grado de castigo que uno cree merecer. Sugiere admitir el apego y el miedo, y darse el derecho de SER."
+        }
+      ],
+      "preguntas": [
+        "¿Qué me preocupa del futuro en lo material?",
+        "¿Estoy apegado a algo que me da miedo perder?",
+        "¿Qué nueva dirección me pide la vida y estoy frenando?"
+      ],
+      "afirmacion": "Avanzo con confianza hacia mi bien. Estoy sostenido.",
+      "relacionados": ["rodilla"]
+    }
+  ]
+}
