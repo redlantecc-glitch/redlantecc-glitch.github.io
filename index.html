@@ -121,9 +121,9 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
 .cal-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .cal-nav button{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;width:34px;height:32px;cursor:pointer;font-weight:600}
 .cal-title{font-weight:600;font-size:14px;text-transform:capitalize}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;text-align:center}
 .cal-dow{font-size:11px;color:var(--mute);font-weight:600;padding-bottom:4px}
-.cal-day{position:relative;aspect-ratio:1/1;min-height:40px;border:1px solid transparent;background:transparent;color:var(--ink);border-radius:9px;font:inherit;font-size:12.5px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:2px 0;touch-action:manipulation}
+.cal-day{position:relative;aspect-ratio:1/1;min-width:0;min-height:40px;border:1px solid transparent;background:transparent;color:var(--ink);border-radius:9px;font:inherit;font-size:12.5px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:2px 0;touch-action:manipulation}
 .cal-day:hover{background:color-mix(in srgb,var(--accent) 10%,transparent)}
 .cal-day.empty{pointer-events:none}
 .cal-day.today{border-color:color-mix(in srgb,var(--accent) 55%,transparent)}
@@ -298,25 +298,18 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
 .dream-notice{grid-area:notice;margin:2px 0 14px;text-align:center;min-width:0}
 @media (min-width:960px){.dream-notice{text-align:left;margin:0;align-self:start;padding:0 2px}}
 
-/* Registro de sueños: en PC se muestra dentro de la página; en celular se despliega como las demás tarjetas */
-.view-title .brand-badge{display:none}
-.lbl-mob{display:none}
-@media (max-width:959px){
-  .dreams-overlay{position:fixed;inset:0;z-index:1200;background:rgba(12,6,26,.66);padding:14px;overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;align-items:flex-start;justify-content:center}
-  .dreams-modal{width:100%;max-width:860px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;margin:auto;box-shadow:0 18px 48px rgba(10,4,24,.35)}
-  .dreams-modal .card{background:var(--bg);box-shadow:none}
-  #view-dreams .view-bar{flex-direction:row-reverse;justify-content:space-between;align-items:flex-start;padding-bottom:12px;border-bottom:1px solid var(--line);margin:0 0 14px}
-  .view-title .brand-badge{display:inline-flex}
-  .view-title h2{margin:2px 0 0;font:600 clamp(21px,5vw,25px)/1.2 "Newsreader",Georgia,serif}
-  .lbl-pc{display:none}
-  .lbl-mob{display:inline}
-}
+/* Registro de sueños: se despliega como las demás tarjetas (ventana centrada) en PC y celular */
+.dreams-overlay{position:fixed;inset:0;z-index:1200;background:rgba(12,6,26,.66);padding:14px;overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;align-items:flex-start;justify-content:center}
+.dreams-modal{width:100%;max-width:1000px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;margin:auto;box-shadow:0 18px 48px rgba(10,4,24,.35)}
+.dreams-modal .card{background:var(--bg);box-shadow:none}
+#view-dreams .view-bar{flex-direction:row-reverse;justify-content:space-between;align-items:flex-start;padding-bottom:12px;border-bottom:1px solid var(--line);margin:0 0 14px}
+.view-title h2{margin:2px 0 0;font:600 clamp(21px,5vw,25px)/1.2 "Newsreader",Georgia,serif}
+.lbl-pc{display:none}
 @media (max-width:520px){.dreams-modal{padding:14px;border-radius:14px}}
 
-/* La luna solo se ve en la pantalla principal; en PC, al desplegar una tarjeta se libera el espacio superior */
-#app-content.in-dreams .lunar-card{display:none}
+/* En PC, mientras hay una tarjeta abierta no se ve la luna ni los botones de usuario / cerrar sesión (sin mover la página) */
 @media (min-width:960px){
-  #app-content.in-dreams .user-info{display:none}
+  #app-content.in-dreams .lunar-card,#app-content.in-dreams .user-info,
   body:has(.hd-overlay.open) .lunar-card,body:has(.hd-overlay.open) .user-info,
   body:has(.num-overlay.open) .lunar-card,body:has(.num-overlay.open) .user-info{visibility:hidden}
 }
@@ -4950,11 +4943,9 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
   if (!home || !dreams) return;
   function show(view, fromPop){
     var d = view === "dreams";
-    home.style.display = d ? "none" : "";
     dreams.style.display = d ? "" : "none";
     if (app) app.classList.toggle("in-dreams", d);
     if (d && !fromPop) { try { history.pushState({view:"dreams"}, ""); } catch(_){} }
-    try { window.scrollTo({top:0}); } catch(_){ window.scrollTo(0,0); }
   }
   var t = document.getElementById("tile-dreams"), b = document.getElementById("btn-back-home");
   if (t) t.addEventListener("click", function(){ show("dreams"); });
@@ -4962,12 +4953,11 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     if (history.state && history.state.view === "dreams") { history.back(); } else { show("home", true); }
   });
   window.addEventListener("popstate", function(){ show("home", true); });
-  /* En celular la sección se cierra como las demás tarjetas: tocando fuera o con Esc */
-  function isMobile(){ return window.matchMedia && window.matchMedia("(max-width:959px)").matches; }
+  /* Se cierra como las demás tarjetas: tocando fuera o con Esc */
   function goHome(){ if (b) b.click(); }
-  dreams.addEventListener("click", function(ev){ if (ev.target === dreams && isMobile()) goHome(); });
+  dreams.addEventListener("click", function(ev){ if (ev.target === dreams) goHome(); });
   document.addEventListener("keydown", function(ev){
-    if (ev.key === "Escape" && isMobile() && dreams.style.display !== "none" && !document.querySelector(".hd-overlay.open,.num-overlay.open")) goHome();
+    if (ev.key === "Escape" && dreams.style.display !== "none" && !document.querySelector(".hd-overlay.open,.num-overlay.open")) goHome();
   });
   /* Al cerrar sesión (la app se oculta) se vuelve a la pantalla principal */
   if (app && window.MutationObserver) {
