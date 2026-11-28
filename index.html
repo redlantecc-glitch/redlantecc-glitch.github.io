@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>DreamSaver · Portal de autoconocimiento</title>
+<title>DreamSaver · Portal Álmico</title>
 <meta name="description" content="DreamSaver: un portal de autoconocimiento para acompañar el desarrollo de tu alma.">
 <meta name="theme-color" content="#f4effb" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#120b21" media="(prefers-color-scheme: dark)">
@@ -52,8 +52,16 @@ button:disabled{opacity:.55;cursor:not-allowed}
 .stats{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;color:var(--mute);margin:0 0 6px}
 .stats b{color:var(--ink);font-size:20px;font-family:"Newsreader",Georgia,serif}
 .note{font-size:13px;color:var(--mute);margin:6px 0 0;line-height:1.42}
-.auth-title{font:600 clamp(24px,6.2vw,28px)/1.2 "Newsreader",Georgia,serif;margin:6px 0 8px}
-.auth-rotator{display:flex;align-items:center;min-height:4.65em;margin:0 0 16px;font:italic 400 16px/1.55 "Newsreader",Georgia,serif;color:var(--ink);transition:opacity .65s ease,transform .65s ease}
+.auth-brand{display:flex;flex-direction:column;align-items:center;text-align:center;margin:4px 0 14px}
+.auth-logo{width:76px;height:76px;margin-bottom:8px;filter:drop-shadow(0 0 14px color-mix(in srgb,var(--accent) 45%,transparent))}
+.auth-logo-orbit{transform-origin:32px 32px;animation:dsOrbit 48s linear infinite}
+@keyframes dsOrbit{to{transform:rotate(360deg)}}
+.auth-wordmark{font:500 clamp(38px,10.5vw,48px)/1 "Newsreader",Georgia,serif;letter-spacing:.015em;margin:0;background:linear-gradient(120deg,var(--ink) 30%,var(--accent) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.auth-sub{display:flex;align-items:center;gap:12px;margin:12px 0 0;font-size:12px;font-weight:600;letter-spacing:.42em;text-indent:.42em;text-transform:uppercase;color:var(--accent)}
+.auth-sub::before,.auth-sub::after{content:"";width:28px;height:1px;background:linear-gradient(90deg,transparent,currentColor)}
+.auth-sub::after{transform:scaleX(-1)}
+@media (prefers-reduced-motion:reduce){.auth-logo-orbit{animation:none}}
+.auth-rotator{display:flex;align-items:center;justify-content:center;text-align:center;min-height:4.65em;margin:0 0 16px;font:italic 400 16px/1.55 "Newsreader",Georgia,serif;color:var(--ink);transition:opacity .65s ease,transform .65s ease}
 .auth-rotator.is-fading{opacity:0;transform:translateY(3px)}
 .auth-honest{font-size:12.5px;color:var(--mute);text-align:center;margin:14px 0 0;font-style:italic}
 @media (prefers-reduced-motion:reduce){.auth-rotator{transition:none}.auth-rotator.is-fading{transform:none}}
@@ -443,9 +451,25 @@ body {
 <canvas id="ds-vortex-canvas" aria-hidden="true"></canvas>
 <main>
   <section class="card" id="auth-card">
-    <div class="brand-badge">✦ DreamSaver</div>
-    <h2 class="auth-title">Portal de autoconocimiento</h2>
-    <p id="auth-quote" class="auth-rotator">«Cada alma llega a la Tierra con un mapa escondido. Este portal existe para ayudarte a leerlo.»</p>
+    <header class="auth-brand">
+      <svg class="auth-logo" viewBox="0 0 64 64" role="img" aria-label="Logo de DreamSaver">
+        <defs>
+          <linearGradient id="dsLogoGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" style="stop-color:var(--accent)"/>
+            <stop offset="1" style="stop-color:#e7b6ff"/>
+          </linearGradient>
+          <mask id="dsLogoMask"><rect width="64" height="64" fill="#fff"/><circle cx="39" cy="26" r="13" fill="#000"/></mask>
+        </defs>
+        <circle cx="32" cy="32" r="29.5" fill="none" stroke="url(#dsLogoGrad)" stroke-width="1" opacity=".55"/>
+        <g class="auth-logo-orbit"><ellipse cx="32" cy="32" rx="30" ry="9" fill="none" stroke="url(#dsLogoGrad)" stroke-width=".9" opacity=".6" transform="rotate(-24 32 32)"/></g>
+        <circle cx="32" cy="32" r="16" fill="url(#dsLogoGrad)" mask="url(#dsLogoMask)"/>
+        <path d="M43 13.5l1.3 5.2 5.2 1.3-5.2 1.3-1.3 5.2-1.3-5.2-5.2-1.3 5.2-1.3z" fill="url(#dsLogoGrad)"/>
+        <circle cx="15" cy="17" r=".9" fill="url(#dsLogoGrad)"/><circle cx="51" cy="44" r=".8" fill="url(#dsLogoGrad)"/><circle cx="20" cy="50" r=".6" fill="url(#dsLogoGrad)"/>
+      </svg>
+      <h1 class="auth-wordmark">DreamSaver</h1>
+      <p class="auth-sub">Portal Álmico</p>
+    </header>
+    <p id="auth-quote" class="auth-rotator">«Cada alma llega a la Tierra con un mapa escondido.»</p>
     <p class="auth-label">Accede o crea tu cuenta</p>
     <div class="fld">
       Correo electrónico
@@ -612,7 +636,7 @@ body {
 
   <footer class="app-footer">
     <div class="ds-text-box">
-      <div><strong>✦ DreamSaver</strong> · Portal de autoconocimiento del alma</div>
+      <div><strong>✦ DreamSaver</strong> · Portal Álmico</div>
       <div>Contacto y soporte: <a href="mailto:redlantecc@gmail.com">redlantecc@gmail.com</a></div>
     </div>
   </footer>
@@ -5898,16 +5922,16 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
   var card = document.getElementById("auth-card");
   if (!el || !card) return;
   var quotes = [
-    "Cada alma llega a la Tierra con un mapa escondido. Este portal existe para ayudarte a leerlo.",
-    "Cada despertar trae señales de tu mundo interior que suelen desvanecerse en minutos.",
-    "El mismo cielo que contemplas afuera guarda claves sobre tu propia naturaleza.",
-    "Lo que sueñas de noche y lo que vives de día forman parte de una misma conversación.",
-    "Un refugio silencioso para detener el ruido y volver a escuchar lo que tu alma intenta mostrarte.",
-    "Tus sueños, tus ciclos y el instante en que naciste hablan un mismo idioma: el tuyo.",
-    "No buscamos predecir tu futuro, sino iluminar los mapas con los que ya caminas.",
-    "Observar tus propios patrones es el primer paso para habitarte con mayor claridad.",
-    "Hay respuestas que no están afuera; esperan en tus ciclos, en tu energía y en tu historia.",
-    "Cruza el umbral. Tu espacio interior te espera."
+    "Cada alma llega a la Tierra con un mapa escondido.",
+    "El alma no grita: susurra en los sueños, en las pausas y en lo que se repite.",
+    "Cada noche el alma escribe una carta. Al despertar, ¿la lees?",
+    "Lo que vuelve una y otra vez quizás no es casualidad, sino una lección que espera.",
+    "Conocerse no es llegar a un lugar; es aprender a mirar.",
+    "No eres lo que te sucede. Eres quien observa lo que te sucede.",
+    "Hay en ti una sabiduría más antigua que tu nombre.",
+    "Antes de buscar respuestas, aprende a escuchar tus preguntas.",
+    "El silencio también es una forma de respuesta.",
+    "Mirar hacia adentro es el viaje más largo y el más necesario."
   ];
   var idx = 0;
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
