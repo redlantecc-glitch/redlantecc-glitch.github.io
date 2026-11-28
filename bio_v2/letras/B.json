@@ -1,0 +1,450 @@
+[
+  {
+    "id": "bacterias",
+    "titulo": "BACTERIAS",
+    "letra": "B",
+    "resumen": "Microorganismos que viven en enorme cantidad en nuestro intestino y en la piel, muchos de ellos necesarios para la salud.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "idea": "Se considera que intervienen en la fase de reparación de un conflicto, ayudando al cuerpo a cerrar una etapa y pasar a la siguiente."
+      }
+    ],
+    "preguntas": [
+      "¿Qué conflicto reciente siento que se está resolviendo?",
+      "¿Qué etapa de mi vida estoy cerrando?"
+    ],
+    "afirmacion": "Mi cuerpo sabe reparar y acompañarme en cada nueva etapa.",
+    "relacionados": []
+  },
+  {
+    "id": "barriga-dolor-de",
+    "titulo": "BARRIGA (DOLOR DE)",
+    "letra": "B",
+    "resumen": "Dolor en la zona abdominal, que puede situarse arriba (boca del estómago) o abajo del ombligo.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "idea": "Ver Intestino grueso, Colon y Colitis."
+      },
+      {
+        "fuente": "bourbeau",
+        "idea": "Distingue dos zonas. Arriba, en el plexo solar, indica preocuparse demasiado y sentir miedo por los demás. Abajo del ombligo, preocuparse en exceso por lo que pasa en el momento y temer por uno mismo, a veces sintiendo que alguien quiere perjudicarnos. Sugiere dejar que los seres queridos vivan sus experiencias, ayudar solo cuando lo pidan y notar que preocuparse no da mejores soluciones, sino que nos saca del centro."
+      }
+    ],
+    "preguntas": [
+      "¿Por quién me estoy preocupando demasiado?",
+      "¿Siento que alguien quiere perjudicarme?",
+      "¿Mis decisiones de hoy nacen del miedo o de mis necesidades?"
+    ],
+    "afirmacion": "Respeto el camino de los demás y vuelvo a mi centro.",
+    "relacionados": ["colon", "estomago"]
+  },
+  {
+    "id": "bascula-hormonal",
+    "titulo": "BÁSCULA HORMONAL",
+    "letra": "B",
+    "resumen": "Desequilibrio en el balance entre hormonas masculinas y femeninas.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "idea": "Se señala que puede producirse por aporte externo de hormonas o tratamientos hormonales, por un golpe en la cabeza, o por intoxicaciones y adicciones al alcohol u otras drogas."
+      }
+    ],
+    "preguntas": [
+      "¿Cómo vivo hoy mi lado masculino y mi lado femenino?",
+      "¿Hay algo externo que esté alterando mi equilibrio?"
+    ],
+    "afirmacion": "Encuentro el equilibrio entre mis distintas energías.",
+    "relacionados": []
+  },
+  {
+    "id": "bazo",
+    "titulo": "BAZO",
+    "letra": "B",
+    "resumen": "Órgano situado a la izquierda del abdomen que filtra la sangre, guarda reservas y participa en las defensas.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Humillación y miedo a que falte sangre.",
+        "sentir": ["Mi familia se deshace", "Soy un cobarde, no soy capaz de pelear", "No tengo buena sangre"],
+        "idea": "El sentido biológico del bazo agrandado sería crear una reserva de sangre ante el riesgo de que falte."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Lo asocia a obsesiones y a la tendencia a obsesionarse. Propone aprobarse y confiar en el proceso de la vida."
+      },
+      {
+        "fuente": "bourbeau",
+        "idea": "Lo vincula a preocuparse hasta la obsesión, lo que bloquea la alegría y el deseo de lo que da placer. La persona ha perdido fuerza para luchar, se siente vacía y sin reservas, y puede reír por fuera mientras llora por dentro. Sugiere dejar de ver la vida como un drama, permitirse desear y reconocer la propia fuerza."
+      }
+    ],
+    "preguntas": [
+      "¿Qué preocupación se ha vuelto obsesiva?",
+      "¿Me río por fuera mientras por dentro estoy triste?",
+      "¿Me siento humillado o sin fuerzas frente a algo de mi familia?"
+    ],
+    "afirmacion": "Recupero mi fuerza y me permito desear con alegría.",
+    "relacionados": ["higado"]
+  },
+  {
+    "id": "beber-poco",
+    "titulo": "BEBER POCO",
+    "letra": "B",
+    "resumen": "Tendencia a tomar menos líquido del que el cuerpo necesita.",
+    "etapa": "3ª etapa (movimiento, valoración)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "idea": "Se asocia a no querer tomar otras referencias o puntos de vista distintos a los propios."
+      }
+    ],
+    "preguntas": [
+      "¿Me cierro a referencias o ideas que vienen de fuera?",
+      "¿Qué nuevo punto de vista podría nutrirme?"
+    ],
+    "afirmacion": "Me abro a nuevas referencias que me nutren.",
+    "relacionados": []
+  },
+  {
+    "id": "biliar-red",
+    "titulo": "BILIAR, Red",
+    "letra": "B",
+    "resumen": "Conductos que llevan la bilis desde el hígado y la vesícula hasta el intestino para digerir las grasas.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Rencor y cólera por una injusticia, a menudo con alguien cercano, alimentado por celos, envidia o traición (por ejemplo, en lo profesional).",
+        "sentir": ["¡Es indignante!"],
+        "idea": "Distingue zonas: las vías dentro del hígado suman cólera y carencia (dinero, comida); las de fuera del hígado, solo cólera; las vías pancreáticas, carencia e injusticia, como cuando el dinero va adonde no debería. Hace un juego de palabras con 'colerético', que se lee como cólera y ética. Ver también Vesícula biliar."
+      }
+    ],
+    "preguntas": [
+      "¿Qué injusticia me sigue indignando?",
+      "¿Siento celos o envidia hacia alguien cercano?",
+      "¿Hay dinero o reconocimiento que siento que va adonde no corresponde?"
+    ],
+    "afirmacion": "Libero el rencor y recupero mi paz, aunque no todo haya sido justo.",
+    "relacionados": ["higado"]
+  },
+  {
+    "id": "bloqueo-emocional",
+    "titulo": "BLOQUEO EMOCIONAL",
+    "letra": "B",
+    "resumen": "Estado en que la persona se cierra a sentir o a recibir estímulos, como forma de protegerse.",
+    "etapa": "2ª etapa (protección)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Combinación de dos conflictos de protección, incluido el del nido o territorio más arcaico.",
+        "sentir": ["Soy mala madre, no sé cuidar a mis hijos", "No me siento protegida por mi pareja"],
+        "idea": "La inhibición lleva a un estado defensivo frente a toda agresión. Se relaciona con el autismo clásico, con origen en la etapa prenatal o los primeros años. En adultos son frecuentes los conflictos ligados al rol de madre y pareja. El sentido biológico es buscar seguridad y evitar la agresión."
+      }
+    ],
+    "preguntas": [
+      "¿De qué me estoy protegiendo al no sentir?",
+      "¿Me siento cuidado y protegido por quienes amo?",
+      "¿Cómo juzgo mi forma de cuidar a los demás?"
+    ],
+    "afirmacion": "Estoy a salvo para sentir. Me abro poco a poco.",
+    "relacionados": []
+  },
+  {
+    "id": "boca",
+    "titulo": "BOCA",
+    "letra": "B",
+    "resumen": "Entrada del sistema digestivo: recibe el alimento y también da forma a la palabra.",
+    "etapa": "1ª etapa (supervivencia)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Desvalorización respecto a la palabra: no sentirse escuchado o no permitirse expresar la agresividad. También 'atrapar el bocado' o que nos quiten el pan de la boca.",
+        "sentir": ["No puedo atrapar el bocado", "No puedo expresar lo que quiero decir"],
+        "idea": "Las palabras no dichas y los secretos guardados se asocian a llagas en la boca, así como no haber respondido a una mala jugada. Las aftas pueden aparecer en toda la mucosa digestiva."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Representa la incorporación de ideas nuevas y de sustento. Las llagas hablan de palabras amargas retenidas y de tendencia a culpar. Propone nutrirse de amor."
+      },
+      {
+        "fuente": "bourbeau",
+        "idea": "Indica rechazo a una idea nueva, propia o ajena, por reaccionar demasiado rápido sin evaluarla. Morderse el interior de la boca muestra que uno se frena de decir algo que angustia. Sugiere darse permiso para cambiar una decisión apresurada y decir lo que hay que decir sin temer la condena."
+      }
+    ],
+    "preguntas": [
+      "¿Qué me estoy guardando sin decir?",
+      "¿Qué idea nueva rechacé demasiado rápido?",
+      "¿Siento que no me escuchan?"
+    ],
+    "afirmacion": "Digo lo que siento y me abro a ideas nuevas.",
+    "relacionados": ["garganta", "dientes"]
+  },
+  {
+    "id": "bocio-nodulos-multiples-eurotidiano",
+    "titulo": "BOCIO (nódulos múltiples)",
+    "letra": "B",
+    "resumen": "Aumento de tamaño de la tiroides, en este caso con varios nódulos.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Miedo a ser estrangulado y conflictos repetidos con asuntos cotidianos. Podría haber tantos nódulos como conflictos vividos.",
+        "sentir": ["Quiero moverme pero no puedo", "Hay que actuar rápido ante el peligro", "Debí actuar rápido y no hice nada"]
+      },
+      {
+        "fuente": "hay",
+        "idea": "Lo vincula al resentimiento por haber sido agraviado, sentirse víctima, frustrado e insatisfecho. Propone asumir la propia autoridad y la libertad de ser uno mismo. Ver también Tiroides."
+      }
+    ],
+    "preguntas": [
+      "¿En qué situación sentí que debía actuar rápido y no lo hice?",
+      "¿Me siento atado o asfixiado por algo cotidiano?",
+      "¿Dónde me estoy viviendo como víctima?"
+    ],
+    "afirmacion": "Soy la autoridad en mi vida y actúo a mi tiempo.",
+    "relacionados": ["tiroides", "garganta"]
+  },
+  {
+    "id": "bradicardia",
+    "titulo": "BRADICARDIA",
+    "letra": "B",
+    "resumen": "Ritmo cardíaco más lento de lo normal, habitualmente bajo 60 latidos por minuto, que puede reducir el aporte de oxígeno al cuerpo.",
+    "etapa": "3ª etapa (movimiento, valoración)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "sentir": ["Quiero guardar al muerto dentro de mí"],
+        "idea": "Se relaciona con un duelo en el que no se quiere soltar a quien partió."
+      }
+    ],
+    "preguntas": [
+      "¿A quién me cuesta dejar ir?",
+      "¿Qué duelo sigue vivo en mi corazón?"
+    ],
+    "afirmacion": "Honro a quienes partieron y dejo que mi corazón siga latiendo con vida.",
+    "relacionados": ["insomnio"]
+  },
+  {
+    "id": "brazo",
+    "titulo": "BRAZO",
+    "letra": "B",
+    "resumen": "Extremidad superior que permite tomar, dar, abrazar y trabajar.",
+    "enfoques": [
+      {
+        "fuente": "martel",
+        "idea": "Los brazos expresan la capacidad de tomar a las personas y las situaciones. Son una prolongación del corazón, ejecutan las órdenes y se vinculan a lo que hacemos, como el trabajo."
+      },
+      {
+        "fuente": "hay",
+        "idea": "Representan la capacidad de abrazar las experiencias de la vida: el brazo las aptitudes, el antebrazo las habilidades y el codo la flexibilidad para cambiar de rumbo. Las articulaciones guardan emociones viejas. Propone acoger las experiencias con naturalidad y alegría."
+      },
+      {
+        "fuente": "bourbeau",
+        "idea": "Frecuente en quien no se siente útil en su trabajo y duda de sus capacidades, o en quien le cuesta abrazar a sus seres queridos y se culpa por ello. El brazo derecho se asocia a dar y el izquierdo a recibir. Sugiere no hacer caso a la voz interna que dice 'no eres capaz' y pasar a la acción con confianza."
+      }
+    ],
+    "preguntas": [
+      "¿Me siento útil en lo que hago?",
+      "¿A quién me cuesta abrazar?",
+      "¿Me resulta más difícil dar o recibir?"
+    ],
+    "afirmacion": "Abrazo mi vida con confianza. Soy capaz y útil.",
+    "relacionados": ["hombros"]
+  },
+  {
+    "id": "bronquios",
+    "titulo": "BRONQUIOS",
+    "letra": "B",
+    "resumen": "Conductos que llevan el aire desde la tráquea a los pulmones.",
+    "etapa": "1ª etapa (supervivencia) y 4ª etapa (relación)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Amenaza en el territorio: disputas, discusiones en el ambiente familiar, peleas. Defensa del propio espacio de libertad.",
+        "sentir": ["Quiero espacio y libertad", "El espacio que quiero no lo tengo", "Me amenazan en mi territorio y tengo miedo"],
+        "idea": "La parte muscular pide abrir y ganar espacio; la mucosa (bronquitis) se asocia a no tener el espacio que se quiere y encerrarse en el impuesto. El bronquio izquierdo se vincula al miedo y el derecho al territorio afectivo. La bronquitis se relaciona con un hogar de peleas, gritos o silencios."
+      },
+      {
+        "fuente": "hay",
+        "idea": "La respiración representa la capacidad de inspirar la vida. Sus problemas hablan de miedo a vivir plenamente y de sentir que no tenemos derecho a ocupar espacio. Propone afirmar el derecho a vivir libre y plenamente."
+      }
+    ],
+    "preguntas": [
+      "¿Siento que tengo mi propio espacio en casa?",
+      "¿Hay discusiones o silencios tensos en mi entorno?",
+      "¿Me doy permiso para ocupar espacio?"
+    ],
+    "afirmacion": "Tengo derecho a mi espacio y a respirar la vida plenamente.",
+    "relacionados": ["bronquitis-cronica", "asma"]
+  },
+  {
+    "id": "bronquitis-cronica",
+    "titulo": "BRONQUITIS CRÓNICA",
+    "letra": "B",
+    "resumen": "Inflamación persistente de los bronquios, con tos y mucosidad durante largos periodos.",
+    "etapa": "1ª etapa (supervivencia)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Fase de curación de un conflicto de territorio. En niños, tensiones entre los padres; en adultos, ira no expresada y disputas en el territorio.",
+        "sentir": ["Me siento invadido"],
+        "idea": "La tos busca expulsar al enemigo que invade el territorio. Un ejemplo típico: niños con bronquitis repetidas en hogares donde los padres discuten. Se asocia a peleas, gritos o falta de comunicación."
+      },
+      {
+        "fuente": "hay",
+        "idea": "La atribuye a un ambiente familiar conflictivo, con peleas, gritos o silencios. Propone declarar paz y armonía dentro y alrededor."
+      },
+      {
+        "fuente": "bourbeau",
+        "idea": "Relaciona los bronquios con la familia. Aparece cuando hay disputas que generan ira y sensación de amenaza a los propios límites, con deseo de cortar lazos que no se concreta por culpa, y cansancio. Sugiere tomar la familia con más ligereza, aceptar que no todos piensan igual y ocupar el propio lugar sin esperar que lo den."
+      }
+    ],
+    "preguntas": [
+      "¿Quién invade mi espacio en la familia?",
+      "¿Qué ira no he expresado?",
+      "¿Estoy esperando que me den un lugar en vez de tomarlo?"
+    ],
+    "afirmacion": "Ocupo mi lugar con calma y elijo la paz en mi entorno.",
+    "relacionados": ["bronquios", "asma"]
+  },
+  {
+    "id": "bruxismo-dientes",
+    "titulo": "BRUXISMO",
+    "letra": "B",
+    "resumen": "Apretar o rechinar los dientes, especialmente al dormir.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Conflicto latente, en reposo.",
+        "sentir": ["Me niego el placer"],
+        "idea": "Se asocia a agresividad no manifestada, a menudo inconsciente: una rabia impotente que se mantiene en estado latente."
+      }
+    ],
+    "preguntas": [
+      "¿Qué placer me estoy negando?",
+      "¿Qué rabia guardo sin poder expresarla?",
+      "¿Contra quién o qué aprieto los dientes?"
+    ],
+    "afirmacion": "Me permito disfrutar y expreso mi enojo de forma sana.",
+    "relacionados": ["dientes", "boca"]
+  },
+  {
+    "id": "bufeta",
+    "titulo": "BUFETA (vejiga)",
+    "letra": "B",
+    "resumen": "Bufeta es el nombre catalán de la vejiga, el órgano que almacena la orina.",
+    "etapa": "3ª etapa (movimiento, valoración)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Una mala jugada o acción sucia dentro del propio territorio.",
+        "idea": "Ver también Vejiga."
+      }
+    ],
+    "preguntas": [
+      "¿Alguien me hizo una mala jugada en mi propio espacio?",
+      "¿Cómo marco los límites de mi territorio?"
+    ],
+    "afirmacion": "Defiendo mi espacio con claridad.",
+    "relacionados": []
+  },
+  {
+    "id": "bulbo-duodenal",
+    "titulo": "BULBO DUODENAL",
+    "letra": "B",
+    "resumen": "Primera porción del duodeno, justo después de la salida del estómago.",
+    "etapa": "4ª etapa (relación)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "Contrariedad por el territorio: disputa de límites con quienes mandan en el territorio vecino, o con lo que hay dentro del propio (por ejemplo, una pareja que se va o cambia de actitud)."
+      }
+    ],
+    "preguntas": [
+      "¿Con quién estoy disputando límites?",
+      "¿Siento que algo o alguien de mi territorio se me escapa?"
+    ],
+    "afirmacion": "Defino mis límites con serenidad.",
+    "relacionados": ["estomago"]
+  },
+  {
+    "id": "bulimia",
+    "titulo": "BULIMIA",
+    "letra": "B",
+    "resumen": "Trastorno de la conducta alimentaria con episodios de comer en exceso seguidos de conductas para compensar, como el vómito. Requiere acompañamiento profesional.",
+    "etapa": "1ª etapa (supervivencia)",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "conflicto": "La relación con la madre vivida como fuente de inseguridad: el alimento representa a mamá.",
+        "sentir": ["Quiero seguridad de mamá y lo que recibo es angustia", "Lo que me da mamá no lo quiero"],
+        "idea": "Se busca un alimento afectivo que quizá se tuvo y se perdió, como en un destete brusco por un duelo o un nuevo embarazo de la madre. Las emociones de la madre durante la lactancia se consideran parte del 'alimento' recibido."
+      },
+      {
+        "fuente": "martel",
+        "idea": "La relaciona con la necesidad de llenar un vacío afectivo interior."
+      },
+      {
+        "fuente": "hay",
+        "idea": "La ve, junto con la anorexia, como una forma extrema de rechazo hacia uno mismo, con miedo intenso. Señala que se rechaza una idea de uno mismo, y las ideas pueden cambiar; nada externo, como la delgadez, resuelve la falta de aceptación. Habla también de un vacío que se intenta llenar. Propone aprender a amarse tal como se es."
+      },
+      {
+        "fuente": "bourbeau",
+        "idea": "Mientras la anorexia se vincula al miedo al rechazo, la bulimia se vincula al miedo al abandono. Aparece en quien quiso separarse de la madre sin lograrlo y luego pasó a necesitar su presencia, o sintió que ella lo acaparaba todo. Sugiere revisar esa percepción, expresarse con ella y reconocer que probablemente vivió lo mismo con su propia madre."
+      }
+    ],
+    "preguntas": [
+      "¿Qué vacío intento llenar?",
+      "¿Cómo viví el cariño y la seguridad de mi madre?",
+      "¿Qué me impide aceptarme tal como soy?"
+    ],
+    "afirmacion": "Merezco nutrirme con amor, empezando por el mío.",
+    "relacionados": ["estomago"],
+    "nota_especial": "Los trastornos alimentarios pueden ser graves. Si te identificas con esto, busca apoyo de un profesional de la salud."
+  },
+  {
+    "id": "burnout",
+    "titulo": "BURNOUT",
+    "letra": "B",
+    "resumen": "Agotamiento por estrés laboral prolongado, con fatiga crónica, sensación de ineficacia y desconexión.",
+    "enfoques": [
+      {
+        "fuente": "martel",
+        "idea": "Lo relaciona con huir de una emoción intensa vivida en el trabajo o en otras ocupaciones."
+      }
+    ],
+    "preguntas": [
+      "¿Qué emoción del trabajo estoy evitando sentir?",
+      "¿Hace cuánto vivo en modo de sobrevivir?",
+      "¿Qué necesitaría cambiar para recuperar el sentido?"
+    ],
+    "afirmacion": "Escucho mis límites y me doy permiso para descansar.",
+    "relacionados": ["depresion", "ansiedad-angustia"]
+  },
+  {
+    "id": "bursitis",
+    "titulo": "BURSITIS",
+    "letra": "B",
+    "resumen": "Inflamación de la bursa, una pequeña bolsa que facilita el deslizamiento entre huesos, tendones y músculos.",
+    "enfoques": [
+      {
+        "fuente": "bio",
+        "idea": "Hay que sumar el significado de la articulación donde aparece."
+      },
+      {
+        "fuente": "hay",
+        "idea": "La atribuye a la cólera reprimida y al deseo de golpear a alguien. Propone dejar que el amor relaje lo que no se le parece."
+      },
+      {
+        "fuente": "bourbeau",
+        "idea": "Aparece en quien quisiera golpear a alguien pero reprime su ira, a menudo un perfeccionista que no se permite enojarse. Si es hacia alguien de quien se siente responsable, puede ir a la espalda; si es en un deporte, al codo. Sugiere afirmarse y expresar lo que se desea en vez de aguantar hasta sufrir."
+      }
+    ],
+    "preguntas": [
+      "¿A quién quisiera golpear, aunque nunca lo haría?",
+      "¿Me permito enojarme?",
+      "¿Qué estoy aguantando que debería expresar?"
+    ],
+    "afirmacion": "Expreso lo que quiero y libero la ira con respeto.",
+    "relacionados": ["hombros", "rodilla"]
+  }
+]
