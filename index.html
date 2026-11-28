@@ -154,6 +154,10 @@ button.tag.hashtag:hover{background:color-mix(in srgb,var(--accent) 18%,transpar
 .chart-wrap{margin-top:12px;display:flex;flex-direction:column;align-items:center}
 .chart-wrap svg{width:100%;max-width:270px;height:auto;display:block}
 .chart-legend{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;font-size:12px;color:var(--mute);margin-top:6px}
+.astro-planets{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:12px}
+.astro-planet{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 10px;font-size:12.5px;cursor:help}
+.astro-planet strong{display:block;font-size:13px;color:var(--ink);margin-bottom:2px}
+.astro-planet .ap-house{color:var(--mute);font-size:11.5px}
 
 .hd-overlay{position:fixed;inset:0;background:rgba(12,6,26,0.66);display:none;z-index:1200;padding:14px;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .hd-overlay.open{display:flex;align-items:flex-start;justify-content:center}
@@ -2426,7 +2430,10 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     };
   }
 
-  function buildNatalChartSvgMarkup(sun, moon, asc, housesList, forPrint) {
+  const PLANET_GLYPHS = { sun: "☉", moon: "☽", mercury: "☿", venus: "♀", mars: "♂", jupiter: "♃", saturn: "♄", uranus: "♅", neptune: "♆", pluto: "♇", northnode: "☊", truenode: "☊", meannode: "☊", southnode: "☋", lilith: "⚸", chiron: "⚷", mc: "MC", midheaven: "MC" };
+  const PLANET_COLORS = { sun: "#d9822b", moon: "#2d7a5e", mercury: "#7a5ea8", venus: "#3d8b6e", mars: "#b34429", jupiter: "#8a6d1f", saturn: "#5d6470", uranus: "#2b7d8a", neptune: "#4a5fa5", pluto: "#5b3a6e", northnode: "#3f7d5c", truenode: "#3f7d5c", meannode: "#3f7d5c", southnode: "#8a5a2b", lilith: "#7d3f66", chiron: "#4f6d7d" };
+
+  function buildNatalChartSvgMarkup(sun, moon, asc, housesList, forPrint, planets = []) {
     const sunIdx = ZODIAC_SIGNS.findIndex(s => s.name === sun);
     const moonIdx = ZODIAC_SIGNS.findIndex(s => s.name === moon);
     const ascIdx = ZODIAC_SIGNS.findIndex(s => s.name === asc);
@@ -2480,6 +2487,25 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
       markerSvg += `<g transform="translate(${pt.x.toFixed(1)},${pt.y.toFixed(1)})"><circle r="11" fill="${m.color}"/><text text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" fill="#fff">${m.label}</text></g>`;
     });
 
+    const planetMarkers = (planets || [])
+      .filter(pt => pt && pt.sign && pt.sign !== "N/D" && pt.key !== "sun" && pt.key !== "moon")
+      .map(pt => ({ key: pt.key, signIdx: ZODIAC_SIGNS.findIndex(sg => sg.name === pt.sign) }))
+      .filter(pt => pt.signIdx >= 0);
+    const bySign = {};
+    planetMarkers.forEach(pt => { (bySign[pt.signIdx] = bySign[pt.signIdx] || []).push(pt); });
+    let planetSvg = "";
+    Object.entries(bySign).forEach(([signIdx, list]) => {
+      const base = Number(signIdx) * 30 + 15;
+      const offsets = list.map((_, i) => (i - (list.length - 1) / 2) * 13);
+      list.forEach((pt, i) => {
+        const angle = base + offsets[i];
+        const ptPos = polar(rMarker, angle);
+        const glyph = PLANET_GLYPHS[pt.key] || "•";
+        const color = PLANET_COLORS[pt.key] || "#6b3fa0";
+        planetSvg += `<g transform="translate(${ptPos.x.toFixed(1)},${ptPos.y.toFixed(1)})"><circle r="8" fill="${color}"/><text text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" fill="#fff">${glyph}</text></g>`;
+      });
+    });
+
     return `
       <svg viewBox="0 0 320 320" role="img" aria-label="Gráfico circular de carta astral con 12 casas">
         <circle cx="${cx}" cy="${cy}" r="${rOuter}" fill="none" stroke="${strokeCol}" stroke-opacity="0.38" stroke-width="1.5"/>
@@ -2488,6 +2514,7 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
         <circle cx="${cx}" cy="${cy}" r="${rInner}" fill="none" stroke="${strokeCol}" stroke-opacity="0.28" stroke-width="1.2"/>
         ${sectors}
         ${markerSvg}
+        ${planetSvg}
         <text x="${cx}" y="${cy - 6}" text-anchor="middle" font-size="11.5" font-weight="600" fill="${textCol}" opacity="0.82">Carta Natal</text>
         <text x="${cx}" y="${cy + 10}" text-anchor="middle" font-size="10" fill="${textCol}" opacity="0.65">${sun !== "N/D" ? sun : ""}</text>
       </svg>
@@ -2496,7 +2523,7 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
 
   function renderNatalChartSvg(sun, moon, asc) {
     astroChart.innerHTML = `
-      ${buildNatalChartSvgMarkup(sun, moon, asc, currentFullNatalChart?.houses, false)}
+      ${buildNatalChartSvgMarkup(sun, moon, asc, currentFullNatalChart?.houses, false, currentFullNatalChart?.planets)}
       <div class="chart-legend">
         <span>☉ Sol (${sun})</span>
         <span>☽ Luna (${moon})</span>
@@ -2659,6 +2686,67 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     </div>`;
   }
 
+  function buildPurposeHtml(chart) {
+    const byKey = k => (chart.planets || []).find(pl => pl.key === k);
+    const sun = byKey("sun");
+    const saturn = byKey("saturn");
+    const nn = byKey("northnode") || byKey("meannode") || byKey("truenode");
+    const sn = byKey("southnode");
+    const chiron = byKey("chiron");
+    const mcHouse = (chart.houses || []).find(h => h.num === 10);
+    const inHouse10 = (chart.planets || []).filter(pl => Number(pl.house) === 10);
+    const rows = [];
+
+    const sunData = sun ? SIGN_DATA_ES[sun.sign] : null;
+    if (sun && sun.sign !== "N/D" && sunData) {
+      rows.push({
+        title: "Quien eres por naturaleza (Sol)",
+        text: `Tu Sol en ${sun.sign} te da un centro de identidad así: ${sunData.essence}. ${sun.house ? "Al vivir esa energía en casa " + sun.house + " (" + (HOUSE_AREAS_ES[sun.house - 1] || {}).name + "), esa es el área de tu vida donde más te reconoces y donde otros te ven." : ""}`
+      });
+    }
+
+    if (mcHouse && mcHouse.sign !== "N/D") {
+      const mcData = SIGN_DATA_ES[mcHouse.sign];
+      const h10 = inHouse10.map(pl => pl.label + (pl.retro ? " R" : "")).join(", ");
+      rows.push({
+        title: "Tu vocación visible (Medio Cielo)",
+        text: `Tu MC en ${mcHouse.sign}${mcData ? " (regente " + mcData.rulers + ")" : ""} orienta tu legado público: la energía de ${mcHouse.sign} — ${mcData ? mcData.essence : ""} — es el terreno de tu reconocimiento. ${h10 ? "Los planetas en casa X (" + h10 + ") muestran los talentos concretos que tu vocación moviliza." : ""}`
+      });
+    }
+
+    if (nn && nn.sign !== "N/D") {
+      const nnData = SIGN_DATA_ES[nn.sign];
+      const snTxt = sn ? "; tu Nodo Sur en " + sn.sign + " es talento heredado que ya dominas y que conviene dejar de usar por inercia" : "";
+      rows.push({
+        title: "Hacia dónde creces (Eje de Nodos)",
+        text: `Tu Nodo Norte en ${nn.sign}${nn.house ? " (casa " + nn.house + ")" : ""} señala la lección evolutiva de esta vida: moverte hacia ${nnData ? nnData.essence : "un modo nuevo de ser y de hacer"}.${snTxt}.`
+      });
+    }
+
+    if (chiron && chiron.sign !== "N/D") {
+      rows.push({
+        title: "Tu herida que se vuelve don (Quirón)",
+        text: `Quirón en ${chiron.sign}${chiron.house ? " (casa " + chiron.house + ")" : ""}: tu mayor vulnerabilidad es también tu mayor capacidad de sanar a otros. Al mirar este tema con honestidad, encuentras tu escuela personal y el regalo que solo tú puedes dar.`
+      });
+    }
+
+    if (saturn && saturn.sign !== "N/D") {
+      rows.push({
+        title: "Tu tema de vida y disciplina (Saturno)",
+        text: `Saturno en ${saturn.sign}${saturn.house ? " (casa " + saturn.house + ")" : ""}: aquí se construye lo duradero. Es el área de tu vida que pide constancia, estructura y paciencia; el logro que llega después del esfuerzo es tuyo de por vida.`
+      });
+    }
+
+    if (!rows.length) {
+      return `<p class="note">Con los datos disponibles no se pudo armar la síntesis de propósito. Revisa la sección de posiciones planetarias y las casas.</p>`;
+    }
+
+    return `<div class="purpose-box">
+      ${rows.map(r => `<div class="purpose-row"><h3>${escapeHtml(r.title)}</h3><p>${escapeHtml(r.text)}</p></div>`).join("")}
+      <div class="purpose-summary"><strong>Síntesis de propósito en esta encarnación:</strong> tu centro es ${sun ? sun.sign : "—"}, tu camino de crecimiento pasa por ${nn ? nn.sign : "—"} y tu legado visible se apoya en ${mcHouse && mcHouse.sign !== "N/D" ? mcHouse.sign : "—"}${chiron ? ", con Quirón en " + chiron.sign + " como escuela sanadora" : ""}. Cada área no trabajada volverá como tarea; cada área integrada se vuelve don.</div>
+    </div>`;
+  }
+
   function buildPrintableNatalReportHtml() {
     const chart = currentFullNatalChart || buildFullNatalDetails(null, "N/D", "N/D", "N/D");
     const dobVal = dobInput.value || currentBirthMeta?.dob || "No registrada";
@@ -2706,7 +2794,7 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
       if (mod) modCounts[mod]++;
     });
 
-    const svgWheel = buildNatalChartSvgMarkup(chart.sun, chart.moon, chart.asc, chart.houses, true);
+    const svgWheel = buildNatalChartSvgMarkup(chart.sun, chart.moon, chart.asc, chart.houses, true, chart.planets);
 
     const planetsRows = chart.planets.map(p => {
       const degTxt = typeof p.degree === "number" ? `${p.degree.toFixed(1)}°` : "—";
@@ -2737,6 +2825,7 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     const sensitivePointsHtml = buildSensitivePointsHtml(chart);
     const aspectsInterpretedHtml = buildAspectsInterpretedHtml(chart);
     const synthesisHtml = buildSynthesisHtml(elemCounts, modCounts);
+    const purposeHtml = buildPurposeHtml(chart);
 
     const momentHtml = `
       <div class="moment-box">
@@ -2865,6 +2954,18 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     font-family: system-ui, sans-serif;
   }
   .synthesis-box p { margin: 5px 0; }
+  .purpose-box {
+    background: #f4effb; border: 1px solid #d5c7ed; border-radius: 8px;
+    padding: 11px 14px; margin: 14px 0; font-size: 9.4pt;
+    font-family: system-ui, sans-serif; page-break-inside: avoid;
+  }
+  .purpose-row { margin-bottom: 8px; }
+  .purpose-row h3 { font-size: 10pt; margin: 0 0 3px; color: #4e2a7a; }
+  .purpose-row p { margin: 0; }
+  .purpose-summary {
+    margin-top: 10px; padding-top: 8px; border-top: 1px dashed #d5c7ed;
+    font-size: 9.4pt; line-height: 1.45;
+  }
   @media print {
     body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
@@ -2940,6 +3041,9 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
   <h2>Síntesis Elemental y de Modalidades</h2>
   ${synthesisHtml}
 
+  <h2>Propósito de Vida en esta Encarnación</h2>
+  ${purposeHtml}
+
   <div class="footer">
     <strong>✦ DreamSaver</strong> · Documento generado para reflexión personal y seguimiento onírico. Contacto: redlantecc@gmail.com
   </div>
@@ -2981,12 +3085,18 @@ function computeNatalLocal(dob, tob, lat, lon, tz){
     currentFullNatalChart = buildFullNatalDetails(rawBodyData, sun, moon, asc);
     savedNatalReportHtml = prebuiltReportHtml || "";
 
+    const screenPlanets = currentFullNatalChart?.planets || [];
+    const planetsGridHtml = screenPlanets.length ? `
+      <div class="astro-planets">
+        ${screenPlanets.map(pl => `<div class="astro-planet" title="${escapeHtml((PLANET_MEANINGS_ES[pl.key] || {}).core || pl.label)}"><strong>${escapeHtml(pl.label)}</strong> ${escapeHtml(pl.sign)}${pl.retro ? " R" : ""}<span class="ap-house">${pl.house ? " \u00b7 Casa " + pl.house : ""}</span></div>`).join("")}
+      </div>` : "";
     astroResults.innerHTML = `
       <div class="astro-summary">
         <p><strong>Sol:</strong> ${sun}</p>
         <p><strong>Luna:</strong> ${moon}</p>
         <p><strong>Ascendente:</strong> ${asc}</p>
       </div>
+      ${planetsGridHtml}
       <div class="astro-reading">${buildDreamReading(sun, moon, asc)}</div>
     `;
     renderNatalChartSvg(sun, moon, asc);
