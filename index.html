@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>DreamSaver · Perfil astral</title>
-<meta name="description" content="DreamSaver: diario de sueños, carta natal, diseño humano, numerología y biodescodificación en un solo perfil.">
+<title>DreamSaver · Portal de autoconocimiento</title>
+<meta name="description" content="DreamSaver: un portal de autoconocimiento para acompañar el desarrollo de tu alma.">
 <meta name="theme-color" content="#f4effb" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#120b21" media="(prefers-color-scheme: dark)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,6 +52,9 @@ button:disabled{opacity:.55;cursor:not-allowed}
 .stats{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;color:var(--mute);margin:0 0 6px}
 .stats b{color:var(--ink);font-size:20px;font-family:"Newsreader",Georgia,serif}
 .note{font-size:13px;color:var(--mute);margin:6px 0 0;line-height:1.42}
+.auth-title{font:600 clamp(24px,6.2vw,28px)/1.2 "Newsreader",Georgia,serif;margin:6px 0 8px}
+.auth-invite{font:italic 400 16px/1.55 "Newsreader",Georgia,serif;color:var(--ink);margin:0 0 16px}
+.auth-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:0;padding-top:12px;border-top:1px solid var(--line)}
 .lock-notice{margin-top:12px;padding:10px 12px;border-radius:10px;background:color-mix(in srgb,var(--accent) 8%,var(--bg));border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line));font-size:12.5px;color:var(--mute);line-height:1.45}
 .lock-notice a{color:var(--accent);text-decoration:none;font-weight:500}
 .lock-notice a:hover{text-decoration:underline}
@@ -438,8 +441,9 @@ body {
 <main>
   <section class="card" id="auth-card">
     <div class="brand-badge">✦ DreamSaver</div>
-    <h2>Iniciar sesión / Crear cuenta</h2>
-    <p class="note">Tu perfil astral personal: carta natal, diseño humano, numerología y diario de sueños.</p>
+    <h2 class="auth-title">El portal se abre para ti</h2>
+    <p class="auth-invite">Cada alma llega a la Tierra con un mapa escondido. Este portal existe para ayudarte a leerlo: un santuario de autoconocimiento donde tu historia interior encuentra voz. Cruza el umbral.</p>
+    <p class="auth-label">Accede o crea tu cuenta</p>
     <div class="fld">
       Correo electrónico
       <input type="email" id="auth-email" placeholder="tu@email.com" autocomplete="email">
@@ -604,7 +608,7 @@ body {
 
   <footer class="app-footer">
     <div class="ds-text-box">
-      <div><strong>✦ DreamSaver</strong> · Tu perfil astral y diario de sueños</div>
+      <div><strong>✦ DreamSaver</strong> · Portal de autoconocimiento del alma</div>
       <div>Contacto y soporte: <a href="mailto:redlantecc@gmail.com">redlantecc@gmail.com</a></div>
     </div>
   </footer>
